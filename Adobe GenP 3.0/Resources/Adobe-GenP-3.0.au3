@@ -1,0 +1,19382 @@
+#RequireAdmin
+#Region
+#AutoIt3Wrapper_Icon=ICONS\Skull.ico
+#AutoIt3Wrapper_Res_Comment=2.0.0
+#AutoIt3Wrapper_Res_Description=Adobe-GenP-3.0
+#AutoIt3Wrapper_Res_Fileversion=2.0.0.0
+#AutoIt3Wrapper_Res_ProductName=2.0.0
+#AutoIt3Wrapper_Res_ProductVersion=2.0.0
+#AutoIt3Wrapper_Res_CompanyName=2.0.0
+#AutoIt3Wrapper_Res_LegalCopyright=2.0.0
+#AutoIt3Wrapper_Res_LegalTradeMarks=2.0.0
+#EndRegion
+Opt ( "TrayAutoPause" , 0 )
+Opt ( "TrayIconHide" , 1 )
+Opt ( "GUICloseOnESC" , 0 )
+HotKeySet ( "{ESC}" , "ShowEscMessage" )
+Global $IPATTERNBANNERS = "72656C6174696F6E7368697050726F66696C65"
+Global $IPATTERNBANNERR [ 1 ] = [ "78656C6174696F6E7368697050726F66696C65" ]
+Global $IPATTERNPROFILE_EXPIREDS = "85C075(.{10})75(.{2})B892010000E9"
+Global $IPATTERNPROFILE_EXPIREDR [ 5 ] = [ "31C075" , "004883FF0F" , "75" , "00" , "B800000000E9" ]
+Global $IPATTERNCMPEAX61S = "8B(.{2})85C074(.{2})83F80674(.{4})83(.{4})007D"
+Global $IPATTERNCMPEAX61R [ 9 ] = [ "C7" , "??" , "030000" , "00" , "83F80674" , "00??" , "83" , "????" , "00EB" ]
+Global $IPATTERNCMPEAX62S = "8B(.{2})85C074(.{2})83F80674(.{4})83(.{6})007D"
+Global $IPATTERNCMPEAX62R [ 9 ] = [ "C7" , "??" , "030000" , "00" , "83F80674" , "00??" , "83" , "??????" , "00EB" ]
+Global $IPATTERNCMPEAX63S = "8B(.{4})85C074(.{2})83F80674(.{4})83(.{4})007D"
+Global $IPATTERNCMPEAX63R [ 9 ] = [ "C7" , "????" , "030000" , "00" , "83F80674" , "00??" , "83" , "????" , "00EB" ]
+Global $IPATTERNCMPEAX64S = "8B(.{4})85C074(.{2})83F80674(.{4})83(.{6})007D"
+Global $IPATTERNCMPEAX64R [ 9 ] = [ "C7" , "????" , "030000" , "00" , "83F80674" , "00??" , "83" , "??????" , "00EB" ]
+Global $IPATTERNPROCESSV2PROFILE1AS = "00007504488D4850"
+Global $IPATTERNPROCESSV2PROFILE1AR [ 1 ] = [ "00007500488D4850" ]
+Global $IPATTERNPROCESSV2PROFILE1A1S = "00007504488D5050"
+Global $IPATTERNPROCESSV2PROFILE1A1R [ 1 ] = [ "00007500488D5050" ]
+Global $IPATTERNVALIDATELICENSES = "83F80175(.{2})BA94010000"
+Global $IPATTERNVALIDATELICENSER [ 3 ] = [ "83F80175" , "??" , "BA00000000" ]
+Global $IPATTERNVALIDATELICENSE1S = "83F8040F95C281C293010000"
+Global $IPATTERNVALIDATELICENSE1R [ 1 ] = [ "83F8040F95C2BA0000000090" ]
+Global $IPATTERNVALIDATELICENSE2S = "83F8040F95C181C193010000"
+Global $IPATTERNVALIDATELICENSE2R [ 1 ] = [ "83F8040F95C1B90000000090" ]
+Global $IPATTERNBRIDGECAMRAW1S = "84C074(.{2})8B(.{2})83(.{2})0174(.{2})83(.{2})0174(.{2})83(.{2})01"
+Global $IPATTERNBRIDGECAMRAW1R [ 15 ] = [ "84C074" , "??" , "8B" , "??" , "83" , "??" , "01EB" , "??" , "83" , "??" , "0174" , "??" , "83" , "??" , "01" ]
+Global $IPATTERNBRIDGECAMRAW2S = "4084F60F85(.{8})4084ED0F84"
+Global $IPATTERNBRIDGECAMRAW2R [ 3 ] = [ "4084F60F85" , "????????" , "40FEC60F85" ]
+Global $IPATTERNHEVCMPEGENABLER1S = "8B(.{2})FF50100FB6"
+Global $IPATTERNHEVCMPEGENABLER1R [ 3 ] = [ "8B" , "??" , "FFC0900FB6" ]
+Global $IPATTERNHEVCMPEGENABLER2S = "8B(.{2})FF50280FB6"
+Global $IPATTERNHEVCMPEGENABLER2R [ 3 ] = [ "8B" , "??" , "FFC0900FB6" ]
+Global $IPATTERNHEVCMPEGENABLER3S = "8B(.{2})FF50300FB6"
+Global $IPATTERNHEVCMPEGENABLER3R [ 3 ] = [ "8B" , "??" , "FFC0900FB6" ]
+Global $IPATTERNHEVCMPEGENABLER4S = "8B(.{2})FF50380FB6"
+Global $IPATTERNHEVCMPEGENABLER4R [ 3 ] = [ "8B" , "??" , "FFC0900FB6" ]
+Global $IPATTERNHEVCMPEGENABLER5S = "8B(.{2})FF5010(.{2})0FB6"
+Global $IPATTERNHEVCMPEGENABLER5R [ 5 ] = [ "8B" , "??" , "FFC090" , "??" , "0FB6" ]
+Global $IPATTERNHEVCMPEGENABLER6S = "8B(.{2})FF5028(.{2})0FB6"
+Global $IPATTERNHEVCMPEGENABLER6R [ 5 ] = [ "8B" , "??" , "FFC090" , "??" , "0FB6" ]
+Global $IPATTERNHEVCMPEGENABLER7S = "8B(.{2})FF5030(.{2})0FB6"
+Global $IPATTERNHEVCMPEGENABLER7R [ 5 ] = [ "8B" , "??" , "FFC090" , "??" , "0FB6" ]
+Global $IPATTERNHEVCMPEGENABLER8S = "8B(.{2})FF5038(.{2})0FB6"
+Global $IPATTERNHEVCMPEGENABLER8R [ 5 ] = [ "8B" , "??" , "FFC090" , "??" , "0FB6" ]
+Global $IPATTERNTEAMPROJECTENABLERAS = "488379(.{4})740A488379(.{4})7403B001C332C0C3"
+Global $IPATTERNTEAMPROJECTENABLERAR [ 5 ] = [ "488379" , "????" , "740A488379" , "????" , "7403B001C3B001C3" ]
+Global Const $HGDI_ERROR = Ptr ( + 4294967295 )
+Global Const $INVALID_HANDLE_VALUE = Ptr ( + 4294967295 )
+Global Const $CLR_INVALID = + 4294967295
+Global Const $MB_PRECOMPOSED = 1
+Global Const $MB_COMPOSITE = 2
+Global Const $MB_USEGLYPHCHARS = 4
+Global Const $ULW_ALPHA = 2
+Global Const $ULW_COLORKEY = 1
+Global Const $ULW_OPAQUE = 4
+Global Const $ULW_EX_NORESIZE = 8
+Global Const $WH_CALLWNDPROC = 4
+Global Const $WH_CALLWNDPROCRET = 12
+Global Const $WH_CBT = 5
+Global Const $WH_DEBUG = 9
+Global Const $WH_FOREGROUNDIDLE = 11
+Global Const $WH_GETMESSAGE = 3
+Global Const $WH_JOURNALPLAYBACK = 1
+Global Const $WH_JOURNALRECORD = 0
+Global Const $WH_KEYBOARD = 2
+Global Const $WH_KEYBOARD_LL = 13
+Global Const $WH_MOUSE = 7
+Global Const $WH_MOUSE_LL = 14
+Global Const $WH_MSGFILTER = + 4294967295
+Global Const $WH_SHELL = 10
+Global Const $WH_SYSMSGFILTER = 6
+Global Const $WPF_ASYNCWINDOWPLACEMENT = 4
+Global Const $WPF_RESTORETOMAXIMIZED = 2
+Global Const $WPF_SETMINPOSITION = 1
+Global Const $KF_EXTENDED = 256
+Global Const $KF_ALTDOWN = 8192
+Global Const $KF_UP = 32768
+Global Const $LLKHF_EXTENDED = BitShift ( $KF_EXTENDED , 8 )
+Global Const $LLKHF_LOWER_IL_INJECTED = 2
+Global Const $LLKHF_INJECTED = 16
+Global Const $LLKHF_ALTDOWN = BitShift ( $KF_ALTDOWN , 8 )
+Global Const $LLKHF_UP = BitShift ( $KF_UP , 8 )
+Global Const $LVKF_ALT = 1
+Global Const $LVKF_CONTROL = 2
+Global Const $LVKF_SHIFT = 4
+Global Const $OFN_ALLOWMULTISELECT = 512
+Global Const $OFN_CREATEPROMPT = 8192
+Global Const $OFN_DONTADDTORECENT = 33554432
+Global Const $OFN_ENABLEHOOK = 32
+Global Const $OFN_ENABLEINCLUDENOTIFY = 4194304
+Global Const $OFN_ENABLESIZING = 8388608
+Global Const $OFN_ENABLETEMPLATE = 64
+Global Const $OFN_ENABLETEMPLATEHANDLE = 128
+Global Const $OFN_EXPLORER = 524288
+Global Const $OFN_EXTENSIONDIFFERENT = 1024
+Global Const $OFN_FILEMUSTEXIST = 4096
+Global Const $OFN_FORCESHOWHIDDEN = 268435456
+Global Const $OFN_HIDEREADONLY = 4
+Global Const $OFN_LONGNAMES = 2097152
+Global Const $OFN_NOCHANGEDIR = 8
+Global Const $OFN_NODEREFERENCELINKS = 1048576
+Global Const $OFN_NOLONGNAMES = 262144
+Global Const $OFN_NONETWORKBUTTON = 131072
+Global Const $OFN_NOREADONLYRETURN = 32768
+Global Const $OFN_NOTESTFILECREATE = 65536
+Global Const $OFN_NOVALIDATE = 256
+Global Const $OFN_OVERWRITEPROMPT = 2
+Global Const $OFN_PATHMUSTEXIST = 2048
+Global Const $OFN_READONLY = 1
+Global Const $OFN_SHAREAWARE = 16384
+Global Const $OFN_SHOWHELP = 16
+Global Const $OFN_EX_NOPLACESBAR = 1
+Global Const $STD_CUT = 0
+Global Const $STD_COPY = 1
+Global Const $STD_PASTE = 2
+Global Const $STD_UNDO = 3
+Global Const $STD_REDOW = 4
+Global Const $STD_DELETE = 5
+Global Const $STD_FILENEW = 6
+Global Const $STD_FILEOPEN = 7
+Global Const $STD_FILESAVE = 8
+Global Const $STD_PRINTPRE = 9
+Global Const $STD_PROPERTIES = 10
+Global Const $STD_HELP = 11
+Global Const $STD_FIND = 12
+Global Const $STD_REPLACE = 13
+Global Const $STD_PRINT = 14
+Global Const $KB_SENDSPECIAL = 0
+Global Const $KB_SENDRAW = 1
+Global Const $KB_CAPSOFF = 0
+Global Const $KB_CAPSON = 1
+Global Const $S_OK = 0
+Global Const $E_ABORT = 2147500036
+Global Const $E_ACCESSDENIED = 2147942405
+Global Const $E_FAIL = 2147500037
+Global Const $E_HANDLE = 2147942406
+Global Const $E_INVALIDARG = 2147942487
+Global Const $E_NOINTERFACE = 2147500034
+Global Const $E_NOTIMPL = 2147500033
+Global Const $E_OUTOFMEMORY = 2147942414
+Global Const $E_POINTER = 2147500035
+Global Const $E_UNEXPECTED = 2147549183
+Global Const $OPT_COORDSRELATIVE = 0
+Global Const $OPT_COORDSABSOLUTE = 1
+Global Const $OPT_COORDSCLIENT = 2
+Global Const $OPT_ERRORSILENT = 0
+Global Const $OPT_ERRORFATAL = 1
+Global Const $OPT_CAPSNOSTORE = 0
+Global Const $OPT_CAPSSTORE = 1
+Global Const $OPT_MATCHSTART = 1
+Global Const $OPT_MATCHANY = 2
+Global Const $OPT_MATCHEXACT = 3
+Global Const $OPT_MATCHADVANCED = 4
+Global Const $CCS_TOP = 1
+Global Const $CCS_NOMOVEY = 2
+Global Const $CCS_BOTTOM = 3
+Global Const $CCS_NORESIZE = 4
+Global Const $CCS_NOPARENTALIGN = 8
+Global Const $CCS_NOHILITE = 16
+Global Const $CCS_ADJUSTABLE = 32
+Global Const $CCS_NODIVIDER = 64
+Global Const $CCS_VERT = 128
+Global Const $CCS_LEFT = 129
+Global Const $CCS_NOMOVEX = 130
+Global Const $CCS_RIGHT = 131
+Global Const $DT_DRIVETYPE = 1
+Global Const $DT_SSDSTATUS = 2
+Global Const $DT_BUSTYPE = 3
+Global Const $PROXY_IE = 0
+Global Const $PROXY_NONE = 1
+Global Const $PROXY_SPECIFIED = 2
+Global Const $OBJID_WINDOW = 0
+Global Const $OBJID_TITLEBAR = 4294967294
+Global Const $OBJID_SIZEGRIP = 4294967289
+Global Const $OBJID_CARET = 4294967288
+Global Const $OBJID_CURSOR = 4294967287
+Global Const $OBJID_ALERT = 4294967286
+Global Const $OBJID_SOUND = 4294967285
+Global Const $DLG_CENTERONTOP = 0
+Global Const $DLG_NOTITLE = 1
+Global Const $DLG_NOTONTOP = 2
+Global Const $DLG_TEXTLEFT = 4
+Global Const $DLG_TEXTRIGHT = 8
+Global Const $DLG_MOVEABLE = 16
+Global Const $DLG_TEXTVCENTER = 32
+Global Const $MCID_UNKNOWN = + 4294967295
+Global Const $MCID_HAND = 0
+Global Const $MCID_APPSTARTING = 1
+Global Const $MCID_ARROW = 2
+Global Const $MCID_CROSS = 3
+Global Const $MCID_HELP = 4
+Global Const $MCID_IBEAM = 5
+Global Const $MCID_ICON = 6
+Global Const $MCID_NO = 7
+Global Const $MCID_SIZE = 8
+Global Const $MCID_SIZEALL = 9
+Global Const $MCID_SIZENESW = 10
+Global Const $MCID_SIZENS = 11
+Global Const $MCID_SIZENWSE = 12
+Global Const $MCID_SIZEWE = 13
+Global Const $MCID_UPARROW = 14
+Global Const $MCID_WAIT = 15
+Global Const $MCID_NONE = 16
+Global Const $SD_LOGOFF = 0
+Global Const $SD_SHUTDOWN = 1
+Global Const $SD_REBOOT = 2
+Global Const $SD_FORCE = 4
+Global Const $SD_POWERDOWN = 8
+Global Const $SD_FORCEHUNG = 16
+Global Const $SD_STANDBY = 32
+Global Const $SD_HIBERNATE = 64
+Global Const $STDIN_CHILD = 1
+Global Const $STDOUT_CHILD = 2
+Global Const $STDERR_CHILD = 4
+Global Const $STDERR_MERGED = 8
+Global Const $STDIO_INHERIT_PARENT = 16
+Global Const $RUN_CREATE_NEW_CONSOLE = 65536
+Global Const $UBOUND_DIMENSIONS = 0
+Global Const $UBOUND_ROWS = 1
+Global Const $UBOUND_COLUMNS = 2
+Global Const $MOUSEEVENTF_ABSOLUTE = 32768
+Global Const $MOUSEEVENTF_MOVE = 1
+Global Const $MOUSEEVENTF_LEFTDOWN = 2
+Global Const $MOUSEEVENTF_LEFTUP = 4
+Global Const $MOUSEEVENTF_RIGHTDOWN = 8
+Global Const $MOUSEEVENTF_RIGHTUP = 16
+Global Const $MOUSEEVENTF_MIDDLEDOWN = 32
+Global Const $MOUSEEVENTF_MIDDLEUP = 64
+Global Const $MOUSEEVENTF_WHEEL = 2048
+Global Const $MOUSEEVENTF_XDOWN = 128
+Global Const $MOUSEEVENTF_XUP = 256
+Global Const $REG_NONE = 0
+Global Const $REG_SZ = 1
+Global Const $REG_EXPAND_SZ = 2
+Global Const $REG_BINARY = 3
+Global Const $REG_DWORD = 4
+Global Const $REG_DWORD_LITTLE_ENDIAN = 4
+Global Const $REG_DWORD_BIG_ENDIAN = 5
+Global Const $REG_LINK = 6
+Global Const $REG_MULTI_SZ = 7
+Global Const $REG_RESOURCE_LIST = 8
+Global Const $REG_FULL_RESOURCE_DESCRIPTOR = 9
+Global Const $REG_RESOURCE_REQUIREMENTS_LIST = 10
+Global Const $REG_QWORD = 11
+Global Const $REG_QWORD_LITTLE_ENDIAN = 11
+Global Const $HWND_BOTTOM = 1
+Global Const $HWND_NOTOPMOST = + 4294967294
+Global Const $HWND_TOP = 0
+Global Const $HWND_TOPMOST = + 4294967295
+Global Const $SWP_NOSIZE = 1
+Global Const $SWP_NOMOVE = 2
+Global Const $SWP_NOZORDER = 4
+Global Const $SWP_NOREDRAW = 8
+Global Const $SWP_NOACTIVATE = 16
+Global Const $SWP_FRAMECHANGED = 32
+Global Const $SWP_DRAWFRAME = 32
+Global Const $SWP_SHOWWINDOW = 64
+Global Const $SWP_HIDEWINDOW = 128
+Global Const $SWP_NOCOPYBITS = 256
+Global Const $SWP_NOOWNERZORDER = 512
+Global Const $SWP_NOREPOSITION = 512
+Global Const $SWP_NOSENDCHANGING = 1024
+Global Const $SWP_DEFERERASE = 8192
+Global Const $SWP_ASYNCWINDOWPOS = 16384
+Global Const $KEYWORD_DEFAULT = 1
+Global Const $KEYWORD_NULL = 2
+Global Const $DECLARED_LOCAL = + 4294967295
+Global Const $DECLARED_UNKNOWN = 0
+Global Const $DECLARED_GLOBAL = 1
+Global Const $ASSIGN_CREATE = 0
+Global Const $ASSIGN_FORCELOCAL = 1
+Global Const $ASSIGN_FORCEGLOBAL = 2
+Global Const $ASSIGN_EXISTFAIL = 4
+Global Const $BI_ENABLE = 0
+Global Const $BI_DISABLE = 1
+Global Const $BREAK_ENABLE = 1
+Global Const $BREAK_DISABLE = 0
+Global Const $CDTRAY_OPEN = "open"
+Global Const $CDTRAY_CLOSED = "closed"
+Global Const $SEND_DEFAULT = 0
+Global Const $SEND_RAW = 1
+Global Const $DIR_DEFAULT = 0
+Global Const $DIR_EXTENDED = 1
+Global Const $DIR_NORECURSE = 2
+Global Const $DIR_REMOVE = 1
+Global Const $DT_ALL = "ALL"
+Global Const $DT_CDROM = "CDROM"
+Global Const $DT_REMOVABLE = "REMOVABLE"
+Global Const $DT_FIXED = "FIXED"
+Global Const $DT_NETWORK = "NETWORK"
+Global Const $DT_RAMDISK = "RAMDISK"
+Global Const $DT_UNKNOWN = "UNKNOWN"
+Global Const $DT_UNDEFINED = 1
+Global Const $DT_FAT = "FAT"
+Global Const $DT_FAT32 = "FAT32"
+Global Const $DT_EXFAT = "exFAT"
+Global Const $DT_NTFS = "NTFS"
+Global Const $DT_NWFS = "NWFS"
+Global Const $DT_CDFS = "CDFS"
+Global Const $DT_UDF = "UDF"
+Global Const $DMA_DEFAULT = 0
+Global Const $DMA_PERSISTENT = 1
+Global Const $DMA_AUTHENTICATION = 8
+Global Const $DS_UNKNOWN = "UNKNOWN"
+Global Const $DS_READY = "READY"
+Global Const $DS_NOTREADY = "NOTREADY"
+Global Const $DS_INVALID = "INVALID"
+Global Const $MOUSE_CLICK_LEFT = "left"
+Global Const $MOUSE_CLICK_RIGHT = "right"
+Global Const $MOUSE_CLICK_MIDDLE = "middle"
+Global Const $MOUSE_CLICK_MAIN = "main"
+Global Const $MOUSE_CLICK_MENU = "menu"
+Global Const $MOUSE_CLICK_PRIMARY = "primary"
+Global Const $MOUSE_CLICK_SECONDARY = "secondary"
+Global Const $MOUSE_WHEEL_UP = "up"
+Global Const $MOUSE_WHEEL_DOWN = "down"
+Global Const $NUMBER_AUTO = 0
+Global Const $NUMBER_32BIT = 1
+Global Const $NUMBER_64BIT = 2
+Global Const $NUMBER_DOUBLE = 3
+Global Const $OBJ_NAME = 1
+Global Const $OBJ_STRING = 2
+Global Const $OBJ_PROGID = 3
+Global Const $OBJ_FILE = 4
+Global Const $OBJ_MODULE = 5
+Global Const $OBJ_CLSID = 6
+Global Const $OBJ_IID = 7
+Global Const $EXITCLOSE_NORMAL = 0
+Global Const $EXITCLOSE_BYEXIT = 1
+Global Const $EXITCLOSE_BYCLICK = 2
+Global Const $EXITCLOSE_BYLOGOFF = 3
+Global Const $EXITCLOSE_BYSHUTDOWN = 4
+Global Const $PROCESS_STATS_MEMORY = 0
+Global Const $PROCESS_STATS_IO = 1
+Global Const $PROCESS_LOW = 0
+Global Const $PROCESS_BELOWNORMAL = 1
+Global Const $PROCESS_NORMAL = 2
+Global Const $PROCESS_ABOVENORMAL = 3
+Global Const $PROCESS_HIGH = 4
+Global Const $PROCESS_REALTIME = 5
+Global Const $RUN_LOGON_NOPROFILE = 0
+Global Const $RUN_LOGON_PROFILE = 1
+Global Const $RUN_LOGON_NETWORK = 2
+Global Const $RUN_LOGON_INHERIT = 4
+Global Const $SOUND_NOWAIT = 0
+Global Const $SOUND_WAIT = 1
+Global Const $SHEX_OPEN = "open"
+Global Const $SHEX_EDIT = "edit"
+Global Const $SHEX_PRINT = "print"
+Global Const $SHEX_PROPERTIES = "properties"
+Global Const $TCP_DATA_DEFAULT = 0
+Global Const $TCP_DATA_BINARY = 1
+Global Const $UDP_OPEN_DEFAULT = 0
+Global Const $UDP_OPEN_BROADCAST = 1
+Global Const $UDP_DATA_DEFAULT = 0
+Global Const $UDP_DATA_BINARY = 1
+Global Const $UDP_DATA_ARRAY = 2
+Global Const $TIP_NOICON = 0
+Global Const $TIP_INFOICON = 1
+Global Const $TIP_WARNINGICON = 2
+Global Const $TIP_ERRORICON = 3
+Global Const $TIP_BALLOON = 1
+Global Const $TIP_CENTER = 2
+Global Const $TIP_FORCEVISIBLE = 4
+Global Const $WINDOWS_NOONTOP = 0
+Global Const $WINDOWS_ONTOP = 1
+Global Const $WIN_STATE_EXISTS = 1
+Global Const $WIN_STATE_VISIBLE = 2
+Global Const $WIN_STATE_ENABLED = 4
+Global Const $WIN_STATE_ACTIVE = 8
+Global Const $WIN_STATE_MINIMIZED = 16
+Global Const $WIN_STATE_MAXIMIZED = 32
+Global Const $MB_OK = 0
+Global Const $MB_OKCANCEL = 1
+Global Const $MB_ABORTRETRYIGNORE = 2
+Global Const $MB_YESNOCANCEL = 3
+Global Const $MB_YESNO = 4
+Global Const $MB_RETRYCANCEL = 5
+Global Const $MB_CANCELTRYCONTINUE = 6
+Global Const $MB_HELP = 16384
+Global Const $MB_ICONNONE = 0
+Global Const $MB_ICONSTOP = 16
+Global Const $MB_ICONERROR = 16
+Global Const $MB_ICONHAND = 16
+Global Const $MB_ICONQUESTION = 32
+Global Const $MB_ICONEXCLAMATION = 48
+Global Const $MB_ICONWARNING = 48
+Global Const $MB_ICONINFORMATION = 64
+Global Const $MB_ICONASTERISK = 64
+Global Const $MB_USERICON = 128
+Global Const $MB_DEFBUTTON1 = 0
+Global Const $MB_DEFBUTTON2 = 256
+Global Const $MB_DEFBUTTON3 = 512
+Global Const $MB_DEFBUTTON4 = 768
+Global Const $MB_APPLMODAL = 0
+Global Const $MB_SYSTEMMODAL = 4096
+Global Const $MB_TASKMODAL = 8192
+Global Const $MB_DEFAULT_DESKTOP_ONLY = 131072
+Global Const $MB_RIGHT = 524288
+Global Const $MB_RTLREADING = 1048576
+Global Const $MB_SETFOREGROUND = 65536
+Global Const $MB_TOPMOST = 262144
+Global Const $MB_SERVICE_NOTIFICATION = 2097152
+Global Const $MB_RIGHTJUSTIFIED = $MB_RIGHT
+Global Const $IDTIMEOUT = + 4294967295
+Global Const $IDOK = 1
+Global Const $IDCANCEL = 2
+Global Const $IDABORT = 3
+Global Const $IDRETRY = 4
+Global Const $IDIGNORE = 5
+Global Const $IDYES = 6
+Global Const $IDNO = 7
+Global Const $IDCLOSE = 8
+Global Const $IDHELP = 9
+Global Const $IDTRYAGAIN = 10
+Global Const $IDCONTINUE = 11
+Global Const $STR_NOCASESENSE = 0
+Global Const $STR_CASESENSE = 1
+Global Const $STR_NOCASESENSEBASIC = 2
+Global Const $STR_STRIPLEADING = 1
+Global Const $STR_STRIPTRAILING = 2
+Global Const $STR_STRIPSPACES = 4
+Global Const $STR_STRIPALL = 8
+Global Const $STR_CHRSPLIT = 0
+Global Const $STR_ENTIRESPLIT = 1
+Global Const $STR_NOCOUNT = 2
+Global Const $STR_REGEXPMATCH = 0
+Global Const $STR_REGEXPARRAYMATCH = 1
+Global Const $STR_REGEXPARRAYFULLMATCH = 2
+Global Const $STR_REGEXPARRAYGLOBALMATCH = 3
+Global Const $STR_REGEXPARRAYGLOBALFULLMATCH = 4
+Global Const $STR_ENDISSTART = 0
+Global Const $STR_ENDNOTSTART = 1
+Global Const $SB_ANSI = 1
+Global Const $SB_UTF16LE = 2
+Global Const $SB_UTF16BE = 3
+Global Const $SB_UTF8 = 4
+Global Const $SE_UTF16 = 0
+Global Const $SE_ANSI = 1
+Global Const $SE_UTF8 = 2
+Global Const $STR_UTF16 = 0
+Global Const $STR_UCS2 = 1
+#Region Global Variables and Constants
+Global $_G_ARRAYDISPLAY_BUSERFUNC = False
+Global $_G_ARRAYDISPLAY_HLISTVIEW
+Global $_G_ARRAYDISPLAY_ITRANSPOSE
+Global $_G_ARRAYDISPLAY_IDISPLAYROW
+Global $_G_ARRAYDISPLAY_AARRAY
+Global $_G_ARRAYDISPLAY_IDIMS
+Global $_G_ARRAYDISPLAY_NROWS
+Global $_G_ARRAYDISPLAY_NCOLS
+Global $_G_ARRAYDISPLAY_IITEM_START
+Global $_G_ARRAYDISPLAY_IITEM_END
+Global $_G_ARRAYDISPLAY_ISUBITEM_START
+Global $_G_ARRAYDISPLAY_ISUBITEM_END
+Global $_G_ARRAYDISPLAY_AINDEX
+Global $_G_ARRAYDISPLAY_AINDEXES [ 1 ]
+Global $_G_ARRAYDISPLAY_ISORTDIR
+Global $_G_ARRAYDISPLAY_ASHEADER
+Global $_G_ARRAYDISPLAY_ANUMERICSORT
+Global $ARRAYDISPLAY_ROWPREFIX = "#"
+Global $ARRAYDISPLAY_NUMERICSORT = "*"
+Global Const $ARRAYDISPLAY_COLALIGNLEFT = 0
+Global Const $ARRAYDISPLAY_TRANSPOSE = 1
+Global Const $ARRAYDISPLAY_COLALIGNRIGHT = 2
+Global Const $ARRAYDISPLAY_COLALIGNCENTER = 4
+Global Const $ARRAYDISPLAY_VERBOSE = 8
+Global Const $ARRAYDISPLAY_NOROW = 64
+Global Const $ARRAYDISPLAY_CHECKERROR = 128
+Global Const $_ARRAYCONSTANT_TAGLVITEM = "struct;uint Mask;int Item;int SubItem;uint State;uint StateMask;ptr Text;int TextMax;int Image;lparam Param;" & "int Indent;int GroupID;uint Columns;ptr pColumns;ptr piColFmt;int iGroup;endstruct"
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+Func __ARRAYDISPLAY_SHARE ( Const ByRef $AARRAY , $STITLE = Default , $SARRAYRANGE = Default , $IFLAGS = Default , $VUSER_SEPARATOR = Default , $SHEADER = Default , $IDESIRED_COLWIDTH = Default , $HUSER_FUNCTION = Default , $BDEBUG = True , Const $_ISCRIPTLINENUMBER = @ScriptLineNumber , Const $_ICALLERERROR = @error , Const $_ICALLEREXTENDED = @extended )
+	Local $SMSGBOXTITLE = ( ( $BDEBUG ) ? ( "_DebugArrayDisplay" ) : ( "_ArrayDisplay" ) )
+	If $_G_ARRAYDISPLAY_BUSERFUNC Then
+		$HUSER_FUNCTION = Default
+		$BDEBUG = False
+	EndIf
+	If Not IsKeyword ( $HUSER_FUNCTION ) = $KEYWORD_DEFAULT Then
+		$_G_ARRAYDISPLAY_BUSERFUNC = True
+	EndIf
+	If $STITLE = Default Then $STITLE = $SMSGBOXTITLE
+	If $SARRAYRANGE = Default Then $SARRAYRANGE = ""
+	If $IFLAGS = Default Then $IFLAGS = 0
+	If $VUSER_SEPARATOR = Default Then $VUSER_SEPARATOR = ""
+	If $SHEADER = Default Then $SHEADER = ""
+	Local $IMIN_COLWIDTH = 55
+	Local $IMAX_COLWIDTH = 350
+	If $IDESIRED_COLWIDTH > 0 Then $IMAX_COLWIDTH = $IDESIRED_COLWIDTH
+	If $IDESIRED_COLWIDTH < 0 Then $IMIN_COLWIDTH = - $IDESIRED_COLWIDTH
+	If $IMAX_COLWIDTH = Default Then $IMAX_COLWIDTH = 350
+	If $IMAX_COLWIDTH > 4095 Then $IMAX_COLWIDTH = 4095
+	If $HUSER_FUNCTION = Default Then $HUSER_FUNCTION = 0
+	$_G_ARRAYDISPLAY_ITRANSPOSE = BitAND ( $IFLAGS , $ARRAYDISPLAY_TRANSPOSE )
+	Local $ICOLALIGN = BitAND ( $IFLAGS , 6 )
+	Local $IVERBOSE = Int ( BitAND ( $IFLAGS , $ARRAYDISPLAY_VERBOSE ) )
+	$_G_ARRAYDISPLAY_IDISPLAYROW = Int ( BitAND ( $IFLAGS , $ARRAYDISPLAY_NOROW ) = 0 )
+	Local $IBUTTONBORDER = ( ( $BDEBUG ) ? ( 40 ) : ( 20 ) )
+	#Region Check valid array
+	Local $SMSG = "" , $IRET = 1
+	Local $FTIMER = 0
+	If IsArray ( $AARRAY ) Then
+		$_G_ARRAYDISPLAY_AARRAY = $AARRAY
+		$_G_ARRAYDISPLAY_IDIMS = UBound ( $_G_ARRAYDISPLAY_AARRAY , $UBOUND_DIMENSIONS )
+		If $_G_ARRAYDISPLAY_IDIMS = 1 Then $_G_ARRAYDISPLAY_ITRANSPOSE = 0
+		$_G_ARRAYDISPLAY_NROWS = UBound ( $_G_ARRAYDISPLAY_AARRAY , $UBOUND_ROWS )
+		$_G_ARRAYDISPLAY_NCOLS = ( $_G_ARRAYDISPLAY_IDIMS = 2 ) ? UBound ( $_G_ARRAYDISPLAY_AARRAY , $UBOUND_COLUMNS ) : 1
+		Dim $_G_ARRAYDISPLAY_ANUMERICSORT [ $_G_ARRAYDISPLAY_NCOLS ]
+		If $_G_ARRAYDISPLAY_IDIMS > 2 Then
+			$SMSG = "Larger than 2D array passed to function"
+			$IRET = 2
+		EndIf
+		If $_ICALLERERROR Then
+			If $BDEBUG Then
+				If IsDeclared ( "__g_sReportCallBack_DebugReport_Debug" ) Then
+					$SMSG = "@@ Debug( " & $_ISCRIPTLINENUMBER & ") : @error = " & $_ICALLERERROR & " in " & $SMSGBOXTITLE & "( '" & $STITLE & "' )"
+					Execute ( "$__g_sReportCallBack_DebugReport_Debug(""" & $SMSG & """)" )
+				EndIf
+				$IRET = 3
+			ElseIf BitAND ( $IFLAGS , $ARRAYDISPLAY_CHECKERROR ) Then
+				$SMSG = "@error = " & $_ICALLERERROR & " when calling the function"
+				If $_ISCRIPTLINENUMBER > 0 Then $SMSG &= " at line " & $_ISCRIPTLINENUMBER
+				$IRET = 3
+			EndIf
+		EndIf
+	Else
+		$SMSG = "No array variable passed to function"
+	EndIf
+	If $SMSG Then
+		If $IVERBOSE And MsgBox ( $MB_SYSTEMMODAL + $MB_ICONERROR + $MB_YESNO , $SMSGBOXTITLE & "() Error: " & $STITLE , $SMSG & @CRLF & @CRLF & "Exit the script?" ) = $IDYES Then
+			Exit
+		Else
+			Return SetError ( $IRET , 0 , 0 )
+		EndIf
+	EndIf
+	#EndRegion Check valid array
+	#Region Check array range
+	Local $ICW_COLWIDTH = Number ( $VUSER_SEPARATOR )
+	Local $SCURR_SEPARATOR = Opt ( "GUIDataSeparatorChar" )
+	If $VUSER_SEPARATOR = "" Then $VUSER_SEPARATOR = $SCURR_SEPARATOR
+	$_G_ARRAYDISPLAY_IITEM_START = 0
+	$_G_ARRAYDISPLAY_IITEM_END = $_G_ARRAYDISPLAY_NROWS + 4294967295
+	$_G_ARRAYDISPLAY_ISUBITEM_START = 0
+	$_G_ARRAYDISPLAY_ISUBITEM_END = ( ( $_G_ARRAYDISPLAY_IDIMS = 2 ) ? ( $_G_ARRAYDISPLAY_NCOLS + 4294967295 ) : ( 0 ) )
+	Local $AVRANGESPLIT
+	If $SARRAYRANGE Then
+		Local $VTMP , $AARRAY_RANGE = StringRegExp ( $SARRAYRANGE & "||" , "(?U)(.*)\|" , $STR_REGEXPARRAYGLOBALMATCH )
+		If $AARRAY_RANGE [ 0 ] Then
+			$AVRANGESPLIT = StringSplit ( $AARRAY_RANGE [ 0 ] , ":" )
+			If @error Then
+				$_G_ARRAYDISPLAY_IITEM_END = Number ( $AARRAY_RANGE [ 0 ] )
+			Else
+				$_G_ARRAYDISPLAY_IITEM_START = Number ( $AVRANGESPLIT [ 1 ] )
+				If $AVRANGESPLIT [ 2 ] <> "" Then
+					$_G_ARRAYDISPLAY_IITEM_END = Number ( $AVRANGESPLIT [ 2 ] )
+				EndIf
+			EndIf
+		EndIf
+		If $_G_ARRAYDISPLAY_IITEM_START < 0 Then $_G_ARRAYDISPLAY_IITEM_START = 0
+		If $_G_ARRAYDISPLAY_IITEM_END >= $_G_ARRAYDISPLAY_NROWS Then $_G_ARRAYDISPLAY_IITEM_END = $_G_ARRAYDISPLAY_NROWS + 4294967295
+		If ( $_G_ARRAYDISPLAY_IITEM_START > $_G_ARRAYDISPLAY_IITEM_END ) And ( $_G_ARRAYDISPLAY_IITEM_END > 0 ) Then
+			$VTMP = $_G_ARRAYDISPLAY_IITEM_START
+			$_G_ARRAYDISPLAY_IITEM_START = $_G_ARRAYDISPLAY_IITEM_END
+			$_G_ARRAYDISPLAY_IITEM_END = $VTMP
+		EndIf
+		If $_G_ARRAYDISPLAY_IDIMS = 2 And $AARRAY_RANGE [ 1 ] Then
+			$AVRANGESPLIT = StringSplit ( $AARRAY_RANGE [ 1 ] , ":" )
+			If @error Then
+				$_G_ARRAYDISPLAY_ISUBITEM_END = Number ( $AARRAY_RANGE [ 1 ] )
+			Else
+				$_G_ARRAYDISPLAY_ISUBITEM_START = Number ( $AVRANGESPLIT [ 1 ] )
+				If $AVRANGESPLIT [ 2 ] <> "" Then
+					$_G_ARRAYDISPLAY_ISUBITEM_END = Number ( $AVRANGESPLIT [ 2 ] )
+				EndIf
+			EndIf
+			If $_G_ARRAYDISPLAY_ISUBITEM_START > $_G_ARRAYDISPLAY_ISUBITEM_END Then
+				$VTMP = $_G_ARRAYDISPLAY_ISUBITEM_START
+				$_G_ARRAYDISPLAY_ISUBITEM_START = $_G_ARRAYDISPLAY_ISUBITEM_END
+				$_G_ARRAYDISPLAY_ISUBITEM_END = $VTMP
+			EndIf
+			If $_G_ARRAYDISPLAY_ISUBITEM_START < 0 Then $_G_ARRAYDISPLAY_ISUBITEM_START = 0
+			If $_G_ARRAYDISPLAY_ISUBITEM_END >= $_G_ARRAYDISPLAY_NCOLS Then $_G_ARRAYDISPLAY_ISUBITEM_END = $_G_ARRAYDISPLAY_NCOLS + 4294967295
+		EndIf
+	EndIf
+	Local $SDISPLAYDATA = "[" & $_G_ARRAYDISPLAY_NROWS & "]"
+	If $_G_ARRAYDISPLAY_IDIMS = 2 Then
+		$SDISPLAYDATA &= " [" & $_G_ARRAYDISPLAY_NCOLS & "]"
+	EndIf
+	Local $STIPDATA = ""
+	If $SARRAYRANGE Then
+		If $STIPDATA Then $STIPDATA &= " - "
+		$STIPDATA &= "Range set " & $SARRAYRANGE
+	EndIf
+	If $_G_ARRAYDISPLAY_ITRANSPOSE Then
+		If $STIPDATA Then $STIPDATA &= " - "
+		$STIPDATA &= "Transposed"
+	EndIf
+	If $SARRAYRANGE Or $_G_ARRAYDISPLAY_ITRANSPOSE Then $_G_ARRAYDISPLAY_AARRAY = __ARRAYDISPLAY_CREATESUBARRAY ( )
+	#EndRegion Check array range
+	#Region Check custom header
+	$_G_ARRAYDISPLAY_ASHEADER = StringSplit ( $SHEADER , $SCURR_SEPARATOR , $STR_NOCOUNT )
+	If UBound ( $_G_ARRAYDISPLAY_ASHEADER ) = 0 Then Dim $_G_ARRAYDISPLAY_ASHEADER [ 1 ] = [ "" ]
+	$SHEADER = "Row"
+	Local $IINDEX = $_G_ARRAYDISPLAY_ISUBITEM_START
+	If $_G_ARRAYDISPLAY_ITRANSPOSE Then
+		$SHEADER = "Row"
+		For $J = 0 To $_G_ARRAYDISPLAY_NCOLS + 4294967295
+			$SHEADER &= $SCURR_SEPARATOR & $ARRAYDISPLAY_ROWPREFIX & " " & $J + $_G_ARRAYDISPLAY_ISUBITEM_START
+		Next
+	Else
+		If $_G_ARRAYDISPLAY_ASHEADER [ 0 ] Then
+			For $IINDEX = $_G_ARRAYDISPLAY_ISUBITEM_START To $_G_ARRAYDISPLAY_ISUBITEM_END
+				If $IINDEX >= UBound ( $_G_ARRAYDISPLAY_ASHEADER ) Then ExitLoop
+				If StringRight ( $_G_ARRAYDISPLAY_ASHEADER [ $IINDEX ] , 1 ) = $ARRAYDISPLAY_NUMERICSORT Then
+					$_G_ARRAYDISPLAY_ASHEADER [ $IINDEX ] = StringTrimRight ( $_G_ARRAYDISPLAY_ASHEADER [ $IINDEX ] , 1 )
+					$_G_ARRAYDISPLAY_ANUMERICSORT [ $IINDEX - $_G_ARRAYDISPLAY_ISUBITEM_START ] = 1
+				EndIf
+				$SHEADER &= $SCURR_SEPARATOR & $_G_ARRAYDISPLAY_ASHEADER [ $IINDEX ]
+			Next
+		EndIf
+		For $J = $IINDEX To $_G_ARRAYDISPLAY_ISUBITEM_END
+			$SHEADER &= $SCURR_SEPARATOR & "Col " & $J
+		Next
+	EndIf
+	If Not $_G_ARRAYDISPLAY_IDISPLAYROW Then $SHEADER = StringTrimLeft ( $SHEADER , 4 )
+	#EndRegion Check custom header
+	#Region Generate Sort index for columns
+	__ARRAYDISPLAY_SORTINDEXES ( 0 , + 4294967295 )
+	Local $HTIMER = TimerInit ( )
+	__ARRAYDISPLAY_SORTINDEXES ( 1 , 1 )
+	$FTIMER = TimerDiff ( $HTIMER )
+	If $FTIMER * $_G_ARRAYDISPLAY_NCOLS < 1000 Then
+		__ARRAYDISPLAY_SORTINDEXES ( 2 , $_G_ARRAYDISPLAY_NCOLS )
+	Else
+	EndIf
+	#EndRegion Generate Sort index for columns
+	#Region GUI and Listview generation
+	If $IVERBOSE And ( $_G_ARRAYDISPLAY_NROWS * $_G_ARRAYDISPLAY_NCOLS ) > 1000 Then
+		SplashTextOn ( $SMSGBOXTITLE , "Preparing display" & @CRLF & @CRLF & "Please be patient" , 300 , 100 )
+	EndIf
+	Local Const $_ARRAYCONSTANT_GUI_DOCKBOTTOM = 64
+	Local Const $_ARRAYCONSTANT_GUI_DOCKBORDERS = 102
+	Local Const $_ARRAYCONSTANT_GUI_DOCKHEIGHT = 512
+	Local Const $_ARRAYCONSTANT_GUI_DOCKLEFT = 2
+	Local Const $_ARRAYCONSTANT_GUI_DOCKRIGHT = 4
+	Local Const $_ARRAYCONSTANT_GUI_DOCKHCENTER = 8
+	Local Const $_ARRAYCONSTANT_GUI_EVENT_CLOSE = + 4294967293
+	Local Const $_ARRAYCONSTANT_GUI_EVENT_ARRAY = 1
+	Local Const $_ARRAYCONSTANT_GUI_FOCUS = 256
+	Local Const $_ARRAYCONSTANT_SS_CENTER = 1
+	Local Const $_ARRAYCONSTANT_SS_CENTERIMAGE = 512
+	Local Const $_ARRAYCONSTANT_LVM_GETITEMRECT = ( 4096 + 14 )
+	Local Const $_ARRAYCONSTANT_LVM_GETITEMSTATE = ( 4096 + 44 )
+	Local Const $_ARRAYCONSTANT_LVM_GETSELECTEDCOUNT = ( 4096 + 50 )
+	Local Const $_ARRAYCONSTANT_LVM_SETEXTENDEDLISTVIEWSTYLE = ( 4096 + 54 )
+	Local Const $_ARRAYCONSTANT_LVS_EX_GRIDLINES = 1
+	Local Const $_ARRAYCONSTANT_LVIS_SELECTED = 2
+	Local Const $_ARRAYCONSTANT_LVS_SHOWSELALWAYS = 8
+	Local Const $_ARRAYCONSTANT_LVS_OWNERDATA = 4096
+	Local Const $_ARRAYCONSTANT_LVS_EX_FULLROWSELECT = 32
+	Local Const $_ARRAYCONSTANT_LVS_EX_DOUBLEBUFFER = 65536
+	Local Const $_ARRAYCONSTANT_WS_EX_CLIENTEDGE = 512
+	Local Const $_ARRAYCONSTANT_WS_MAXIMIZEBOX = 65536
+	Local Const $_ARRAYCONSTANT_WS_MINIMIZEBOX = 131072
+	Local Const $_ARRAYCONSTANT_WS_SIZEBOX = 262144
+	Local $ICOORDMODE = Opt ( "GUICoordMode" , 1 )
+	Local $IORGWIDTH = 210 , $IHEIGHT = 200 , $IMINSIZE = 250
+	Local $HGUI = GUICreate ( $STITLE , $IORGWIDTH , $IHEIGHT , Default , Default , BitOR ( $_ARRAYCONSTANT_WS_SIZEBOX , $_ARRAYCONSTANT_WS_MINIMIZEBOX , $_ARRAYCONSTANT_WS_MAXIMIZEBOX ) )
+	Local $AIGUISIZE = WinGetClientSize ( $HGUI )
+	Local $IDLISTVIEW = GUICtrlCreateListView ( $SHEADER , 0 , 0 , $AIGUISIZE [ 0 ] , $AIGUISIZE [ 1 ] - $IBUTTONBORDER , BitOR ( $_ARRAYCONSTANT_LVS_SHOWSELALWAYS , $_ARRAYCONSTANT_LVS_OWNERDATA ) )
+	$_G_ARRAYDISPLAY_HLISTVIEW = GUICtrlGetHandle ( $IDLISTVIEW )
+	GUICtrlSendMsg ( $IDLISTVIEW , $_ARRAYCONSTANT_LVM_SETEXTENDEDLISTVIEWSTYLE , $_ARRAYCONSTANT_LVS_EX_GRIDLINES , $_ARRAYCONSTANT_LVS_EX_GRIDLINES )
+	GUICtrlSendMsg ( $IDLISTVIEW , $_ARRAYCONSTANT_LVM_SETEXTENDEDLISTVIEWSTYLE , $_ARRAYCONSTANT_LVS_EX_FULLROWSELECT , $_ARRAYCONSTANT_LVS_EX_FULLROWSELECT )
+	GUICtrlSendMsg ( $IDLISTVIEW , $_ARRAYCONSTANT_LVM_SETEXTENDEDLISTVIEWSTYLE , $_ARRAYCONSTANT_LVS_EX_DOUBLEBUFFER , $_ARRAYCONSTANT_LVS_EX_DOUBLEBUFFER )
+	GUICtrlSendMsg ( $IDLISTVIEW , $_ARRAYCONSTANT_LVM_SETEXTENDEDLISTVIEWSTYLE , $_ARRAYCONSTANT_WS_EX_CLIENTEDGE , $_ARRAYCONSTANT_WS_EX_CLIENTEDGE )
+	Local $HHEADER = HWnd ( GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 31 ) , 0 , 0 ) )
+	GUICtrlSetResizing ( $IDLISTVIEW , $_ARRAYCONSTANT_GUI_DOCKBORDERS )
+	Local $ICOLFILL = $_G_ARRAYDISPLAY_NCOLS + $_G_ARRAYDISPLAY_IDISPLAYROW
+	If $ICOLALIGN Then
+		For $I = 0 To $ICOLFILL + 4294967295
+			__ARRAYDISPLAY_JUSTIFYCOLUMN ( $IDLISTVIEW , $I , $ICOLALIGN / 2 )
+		Next
+	EndIf
+	GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 47 ) , $_G_ARRAYDISPLAY_NROWS , 0 )
+	Local $TRECT = DllStructCreate ( "struct; long Left;long Top;long Right;long Bottom; endstruct" )
+	DllCall ( "user32.dll" , "struct*" , "SendMessageW" , "hwnd" , $_G_ARRAYDISPLAY_HLISTVIEW , "uint" , $_ARRAYCONSTANT_LVM_GETITEMRECT , "wparam" , 0 , "struct*" , $TRECT )
+	Local $AIWIN_POS = WinGetPos ( $HGUI )
+	Local $AILV_POS = ControlGetPos ( $HGUI , "" , $IDLISTVIEW )
+	$IHEIGHT = ( ( $_G_ARRAYDISPLAY_NROWS + 3 ) * ( DllStructGetData ( $TRECT , "Bottom" ) - DllStructGetData ( $TRECT , "Top" ) ) ) + $AIWIN_POS [ 3 ] - $AILV_POS [ 3 ]
+	If $IHEIGHT > @DesktopHeight + 4294967196 Then
+		$IHEIGHT = @DesktopHeight + 4294967196
+	ElseIf $IHEIGHT < $IMINSIZE Then
+		$IHEIGHT = $IMINSIZE
+	EndIf
+	If $IVERBOSE Then SplashOff ( )
+	$_G_ARRAYDISPLAY_ISORTDIR = 1024
+	Local $ICOLUMN = 0 , $ICOLUMNPREV = + 4294967295
+	If $_G_ARRAYDISPLAY_IDISPLAYROW Then
+		$ICOLUMNPREV = $ICOLUMN
+		__ARRAYDISPLAY_HEADERSETITEMFORMAT ( $HHEADER , $ICOLUMN , 16384 + $_G_ARRAYDISPLAY_ISORTDIR + $ICOLALIGN / 2 )
+	EndIf
+	$_G_ARRAYDISPLAY_AINDEX = $_G_ARRAYDISPLAY_AINDEXES [ 0 ]
+	#EndRegion GUI and Listview generation
+	Local $P__ARRAYDISPLAY_NOTIFYHANDLER = DllCallbackGetPtr ( DllCallbackRegister ( "__ArrayDisplay_NotifyHandler" , "lresult" , "hwnd;uint;wparam;lparam;uint_ptr;dword_ptr" ) )
+	DllCall ( "comctl32.dll" , "bool" , "SetWindowSubclass" , "hwnd" , $HGUI , "ptr" , $P__ARRAYDISPLAY_NOTIFYHANDLER , "uint_ptr" , 0 , "dword_ptr" , 0 )
+	#Region Adjust dialog width
+	Local $IWIDTH = 40 , $ICOLWIDTH = 0 , $AICOLWIDTH [ $ICOLFILL ]
+	Local $ICOLWIDTHHEADER , $IMIN_COLW = 55
+	For $I = 0 To $ICOLFILL + 4294967295
+		If $I > 0 Then $IMIN_COLW = $IMIN_COLWIDTH
+		GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 30 ) , $I , + 4294967295 )
+		$ICOLWIDTH = GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 29 ) , $I , 0 )
+		If $SHEADER <> "" Then
+			If $ICOLWIDTH = 0 Then ExitLoop
+			GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 30 ) , $I , + 4294967294 )
+			$ICOLWIDTHHEADER = GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 29 ) , $I , 0 )
+			If $ICOLWIDTH < $IMIN_COLW And $ICOLWIDTHHEADER < $IMIN_COLW Then
+				GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 30 ) , $I , $IMIN_COLW )
+				$ICOLWIDTH = $IMIN_COLW
+			ElseIf $ICOLWIDTHHEADER < $ICOLWIDTH Then
+				GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 30 ) , $I , $ICOLWIDTH )
+			Else
+				$ICOLWIDTH = $ICOLWIDTHHEADER
+			EndIf
+		Else
+			If $ICOLWIDTH < $IMIN_COLW Then
+				GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 30 ) , $I , $IMIN_COLW )
+				$ICOLWIDTH = $IMIN_COLW
+			EndIf
+		EndIf
+		$IWIDTH += $ICOLWIDTH
+		$AICOLWIDTH [ $I ] = $ICOLWIDTH
+	Next
+	If $IWIDTH > @DesktopWidth + 4294967196 Then
+		$IWIDTH = 40
+		For $I = 0 To $ICOLFILL + 4294967295
+			If $AICOLWIDTH [ $I ] > $IMAX_COLWIDTH Then
+				GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 30 ) , $I , $IMAX_COLWIDTH )
+				$IWIDTH += $IMAX_COLWIDTH
+			Else
+				$IWIDTH += $AICOLWIDTH [ $I ]
+			EndIf
+			If $I < 20 And $BDEBUG Then ConsoleWrite ( "@@ Debug(" & @ScriptLineNumber & ") : $iWidth = " & $IWIDTH & " $i = " & $I & @CRLF )
+		Next
+	EndIf
+	If $IWIDTH > @DesktopWidth + 4294967196 Then
+		$IWIDTH = @DesktopWidth + 4294967196
+	ElseIf $IWIDTH < $IMINSIZE Then
+		$IWIDTH = $IMINSIZE
+	EndIf
+	#EndRegion Adjust dialog width
+	Local $ISCROLLBARSIZE = 0
+	If $IHEIGHT = ( @DesktopHeight + 4294967196 ) Then $ISCROLLBARSIZE = 15
+	WinMove ( $HGUI , "" , ( @DesktopWidth - $IWIDTH + $ISCROLLBARSIZE ) / 2 , ( @DesktopHeight - $IHEIGHT ) / 2 , $IWIDTH + $ISCROLLBARSIZE , $IHEIGHT )
+	$AIGUISIZE = WinGetClientSize ( $HGUI )
+	GUICtrlSetPos ( $IDLISTVIEW , 0 , 0 , $IWIDTH , $AIGUISIZE [ 1 ] - $IBUTTONBORDER )
+	#Region Create bottom infos
+	Local $IBUTTONWIDTH_1 = $AIGUISIZE [ 0 ] / 2
+	Local $IBUTTONWIDTH_2 = $AIGUISIZE [ 0 ] / 3
+	Local $IDCOPY_ID = 9999 , $IDCOPY_DATA = 99999 , $IDDATA_LABEL = 99999 , $IDUSER_FUNC = 99999 , $IDEXIT_SCRIPT = 99999
+	If $BDEBUG Then
+		$IDCOPY_ID = GUICtrlCreateButton ( "Copy Data && Hdr/Row" , 0 , $AIGUISIZE [ 1 ] - $IBUTTONBORDER , $IBUTTONWIDTH_1 , 20 )
+		$IDCOPY_DATA = GUICtrlCreateButton ( "Copy Data Only" , $IBUTTONWIDTH_1 , $AIGUISIZE [ 1 ] - $IBUTTONBORDER , $IBUTTONWIDTH_1 , 20 )
+		Local $IBUTTONWIDTH_VAR = $IBUTTONWIDTH_1
+		Local $IOFFSET = $IBUTTONWIDTH_1
+		If IsFunc ( $HUSER_FUNCTION ) Then
+			$IDUSER_FUNC = GUICtrlCreateButton ( "Run User Func" , $IBUTTONWIDTH_2 , $AIGUISIZE [ 1 ] + 4294967276 , $IBUTTONWIDTH_2 , 20 )
+			$IBUTTONWIDTH_VAR = $IBUTTONWIDTH_2
+			$IOFFSET = $IBUTTONWIDTH_2 * 2
+		EndIf
+		$IDEXIT_SCRIPT = GUICtrlCreateButton ( "Exit Script" , $IOFFSET , $AIGUISIZE [ 1 ] + 4294967276 , $IBUTTONWIDTH_VAR , 20 )
+		$IDDATA_LABEL = GUICtrlCreateLabel ( $SDISPLAYDATA , 0 , $AIGUISIZE [ 1 ] + 4294967276 , $IBUTTONWIDTH_VAR , 18 , BitOR ( $_ARRAYCONSTANT_SS_CENTER , $_ARRAYCONSTANT_SS_CENTERIMAGE ) )
+	Else
+		$IDDATA_LABEL = GUICtrlCreateLabel ( $SDISPLAYDATA , 0 , $AIGUISIZE [ 1 ] + 4294967276 , $AIGUISIZE [ 0 ] , 18 , BitOR ( $_ARRAYCONSTANT_SS_CENTER , $_ARRAYCONSTANT_SS_CENTERIMAGE ) )
+	EndIf
+	If $_G_ARRAYDISPLAY_ITRANSPOSE Or $SARRAYRANGE Then
+		GUICtrlSetColor ( $IDDATA_LABEL , 16711680 )
+		GUICtrlSetTip ( $IDDATA_LABEL , $STIPDATA )
+	EndIf
+	GUICtrlSetResizing ( $IDCOPY_ID , $_ARRAYCONSTANT_GUI_DOCKLEFT + $_ARRAYCONSTANT_GUI_DOCKBOTTOM + $_ARRAYCONSTANT_GUI_DOCKHEIGHT )
+	GUICtrlSetResizing ( $IDCOPY_DATA , $_ARRAYCONSTANT_GUI_DOCKRIGHT + $_ARRAYCONSTANT_GUI_DOCKBOTTOM + $_ARRAYCONSTANT_GUI_DOCKHEIGHT )
+	GUICtrlSetResizing ( $IDDATA_LABEL , $_ARRAYCONSTANT_GUI_DOCKLEFT + $_ARRAYCONSTANT_GUI_DOCKBOTTOM + $_ARRAYCONSTANT_GUI_DOCKHEIGHT )
+	GUICtrlSetResizing ( $IDUSER_FUNC , $_ARRAYCONSTANT_GUI_DOCKHCENTER + $_ARRAYCONSTANT_GUI_DOCKBOTTOM + $_ARRAYCONSTANT_GUI_DOCKHEIGHT )
+	GUICtrlSetResizing ( $IDEXIT_SCRIPT , $_ARRAYCONSTANT_GUI_DOCKRIGHT + $_ARRAYCONSTANT_GUI_DOCKBOTTOM + $_ARRAYCONSTANT_GUI_DOCKHEIGHT )
+	#EndRegion Create bottom infos
+	GUISetState ( @SW_SHOW , $HGUI )
+	If $FTIMER > 1000 And Not $SARRAYRANGE Then
+		Beep ( 750 , 250 )
+		ToolTip ( "Sorting Action can take as long as " & Ceiling ( $FTIMER / 1000 ) & " sec" & @CRLF & @CRLF & "Please be patient when you click to sort a column" , 50 , 50 , $SMSGBOXTITLE , $TIP_WARNINGICON , $TIP_BALLOON )
+		Sleep ( 3000 )
+		ToolTip ( "" )
+	EndIf
+	#Region GUI Handling events
+	Local $IONEVENTMODE = Opt ( "GUIOnEventMode" , 0 ) , $AMSG
+	While 1
+		$AMSG = GUIGetMsg ( $_ARRAYCONSTANT_GUI_EVENT_ARRAY )
+		If $AMSG [ 1 ] = $HGUI Then
+			Switch $AMSG [ 0 ]
+			Case $_ARRAYCONSTANT_GUI_EVENT_CLOSE
+				ExitLoop
+			Case $IDCOPY_ID , $IDCOPY_DATA
+				Local $ISEL_COUNT = GUICtrlSendMsg ( $IDLISTVIEW , $_ARRAYCONSTANT_LVM_GETSELECTEDCOUNT , 0 , 0 )
+				If $IVERBOSE And ( Not $ISEL_COUNT ) And ( $_G_ARRAYDISPLAY_IITEM_END - $_G_ARRAYDISPLAY_IITEM_START ) * ( $_G_ARRAYDISPLAY_ISUBITEM_END - $_G_ARRAYDISPLAY_ISUBITEM_START ) > 10000 Then
+					SplashTextOn ( $SMSGBOXTITLE , "Copying data" & @CRLF & @CRLF & "Please be patient" , 300 , 100 )
+				EndIf
+				Local $SCLIP = "" , $SITEM , $ASPLIT , $IFIRSTCOL = 0
+				If $AMSG [ 0 ] = $IDCOPY_DATA And $_G_ARRAYDISPLAY_IDISPLAYROW Then $IFIRSTCOL = 1
+				For $I = 0 To GUICtrlSendMsg ( $IDLISTVIEW , 4100 , 0 , 0 ) + 4294967295
+					If $ISEL_COUNT And Not ( GUICtrlSendMsg ( $IDLISTVIEW , $_ARRAYCONSTANT_LVM_GETITEMSTATE , $I , $_ARRAYCONSTANT_LVIS_SELECTED ) <> 0 ) Then
+						ContinueLoop
+					EndIf
+					$SITEM = __ARRAYDISPLAY_GETITEMTEXTSTRINGSELECTED ( $IDLISTVIEW , $I , $IFIRSTCOL )
+					If $AMSG [ 0 ] = $IDCOPY_ID And Not $_G_ARRAYDISPLAY_IDISPLAYROW Then
+						$SITEM = $ARRAYDISPLAY_ROWPREFIX & " " & ( $I + $_G_ARRAYDISPLAY_IITEM_START ) & $SCURR_SEPARATOR & $SITEM
+					EndIf
+					If $ICW_COLWIDTH Then
+						$ASPLIT = StringSplit ( $SITEM , $SCURR_SEPARATOR )
+						$SITEM = ""
+						For $J = 1 To $ASPLIT [ 0 ]
+							$SITEM &= StringFormat ( "%-" & $ICW_COLWIDTH + 1 & "s" , StringLeft ( $ASPLIT [ $J ] , $ICW_COLWIDTH ) )
+						Next
+					Else
+						$SITEM = StringReplace ( $SITEM , $SCURR_SEPARATOR , $VUSER_SEPARATOR )
+					EndIf
+					$SCLIP &= $SITEM & @CRLF
+				Next
+				$SITEM = $SHEADER
+				If $AMSG [ 0 ] = $IDCOPY_ID Then
+					$SITEM = $SHEADER
+					If Not $_G_ARRAYDISPLAY_IDISPLAYROW Then
+						$SITEM = "Row" & $SCURR_SEPARATOR & $SITEM
+					EndIf
+					If $ICW_COLWIDTH Then
+						$ASPLIT = StringSplit ( $SITEM , $SCURR_SEPARATOR )
+						$SITEM = ""
+						For $J = 1 To $ASPLIT [ 0 ]
+							$SITEM &= StringFormat ( "%-" & $ICW_COLWIDTH + 1 & "s" , StringLeft ( $ASPLIT [ $J ] , $ICW_COLWIDTH ) )
+						Next
+					Else
+						$SITEM = StringReplace ( $SITEM , $SCURR_SEPARATOR , $VUSER_SEPARATOR )
+					EndIf
+					$SCLIP = $SITEM & @CRLF & $SCLIP
+				EndIf
+				ClipPut ( $SCLIP )
+				SplashOff ( )
+				GUICtrlSetState ( $IDLISTVIEW , $_ARRAYCONSTANT_GUI_FOCUS )
+			Case $IDLISTVIEW
+				$ICOLUMN = GUICtrlGetState ( $IDLISTVIEW )
+				If Not IsArray ( $_G_ARRAYDISPLAY_AINDEXES [ $ICOLUMN + Not $_G_ARRAYDISPLAY_IDISPLAYROW ] ) Then
+					__ARRAYDISPLAY_SORTINDEXES ( $ICOLUMN + Not $_G_ARRAYDISPLAY_IDISPLAYROW )
+				EndIf
+				If $ICOLUMN <> $ICOLUMNPREV Then
+					__ARRAYDISPLAY_HEADERSETITEMFORMAT ( $HHEADER , $ICOLUMNPREV , 16384 + $ICOLALIGN / 2 )
+					If $_G_ARRAYDISPLAY_IDISPLAYROW And $ICOLUMN = 0 Then
+						$_G_ARRAYDISPLAY_AINDEX = $_G_ARRAYDISPLAY_AINDEXES [ 0 ]
+					Else
+						$_G_ARRAYDISPLAY_AINDEX = $_G_ARRAYDISPLAY_AINDEXES [ $ICOLUMN + Not $_G_ARRAYDISPLAY_IDISPLAYROW ]
+					EndIf
+				EndIf
+				$_G_ARRAYDISPLAY_ISORTDIR = ( $ICOLUMN = $ICOLUMNPREV ) ? $_G_ARRAYDISPLAY_ISORTDIR = 1024 ? 512 : 1024 : 1024
+				__ARRAYDISPLAY_HEADERSETITEMFORMAT ( $HHEADER , $ICOLUMN , 16384 + $_G_ARRAYDISPLAY_ISORTDIR + $ICOLALIGN / 2 )
+				GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 140 ) , $ICOLUMN , 0 )
+				GUICtrlSendMsg ( $IDLISTVIEW , ( 4096 + 47 ) , $_G_ARRAYDISPLAY_NROWS , 0 )
+				$ICOLUMNPREV = $ICOLUMN
+			Case $IDUSER_FUNC
+				Local $AISELITEMS [ 1 ] = [ 0 ]
+				For $I = 0 To GUICtrlSendMsg ( $IDLISTVIEW , 4100 , 0 , 0 ) + 4294967295
+					If ( GUICtrlSendMsg ( $IDLISTVIEW , $_ARRAYCONSTANT_LVM_GETITEMSTATE , $I , $_ARRAYCONSTANT_LVIS_SELECTED ) <> 0 ) Then
+						$AISELITEMS [ 0 ] += 1
+						ReDim $AISELITEMS [ $AISELITEMS [ 0 ] + 1 ]
+						$AISELITEMS [ $AISELITEMS [ 0 ] ] = $I + $_G_ARRAYDISPLAY_IITEM_START
+					EndIf
+				Next
+				$HUSER_FUNCTION ( $_G_ARRAYDISPLAY_AARRAY , $AISELITEMS )
+				$_G_ARRAYDISPLAY_BUSERFUNC = False
+				__ARRAYDISPLAY_CLEANUP ( $HGUI , $ICOORDMODE , $IONEVENTMODE , $_ICALLERERROR , $_ICALLEREXTENDED , $P__ARRAYDISPLAY_NOTIFYHANDLER )
+				Return SetError ( $_ICALLERERROR , $_ICALLEREXTENDED , + 4294967295 )
+			Case $IDEXIT_SCRIPT
+				GUIDelete ( $HGUI )
+				Exit
+			EndSwitch
+		EndIf
+	WEnd
+	#EndRegion GUI Handling events
+	__ARRAYDISPLAY_CLEANUP ( $HGUI , $ICOORDMODE , $IONEVENTMODE , $_ICALLERERROR , $_ICALLEREXTENDED , $P__ARRAYDISPLAY_NOTIFYHANDLER )
+	Return SetError ( $_ICALLERERROR , $_ICALLEREXTENDED , 1 )
+EndFunc
+Func __ARRAYDISPLAY_CLEANUP ( $HGUI , $ICOORDMODE , $IONEVENTMODE , $_ICALLERERROR , $_ICALLEREXTENDED , $P__ARRAYDISPLAY_NOTIFYHANDLER )
+	DllCall ( "comctl32.dll" , "bool" , "RemoveWindowSubclass" , "hwnd" , $HGUI , "ptr" , $P__ARRAYDISPLAY_NOTIFYHANDLER , "uint_ptr" , 0 )
+	$_G_ARRAYDISPLAY_AINDEX = 0
+	Dim $_G_ARRAYDISPLAY_AINDEXES [ 1 ]
+	GUIDelete ( $HGUI )
+	Opt ( "GUICoordMode" , $ICOORDMODE )
+	Opt ( "GUIOnEventMode" , $IONEVENTMODE )
+	Return SetError ( $_ICALLERERROR , $_ICALLEREXTENDED , 1 )
+EndFunc
+Func __ARRAYDISPLAY_NOTIFYHANDLER ( $HWND , $IMSG , $WPARAM , $LPARAM , $ISUBCLASSID , $PDATA )
+	If $IMSG <> 78 Then Return DllCall ( "comctl32.dll" , "lresult" , "DefSubclassProc" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM ) [ 0 ]
+	Local Static $TAGNMHDR = "struct;hwnd hWndFrom;uint_ptr IDFrom;INT Code;endstruct"
+	Local Static $TAGNMLVDISPINFO = $TAGNMHDR & ";" & $_ARRAYCONSTANT_TAGLVITEM
+	Local $TNMLVDISPINFO = DllStructCreate ( $TAGNMLVDISPINFO , $LPARAM )
+	Switch HWnd ( DllStructGetData ( $TNMLVDISPINFO , "hWndFrom" ) )
+	Case $_G_ARRAYDISPLAY_HLISTVIEW
+		Switch DllStructGetData ( $TNMLVDISPINFO , "Code" )
+		Case + 4294967119
+			Local Static $TTEXT = DllStructCreate ( "wchar[4096]" ) , $PTEXT = DllStructGetPtr ( $TTEXT )
+			Local $IITEM = DllStructGetData ( $TNMLVDISPINFO , "Item" )
+			Local $IROW = ( $_G_ARRAYDISPLAY_ISORTDIR = 1024 ) ? $_G_ARRAYDISPLAY_AINDEX [ $IITEM ] : $_G_ARRAYDISPLAY_AINDEX [ $_G_ARRAYDISPLAY_NROWS + 4294967295 - $IITEM ]
+			Local $ICOL = DllStructGetData ( $TNMLVDISPINFO , "SubItem" )
+			Local $STEMP
+			If $_G_ARRAYDISPLAY_IDISPLAYROW = 0 Then
+				$STEMP = __ARRAYDISPLAY_GETDATA ( $IROW , $ICOL )
+				DllStructSetData ( $TTEXT , 1 , $STEMP )
+				DllStructSetData ( $TNMLVDISPINFO , "Text" , $PTEXT )
+			Else
+				If $ICOL = 0 Then
+					If $_G_ARRAYDISPLAY_ITRANSPOSE Then
+						Local $SCAPTIONCPLT = ""
+						If $IROW + $_G_ARRAYDISPLAY_IITEM_START < UBound ( $_G_ARRAYDISPLAY_ASHEADER ) And StringStripWS ( $_G_ARRAYDISPLAY_ASHEADER [ $IROW + $_G_ARRAYDISPLAY_IITEM_START ] , 1 + 2 ) <> "" Then
+							$SCAPTIONCPLT = " (" & StringStripWS ( $_G_ARRAYDISPLAY_ASHEADER [ $IROW + $_G_ARRAYDISPLAY_IITEM_START ] , 1 + 2 )
+							If StringRight ( $SCAPTIONCPLT , 1 ) = $ARRAYDISPLAY_NUMERICSORT Then $SCAPTIONCPLT = StringTrimRight ( $SCAPTIONCPLT , 1 )
+							$SCAPTIONCPLT &= ")"
+						EndIf
+						DllStructSetData ( $TTEXT , 1 , "Col " & ( $IROW + $_G_ARRAYDISPLAY_IITEM_START ) & $SCAPTIONCPLT )
+					Else
+						DllStructSetData ( $TTEXT , 1 , $ARRAYDISPLAY_ROWPREFIX & " " & $IROW + $_G_ARRAYDISPLAY_IITEM_START )
+					EndIf
+					DllStructSetData ( $TNMLVDISPINFO , "Text" , $PTEXT )
+				Else
+					$STEMP = __ARRAYDISPLAY_GETDATA ( $IROW , $ICOL + 4294967295 )
+					DllStructSetData ( $TTEXT , 1 , $STEMP )
+					DllStructSetData ( $TNMLVDISPINFO , "Text" , $PTEXT )
+				EndIf
+			EndIf
+			Return
+		EndSwitch
+	EndSwitch
+	Return DllCall ( "comctl32.dll" , "lresult" , "DefSubclassProc" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM ) [ 0 ]
+	#forceref $iSubclassId, $pData
+EndFunc
+Func __ARRAYDISPLAY_GETDATA ( $IROW , $ICOL )
+	Local $STEMP
+	If $_G_ARRAYDISPLAY_IDIMS = 2 Then
+		$STEMP = $_G_ARRAYDISPLAY_AARRAY [ $IROW ] [ $ICOL ]
+	Else
+		$STEMP = $_G_ARRAYDISPLAY_AARRAY [ $IROW ]
+	EndIf
+	Switch VarGetType ( $STEMP )
+	Case "Array"
+		Local $SSUBSCRIPT = ""
+		For $I = 1 To UBound ( $STEMP , 0 )
+			$SSUBSCRIPT = "[" & UBound ( $STEMP , $I ) & "]"
+		Next
+		$STEMP = "{Array" & $SSUBSCRIPT & "}"
+	Case "Map"
+		$STEMP = "{Map[" & UBound ( $STEMP ) & "]}"
+	Case "Object"
+		$STEMP = "{Object}"
+	EndSwitch
+	If StringLen ( $STEMP ) > 4095 Then $STEMP = StringLeft ( $STEMP , 4095 )
+	Return $STEMP
+EndFunc
+Func __ARRAYDISPLAY_SORTINDEXES ( $ICOLSTART , $ICOLEND = $ICOLSTART )
+	Dim $_G_ARRAYDISPLAY_AINDEX [ $_G_ARRAYDISPLAY_NROWS ]
+	If $ICOLEND = + 4294967295 Then
+		Dim $_G_ARRAYDISPLAY_AINDEXES [ $_G_ARRAYDISPLAY_NCOLS + $_G_ARRAYDISPLAY_IDISPLAYROW + 1 ]
+		For $I = 0 To $_G_ARRAYDISPLAY_NROWS + 4294967295
+			$_G_ARRAYDISPLAY_AINDEX [ $I ] = $I
+		Next
+		$_G_ARRAYDISPLAY_AINDEXES [ 0 ] = $_G_ARRAYDISPLAY_AINDEX
+	EndIf
+	If $ICOLSTART = + 4294967295 Then
+		$ICOLSTART = 1
+		$ICOLEND = $_G_ARRAYDISPLAY_NCOLS
+	EndIf
+	If $ICOLSTART Then
+		Local $TINDEX
+		For $I = $ICOLSTART To $ICOLEND
+			$TINDEX = __ARRAYDISPLAY_GETSORTCOLSTRUCT ( $_G_ARRAYDISPLAY_AARRAY , $I + 4294967295 )
+			For $J = 0 To $_G_ARRAYDISPLAY_NROWS + 4294967295
+				$_G_ARRAYDISPLAY_AINDEX [ $J ] = DllStructGetData ( $TINDEX , 1 , $J + 1 )
+			Next
+			$_G_ARRAYDISPLAY_AINDEXES [ $I ] = $_G_ARRAYDISPLAY_AINDEX
+		Next
+	EndIf
+EndFunc
+Func __ARRAYDISPLAY_GETSORTCOLSTRUCT ( Const ByRef $AARRAY , $ICOL )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) < 1 Or UBound ( $AARRAY , $UBOUND_DIMENSIONS ) > 2 Then
+		Return SetError ( 6 , 0 , 0 )
+	EndIf
+	Return __ARRAYDISPLAY_SORTARRAYSTRUCT ( $AARRAY , $ICOL )
+EndFunc
+Func __ARRAYDISPLAY_SORTARRAYSTRUCT ( Const ByRef $AARRAY , $ICOL )
+	Local $IDIMS = UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Local $TINDEX = DllStructCreate ( "uint[" & $_G_ARRAYDISPLAY_NROWS & "]" )
+	Local $PINDEX = DllStructGetPtr ( $TINDEX )
+	Static $HDLL = DllOpen ( "kernel32.dll" )
+	Static $HDLLCOMP = DllOpen ( "shlwapi.dll" )
+	Local $LO , $HI , $MI , $R , $NVAL1 , $NVAL2
+	For $I = 1 To $_G_ARRAYDISPLAY_NROWS + 4294967295
+		$LO = 0
+		$HI = $I + 4294967295
+		Do
+			$MI = Int ( ( $LO + $HI ) / 2 )
+			If Not $_G_ARRAYDISPLAY_ITRANSPOSE And $_G_ARRAYDISPLAY_ANUMERICSORT [ $ICOL ] Then
+				If $IDIMS = 1 Then
+					$NVAL1 = Number ( $AARRAY [ $I ] )
+					$NVAL2 = Number ( $AARRAY [ DllStructGetData ( $TINDEX , 1 , $MI + 1 ) ] )
+				Else
+					$NVAL1 = Number ( $AARRAY [ $I ] [ $ICOL ] )
+					$NVAL2 = Number ( $AARRAY [ DllStructGetData ( $TINDEX , 1 , $MI + 1 ) ] [ $ICOL ] )
+				EndIf
+				$R = $NVAL1 < $NVAL2 ? + 4294967295 : $NVAL1 > $NVAL2 ? 1 : 0
+			Else
+				If $IDIMS = 1 Then
+					$R = DllCall ( $HDLLCOMP , "int" , "StrCmpLogicalW" , "wstr" , String ( $AARRAY [ $I ] ) , "wstr" , String ( $AARRAY [ DllStructGetData ( $TINDEX , 1 , $MI + 1 ) ] ) ) [ 0 ]
+				Else
+					$R = DllCall ( $HDLLCOMP , "int" , "StrCmpLogicalW" , "wstr" , String ( $AARRAY [ $I ] [ $ICOL ] ) , "wstr" , String ( $AARRAY [ DllStructGetData ( $TINDEX , 1 , $MI + 1 ) ] [ $ICOL ] ) ) [ 0 ]
+				EndIf
+			EndIf
+			Switch $R
+			Case + 4294967295
+				$HI = $MI + 4294967295
+			Case 1
+				$LO = $MI + 1
+			Case 0
+				ExitLoop
+			EndSwitch
+		Until $LO > $HI
+		DllCall ( $HDLL , "none" , "RtlMoveMemory" , "struct*" , $PINDEX + ( $MI + 1 ) * 4 , "struct*" , $PINDEX + $MI * 4 , "ulong_ptr" , ( $I - $MI ) * 4 )
+		DllStructSetData ( $TINDEX , 1 , $I , $MI + 1 + ( $LO = $MI + 1 ) )
+	Next
+	Return $TINDEX
+EndFunc
+Func __ARRAYDISPLAY_CREATESUBARRAY ( )
+	Local $NROWS = $_G_ARRAYDISPLAY_IITEM_END - $_G_ARRAYDISPLAY_IITEM_START + 1
+	Local $NCOLS = $_G_ARRAYDISPLAY_ISUBITEM_END - $_G_ARRAYDISPLAY_ISUBITEM_START + 1
+	Local $IROW = + 4294967295 , $ICOL , $ITEMP , $ATEMP
+	If $_G_ARRAYDISPLAY_ITRANSPOSE Then
+		Dim $ATEMP [ $NCOLS ] [ $NROWS ]
+		For $I = $_G_ARRAYDISPLAY_IITEM_START To $_G_ARRAYDISPLAY_IITEM_END
+			$IROW += 1
+			$ICOL = + 4294967295
+			For $J = $_G_ARRAYDISPLAY_ISUBITEM_START To $_G_ARRAYDISPLAY_ISUBITEM_END
+				$ICOL += 1
+				$ATEMP [ $ICOL ] [ $IROW ] = $_G_ARRAYDISPLAY_AARRAY [ $I ] [ $J ]
+			Next
+		Next
+		$ITEMP = $_G_ARRAYDISPLAY_IITEM_START
+		$_G_ARRAYDISPLAY_IITEM_START = $_G_ARRAYDISPLAY_ISUBITEM_START
+		$_G_ARRAYDISPLAY_ISUBITEM_START = $ITEMP
+		$ITEMP = $_G_ARRAYDISPLAY_IITEM_END
+		$_G_ARRAYDISPLAY_IITEM_END = $_G_ARRAYDISPLAY_ISUBITEM_END
+		$_G_ARRAYDISPLAY_ISUBITEM_END = $ITEMP
+		$_G_ARRAYDISPLAY_NROWS = $NCOLS
+		$_G_ARRAYDISPLAY_NCOLS = $NROWS
+	Else
+		If $_G_ARRAYDISPLAY_IDIMS = 1 Then
+			Dim $ATEMP [ $NROWS ]
+			For $I = $_G_ARRAYDISPLAY_IITEM_START To $_G_ARRAYDISPLAY_IITEM_END
+				$IROW += 1
+				$ATEMP [ $IROW ] = $_G_ARRAYDISPLAY_AARRAY [ $I ]
+			Next
+		Else
+			Dim $ATEMP [ $NROWS ] [ $NCOLS ]
+			For $I = $_G_ARRAYDISPLAY_IITEM_START To $_G_ARRAYDISPLAY_IITEM_END
+				$IROW += 1
+				$ICOL = + 4294967295
+				For $J = $_G_ARRAYDISPLAY_ISUBITEM_START To $_G_ARRAYDISPLAY_ISUBITEM_END
+					$ICOL += 1
+					$ATEMP [ $IROW ] [ $ICOL ] = $_G_ARRAYDISPLAY_AARRAY [ $I ] [ $J ]
+				Next
+			Next
+			$_G_ARRAYDISPLAY_NCOLS = $NCOLS
+		EndIf
+		$_G_ARRAYDISPLAY_NROWS = $NROWS
+	EndIf
+	Return $ATEMP
+EndFunc
+Func __ARRAYDISPLAY_HEADERSETITEMFORMAT ( $HWND , $IINDEX , $IFORMAT )
+	Local Static $THDITEM = DllStructCreate ( "uint Mask;int XY;ptr Text;handle hBMP;int TextMax;int Fmt;lparam Param;int Image;int Order;uint Type;ptr pFilter;uint State" )
+	DllStructSetData ( $THDITEM , "Mask" , 4 )
+	DllStructSetData ( $THDITEM , "Fmt" , $IFORMAT )
+	Local $ARESULT = DllCall ( "user32.dll" , "lresult" , "SendMessageW" , "hwnd" , $HWND , "uint" , 4620 , "wparam" , $IINDEX , "struct*" , $THDITEM )
+	Return $ARESULT [ 0 ] <> 0
+EndFunc
+Func __ARRAYDISPLAY_GETITEMTEXT ( $IDLISTVIEW , $IINDEX , $ISUBITEM = 0 )
+	Local $TBUFFER = DllStructCreate ( "wchar Text[4096]" )
+	Local $PBUFFER = DllStructGetPtr ( $TBUFFER )
+	Local $TITEM = DllStructCreate ( $_ARRAYCONSTANT_TAGLVITEM )
+	DllStructSetData ( $TITEM , "SubItem" , $ISUBITEM )
+	DllStructSetData ( $TITEM , "TextMax" , 4096 )
+	DllStructSetData ( $TITEM , "Text" , $PBUFFER )
+	If IsHWnd ( $IDLISTVIEW ) Then
+		DllCall ( "user32.dll" , "lresult" , "SendMessageW" , "hwnd" , $IDLISTVIEW , "uint" , 4211 , "wparam" , $IINDEX , "struct*" , $TITEM )
+	Else
+		Local $PITEM = DllStructGetPtr ( $TITEM )
+		GUICtrlSendMsg ( $IDLISTVIEW , 4211 , $IINDEX , $PITEM )
+	EndIf
+	Return DllStructGetData ( $TBUFFER , "Text" )
+EndFunc
+Func __ARRAYDISPLAY_GETITEMTEXTSTRINGSELECTED ( $IDLISTVIEW , $IITEM , $IFIRSTCOL )
+	Local $SROW = "" , $SSEPARATORCHAR = Opt ( "GUIDataSeparatorChar" )
+	Local $ISELECTED = $IITEM
+	Local $HHEADER = HWnd ( GUICtrlSendMsg ( $IDLISTVIEW , 4127 , 0 , 0 ) )
+	Local $NCOL = DllCall ( "user32.dll" , "lresult" , "SendMessageW" , "hwnd" , $HHEADER , "uint" , 4608 , "wparam" , 0 , "lparam" , 0 ) [ 0 ]
+	For $X = $IFIRSTCOL To $NCOL + 4294967295
+		$SROW &= __ARRAYDISPLAY_GETITEMTEXT ( $IDLISTVIEW , $ISELECTED , $X ) & $SSEPARATORCHAR
+	Next
+	Return StringTrimRight ( $SROW , 1 )
+EndFunc
+Func __ARRAYDISPLAY_JUSTIFYCOLUMN ( $IDLISTVIEW , $IINDEX , $IALIGN = + 4294967295 )
+	Local $TCOLUMN = DllStructCreate ( "uint Mask;int Fmt;int CX;ptr Text;int TextMax;int SubItem;int Image;int Order;int cxMin;int cxDefault;int cxIdeal" )
+	If $IALIGN < 0 Or $IALIGN > 2 Then $IALIGN = 0
+	DllStructSetData ( $TCOLUMN , "Mask" , 1 )
+	DllStructSetData ( $TCOLUMN , "Fmt" , $IALIGN )
+	Local $PCOLUMN = DllStructGetPtr ( $TCOLUMN )
+	Local $IRET = GUICtrlSendMsg ( $IDLISTVIEW , 4192 , $IINDEX , $PCOLUMN )
+	Return $IRET <> 0
+EndFunc
+Global Enum $ARRAYFILL_FORCE_DEFAULT , $ARRAYFILL_FORCE_SINGLEITEM , $ARRAYFILL_FORCE_INT , $ARRAYFILL_FORCE_NUMBER , $ARRAYFILL_FORCE_PTR , $ARRAYFILL_FORCE_HWND , $ARRAYFILL_FORCE_STRING , $ARRAYFILL_FORCE_BOOLEAN
+Global Enum $ARRAYUNIQUE_NOCOUNT , $ARRAYUNIQUE_COUNT
+Global Enum $ARRAYUNIQUE_AUTO , $ARRAYUNIQUE_FORCE32 , $ARRAYUNIQUE_FORCE64 , $ARRAYUNIQUE_MATCH , $ARRAYUNIQUE_DISTINCT
+Func _ARRAYADD ( ByRef $AARRAY , $VVALUE , $ISTART = 0 , $SDELIM_ITEM = "|" , $SDELIM_ROW = @CRLF , $IFORCE = $ARRAYFILL_FORCE_DEFAULT )
+	If $ISTART = Default Then $ISTART = 0
+	If $SDELIM_ITEM = Default Then $SDELIM_ITEM = "|"
+	If $SDELIM_ROW = Default Then $SDELIM_ROW = @CRLF
+	If $IFORCE = Default Then $IFORCE = $ARRAYFILL_FORCE_DEFAULT
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS )
+	Local $HDATATYPE = 0
+	Switch $IFORCE
+	Case $ARRAYFILL_FORCE_INT
+		$HDATATYPE = Int
+	Case $ARRAYFILL_FORCE_NUMBER
+		$HDATATYPE = Number
+	Case $ARRAYFILL_FORCE_PTR
+		$HDATATYPE = Ptr
+	Case $ARRAYFILL_FORCE_HWND
+		$HDATATYPE = HWnd
+	Case $ARRAYFILL_FORCE_STRING
+		$HDATATYPE = String
+	Case $ARRAYFILL_FORCE_BOOLEAN
+		$HDATATYPE = "Boolean"
+	EndSwitch
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		If $IFORCE = $ARRAYFILL_FORCE_SINGLEITEM Then
+			ReDim $AARRAY [ $IDIM_1 + 1 ]
+			$AARRAY [ $IDIM_1 ] = $VVALUE
+			Return $IDIM_1
+		EndIf
+		If IsArray ( $VVALUE ) Then
+			If UBound ( $VVALUE , $UBOUND_DIMENSIONS ) <> 1 Then Return SetError ( 5 , 0 , + 4294967295 )
+			$HDATATYPE = 0
+		Else
+			Local $ATMP = StringSplit ( $VVALUE , $SDELIM_ITEM , $STR_NOCOUNT + $STR_ENTIRESPLIT )
+			If UBound ( $ATMP , $UBOUND_ROWS ) = 1 Then
+				$ATMP [ 0 ] = $VVALUE
+			EndIf
+			$VVALUE = $ATMP
+		EndIf
+		Local $IADD = UBound ( $VVALUE , $UBOUND_ROWS )
+		ReDim $AARRAY [ $IDIM_1 + $IADD ]
+		For $I = 0 To $IADD + 4294967295
+			If String ( $HDATATYPE ) = "Boolean" Then
+				Switch $VVALUE [ $I ]
+				Case "True" , "1"
+					$AARRAY [ $IDIM_1 + $I ] = True
+				Case "False" , "0" , ""
+					$AARRAY [ $IDIM_1 + $I ] = False
+				EndSwitch
+			ElseIf IsFunc ( $HDATATYPE ) Then
+				$AARRAY [ $IDIM_1 + $I ] = $HDATATYPE ( $VVALUE [ $I ] )
+			Else
+				$AARRAY [ $IDIM_1 + $I ] = $VVALUE [ $I ]
+			EndIf
+		Next
+		Return $IDIM_1 + $IADD + 4294967295
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS )
+		If $ISTART < 0 Or $ISTART > $IDIM_2 + 4294967295 Then Return SetError ( 4 , 0 , + 4294967295 )
+		Local $IVALDIM_1 , $IVALDIM_2 = 0 , $ICOLCOUNT
+		If IsArray ( $VVALUE ) Then
+			If UBound ( $VVALUE , $UBOUND_DIMENSIONS ) <> 2 Then Return SetError ( 5 , 0 , + 4294967295 )
+			$IVALDIM_1 = UBound ( $VVALUE , $UBOUND_ROWS )
+			$IVALDIM_2 = UBound ( $VVALUE , $UBOUND_COLUMNS )
+			$HDATATYPE = 0
+		Else
+			Local $ASPLIT_1 = StringSplit ( $VVALUE , $SDELIM_ROW , $STR_NOCOUNT + $STR_ENTIRESPLIT )
+			$IVALDIM_1 = UBound ( $ASPLIT_1 , $UBOUND_ROWS )
+			Local $ATMP [ $IVALDIM_1 ] [ 0 ] , $ASPLIT_2
+			For $I = 0 To $IVALDIM_1 + 4294967295
+				$ASPLIT_2 = StringSplit ( $ASPLIT_1 [ $I ] , $SDELIM_ITEM , $STR_NOCOUNT + $STR_ENTIRESPLIT )
+				$ICOLCOUNT = UBound ( $ASPLIT_2 )
+				If $ICOLCOUNT > $IVALDIM_2 Then
+					$IVALDIM_2 = $ICOLCOUNT
+					ReDim $ATMP [ $IVALDIM_1 ] [ $IVALDIM_2 ]
+				EndIf
+				For $J = 0 To $ICOLCOUNT + 4294967295
+					$ATMP [ $I ] [ $J ] = $ASPLIT_2 [ $J ]
+				Next
+			Next
+			$VVALUE = $ATMP
+		EndIf
+		If UBound ( $VVALUE , $UBOUND_COLUMNS ) + $ISTART > UBound ( $AARRAY , $UBOUND_COLUMNS ) Then Return SetError ( 3 , 0 , + 4294967295 )
+		ReDim $AARRAY [ $IDIM_1 + $IVALDIM_1 ] [ $IDIM_2 ]
+		For $IWRITETO_INDEX = 0 To $IVALDIM_1 + 4294967295
+			For $J = 0 To $IDIM_2 + 4294967295
+				If $J < $ISTART Then
+					$AARRAY [ $IWRITETO_INDEX + $IDIM_1 ] [ $J ] = ""
+				ElseIf $J - $ISTART > $IVALDIM_2 + 4294967295 Then
+					$AARRAY [ $IWRITETO_INDEX + $IDIM_1 ] [ $J ] = ""
+				Else
+					If String ( $HDATATYPE ) = "Boolean" Then
+						Switch $VVALUE [ $IWRITETO_INDEX ] [ $J - $ISTART ]
+						Case "True" , "1"
+							$AARRAY [ $IWRITETO_INDEX + $IDIM_1 ] [ $J ] = True
+						Case "False" , "0" , ""
+							$AARRAY [ $IWRITETO_INDEX + $IDIM_1 ] [ $J ] = False
+						EndSwitch
+					ElseIf IsFunc ( $HDATATYPE ) Then
+						$AARRAY [ $IWRITETO_INDEX + $IDIM_1 ] [ $J ] = $HDATATYPE ( $VVALUE [ $IWRITETO_INDEX ] [ $J - $ISTART ] )
+					Else
+						$AARRAY [ $IWRITETO_INDEX + $IDIM_1 ] [ $J ] = $VVALUE [ $IWRITETO_INDEX ] [ $J - $ISTART ]
+					EndIf
+				EndIf
+			Next
+		Next
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+	Return UBound ( $AARRAY , $UBOUND_ROWS ) + 4294967295
+EndFunc
+Func _ARRAYBINARYSEARCH ( Const ByRef $AARRAY , $VVALUE , $ISTART = 0 , $IEND = 0 , $ICOLUMN = 0 )
+	If $ISTART = Default Then $ISTART = 0
+	If $IEND = Default Then $IEND = 0
+	If $ICOLUMN = Default Then $ICOLUMN = 0
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS )
+	If $IDIM_1 = 0 Then Return SetError ( 6 , 0 , + 4294967295 )
+	If $IEND < 1 Or $IEND > $IDIM_1 + 4294967295 Then $IEND = $IDIM_1 + 4294967295
+	If $ISTART < 0 Then $ISTART = 0
+	If $ISTART > $IEND Then Return SetError ( 4 , 0 , + 4294967295 )
+	Local $IMID = Int ( ( $IEND + $ISTART ) / 2 )
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		If $AARRAY [ $ISTART ] > $VVALUE Or $AARRAY [ $IEND ] < $VVALUE Then Return SetError ( 2 , 0 , + 4294967295 )
+		While $ISTART <= $IMID And $VVALUE <> $AARRAY [ $IMID ]
+			If $VVALUE < $AARRAY [ $IMID ] Then
+				$IEND = $IMID + 4294967295
+			Else
+				$ISTART = $IMID + 1
+			EndIf
+			$IMID = Int ( ( $IEND + $ISTART ) / 2 )
+		WEnd
+		If $ISTART > $IEND Then Return SetError ( 3 , 0 , + 4294967295 )
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+		If $ICOLUMN < 0 Or $ICOLUMN > $IDIM_2 Then Return SetError ( 7 , 0 , + 4294967295 )
+		If $AARRAY [ $ISTART ] [ $ICOLUMN ] > $VVALUE Or $AARRAY [ $IEND ] [ $ICOLUMN ] < $VVALUE Then Return SetError ( 2 , 0 , + 4294967295 )
+		While $ISTART <= $IMID And $VVALUE <> $AARRAY [ $IMID ] [ $ICOLUMN ]
+			If $VVALUE < $AARRAY [ $IMID ] [ $ICOLUMN ] Then
+				$IEND = $IMID + 4294967295
+			Else
+				$ISTART = $IMID + 1
+			EndIf
+			$IMID = Int ( ( $IEND + $ISTART ) / 2 )
+		WEnd
+		If $ISTART > $IEND Then Return SetError ( 3 , 0 , + 4294967295 )
+Case Else
+		Return SetError ( 5 , 0 , + 4294967295 )
+	EndSwitch
+	Return $IMID
+EndFunc
+Func _ARRAYCOLDELETE ( ByRef $AARRAY , $ICOLUMN , $BCONVERT = False )
+	If $BCONVERT = Default Then $BCONVERT = False
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) <> 2 Then Return SetError ( 2 , 0 , + 4294967295 )
+	Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS )
+	Switch $IDIM_2
+	Case 2
+		If $ICOLUMN < 0 Or $ICOLUMN > 1 Then Return SetError ( 3 , 0 , + 4294967295 )
+		If $BCONVERT Then
+			Local $ATEMPARRAY [ $IDIM_1 ]
+			For $I = 0 To $IDIM_1 + 4294967295
+				$ATEMPARRAY [ $I ] = $AARRAY [ $I ] [ ( Not $ICOLUMN ) ]
+			Next
+			$AARRAY = $ATEMPARRAY
+		Else
+			ContinueCase
+		EndIf
+Case Else
+		If $ICOLUMN < 0 Or $ICOLUMN > $IDIM_2 + 4294967295 Then Return SetError ( 3 , 0 , + 4294967295 )
+		For $I = 0 To $IDIM_1 + 4294967295
+			For $J = $ICOLUMN To $IDIM_2 + 4294967294
+				$AARRAY [ $I ] [ $J ] = $AARRAY [ $I ] [ $J + 1 ]
+			Next
+		Next
+		ReDim $AARRAY [ $IDIM_1 ] [ $IDIM_2 + 4294967295 ]
+	EndSwitch
+	Return UBound ( $AARRAY , $UBOUND_COLUMNS )
+EndFunc
+Func _ARRAYCOLINSERT ( ByRef $AARRAY , $ICOLUMN )
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS )
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		Local $ATEMPARRAY [ $IDIM_1 ] [ 2 ]
+		Switch $ICOLUMN
+		Case 0 , 1
+			For $I = 0 To $IDIM_1 + 4294967295
+				$ATEMPARRAY [ $I ] [ ( Not $ICOLUMN ) ] = $AARRAY [ $I ]
+			Next
+	Case Else
+			Return SetError ( 3 , 0 , + 4294967295 )
+		EndSwitch
+		$AARRAY = $ATEMPARRAY
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS )
+		If $ICOLUMN < 0 Or $ICOLUMN > $IDIM_2 Then Return SetError ( 3 , 0 , + 4294967295 )
+		ReDim $AARRAY [ $IDIM_1 ] [ $IDIM_2 + 1 ]
+		For $I = 0 To $IDIM_1 + 4294967295
+			For $J = $IDIM_2 To $ICOLUMN + 1 Step + 4294967295
+				$AARRAY [ $I ] [ $J ] = $AARRAY [ $I ] [ $J + 4294967295 ]
+			Next
+			$AARRAY [ $I ] [ $ICOLUMN ] = ""
+		Next
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+	Return UBound ( $AARRAY , $UBOUND_COLUMNS )
+EndFunc
+Func _ARRAYCOMBINATIONS ( Const ByRef $AARRAY , $ISET , $SDELIMITER = "" )
+	If $SDELIMITER = Default Then $SDELIMITER = ""
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , 0 )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) <> 1 Then Return SetError ( 2 , 0 , 0 )
+	Local $IN = UBound ( $AARRAY )
+	Local $IR = $ISET
+	Local $AIDX [ $IR ]
+	For $I = 0 To $IR + 4294967295
+		$AIDX [ $I ] = $I
+	Next
+	Local $ITOTAL = __ARRAY_COMBINATIONS ( $IN , $IR )
+	Local $ILEFT = $ITOTAL
+	Local $ARESULT [ $ITOTAL + 1 ]
+	$ARESULT [ 0 ] = $ITOTAL
+	Local $ICOUNT = 1
+	While $ILEFT > 0
+		__ARRAY_GETNEXT ( $IN , $IR , $ILEFT , $ITOTAL , $AIDX )
+		For $I = 0 To $ISET + 4294967295
+			$ARESULT [ $ICOUNT ] &= $AARRAY [ $AIDX [ $I ] ] & $SDELIMITER
+		Next
+		If $SDELIMITER <> "" Then $ARESULT [ $ICOUNT ] = StringTrimRight ( $ARESULT [ $ICOUNT ] , 1 )
+		$ICOUNT += 1
+	WEnd
+	Return $ARESULT
+EndFunc
+Func _ARRAYCONCATENATE ( ByRef $AARRAYTARGET , Const ByRef $AARRAYSOURCE , $ISTART = 0 )
+	If $ISTART = Default Then $ISTART = 0
+	If Not IsArray ( $AARRAYTARGET ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	If Not IsArray ( $AARRAYSOURCE ) Then Return SetError ( 2 , 0 , + 4294967295 )
+	Local $IDIM_TOTAL_TGT = UBound ( $AARRAYTARGET , $UBOUND_DIMENSIONS )
+	Local $IDIM_TOTAL_SRC = UBound ( $AARRAYSOURCE , $UBOUND_DIMENSIONS )
+	Local $IDIM_1_TGT = UBound ( $AARRAYTARGET , $UBOUND_ROWS )
+	Local $IDIM_1_SRC = UBound ( $AARRAYSOURCE , $UBOUND_ROWS )
+	If $ISTART < 0 Or $ISTART > $IDIM_1_SRC + 4294967295 Then Return SetError ( 6 , 0 , + 4294967295 )
+	Switch $IDIM_TOTAL_TGT
+	Case 1
+		If $IDIM_TOTAL_SRC <> 1 Then Return SetError ( 4 , 0 , + 4294967295 )
+		ReDim $AARRAYTARGET [ $IDIM_1_TGT + $IDIM_1_SRC - $ISTART ]
+		For $I = $ISTART To $IDIM_1_SRC + 4294967295
+			$AARRAYTARGET [ $IDIM_1_TGT + $I - $ISTART ] = $AARRAYSOURCE [ $I ]
+		Next
+	Case 2
+		If $IDIM_TOTAL_SRC <> 2 Then Return SetError ( 4 , 0 , + 4294967295 )
+		Local $IDIM_2_TGT = UBound ( $AARRAYTARGET , $UBOUND_COLUMNS )
+		If UBound ( $AARRAYSOURCE , $UBOUND_COLUMNS ) <> $IDIM_2_TGT Then Return SetError ( 5 , 0 , + 4294967295 )
+		ReDim $AARRAYTARGET [ $IDIM_1_TGT + $IDIM_1_SRC - $ISTART ] [ $IDIM_2_TGT ]
+		For $I = $ISTART To $IDIM_1_SRC + 4294967295
+			For $J = 0 To $IDIM_2_TGT + 4294967295
+				$AARRAYTARGET [ $IDIM_1_TGT + $I - $ISTART ] [ $J ] = $AARRAYSOURCE [ $I ] [ $J ]
+			Next
+		Next
+Case Else
+		Return SetError ( 3 , 0 , + 4294967295 )
+	EndSwitch
+	Return UBound ( $AARRAYTARGET , $UBOUND_ROWS )
+EndFunc
+Func _ARRAYDELETE ( ByRef $AARRAY , $VRANGE )
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS ) + 4294967295
+	If IsArray ( $VRANGE ) Then
+		If UBound ( $VRANGE , $UBOUND_DIMENSIONS ) <> 1 Or UBound ( $VRANGE , $UBOUND_ROWS ) < 2 Then Return SetError ( 4 , 0 , + 4294967295 )
+	Else
+		Local $INUMBER , $ASPLIT_1 , $ASPLIT_2
+		$VRANGE = StringStripWS ( $VRANGE , 8 )
+		$ASPLIT_1 = StringSplit ( $VRANGE , ";" )
+		$VRANGE = ""
+		For $I = 1 To $ASPLIT_1 [ 0 ]
+			If Not StringRegExp ( $ASPLIT_1 [ $I ] , "^\d+(-\d+)?$" ) Then Return SetError ( 3 , 0 , + 4294967295 )
+			$ASPLIT_2 = StringSplit ( $ASPLIT_1 [ $I ] , "-" )
+			Switch $ASPLIT_2 [ 0 ]
+			Case 1
+				$VRANGE &= $ASPLIT_2 [ 1 ] & ";"
+			Case 2
+				If Number ( $ASPLIT_2 [ 2 ] ) >= Number ( $ASPLIT_2 [ 1 ] ) Then
+					$INUMBER = $ASPLIT_2 [ 1 ] + 4294967295
+					Do
+						$INUMBER += 1
+						$VRANGE &= $INUMBER & ";"
+					Until $INUMBER = $ASPLIT_2 [ 2 ]
+				EndIf
+			EndSwitch
+		Next
+		$VRANGE = StringSplit ( StringTrimRight ( $VRANGE , 1 ) , ";" )
+	EndIf
+	For $I = 1 To $VRANGE [ 0 ]
+		$VRANGE [ $I ] = Number ( $VRANGE [ $I ] )
+	Next
+	If $VRANGE [ 1 ] < 0 Or $VRANGE [ $VRANGE [ 0 ] ] > $IDIM_1 Then Return SetError ( 5 , 0 , + 4294967295 )
+	Local $ICOPYTO_INDEX = 0
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		For $I = 1 To $VRANGE [ 0 ]
+			$AARRAY [ $VRANGE [ $I ] ] = ChrW ( 64177 )
+		Next
+		For $IREADFROM_INDEX = 0 To $IDIM_1
+			If $AARRAY [ $IREADFROM_INDEX ] == ChrW ( 64177 ) Then
+				ContinueLoop
+			Else
+				If $IREADFROM_INDEX <> $ICOPYTO_INDEX Then
+					$AARRAY [ $ICOPYTO_INDEX ] = $AARRAY [ $IREADFROM_INDEX ]
+				EndIf
+				$ICOPYTO_INDEX += 1
+			EndIf
+		Next
+		ReDim $AARRAY [ $IDIM_1 - $VRANGE [ 0 ] + 1 ]
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+		For $I = 1 To $VRANGE [ 0 ]
+			$AARRAY [ $VRANGE [ $I ] ] [ 0 ] = ChrW ( 64177 )
+		Next
+		For $IREADFROM_INDEX = 0 To $IDIM_1
+			If $AARRAY [ $IREADFROM_INDEX ] [ 0 ] == ChrW ( 64177 ) Then
+				ContinueLoop
+			Else
+				If $IREADFROM_INDEX <> $ICOPYTO_INDEX Then
+					For $J = 0 To $IDIM_2
+						$AARRAY [ $ICOPYTO_INDEX ] [ $J ] = $AARRAY [ $IREADFROM_INDEX ] [ $J ]
+					Next
+				EndIf
+				$ICOPYTO_INDEX += 1
+			EndIf
+		Next
+		ReDim $AARRAY [ $IDIM_1 - $VRANGE [ 0 ] + 1 ] [ $IDIM_2 + 1 ]
+Case Else
+		Return SetError ( 2 , 0 , False )
+	EndSwitch
+	Return UBound ( $AARRAY , $UBOUND_ROWS )
+EndFunc
+Func _ARRAYDISPLAY ( Const ByRef $AARRAY , $STITLE = Default , $SARRAYRANGE = Default , $IFLAGS = Default , $VUSER_SEPARATOR = Default , $SHEADER = Default , $IDESIRED_COLWIDTH = Default )
+	#forceref $vUser_Separator
+	Local $IRET = __ARRAYDISPLAY_SHARE ( $AARRAY , $STITLE , $SARRAYRANGE , $IFLAGS , Default , $SHEADER , $IDESIRED_COLWIDTH , 0 , False )
+	Return SetError ( @error , @extended , $IRET )
+EndFunc
+Func _ARRAYEXTRACT ( Const ByRef $AARRAY , $ISTART_ROW = + 4294967295 , $IEND_ROW = + 4294967295 , $ISTART_COL = + 4294967295 , $IEND_COL = + 4294967295 )
+	If $ISTART_ROW = Default Then $ISTART_ROW = + 4294967295
+	If $IEND_ROW = Default Then $IEND_ROW = + 4294967295
+	If $ISTART_COL = Default Then $ISTART_COL = + 4294967295
+	If $IEND_COL = Default Then $IEND_COL = + 4294967295
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS ) + 4294967295
+	If $IEND_ROW = + 4294967295 Then $IEND_ROW = $IDIM_1
+	If $ISTART_ROW = + 4294967295 Then $ISTART_ROW = 0
+	If $ISTART_ROW < + 4294967295 Or $IEND_ROW < + 4294967295 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART_ROW > $IDIM_1 Or $IEND_ROW > $IDIM_1 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART_ROW > $IEND_ROW Then Return SetError ( 4 , 0 , + 4294967295 )
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		Local $ARETARRAY [ $IEND_ROW - $ISTART_ROW + 1 ]
+		For $I = 0 To $IEND_ROW - $ISTART_ROW
+			$ARETARRAY [ $I ] = $AARRAY [ $I + $ISTART_ROW ]
+		Next
+		Return $ARETARRAY
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+		If $IEND_COL = + 4294967295 Then $IEND_COL = $IDIM_2
+		If $ISTART_COL = + 4294967295 Then $ISTART_COL = 0
+		If $ISTART_COL < + 4294967295 Or $IEND_COL < + 4294967295 Then Return SetError ( 5 , 0 , + 4294967295 )
+		If $ISTART_COL > $IDIM_2 Or $IEND_COL > $IDIM_2 Then Return SetError ( 5 , 0 , + 4294967295 )
+		If $ISTART_COL > $IEND_COL Then Return SetError ( 6 , 0 , + 4294967295 )
+		If $ISTART_COL = $IEND_COL Then
+			Local $ARETARRAY [ $IEND_ROW - $ISTART_ROW + 1 ]
+		Else
+			Local $ARETARRAY [ $IEND_ROW - $ISTART_ROW + 1 ] [ $IEND_COL - $ISTART_COL + 1 ]
+		EndIf
+		For $I = 0 To $IEND_ROW - $ISTART_ROW
+			For $J = 0 To $IEND_COL - $ISTART_COL
+				If $ISTART_COL = $IEND_COL Then
+					$ARETARRAY [ $I ] = $AARRAY [ $I + $ISTART_ROW ] [ $J + $ISTART_COL ]
+				Else
+					$ARETARRAY [ $I ] [ $J ] = $AARRAY [ $I + $ISTART_ROW ] [ $J + $ISTART_COL ]
+				EndIf
+			Next
+		Next
+		Return $ARETARRAY
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+	Return 1
+EndFunc
+Func _ARRAYFINDALL ( Const ByRef $AARRAY , $VVALUE , $ISTART = 0 , $IEND = 0 , $ICASE = 0 , $ICOMPARE = 0 , $ISUBITEM = 0 , $BROW = False )
+	If $ISTART = Default Then $ISTART = 0
+	If $IEND = Default Then $IEND = 0
+	If $ICASE = Default Then $ICASE = 0
+	If $ICOMPARE = Default Then $ICOMPARE = 0
+	If $ISUBITEM = Default Then $ISUBITEM = 0
+	If $BROW = Default Then $BROW = False
+	$ISTART = _ARRAYSEARCH ( $AARRAY , $VVALUE , $ISTART , $IEND , $ICASE , $ICOMPARE , 1 , $ISUBITEM , $BROW )
+	If @error Then Return SetError ( @error , 0 , + 4294967295 )
+	Local $IINDEX = 0 , $AVRESULT [ UBound ( $AARRAY , ( $BROW ? $UBOUND_COLUMNS : $UBOUND_ROWS ) ) ]
+	Do
+		$AVRESULT [ $IINDEX ] = $ISTART
+		$IINDEX += 1
+		$ISTART = _ARRAYSEARCH ( $AARRAY , $VVALUE , $ISTART + 1 , $IEND , $ICASE , $ICOMPARE , 1 , $ISUBITEM , $BROW )
+	Until @error
+	ReDim $AVRESULT [ $IINDEX ]
+	Return $AVRESULT
+EndFunc
+Func _ARRAYFROMSTRING ( $SARRAYSTR , $SDELIM_COL = "|" , $SDELIM_ROW = @CRLF , $BFORCE2D = False , $ISTRIPWS = $STR_STRIPLEADING + $STR_STRIPTRAILING )
+	If $SDELIM_COL = Default Then $SDELIM_COL = "|"
+	If $SDELIM_ROW = Default Then $SDELIM_ROW = @CRLF
+	If $BFORCE2D = Default Then $BFORCE2D = False
+	If $ISTRIPWS = Default Then $ISTRIPWS = $STR_STRIPLEADING + $STR_STRIPTRAILING
+	Local $AROW , $ACOL = StringSplit ( $SARRAYSTR , $SDELIM_ROW , $STR_ENTIRESPLIT + $STR_NOCOUNT )
+	$AROW = StringSplit ( $ACOL [ 0 ] , $SDELIM_COL , $STR_ENTIRESPLIT + $STR_NOCOUNT )
+	If UBound ( $ACOL ) = 1 And Not $BFORCE2D Then
+		For $M = 0 To UBound ( $AROW ) + 4294967295
+			$AROW [ $M ] = ( $ISTRIPWS ? StringStripWS ( $AROW [ $M ] , $ISTRIPWS ) : $AROW [ $M ] )
+		Next
+		Return $AROW
+	EndIf
+	Local $ARET [ UBound ( $ACOL ) ] [ UBound ( $AROW ) ]
+	For $N = 0 To UBound ( $ACOL ) + 4294967295
+		$AROW = StringSplit ( $ACOL [ $N ] , $SDELIM_COL , $STR_ENTIRESPLIT + $STR_NOCOUNT )
+		If UBound ( $AROW ) > UBound ( $ARET , 2 ) Then Return SetError ( 1 )
+		For $M = 0 To UBound ( $AROW ) + 4294967295
+			$ARET [ $N ] [ $M ] = ( $ISTRIPWS ? StringStripWS ( $AROW [ $M ] , $ISTRIPWS ) : $AROW [ $M ] )
+		Next
+	Next
+	Return $ARET
+EndFunc
+Func _ARRAYINSERT ( ByRef $AARRAY , $VRANGE , $VVALUE = "" , $ISTART = 0 , $SDELIM_ITEM = "|" , $SDELIM_ROW = @CRLF , $IFORCE = $ARRAYFILL_FORCE_DEFAULT )
+	If $VVALUE = Default Then $VVALUE = ""
+	If $ISTART = Default Then $ISTART = 0
+	If $SDELIM_ITEM = Default Then $SDELIM_ITEM = "|"
+	If $SDELIM_ROW = Default Then $SDELIM_ROW = @CRLF
+	If $IFORCE = Default Then $IFORCE = $ARRAYFILL_FORCE_DEFAULT
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS ) + 4294967295
+	Local $HDATATYPE = 0
+	Switch $IFORCE
+	Case $ARRAYFILL_FORCE_INT
+		$HDATATYPE = Int
+	Case $ARRAYFILL_FORCE_NUMBER
+		$HDATATYPE = Number
+	Case $ARRAYFILL_FORCE_PTR
+		$HDATATYPE = Ptr
+	Case $ARRAYFILL_FORCE_HWND
+		$HDATATYPE = HWnd
+	Case $ARRAYFILL_FORCE_STRING
+		$HDATATYPE = String
+	EndSwitch
+	Local $ASPLIT_1 , $ASPLIT_2
+	If IsArray ( $VRANGE ) Then
+		If UBound ( $VRANGE , $UBOUND_DIMENSIONS ) <> 1 Or UBound ( $VRANGE , $UBOUND_ROWS ) < 2 Then Return SetError ( 4 , 0 , + 4294967295 )
+	Else
+		Local $INUMBER
+		$VRANGE = StringStripWS ( $VRANGE , 8 )
+		$ASPLIT_1 = StringSplit ( $VRANGE , ";" )
+		$VRANGE = ""
+		For $I = 1 To $ASPLIT_1 [ 0 ]
+			If Not StringRegExp ( $ASPLIT_1 [ $I ] , "^\d+(-\d+)?$" ) Then Return SetError ( 3 , 0 , + 4294967295 )
+			$ASPLIT_2 = StringSplit ( $ASPLIT_1 [ $I ] , "-" )
+			Switch $ASPLIT_2 [ 0 ]
+			Case 1
+				$VRANGE &= $ASPLIT_2 [ 1 ] & ";"
+			Case 2
+				If Number ( $ASPLIT_2 [ 2 ] ) >= Number ( $ASPLIT_2 [ 1 ] ) Then
+					$INUMBER = $ASPLIT_2 [ 1 ] + 4294967295
+					Do
+						$INUMBER += 1
+						$VRANGE &= $INUMBER & ";"
+					Until $INUMBER = $ASPLIT_2 [ 2 ]
+				EndIf
+			EndSwitch
+		Next
+		$VRANGE = StringSplit ( StringTrimRight ( $VRANGE , 1 ) , ";" )
+	EndIf
+	For $I = 1 To $VRANGE [ 0 ]
+		$VRANGE [ $I ] = Number ( $VRANGE [ $I ] )
+	Next
+	If $VRANGE [ 1 ] < 0 Or $VRANGE [ $VRANGE [ 0 ] ] > $IDIM_1 Then Return SetError ( 5 , 0 , + 4294967295 )
+	For $I = 2 To $VRANGE [ 0 ]
+		If $VRANGE [ $I ] < $VRANGE [ $I + 4294967295 ] Then Return SetError ( 3 , 0 , + 4294967295 )
+	Next
+	Local $ICOPYTO_INDEX = $IDIM_1 + $VRANGE [ 0 ]
+	Local $IINSERTPOINT_INDEX = $VRANGE [ 0 ]
+	Local $IINSERT_INDEX = $VRANGE [ $IINSERTPOINT_INDEX ]
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		If $IFORCE = $ARRAYFILL_FORCE_SINGLEITEM Then
+			ReDim $AARRAY [ $IDIM_1 + $VRANGE [ 0 ] + 1 ]
+			For $IREADFROMINDEX = $IDIM_1 To 0 Step + 4294967295
+				$AARRAY [ $ICOPYTO_INDEX ] = $AARRAY [ $IREADFROMINDEX ]
+				$ICOPYTO_INDEX -= 1
+				$IINSERT_INDEX = $VRANGE [ $IINSERTPOINT_INDEX ]
+				While $IREADFROMINDEX = $IINSERT_INDEX
+					$AARRAY [ $ICOPYTO_INDEX ] = $VVALUE
+					$ICOPYTO_INDEX -= 1
+					$IINSERTPOINT_INDEX -= 1
+					If $IINSERTPOINT_INDEX < 1 Then ExitLoop 2
+					$IINSERT_INDEX = $VRANGE [ $IINSERTPOINT_INDEX ]
+				WEnd
+			Next
+			Return $IDIM_1 + $VRANGE [ 0 ] + 1
+		EndIf
+		ReDim $AARRAY [ $IDIM_1 + $VRANGE [ 0 ] + 1 ]
+		If IsArray ( $VVALUE ) Then
+			If UBound ( $VVALUE , $UBOUND_DIMENSIONS ) <> 1 Then Return SetError ( 5 , 0 , + 4294967295 )
+			$HDATATYPE = 0
+		Else
+			Local $ATMP = StringSplit ( $VVALUE , $SDELIM_ITEM , $STR_NOCOUNT + $STR_ENTIRESPLIT )
+			If UBound ( $ATMP , $UBOUND_ROWS ) = 1 Then
+				$ATMP [ 0 ] = $VVALUE
+				$HDATATYPE = 0
+			EndIf
+			$VVALUE = $ATMP
+		EndIf
+		For $IREADFROMINDEX = $IDIM_1 To 0 Step + 4294967295
+			$AARRAY [ $ICOPYTO_INDEX ] = $AARRAY [ $IREADFROMINDEX ]
+			$ICOPYTO_INDEX -= 1
+			$IINSERT_INDEX = $VRANGE [ $IINSERTPOINT_INDEX ]
+			While $IREADFROMINDEX = $IINSERT_INDEX
+				If $IINSERTPOINT_INDEX <= UBound ( $VVALUE , $UBOUND_ROWS ) Then
+					If IsFunc ( $HDATATYPE ) Then
+						$AARRAY [ $ICOPYTO_INDEX ] = $HDATATYPE ( $VVALUE [ $IINSERTPOINT_INDEX + 4294967295 ] )
+					Else
+						$AARRAY [ $ICOPYTO_INDEX ] = $VVALUE [ $IINSERTPOINT_INDEX + 4294967295 ]
+					EndIf
+				Else
+					$AARRAY [ $ICOPYTO_INDEX ] = ""
+				EndIf
+				$ICOPYTO_INDEX -= 1
+				$IINSERTPOINT_INDEX -= 1
+				If $IINSERTPOINT_INDEX = 0 Then ExitLoop 2
+				$IINSERT_INDEX = $VRANGE [ $IINSERTPOINT_INDEX ]
+			WEnd
+		Next
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS )
+		If $ISTART < 0 Or $ISTART > $IDIM_2 + 4294967295 Then Return SetError ( 6 , 0 , + 4294967295 )
+		Local $IVALDIM_1 , $IVALDIM_2
+		If IsArray ( $VVALUE ) Then
+			If UBound ( $VVALUE , $UBOUND_DIMENSIONS ) <> 2 Then Return SetError ( 7 , 0 , + 4294967295 )
+			$IVALDIM_1 = UBound ( $VVALUE , $UBOUND_ROWS )
+			$IVALDIM_2 = UBound ( $VVALUE , $UBOUND_COLUMNS )
+			$HDATATYPE = 0
+		Else
+			$ASPLIT_1 = StringSplit ( $VVALUE , $SDELIM_ROW , $STR_NOCOUNT + $STR_ENTIRESPLIT )
+			$IVALDIM_1 = UBound ( $ASPLIT_1 , $UBOUND_ROWS )
+			StringReplace ( $ASPLIT_1 [ 0 ] , $SDELIM_ITEM , "" )
+			$IVALDIM_2 = @extended + 1
+			Local $ATMP [ $IVALDIM_1 ] [ $IVALDIM_2 ]
+			For $I = 0 To $IVALDIM_1 + 4294967295
+				$ASPLIT_2 = StringSplit ( $ASPLIT_1 [ $I ] , $SDELIM_ITEM , $STR_NOCOUNT + $STR_ENTIRESPLIT )
+				For $J = 0 To $IVALDIM_2 + 4294967295
+					$ATMP [ $I ] [ $J ] = $ASPLIT_2 [ $J ]
+				Next
+			Next
+			$VVALUE = $ATMP
+		EndIf
+		If UBound ( $VVALUE , $UBOUND_COLUMNS ) + $ISTART > UBound ( $AARRAY , $UBOUND_COLUMNS ) Then Return SetError ( 8 , 0 , + 4294967295 )
+		ReDim $AARRAY [ $IDIM_1 + $VRANGE [ 0 ] + 1 ] [ $IDIM_2 ]
+		For $IREADFROMINDEX = $IDIM_1 To 0 Step + 4294967295
+			For $J = 0 To $IDIM_2 + 4294967295
+				$AARRAY [ $ICOPYTO_INDEX ] [ $J ] = $AARRAY [ $IREADFROMINDEX ] [ $J ]
+			Next
+			$ICOPYTO_INDEX -= 1
+			$IINSERT_INDEX = $VRANGE [ $IINSERTPOINT_INDEX ]
+			While $IREADFROMINDEX = $IINSERT_INDEX
+				For $J = 0 To $IDIM_2 + 4294967295
+					If $J < $ISTART Then
+						$AARRAY [ $ICOPYTO_INDEX ] [ $J ] = ""
+					ElseIf $J - $ISTART > $IVALDIM_2 + 4294967295 Then
+						$AARRAY [ $ICOPYTO_INDEX ] [ $J ] = ""
+					Else
+						If $IINSERTPOINT_INDEX + 4294967295 < $IVALDIM_1 Then
+							If IsFunc ( $HDATATYPE ) Then
+								$AARRAY [ $ICOPYTO_INDEX ] [ $J ] = $HDATATYPE ( $VVALUE [ $IINSERTPOINT_INDEX + 4294967295 ] [ $J - $ISTART ] )
+							Else
+								$AARRAY [ $ICOPYTO_INDEX ] [ $J ] = $VVALUE [ $IINSERTPOINT_INDEX + 4294967295 ] [ $J - $ISTART ]
+							EndIf
+						Else
+							$AARRAY [ $ICOPYTO_INDEX ] [ $J ] = ""
+						EndIf
+					EndIf
+				Next
+				$ICOPYTO_INDEX -= 1
+				$IINSERTPOINT_INDEX -= 1
+				If $IINSERTPOINT_INDEX = 0 Then ExitLoop 2
+				$IINSERT_INDEX = $VRANGE [ $IINSERTPOINT_INDEX ]
+			WEnd
+		Next
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+	Return UBound ( $AARRAY , $UBOUND_ROWS )
+EndFunc
+Func _ARRAYMAX ( Const ByRef $AARRAY , $ICOMPNUMERIC = 0 , $ISTART = + 4294967295 , $IEND = + 4294967295 , $ISUBITEM = 0 )
+	Local $IRESULT = _ARRAYMAXINDEX ( $AARRAY , $ICOMPNUMERIC , $ISTART , $IEND , $ISUBITEM )
+	If @error Then Return SetError ( @error , 0 , "" )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) = 1 Then
+		Return $AARRAY [ $IRESULT ]
+	Else
+		Return $AARRAY [ $IRESULT ] [ $ISUBITEM ]
+	EndIf
+EndFunc
+Func _ARRAYMAXINDEX ( Const ByRef $AARRAY , $ICOMPNUMERIC = 0 , $ISTART = + 4294967295 , $IEND = + 4294967295 , $ISUBITEM = 0 )
+	If $ICOMPNUMERIC = Default Then $ICOMPNUMERIC = 0
+	If $ISTART = Default Then $ISTART = + 4294967295
+	If $IEND = Default Then $IEND = + 4294967295
+	If $ISUBITEM = Default Then $ISUBITEM = 0
+	Local $IRET = __ARRAY_MINMAXINDEX ( $AARRAY , $ICOMPNUMERIC , $ISTART , $IEND , $ISUBITEM , __ARRAY_GREATERTHAN )
+	Return SetError ( @error , 0 , $IRET )
+EndFunc
+Func _ARRAYMIN ( Const ByRef $AARRAY , $ICOMPNUMERIC = 0 , $ISTART = + 4294967295 , $IEND = + 4294967295 , $ISUBITEM = 0 )
+	Local $IRESULT = _ARRAYMININDEX ( $AARRAY , $ICOMPNUMERIC , $ISTART , $IEND , $ISUBITEM )
+	If @error Then Return SetError ( @error , 0 , "" )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) = 1 Then
+		Return $AARRAY [ $IRESULT ]
+	Else
+		Return $AARRAY [ $IRESULT ] [ $ISUBITEM ]
+	EndIf
+EndFunc
+Func _ARRAYMININDEX ( Const ByRef $AARRAY , $ICOMPNUMERIC = 0 , $ISTART = + 4294967295 , $IEND = + 4294967295 , $ISUBITEM = 0 )
+	If $ICOMPNUMERIC = Default Then $ICOMPNUMERIC = 0
+	If $ISTART = Default Then $ISTART = + 4294967295
+	If $IEND = Default Then $IEND = + 4294967295
+	If $ISUBITEM = Default Then $ISUBITEM = 0
+	Local $IRET = __ARRAY_MINMAXINDEX ( $AARRAY , $ICOMPNUMERIC , $ISTART , $IEND , $ISUBITEM , __ARRAY_LESSTHAN )
+	Return SetError ( @error , 0 , $IRET )
+EndFunc
+Func _ARRAYPERMUTE ( ByRef $AARRAY , $SDELIMITER = "" )
+	If $SDELIMITER = Default Then $SDELIMITER = ""
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , 0 )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) <> 1 Then Return SetError ( 2 , 0 , 0 )
+	Local $ISIZE = UBound ( $AARRAY ) , $IFACTORIAL = 1 , $AIDX [ $ISIZE ] , $ARESULT [ 1 ] , $ICOUNT = 1
+	If UBound ( $AARRAY ) Then
+		For $I = 0 To $ISIZE + 4294967295
+			$AIDX [ $I ] = $I
+		Next
+		For $I = $ISIZE To 1 Step + 4294967295
+			$IFACTORIAL *= $I
+		Next
+		ReDim $ARESULT [ $IFACTORIAL + 1 ]
+		$ARESULT [ 0 ] = $IFACTORIAL
+		__ARRAY_EXETERINTERNAL ( $AARRAY , 0 , $ISIZE , $SDELIMITER , $AIDX , $ARESULT , $ICOUNT )
+	Else
+		$ARESULT [ 0 ] = 0
+	EndIf
+	Return $ARESULT
+EndFunc
+Func _ARRAYPOP ( ByRef $AARRAY )
+	If ( Not IsArray ( $AARRAY ) ) Then Return SetError ( 1 , 0 , "" )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) <> 1 Then Return SetError ( 2 , 0 , "" )
+	Local $IUBOUND = UBound ( $AARRAY ) + 4294967295
+	If $IUBOUND = + 4294967295 Then Return SetError ( 3 , 0 , "" )
+	Local $SLASTVAL = $AARRAY [ $IUBOUND ]
+	If $IUBOUND > + 4294967295 Then
+		ReDim $AARRAY [ $IUBOUND ]
+	EndIf
+	Return $SLASTVAL
+EndFunc
+Func _ARRAYPUSH ( ByRef $AARRAY , $VVALUE , $IDIRECTION = 0 )
+	If $IDIRECTION = Default Then $IDIRECTION = 0
+	If ( Not IsArray ( $AARRAY ) ) Then Return SetError ( 1 , 0 , 0 )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) <> 1 Then Return SetError ( 3 , 0 , 0 )
+	Local $IUBOUND = UBound ( $AARRAY ) + 4294967295
+	If IsArray ( $VVALUE ) Then
+		Local $IUBOUNDS = UBound ( $VVALUE )
+		If ( $IUBOUNDS + 4294967295 ) > $IUBOUND Then Return SetError ( 2 , 0 , 0 )
+		If $IDIRECTION Then
+			For $I = $IUBOUND To $IUBOUNDS Step + 4294967295
+				$AARRAY [ $I ] = $AARRAY [ $I - $IUBOUNDS ]
+			Next
+			For $I = 0 To $IUBOUNDS + 4294967295
+				$AARRAY [ $I ] = $VVALUE [ $I ]
+			Next
+		Else
+			For $I = 0 To $IUBOUND - $IUBOUNDS
+				$AARRAY [ $I ] = $AARRAY [ $I + $IUBOUNDS ]
+			Next
+			For $I = 0 To $IUBOUNDS + 4294967295
+				$AARRAY [ $I + $IUBOUND - $IUBOUNDS + 1 ] = $VVALUE [ $I ]
+			Next
+		EndIf
+	Else
+		If $IUBOUND > + 4294967295 Then
+			If $IDIRECTION Then
+				For $I = $IUBOUND To 1 Step + 4294967295
+					$AARRAY [ $I ] = $AARRAY [ $I + 4294967295 ]
+				Next
+				$AARRAY [ 0 ] = $VVALUE
+			Else
+				For $I = 0 To $IUBOUND + 4294967295
+					$AARRAY [ $I ] = $AARRAY [ $I + 1 ]
+				Next
+				$AARRAY [ $IUBOUND ] = $VVALUE
+			EndIf
+		EndIf
+	EndIf
+	Return 1
+EndFunc
+Func _ARRAYREVERSE ( ByRef $AARRAY , $ISTART = 0 , $IEND = 0 )
+	If $ISTART = Default Then $ISTART = 0
+	If $IEND = Default Then $IEND = 0
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , 0 )
+	If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) <> 1 Then Return SetError ( 3 , 0 , 0 )
+	If Not UBound ( $AARRAY ) Then Return SetError ( 4 , 0 , 0 )
+	Local $VTMP , $IUBOUND = UBound ( $AARRAY ) + 4294967295
+	If $IEND < 1 Or $IEND > $IUBOUND Then $IEND = $IUBOUND
+	If $ISTART < 0 Then $ISTART = 0
+	If $ISTART > $IEND Then Return SetError ( 2 , 0 , 0 )
+	For $I = $ISTART To Int ( ( $ISTART + $IEND + 4294967295 ) / 2 )
+		$VTMP = $AARRAY [ $I ]
+		$AARRAY [ $I ] = $AARRAY [ $IEND ]
+		$AARRAY [ $IEND ] = $VTMP
+		$IEND -= 1
+	Next
+	Return 1
+EndFunc
+Func _ARRAYSEARCH ( Const ByRef $AARRAY , $VVALUE , $ISTART = 0 , $IEND = 0 , $ICASE = 0 , $ICOMPARE = 0 , $IFORWARD = 1 , $ISUBITEM = + 4294967295 , $BROW = False )
+	If $ISTART = Default Then $ISTART = 0
+	If $IEND = Default Then $IEND = 0
+	If $ICASE = Default Then $ICASE = 0
+	If $ICOMPARE = Default Then $ICOMPARE = 0
+	If $IFORWARD = Default Then $IFORWARD = 1
+	If $ISUBITEM = Default Then $ISUBITEM = + 4294967295
+	If $BROW = Default Then $BROW = False
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY ) + 4294967295
+	If $IDIM_1 = + 4294967295 Then Return SetError ( 3 , 0 , + 4294967295 )
+	Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+	Local $BCOMPTYPE = False
+	If $ICOMPARE = 2 Then
+		$ICOMPARE = 0
+		$BCOMPTYPE = True
+	EndIf
+	If $BROW Then
+		If UBound ( $AARRAY , $UBOUND_DIMENSIONS ) = 1 Then Return SetError ( 5 , 0 , + 4294967295 )
+		If $IEND < 1 Or $IEND > $IDIM_2 Then $IEND = $IDIM_2
+		If $ISTART < 0 Then $ISTART = 0
+		If $ISTART > $IEND Then Return SetError ( 4 , 0 , + 4294967295 )
+	Else
+		If $IEND < 1 Or $IEND > $IDIM_1 Then $IEND = $IDIM_1
+		If $ISTART < 0 Then $ISTART = 0
+		If $ISTART > $IEND Then Return SetError ( 4 , 0 , + 4294967295 )
+	EndIf
+	Local $ISTEP = 1
+	If Not $IFORWARD Then
+		Local $ITMP = $ISTART
+		$ISTART = $IEND
+		$IEND = $ITMP
+		$ISTEP = + 4294967295
+	EndIf
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		If Not $ICOMPARE Then
+			If Not $ICASE Then
+				For $I = $ISTART To $IEND Step $ISTEP
+					If $BCOMPTYPE And VarGetType ( $AARRAY [ $I ] ) <> VarGetType ( $VVALUE ) Then ContinueLoop
+					If $AARRAY [ $I ] = $VVALUE Then Return $I
+				Next
+			Else
+				For $I = $ISTART To $IEND Step $ISTEP
+					If $BCOMPTYPE And VarGetType ( $AARRAY [ $I ] ) <> VarGetType ( $VVALUE ) Then ContinueLoop
+					If $AARRAY [ $I ] == $VVALUE Then Return $I
+				Next
+			EndIf
+		Else
+			For $I = $ISTART To $IEND Step $ISTEP
+				If $ICOMPARE = 3 Then
+					If StringRegExp ( $AARRAY [ $I ] , $VVALUE ) Then Return $I
+				Else
+					If StringInStr ( $AARRAY [ $I ] , $VVALUE , $ICASE ) > 0 Then Return $I
+				EndIf
+			Next
+		EndIf
+	Case 2
+		Local $IDIM_SUB
+		If $BROW Then
+			$IDIM_SUB = $IDIM_1
+			If $ISUBITEM > $IDIM_SUB Then $ISUBITEM = $IDIM_SUB
+			If $ISUBITEM < 0 Then
+				$ISUBITEM = 0
+			Else
+				$IDIM_SUB = $ISUBITEM
+			EndIf
+		Else
+			$IDIM_SUB = $IDIM_2
+			If $ISUBITEM > $IDIM_SUB Then $ISUBITEM = $IDIM_SUB
+			If $ISUBITEM < 0 Then
+				$ISUBITEM = 0
+			Else
+				$IDIM_SUB = $ISUBITEM
+			EndIf
+		EndIf
+		For $J = $ISUBITEM To $IDIM_SUB
+			If Not $ICOMPARE Then
+				If Not $ICASE Then
+					For $I = $ISTART To $IEND Step $ISTEP
+						If $BROW Then
+							If $BCOMPTYPE And VarGetType ( $AARRAY [ $J ] [ $I ] ) <> VarGetType ( $VVALUE ) Then ContinueLoop
+							If $AARRAY [ $J ] [ $I ] = $VVALUE Then Return $I
+						Else
+							If $BCOMPTYPE And VarGetType ( $AARRAY [ $I ] [ $J ] ) <> VarGetType ( $VVALUE ) Then ContinueLoop
+							If $AARRAY [ $I ] [ $J ] = $VVALUE Then Return $I
+						EndIf
+					Next
+				Else
+					For $I = $ISTART To $IEND Step $ISTEP
+						If $BROW Then
+							If $BCOMPTYPE And VarGetType ( $AARRAY [ $J ] [ $I ] ) <> VarGetType ( $VVALUE ) Then ContinueLoop
+							If $AARRAY [ $J ] [ $I ] == $VVALUE Then Return $I
+						Else
+							If $BCOMPTYPE And VarGetType ( $AARRAY [ $I ] [ $J ] ) <> VarGetType ( $VVALUE ) Then ContinueLoop
+							If $AARRAY [ $I ] [ $J ] == $VVALUE Then Return $I
+						EndIf
+					Next
+				EndIf
+			Else
+				For $I = $ISTART To $IEND Step $ISTEP
+					If $ICOMPARE = 3 Then
+						If $BROW Then
+							If StringRegExp ( $AARRAY [ $J ] [ $I ] , $VVALUE ) Then Return $I
+						Else
+							If StringRegExp ( $AARRAY [ $I ] [ $J ] , $VVALUE ) Then Return $I
+						EndIf
+					Else
+						If $BROW Then
+							If StringInStr ( $AARRAY [ $J ] [ $I ] , $VVALUE , $ICASE ) > 0 Then Return $I
+						Else
+							If StringInStr ( $AARRAY [ $I ] [ $J ] , $VVALUE , $ICASE ) > 0 Then Return $I
+						EndIf
+					EndIf
+				Next
+			EndIf
+		Next
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+	Return SetError ( 6 , 0 , + 4294967295 )
+EndFunc
+Func _ARRAYSHUFFLE ( ByRef $AARRAY , $ISTART_ROW = 0 , $IEND_ROW = 0 , $ICOL = + 4294967295 )
+	If $ISTART_ROW = Default Then $ISTART_ROW = 0
+	If $IEND_ROW = Default Then $IEND_ROW = 0
+	If $ICOL = Default Then $ICOL = + 4294967295
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS )
+	If $IEND_ROW = 0 Then $IEND_ROW = $IDIM_1 + 4294967295
+	If $ISTART_ROW < 0 Or $ISTART_ROW > $IDIM_1 + 4294967295 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $IEND_ROW < 1 Or $IEND_ROW > $IDIM_1 + 4294967295 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART_ROW > $IEND_ROW Then Return SetError ( 4 , 0 , + 4294967295 )
+	Local $VTMP , $IRAND
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		For $I = $IEND_ROW To $ISTART_ROW + 1 Step + 4294967295
+			$IRAND = Random ( $ISTART_ROW , $I , 1 )
+			$VTMP = $AARRAY [ $I ]
+			$AARRAY [ $I ] = $AARRAY [ $IRAND ]
+			$AARRAY [ $IRAND ] = $VTMP
+		Next
+		Return 1
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS )
+		If $ICOL < + 4294967295 Or $ICOL > $IDIM_2 + 4294967295 Then Return SetError ( 5 , 0 , + 4294967295 )
+		Local $ICOL_START , $ICOL_END
+		If $ICOL = + 4294967295 Then
+			$ICOL_START = 0
+			$ICOL_END = $IDIM_2 + 4294967295
+		Else
+			$ICOL_START = $ICOL
+			$ICOL_END = $ICOL
+		EndIf
+		For $I = $IEND_ROW To $ISTART_ROW + 1 Step + 4294967295
+			$IRAND = Random ( $ISTART_ROW , $I , 1 )
+			For $J = $ICOL_START To $ICOL_END
+				$VTMP = $AARRAY [ $I ] [ $J ]
+				$AARRAY [ $I ] [ $J ] = $AARRAY [ $IRAND ] [ $J ]
+				$AARRAY [ $IRAND ] [ $J ] = $VTMP
+			Next
+		Next
+		Return 1
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+EndFunc
+Func _ARRAYSORT ( ByRef $AARRAY , $IDESCENDING = 0 , $ISTART = 0 , $IEND = 0 , $ISUBITEM = 0 , $IPIVOT = 0 )
+	If $IDESCENDING = Default Then $IDESCENDING = 0
+	If $ISTART = Default Then $ISTART = 0
+	If $IEND = Default Then $IEND = 0
+	If $ISUBITEM = Default Then $ISUBITEM = 0
+	If $IPIVOT = Default Then $IPIVOT = 0
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , 0 )
+	Local $IUBOUND = UBound ( $AARRAY ) + 4294967295
+	If $IUBOUND = + 4294967295 Then Return SetError ( 5 , 0 , 0 )
+	If $IEND = Default Then $IEND = 0
+	If $IEND < 1 Or $IEND > $IUBOUND Or $IEND = Default Then $IEND = $IUBOUND
+	If $ISTART < 0 Or $ISTART = Default Then $ISTART = 0
+	If $ISTART > $IEND Then Return SetError ( 2 , 0 , 0 )
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		If $IPIVOT Then
+			__ARRAYDUALPIVOTSORT ( $AARRAY , $ISTART , $IEND )
+		Else
+			__ARRAYQUICKSORT1D ( $AARRAY , $ISTART , $IEND )
+		EndIf
+		If $IDESCENDING Then _ARRAYREVERSE ( $AARRAY , $ISTART , $IEND )
+	Case 2
+		If $IPIVOT Then Return SetError ( 6 , 0 , 0 )
+		Local $ISUBMAX = UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+		If $ISUBITEM > $ISUBMAX Then Return SetError ( 3 , 0 , 0 )
+		If $IDESCENDING Then
+			$IDESCENDING = + 4294967295
+		Else
+			$IDESCENDING = 1
+		EndIf
+		__ARRAYQUICKSORT2D ( $AARRAY , $IDESCENDING , $ISTART , $IEND , $ISUBITEM , $ISUBMAX )
+Case Else
+		Return SetError ( 4 , 0 , 0 )
+	EndSwitch
+	Return 1
+EndFunc
+Func __ARRAYQUICKSORT1D ( ByRef $AARRAY , Const ByRef $ISTART , Const ByRef $IEND )
+	If $IEND <= $ISTART Then Return
+	Local $VTMP
+	If ( $IEND - $ISTART ) < 15 Then
+		Local $VCUR
+		For $I = $ISTART + 1 To $IEND
+			$VTMP = $AARRAY [ $I ]
+			If IsNumber ( $VTMP ) Then
+				For $J = $I + 4294967295 To $ISTART Step + 4294967295
+					$VCUR = $AARRAY [ $J ]
+					If ( $VTMP >= $VCUR And IsNumber ( $VCUR ) ) Or ( Not IsNumber ( $VCUR ) And StringCompare ( $VTMP , $VCUR ) >= 0 ) Then ExitLoop
+					$AARRAY [ $J + 1 ] = $VCUR
+				Next
+			Else
+				For $J = $I + 4294967295 To $ISTART Step + 4294967295
+					If ( StringCompare ( $VTMP , $AARRAY [ $J ] ) >= 0 ) Then ExitLoop
+					$AARRAY [ $J + 1 ] = $AARRAY [ $J ]
+				Next
+			EndIf
+			$AARRAY [ $J + 1 ] = $VTMP
+		Next
+		Return
+	EndIf
+	Local $L = $ISTART , $R = $IEND , $VPIVOT = $AARRAY [ Int ( ( $ISTART + $IEND ) / 2 ) ] , $BNUM = IsNumber ( $VPIVOT )
+	Do
+		If $BNUM Then
+			While ( $AARRAY [ $L ] < $VPIVOT And IsNumber ( $AARRAY [ $L ] ) ) Or ( Not IsNumber ( $AARRAY [ $L ] ) And StringCompare ( $AARRAY [ $L ] , $VPIVOT ) < 0 )
+				$L += 1
+			WEnd
+			While ( $AARRAY [ $R ] > $VPIVOT And IsNumber ( $AARRAY [ $R ] ) ) Or ( Not IsNumber ( $AARRAY [ $R ] ) And StringCompare ( $AARRAY [ $R ] , $VPIVOT ) > 0 )
+				$R -= 1
+			WEnd
+		Else
+			While ( StringCompare ( $AARRAY [ $L ] , $VPIVOT ) < 0 )
+				$L += 1
+			WEnd
+			While ( StringCompare ( $AARRAY [ $R ] , $VPIVOT ) > 0 )
+				$R -= 1
+			WEnd
+		EndIf
+		If $L <= $R Then
+			$VTMP = $AARRAY [ $L ]
+			$AARRAY [ $L ] = $AARRAY [ $R ]
+			$AARRAY [ $R ] = $VTMP
+			$L += 1
+			$R -= 1
+		EndIf
+	Until $L > $R
+	__ARRAYQUICKSORT1D ( $AARRAY , $ISTART , $R )
+	__ARRAYQUICKSORT1D ( $AARRAY , $L , $IEND )
+EndFunc
+Func __ARRAYQUICKSORT2D ( ByRef $AARRAY , Const ByRef $ISTEP , Const ByRef $ISTART , Const ByRef $IEND , Const ByRef $ISUBITEM , Const ByRef $ISUBMAX )
+	If $IEND <= $ISTART Then Return
+	Local $VTMP , $L = $ISTART , $R = $IEND , $VPIVOT = $AARRAY [ Int ( ( $ISTART + $IEND ) / 2 ) ] [ $ISUBITEM ] , $BNUM = IsNumber ( $VPIVOT )
+	Do
+		If $BNUM Then
+			While ( $ISTEP * ( $AARRAY [ $L ] [ $ISUBITEM ] - $VPIVOT ) < 0 And IsNumber ( $AARRAY [ $L ] [ $ISUBITEM ] ) ) Or ( Not IsNumber ( $AARRAY [ $L ] [ $ISUBITEM ] ) And $ISTEP * StringCompare ( $AARRAY [ $L ] [ $ISUBITEM ] , $VPIVOT ) < 0 )
+				$L += 1
+			WEnd
+			While ( $ISTEP * ( $AARRAY [ $R ] [ $ISUBITEM ] - $VPIVOT ) > 0 And IsNumber ( $AARRAY [ $R ] [ $ISUBITEM ] ) ) Or ( Not IsNumber ( $AARRAY [ $R ] [ $ISUBITEM ] ) And $ISTEP * StringCompare ( $AARRAY [ $R ] [ $ISUBITEM ] , $VPIVOT ) > 0 )
+				$R -= 1
+			WEnd
+		Else
+			While ( $ISTEP * StringCompare ( $AARRAY [ $L ] [ $ISUBITEM ] , $VPIVOT ) < 0 )
+				$L += 1
+			WEnd
+			While ( $ISTEP * StringCompare ( $AARRAY [ $R ] [ $ISUBITEM ] , $VPIVOT ) > 0 )
+				$R -= 1
+			WEnd
+		EndIf
+		If $L <= $R Then
+			For $I = 0 To $ISUBMAX
+				$VTMP = $AARRAY [ $L ] [ $I ]
+				$AARRAY [ $L ] [ $I ] = $AARRAY [ $R ] [ $I ]
+				$AARRAY [ $R ] [ $I ] = $VTMP
+			Next
+			$L += 1
+			$R -= 1
+		EndIf
+	Until $L > $R
+	__ARRAYQUICKSORT2D ( $AARRAY , $ISTEP , $ISTART , $R , $ISUBITEM , $ISUBMAX )
+	__ARRAYQUICKSORT2D ( $AARRAY , $ISTEP , $L , $IEND , $ISUBITEM , $ISUBMAX )
+EndFunc
+Func __ARRAYDUALPIVOTSORT ( ByRef $AARRAY , $IPIVOT_LEFT , $IPIVOT_RIGHT , $BLEFTMOST = True )
+	If $IPIVOT_LEFT > $IPIVOT_RIGHT Then Return
+	Local $ILENGTH = $IPIVOT_RIGHT - $IPIVOT_LEFT + 1
+	Local $I , $J , $K , $IAI , $IAK , $IA1 , $IA2 , $ILAST
+	If $ILENGTH < 45 Then
+		If $BLEFTMOST Then
+			$I = $IPIVOT_LEFT
+			While $I < $IPIVOT_RIGHT
+				$J = $I
+				$IAI = $AARRAY [ $I + 1 ]
+				While $IAI < $AARRAY [ $J ]
+					$AARRAY [ $J + 1 ] = $AARRAY [ $J ]
+					$J -= 1
+					If $J + 1 = $IPIVOT_LEFT Then ExitLoop
+				WEnd
+				$AARRAY [ $J + 1 ] = $IAI
+				$I += 1
+			WEnd
+		Else
+			While 1
+				If $IPIVOT_LEFT >= $IPIVOT_RIGHT Then Return 1
+				$IPIVOT_LEFT += 1
+				If $AARRAY [ $IPIVOT_LEFT ] < $AARRAY [ $IPIVOT_LEFT + 4294967295 ] Then ExitLoop
+			WEnd
+			While 1
+				$K = $IPIVOT_LEFT
+				$IPIVOT_LEFT += 1
+				If $IPIVOT_LEFT > $IPIVOT_RIGHT Then ExitLoop
+				$IA1 = $AARRAY [ $K ]
+				$IA2 = $AARRAY [ $IPIVOT_LEFT ]
+				If $IA1 < $IA2 Then
+					$IA2 = $IA1
+					$IA1 = $AARRAY [ $IPIVOT_LEFT ]
+				EndIf
+				$K -= 1
+				While $IA1 < $AARRAY [ $K ]
+					$AARRAY [ $K + 2 ] = $AARRAY [ $K ]
+					$K -= 1
+				WEnd
+				$AARRAY [ $K + 2 ] = $IA1
+				While $IA2 < $AARRAY [ $K ]
+					$AARRAY [ $K + 1 ] = $AARRAY [ $K ]
+					$K -= 1
+				WEnd
+				$AARRAY [ $K + 1 ] = $IA2
+				$IPIVOT_LEFT += 1
+			WEnd
+			$ILAST = $AARRAY [ $IPIVOT_RIGHT ]
+			$IPIVOT_RIGHT -= 1
+			While $ILAST < $AARRAY [ $IPIVOT_RIGHT ]
+				$AARRAY [ $IPIVOT_RIGHT + 1 ] = $AARRAY [ $IPIVOT_RIGHT ]
+				$IPIVOT_RIGHT -= 1
+			WEnd
+			$AARRAY [ $IPIVOT_RIGHT + 1 ] = $ILAST
+		EndIf
+		Return 1
+	EndIf
+	Local $ISEVENTH = BitShift ( $ILENGTH , 3 ) + BitShift ( $ILENGTH , 6 ) + 1
+	Local $IE1 , $IE2 , $IE3 , $IE4 , $IE5 , $T
+	$IE3 = Ceiling ( ( $IPIVOT_LEFT + $IPIVOT_RIGHT ) / 2 )
+	$IE2 = $IE3 - $ISEVENTH
+	$IE1 = $IE2 - $ISEVENTH
+	$IE4 = $IE3 + $ISEVENTH
+	$IE5 = $IE4 + $ISEVENTH
+	If $AARRAY [ $IE2 ] < $AARRAY [ $IE1 ] Then
+		$T = $AARRAY [ $IE2 ]
+		$AARRAY [ $IE2 ] = $AARRAY [ $IE1 ]
+		$AARRAY [ $IE1 ] = $T
+	EndIf
+	If $AARRAY [ $IE3 ] < $AARRAY [ $IE2 ] Then
+		$T = $AARRAY [ $IE3 ]
+		$AARRAY [ $IE3 ] = $AARRAY [ $IE2 ]
+		$AARRAY [ $IE2 ] = $T
+		If $T < $AARRAY [ $IE1 ] Then
+			$AARRAY [ $IE2 ] = $AARRAY [ $IE1 ]
+			$AARRAY [ $IE1 ] = $T
+		EndIf
+	EndIf
+	If $AARRAY [ $IE4 ] < $AARRAY [ $IE3 ] Then
+		$T = $AARRAY [ $IE4 ]
+		$AARRAY [ $IE4 ] = $AARRAY [ $IE3 ]
+		$AARRAY [ $IE3 ] = $T
+		If $T < $AARRAY [ $IE2 ] Then
+			$AARRAY [ $IE3 ] = $AARRAY [ $IE2 ]
+			$AARRAY [ $IE2 ] = $T
+			If $T < $AARRAY [ $IE1 ] Then
+				$AARRAY [ $IE2 ] = $AARRAY [ $IE1 ]
+				$AARRAY [ $IE1 ] = $T
+			EndIf
+		EndIf
+	EndIf
+	If $AARRAY [ $IE5 ] < $AARRAY [ $IE4 ] Then
+		$T = $AARRAY [ $IE5 ]
+		$AARRAY [ $IE5 ] = $AARRAY [ $IE4 ]
+		$AARRAY [ $IE4 ] = $T
+		If $T < $AARRAY [ $IE3 ] Then
+			$AARRAY [ $IE4 ] = $AARRAY [ $IE3 ]
+			$AARRAY [ $IE3 ] = $T
+			If $T < $AARRAY [ $IE2 ] Then
+				$AARRAY [ $IE3 ] = $AARRAY [ $IE2 ]
+				$AARRAY [ $IE2 ] = $T
+				If $T < $AARRAY [ $IE1 ] Then
+					$AARRAY [ $IE2 ] = $AARRAY [ $IE1 ]
+					$AARRAY [ $IE1 ] = $T
+				EndIf
+			EndIf
+		EndIf
+	EndIf
+	Local $ILESS = $IPIVOT_LEFT
+	Local $IGREATER = $IPIVOT_RIGHT
+	If ( ( $AARRAY [ $IE1 ] <> $AARRAY [ $IE2 ] ) And ( $AARRAY [ $IE2 ] <> $AARRAY [ $IE3 ] ) And ( $AARRAY [ $IE3 ] <> $AARRAY [ $IE4 ] ) And ( $AARRAY [ $IE4 ] <> $AARRAY [ $IE5 ] ) ) Then
+		Local $IPIVOT_1 = $AARRAY [ $IE2 ]
+		Local $IPIVOT_2 = $AARRAY [ $IE4 ]
+		$AARRAY [ $IE2 ] = $AARRAY [ $IPIVOT_LEFT ]
+		$AARRAY [ $IE4 ] = $AARRAY [ $IPIVOT_RIGHT ]
+		Do
+			$ILESS += 1
+		Until $AARRAY [ $ILESS ] >= $IPIVOT_1
+		Do
+			$IGREATER -= 1
+		Until $AARRAY [ $IGREATER ] <= $IPIVOT_2
+		$K = $ILESS
+		While $K <= $IGREATER
+			$IAK = $AARRAY [ $K ]
+			If $IAK < $IPIVOT_1 Then
+				$AARRAY [ $K ] = $AARRAY [ $ILESS ]
+				$AARRAY [ $ILESS ] = $IAK
+				$ILESS += 1
+			ElseIf $IAK > $IPIVOT_2 Then
+				While $AARRAY [ $IGREATER ] > $IPIVOT_2
+					$IGREATER -= 1
+					If $IGREATER + 1 = $K Then ExitLoop 2
+				WEnd
+				If $AARRAY [ $IGREATER ] < $IPIVOT_1 Then
+					$AARRAY [ $K ] = $AARRAY [ $ILESS ]
+					$AARRAY [ $ILESS ] = $AARRAY [ $IGREATER ]
+					$ILESS += 1
+				Else
+					$AARRAY [ $K ] = $AARRAY [ $IGREATER ]
+				EndIf
+				$AARRAY [ $IGREATER ] = $IAK
+				$IGREATER -= 1
+			EndIf
+			$K += 1
+		WEnd
+		$AARRAY [ $IPIVOT_LEFT ] = $AARRAY [ $ILESS + 4294967295 ]
+		$AARRAY [ $ILESS + 4294967295 ] = $IPIVOT_1
+		$AARRAY [ $IPIVOT_RIGHT ] = $AARRAY [ $IGREATER + 1 ]
+		$AARRAY [ $IGREATER + 1 ] = $IPIVOT_2
+		__ARRAYDUALPIVOTSORT ( $AARRAY , $IPIVOT_LEFT , $ILESS + 4294967294 , True )
+		__ARRAYDUALPIVOTSORT ( $AARRAY , $IGREATER + 2 , $IPIVOT_RIGHT , False )
+		If ( $ILESS < $IE1 ) And ( $IE5 < $IGREATER ) Then
+			While $AARRAY [ $ILESS ] = $IPIVOT_1
+				$ILESS += 1
+			WEnd
+			While $AARRAY [ $IGREATER ] = $IPIVOT_2
+				$IGREATER -= 1
+			WEnd
+			$K = $ILESS
+			While $K <= $IGREATER
+				$IAK = $AARRAY [ $K ]
+				If $IAK = $IPIVOT_1 Then
+					$AARRAY [ $K ] = $AARRAY [ $ILESS ]
+					$AARRAY [ $ILESS ] = $IAK
+					$ILESS += 1
+				ElseIf $IAK = $IPIVOT_2 Then
+					While $AARRAY [ $IGREATER ] = $IPIVOT_2
+						$IGREATER -= 1
+						If $IGREATER + 1 = $K Then ExitLoop 2
+					WEnd
+					If $AARRAY [ $IGREATER ] = $IPIVOT_1 Then
+						$AARRAY [ $K ] = $AARRAY [ $ILESS ]
+						$AARRAY [ $ILESS ] = $IPIVOT_1
+						$ILESS += 1
+					Else
+						$AARRAY [ $K ] = $AARRAY [ $IGREATER ]
+					EndIf
+					$AARRAY [ $IGREATER ] = $IAK
+					$IGREATER -= 1
+				EndIf
+				$K += 1
+			WEnd
+		EndIf
+		__ARRAYDUALPIVOTSORT ( $AARRAY , $ILESS , $IGREATER , False )
+	Else
+		Local $IPIVOT = $AARRAY [ $IE3 ]
+		$K = $ILESS
+		While $K <= $IGREATER
+			If $AARRAY [ $K ] = $IPIVOT Then
+				$K += 1
+				ContinueLoop
+			EndIf
+			$IAK = $AARRAY [ $K ]
+			If $IAK < $IPIVOT Then
+				$AARRAY [ $K ] = $AARRAY [ $ILESS ]
+				$AARRAY [ $ILESS ] = $IAK
+				$ILESS += 1
+			Else
+				While $AARRAY [ $IGREATER ] > $IPIVOT
+					$IGREATER -= 1
+				WEnd
+				If $AARRAY [ $IGREATER ] < $IPIVOT Then
+					$AARRAY [ $K ] = $AARRAY [ $ILESS ]
+					$AARRAY [ $ILESS ] = $AARRAY [ $IGREATER ]
+					$ILESS += 1
+				Else
+					$AARRAY [ $K ] = $IPIVOT
+				EndIf
+				$AARRAY [ $IGREATER ] = $IAK
+				$IGREATER -= 1
+			EndIf
+			$K += 1
+		WEnd
+		__ARRAYDUALPIVOTSORT ( $AARRAY , $IPIVOT_LEFT , $ILESS + 4294967295 , True )
+		__ARRAYDUALPIVOTSORT ( $AARRAY , $IGREATER + 1 , $IPIVOT_RIGHT , False )
+	EndIf
+EndFunc
+Func _ARRAYSWAP ( ByRef $AARRAY , $IINDEX_1 , $IINDEX_2 , $BCOL = False , $ISTART = + 4294967295 , $IEND = + 4294967295 )
+	If $BCOL = Default Then $BCOL = False
+	If $ISTART = Default Then $ISTART = + 4294967295
+	If $IEND = Default Then $IEND = + 4294967295
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS ) + 4294967295
+	Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+	If $IDIM_2 = + 4294967295 Then
+		$BCOL = False
+		$ISTART = + 4294967295
+		$IEND = + 4294967295
+	EndIf
+	If $ISTART > $IEND Then Return SetError ( 5 , 0 , + 4294967295 )
+	If $BCOL Then
+		If $IINDEX_1 < 0 Or $IINDEX_2 > $IDIM_2 Then Return SetError ( 3 , 0 , + 4294967295 )
+		If $ISTART = + 4294967295 Then $ISTART = 0
+		If $IEND = + 4294967295 Then $IEND = $IDIM_1
+	Else
+		If $IINDEX_1 < 0 Or $IINDEX_2 > $IDIM_1 Then Return SetError ( 3 , 0 , + 4294967295 )
+		If $ISTART = + 4294967295 Then $ISTART = 0
+		If $IEND = + 4294967295 Then $IEND = $IDIM_2
+	EndIf
+	Local $VTMP
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		$VTMP = $AARRAY [ $IINDEX_1 ]
+		$AARRAY [ $IINDEX_1 ] = $AARRAY [ $IINDEX_2 ]
+		$AARRAY [ $IINDEX_2 ] = $VTMP
+	Case 2
+		If $ISTART < + 4294967295 Or $IEND < + 4294967295 Then Return SetError ( 4 , 0 , + 4294967295 )
+		If $BCOL Then
+			If $ISTART > $IDIM_1 Or $IEND > $IDIM_1 Then Return SetError ( 4 , 0 , + 4294967295 )
+			For $J = $ISTART To $IEND
+				$VTMP = $AARRAY [ $J ] [ $IINDEX_1 ]
+				$AARRAY [ $J ] [ $IINDEX_1 ] = $AARRAY [ $J ] [ $IINDEX_2 ]
+				$AARRAY [ $J ] [ $IINDEX_2 ] = $VTMP
+			Next
+		Else
+			If $ISTART > $IDIM_2 Or $IEND > $IDIM_2 Then Return SetError ( 4 , 0 , + 4294967295 )
+			For $J = $ISTART To $IEND
+				$VTMP = $AARRAY [ $IINDEX_1 ] [ $J ]
+				$AARRAY [ $IINDEX_1 ] [ $J ] = $AARRAY [ $IINDEX_2 ] [ $J ]
+				$AARRAY [ $IINDEX_2 ] [ $J ] = $VTMP
+			Next
+		EndIf
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+	Return 1
+EndFunc
+Func _ARRAYTOCLIP ( Const ByRef $AARRAY , $SDELIM_COL = "|" , $ISTART_ROW = + 4294967295 , $IEND_ROW = + 4294967295 , $SDELIM_ROW = @CRLF , $ISTART_COL = + 4294967295 , $IEND_COL = + 4294967295 )
+	Local $SRESULT = _ARRAYTOSTRING ( $AARRAY , $SDELIM_COL , $ISTART_ROW , $IEND_ROW , $SDELIM_ROW , $ISTART_COL , $IEND_COL )
+	If @error Then Return SetError ( @error , 0 , 0 )
+	If ClipPut ( $SRESULT ) Then Return 1
+	Return SetError ( + 4294967295 , 0 , 0 )
+EndFunc
+Func _ARRAYTOSTRING ( Const ByRef $AARRAY , $SDELIM_COL = "|" , $ISTART_ROW = Default , $IEND_ROW = Default , $SDELIM_ROW = @CRLF , $ISTART_COL = Default , $IEND_COL = Default )
+	If $SDELIM_COL = Default Then $SDELIM_COL = "|"
+	If $SDELIM_ROW = Default Then $SDELIM_ROW = @CRLF
+	If $ISTART_ROW = Default Then $ISTART_ROW = + 4294967295
+	If $IEND_ROW = Default Then $IEND_ROW = + 4294967295
+	If $ISTART_COL = Default Then $ISTART_COL = + 4294967295
+	If $IEND_COL = Default Then $IEND_COL = + 4294967295
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS ) + 4294967295
+	If $IDIM_1 = + 4294967295 Then Return ""
+	If $ISTART_ROW = + 4294967295 Then $ISTART_ROW = 0
+	If $IEND_ROW = + 4294967295 Then $IEND_ROW = $IDIM_1
+	If $ISTART_ROW < + 4294967295 Or $IEND_ROW < + 4294967295 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART_ROW > $IDIM_1 Or $IEND_ROW > $IDIM_1 Then Return SetError ( 3 , 0 , "" )
+	If $ISTART_ROW > $IEND_ROW Then Return SetError ( 4 , 0 , + 4294967295 )
+	Local $SRET = ""
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		For $I = $ISTART_ROW To $IEND_ROW
+			$SRET &= $AARRAY [ $I ] & $SDELIM_COL
+		Next
+		Return StringTrimRight ( $SRET , StringLen ( $SDELIM_COL ) )
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+		If $IDIM_2 = + 4294967295 Then Return ""
+		If $ISTART_COL = + 4294967295 Then $ISTART_COL = 0
+		If $IEND_COL = + 4294967295 Then $IEND_COL = $IDIM_2
+		If $ISTART_COL < + 4294967295 Or $IEND_COL < + 4294967295 Then Return SetError ( 5 , 0 , + 4294967295 )
+		If $ISTART_COL > $IDIM_2 Or $IEND_COL > $IDIM_2 Then Return SetError ( 5 , 0 , + 4294967295 )
+		If $ISTART_COL > $IEND_COL Then Return SetError ( 6 , 0 , + 4294967295 )
+		Local $IDELIMCOLLEN = StringLen ( $SDELIM_COL )
+		For $I = $ISTART_ROW To $IEND_ROW
+			For $J = $ISTART_COL To $IEND_COL
+				$SRET &= $AARRAY [ $I ] [ $J ] & $SDELIM_COL
+			Next
+			$SRET = StringTrimRight ( $SRET , $IDELIMCOLLEN ) & $SDELIM_ROW
+		Next
+		Return StringTrimRight ( $SRET , StringLen ( $SDELIM_ROW ) )
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+	Return 1
+EndFunc
+Func _ARRAYTRANSPOSE ( ByRef $AARRAY , $BFORCE1D = False )
+	Local $ATEMP
+	Switch $BFORCE1D
+	Case Default
+		$BFORCE1D = False
+	Case True , False
+Case Else
+		Return SetError ( 3 , 0 , 0 )
+	EndSwitch
+	Switch UBound ( $AARRAY , 0 )
+	Case 0
+		Return SetError ( 2 , 0 , 0 )
+	Case 1
+		Local $ATEMP [ 1 ] [ UBound ( $AARRAY ) ]
+		For $I = 0 To UBound ( $AARRAY ) + 4294967295
+			$ATEMP [ 0 ] [ $I ] = $AARRAY [ $I ]
+		Next
+		$AARRAY = $ATEMP
+	Case 2
+		Local $IDIM_1 = UBound ( $AARRAY , 1 ) , $IDIM_2 = UBound ( $AARRAY , 2 )
+		If $IDIM_1 <> $IDIM_2 Then
+			Local $ATEMP [ $IDIM_2 ] [ $IDIM_1 ]
+			For $I = 0 To $IDIM_1 + 4294967295
+				For $J = 0 To $IDIM_2 + 4294967295
+					$ATEMP [ $J ] [ $I ] = $AARRAY [ $I ] [ $J ]
+				Next
+			Next
+			$AARRAY = $ATEMP
+		Else
+			Local $VELEMENT
+			For $I = 0 To $IDIM_1 + 4294967295
+				For $J = $I + 1 To $IDIM_2 + 4294967295
+					$VELEMENT = $AARRAY [ $I ] [ $J ]
+					$AARRAY [ $I ] [ $J ] = $AARRAY [ $J ] [ $I ]
+					$AARRAY [ $J ] [ $I ] = $VELEMENT
+				Next
+			Next
+		EndIf
+		If $BFORCE1D = True And UBound ( $AARRAY , 2 ) = 1 Then
+			$ATEMP = $AARRAY
+			ReDim $AARRAY [ UBound ( $ATEMP ) ]
+			For $I = 0 To UBound ( $ATEMP ) + 4294967295
+				$AARRAY [ $I ] = $ATEMP [ $I ] [ 0 ]
+			Next
+		EndIf
+Case Else
+		Return SetError ( 1 , 0 , 0 )
+	EndSwitch
+	Return 1
+EndFunc
+Func _ARRAYTRIM ( ByRef $AARRAY , $ITRIMNUM , $IDIRECTION = 0 , $ISTART = 0 , $IEND = 0 , $ISUBITEM = 0 )
+	If $IDIRECTION = Default Then $IDIRECTION = 0
+	If $ISTART = Default Then $ISTART = 0
+	If $IEND = Default Then $IEND = 0
+	If $ISUBITEM = Default Then $ISUBITEM = 0
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , 0 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS ) + 4294967295
+	If $IEND = 0 Then $IEND = $IDIM_1
+	If $ISTART > $IEND Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART < 0 Or $IEND < 0 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART > $IDIM_1 Or $IEND > $IDIM_1 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART > $IEND Then Return SetError ( 4 , 0 , + 4294967295 )
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		If $IDIRECTION Then
+			For $I = $ISTART To $IEND
+				$AARRAY [ $I ] = StringTrimRight ( $AARRAY [ $I ] , $ITRIMNUM )
+			Next
+		Else
+			For $I = $ISTART To $IEND
+				$AARRAY [ $I ] = StringTrimLeft ( $AARRAY [ $I ] , $ITRIMNUM )
+			Next
+		EndIf
+	Case 2
+		Local $IDIM_2 = UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+		If $ISUBITEM < 0 Or $ISUBITEM > $IDIM_2 Then Return SetError ( 5 , 0 , + 4294967295 )
+		If $IDIRECTION Then
+			For $I = $ISTART To $IEND
+				$AARRAY [ $I ] [ $ISUBITEM ] = StringTrimRight ( $AARRAY [ $I ] [ $ISUBITEM ] , $ITRIMNUM )
+			Next
+		Else
+			For $I = $ISTART To $IEND
+				$AARRAY [ $I ] [ $ISUBITEM ] = StringTrimLeft ( $AARRAY [ $I ] [ $ISUBITEM ] , $ITRIMNUM )
+			Next
+		EndIf
+Case Else
+		Return SetError ( 2 , 0 , 0 )
+	EndSwitch
+	Return 1
+EndFunc
+Func _ARRAYUNIQUE ( Const ByRef $AARRAY , $ICOLUMN = 0 , $IBASE = 0 , $ICASE = 0 , $ICOUNT = $ARRAYUNIQUE_COUNT , $IINTTYPE = $ARRAYUNIQUE_AUTO )
+	If $ICOLUMN = Default Then $ICOLUMN = 0
+	If $IBASE = Default Then $IBASE = 0
+	If $ICASE = Default Then $ICASE = 0
+	If $ICOUNT = Default Then $ICOUNT = $ARRAYUNIQUE_COUNT
+	If $IINTTYPE = Default Then $IINTTYPE = $ARRAYUNIQUE_AUTO
+	If UBound ( $AARRAY , $UBOUND_ROWS ) = 0 Then Return SetError ( 1 , 0 , 0 )
+	Local $IDIMS = UBound ( $AARRAY , $UBOUND_DIMENSIONS ) , $INUMCOLUMNS = UBound ( $AARRAY , $UBOUND_COLUMNS )
+	If $IDIMS > 2 Then Return SetError ( 2 , 0 , 0 )
+	If $IBASE < 0 Or $IBASE > 1 Or ( Not IsInt ( $IBASE ) ) Then Return SetError ( 3 , 0 , 0 )
+	If $ICASE < 0 Or $ICASE > 1 Or ( Not IsInt ( $ICASE ) ) Then Return SetError ( 3 , 0 , 0 )
+	If $ICOUNT < 0 Or $ICOUNT > 1 Or ( Not IsInt ( $ICOUNT ) ) Then Return SetError ( 4 , 0 , 0 )
+	If $IINTTYPE < 0 Or $IINTTYPE > 4 Or ( Not IsInt ( $IINTTYPE ) ) Then Return SetError ( 5 , 0 , 0 )
+	If $ICOLUMN < 0 Or ( $INUMCOLUMNS = 0 And $ICOLUMN > 0 ) Or ( $INUMCOLUMNS > 0 And $ICOLUMN >= $INUMCOLUMNS ) Then Return SetError ( 6 , 0 , 0 )
+	If $IINTTYPE = $ARRAYUNIQUE_AUTO Then
+		Local $BINT , $SVARTYPE
+		If $IDIMS = 1 Then
+			$BINT = IsInt ( $AARRAY [ $IBASE ] )
+			$SVARTYPE = VarGetType ( $AARRAY [ $IBASE ] )
+		Else
+			$BINT = IsInt ( $AARRAY [ $IBASE ] [ $ICOLUMN ] )
+			$SVARTYPE = VarGetType ( $AARRAY [ $IBASE ] [ $ICOLUMN ] )
+		EndIf
+		If $BINT And $SVARTYPE = "Int64" Then
+			$IINTTYPE = $ARRAYUNIQUE_FORCE64
+		Else
+			$IINTTYPE = $ARRAYUNIQUE_FORCE32
+		EndIf
+	EndIf
+	ObjEvent ( "AutoIt.Error" , __ARRAYUNIQUE_AUTOERRFUNC )
+	Local $ODICTIONARY = ObjCreate ( "Scripting.Dictionary" )
+	$ODICTIONARY .CompareMode = Number ( Not $ICASE )
+	Local $VELEM , $STYPE , $VKEY , $BCOMERROR = False
+	For $I = $IBASE To UBound ( $AARRAY ) + 4294967295
+		If $IDIMS = 1 Then
+			$VELEM = $AARRAY [ $I ]
+		Else
+			$VELEM = $AARRAY [ $I ] [ $ICOLUMN ]
+		EndIf
+		Switch $IINTTYPE
+		Case $ARRAYUNIQUE_FORCE32
+			$ODICTIONARY .Item ( $VELEM )
+			If @error Then
+				$BCOMERROR = True
+				ExitLoop
+			EndIf
+		Case $ARRAYUNIQUE_FORCE64
+			$STYPE = VarGetType ( $VELEM )
+			If $STYPE = "Int32" Then
+				$BCOMERROR = True
+				ExitLoop
+			EndIf
+			$VKEY = "#" & $STYPE & "#" & String ( $VELEM )
+			If Not $ODICTIONARY .Item ( $VKEY ) Then
+				$ODICTIONARY ( $VKEY ) = $VELEM
+			EndIf
+		Case $ARRAYUNIQUE_MATCH
+			$STYPE = VarGetType ( $VELEM )
+			If StringLeft ( $STYPE , 3 ) = "Int" Then
+				$VKEY = "#Int#" & String ( $VELEM )
+			Else
+				$VKEY = "#" & $STYPE & "#" & String ( $VELEM )
+			EndIf
+			If Not $ODICTIONARY .Item ( $VKEY ) Then
+				$ODICTIONARY ( $VKEY ) = $VELEM
+			EndIf
+		Case $ARRAYUNIQUE_DISTINCT
+			$VKEY = "#" & VarGetType ( $VELEM ) & "#" & String ( $VELEM )
+			If Not $ODICTIONARY .Item ( $VKEY ) Then
+				$ODICTIONARY ( $VKEY ) = $VELEM
+			EndIf
+		EndSwitch
+	Next
+	Local $AVALUES , $J = 0
+	If $BCOMERROR Then
+		Return SetError ( 7 , 0 , 0 )
+	ElseIf $IINTTYPE <> $ARRAYUNIQUE_FORCE32 Then
+		Local $AVALUES [ $ODICTIONARY .Count ]
+		For $VKEY In $ODICTIONARY .Keys ( )
+			$AVALUES [ $J ] = $ODICTIONARY ( $VKEY )
+			If StringLeft ( $VKEY , 5 ) = "#Ptr#" Then
+				$AVALUES [ $J ] = Ptr ( $AVALUES [ $J ] )
+			EndIf
+			$J += 1
+		Next
+	Else
+		$AVALUES = $ODICTIONARY .Keys ( )
+	EndIf
+	If $ICOUNT Then
+		_ARRAYINSERT ( $AVALUES , 0 , $ODICTIONARY .Count )
+	EndIf
+	Return $AVALUES
+EndFunc
+Func _ARRAY1DTOHISTOGRAM ( $AARRAY , $ISIZING = 100 )
+	If UBound ( $AARRAY , 0 ) > 1 Then Return SetError ( 1 , 0 , "" )
+	$ISIZING = $ISIZING * 8
+	Local $T , $N , $IMIN = 0 , $IMAX = 0 , $IOFFSET = 0
+	For $I = 0 To UBound ( $AARRAY ) + 4294967295
+		$T = $AARRAY [ $I ]
+		$T = IsNumber ( $T ) ? Round ( $T ) : 0
+		If $T < $IMIN Then $IMIN = $T
+		If $T > $IMAX Then $IMAX = $T
+	Next
+	Local $IRANGE = Int ( Round ( ( $IMAX - $IMIN ) / 8 ) ) * 8
+	Local $ISPACERATIO = 4
+	For $I = 0 To UBound ( $AARRAY ) + 4294967295
+		$T = $AARRAY [ $I ]
+		If $T Then
+			$N = Abs ( Round ( ( $ISIZING * $T ) / $IRANGE ) / 8 )
+			$AARRAY [ $I ] = ""
+			If $T > 0 Then
+				If $IMIN Then
+					$IOFFSET = Int ( Abs ( Round ( ( $ISIZING * $IMIN ) / $IRANGE ) / 8 ) / 8 * $ISPACERATIO )
+					$AARRAY [ $I ] = __ARRAY_STRINGREPEAT ( ChrW ( 32 ) , $IOFFSET )
+				EndIf
+			Else
+				If $IMIN <> $T Then
+					$IOFFSET = Int ( Abs ( Round ( ( $ISIZING * ( $T - $IMIN ) ) / $IRANGE ) / 8 ) / 8 * $ISPACERATIO )
+					$AARRAY [ $I ] = __ARRAY_STRINGREPEAT ( ChrW ( 32 ) , $IOFFSET )
+				EndIf
+			EndIf
+			$AARRAY [ $I ] &= __ARRAY_STRINGREPEAT ( ChrW ( 9608 ) , Int ( $N / 8 ) )
+			$N = Mod ( $N , 8 )
+			If $N > 0 Then $AARRAY [ $I ] &= ChrW ( 9608 + 8 - $N )
+			$AARRAY [ $I ] &= " " & $T
+		Else
+			$AARRAY [ $I ] = ""
+		EndIf
+	Next
+	Return $AARRAY
+EndFunc
+Func _ARRAY2DCREATE ( $AARRAY1 , $AARRAY2 )
+	If Not IsArray ( $AARRAY1 ) Or Not IsArray ( $AARRAY2 ) Then Return SetError ( 3 , 0 , "" )
+	Local $IDIM1 = UBound ( $AARRAY1 , $UBOUND_DIMENSIONS ) , $IDIM2 = UBound ( $AARRAY2 , $UBOUND_DIMENSIONS )
+	If $IDIM1 > 2 Or $IDIM2 > 2 Then Return SetError ( 1 , 0 , "" )
+	Local $NROWS = UBound ( $AARRAY1 , $UBOUND_ROWS )
+	If $NROWS <> UBound ( $AARRAY2 , $UBOUND_ROWS ) Then Return SetError ( 2 , 0 , "" )
+	Local $NCOLS1 = ( $IDIM1 = 1 ? 1 : UBound ( $AARRAY1 , $UBOUND_COLUMNS ) )
+	Local $NCOLS2 = ( $IDIM2 = 1 ? 1 : UBound ( $AARRAY2 , $UBOUND_COLUMNS ) )
+	Local $ATMP [ $NROWS ] [ $NCOLS1 + $NCOLS2 ]
+	Select
+	Case $IDIM1 = 1 And $IDIM2 = 1
+		For $I = 0 To $NROWS + 4294967295
+			$ATMP [ $I ] [ 0 ] = $AARRAY1 [ $I ]
+			$ATMP [ $I ] [ 1 ] = $AARRAY2 [ $I ]
+		Next
+	Case $IDIM1 = 1 And $IDIM2 = 2
+		For $I = 0 To $NROWS + 4294967295
+			$ATMP [ $I ] [ 0 ] = $AARRAY1 [ $I ]
+		Next
+		For $J = 1 To $NCOLS2
+			For $I = 0 To $NROWS + 4294967295
+				$ATMP [ $I ] [ $J ] = $AARRAY2 [ $I ] [ $J + 4294967295 ]
+			Next
+		Next
+	Case $IDIM1 = 2 And $IDIM2 = 1
+		For $J = 0 To $NCOLS1 + 4294967295
+			For $I = 0 To $NROWS + 4294967295
+				$ATMP [ $I ] [ $J ] = $AARRAY1 [ $I ] [ $J ]
+			Next
+		Next
+		For $I = 0 To $NROWS + 4294967295
+			$ATMP [ $I ] [ $NCOLS1 ] = $AARRAY2 [ $I ]
+		Next
+	Case $IDIM1 = 2 And $IDIM2 = 2
+		For $J = 0 To $NCOLS1 + 4294967295
+			For $I = 0 To $NROWS + 4294967295
+				$ATMP [ $I ] [ $J ] = $AARRAY1 [ $I ] [ $J ]
+			Next
+		Next
+		For $J = $NCOLS1 To ( $NCOLS1 + $NCOLS2 ) + 4294967295
+			For $I = 0 To $NROWS + 4294967295
+				$ATMP [ $I ] [ $J ] = $AARRAY2 [ $I ] [ $J - $NCOLS1 ]
+			Next
+		Next
+	EndSelect
+	Return $ATMP
+EndFunc
+Func __ARRAY_STRINGREPEAT ( $SSTRING , $IREPEATCOUNT )
+	$IREPEATCOUNT = Int ( $IREPEATCOUNT )
+	If StringLen ( $SSTRING ) < 1 Or $IREPEATCOUNT <= 0 Then Return SetError ( 1 , 0 , "" )
+	Local $SRESULT = ""
+	While $IREPEATCOUNT > 1
+		If BitAND ( $IREPEATCOUNT , 1 ) Then $SRESULT &= $SSTRING
+		$SSTRING &= $SSTRING
+		$IREPEATCOUNT = BitShift ( $IREPEATCOUNT , 1 )
+	WEnd
+	Return $SSTRING & $SRESULT
+EndFunc
+Func __ARRAY_EXETERINTERNAL ( ByRef $AARRAY , $ISTART , $ISIZE , $SDELIMITER , ByRef $AIDX , ByRef $ARESULT , ByRef $ICOUNT )
+	If $ISTART == $ISIZE + 4294967295 Then
+		For $I = 0 To $ISIZE + 4294967295
+			$ARESULT [ $ICOUNT ] &= $AARRAY [ $AIDX [ $I ] ] & $SDELIMITER
+		Next
+		If $SDELIMITER <> "" Then $ARESULT [ $ICOUNT ] = StringTrimRight ( $ARESULT [ $ICOUNT ] , StringLen ( $SDELIMITER ) )
+		$ICOUNT += 1
+	Else
+		Local $ITEMP
+		For $I = $ISTART To $ISIZE + 4294967295
+			$ITEMP = $AIDX [ $I ]
+			$AIDX [ $I ] = $AIDX [ $ISTART ]
+			$AIDX [ $ISTART ] = $ITEMP
+			__ARRAY_EXETERINTERNAL ( $AARRAY , $ISTART + 1 , $ISIZE , $SDELIMITER , $AIDX , $ARESULT , $ICOUNT )
+			$AIDX [ $ISTART ] = $AIDX [ $I ]
+			$AIDX [ $I ] = $ITEMP
+		Next
+	EndIf
+EndFunc
+Func __ARRAY_COMBINATIONS ( $IN , $IR )
+	Local $I_TOTAL = 1
+	For $I = $IR To 1 Step + 4294967295
+		$I_TOTAL *= ( $IN / $I )
+		$IN -= 1
+	Next
+	Return Round ( $I_TOTAL )
+EndFunc
+Func __ARRAY_GETNEXT ( $IN , $IR , ByRef $ILEFT , $ITOTAL , ByRef $AIDX )
+	If $ILEFT == $ITOTAL Then
+		$ILEFT -= 1
+		Return
+	EndIf
+	Local $I = $IR + 4294967295
+	While $AIDX [ $I ] == $IN - $IR + $I
+		$I -= 1
+	WEnd
+	$AIDX [ $I ] += 1
+	For $J = $I + 1 To $IR + 4294967295
+		$AIDX [ $J ] = $AIDX [ $I ] + $J - $I
+	Next
+	$ILEFT -= 1
+EndFunc
+Func __ARRAY_MINMAXINDEX ( Const ByRef $AARRAY , $ICOMPNUMERIC , $ISTART , $IEND , $ISUBITEM , $FUCOMPARISON )
+	If $ICOMPNUMERIC = Default Then $ICOMPNUMERIC = 0
+	If $ICOMPNUMERIC <> 1 Then $ICOMPNUMERIC = 0
+	If $ISTART = Default Then $ISTART = 0
+	If $IEND = Default Then $IEND = 0
+	If $ISUBITEM = Default Then $ISUBITEM = 0
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $IDIM_1 = UBound ( $AARRAY , $UBOUND_ROWS ) + 4294967295
+	If $IDIM_1 < 0 Then Return SetError ( 1 , 0 , + 4294967295 )
+	If $IEND = + 4294967295 Then $IEND = $IDIM_1
+	If $ISTART = + 4294967295 Then $ISTART = 0
+	If $ISTART < + 4294967295 Or $IEND < + 4294967295 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART > $IDIM_1 Or $IEND > $IDIM_1 Then Return SetError ( 3 , 0 , + 4294967295 )
+	If $ISTART > $IEND Then Return SetError ( 4 , 0 , + 4294967295 )
+	If $IDIM_1 < 0 Then Return SetError ( 5 , 0 , + 4294967295 )
+	Local $IMAXMININDEX = $ISTART
+	Switch UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	Case 1
+		If $ICOMPNUMERIC Then
+			For $I = $ISTART To $IEND
+				If $FUCOMPARISON ( Number ( $AARRAY [ $I ] ) , Number ( $AARRAY [ $IMAXMININDEX ] ) ) Then $IMAXMININDEX = $I
+			Next
+		Else
+			For $I = $ISTART To $IEND
+				If $FUCOMPARISON ( $AARRAY [ $I ] , $AARRAY [ $IMAXMININDEX ] ) Then $IMAXMININDEX = $I
+			Next
+		EndIf
+	Case 2
+		If $ISUBITEM < 0 Or $ISUBITEM > UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295 Then Return SetError ( 6 , 0 , + 4294967295 )
+		If $ICOMPNUMERIC Then
+			For $I = $ISTART To $IEND
+				If $FUCOMPARISON ( Number ( $AARRAY [ $I ] [ $ISUBITEM ] ) , Number ( $AARRAY [ $IMAXMININDEX ] [ $ISUBITEM ] ) ) Then $IMAXMININDEX = $I
+			Next
+		Else
+			For $I = $ISTART To $IEND
+				If $FUCOMPARISON ( $AARRAY [ $I ] [ $ISUBITEM ] , $AARRAY [ $IMAXMININDEX ] [ $ISUBITEM ] ) Then $IMAXMININDEX = $I
+			Next
+		EndIf
+Case Else
+		Return SetError ( 2 , 0 , + 4294967295 )
+	EndSwitch
+	Return $IMAXMININDEX
+EndFunc
+Func __ARRAY_GREATERTHAN ( $VVALUE1 , $VVALUE2 )
+	Return $VVALUE1 > $VVALUE2
+EndFunc
+Func __ARRAY_LESSTHAN ( $VVALUE1 , $VVALUE2 )
+	Return $VVALUE1 < $VVALUE2
+EndFunc
+Func __ARRAYUNIQUE_AUTOERRFUNC ( )
+EndFunc
+Global Const $FC_NOOVERWRITE = 0
+Global Const $FC_OVERWRITE = 1
+Global Const $FC_CREATEPATH = 8
+Global Const $FT_MODIFIED = 0
+Global Const $FT_CREATED = 1
+Global Const $FT_ACCESSED = 2
+Global Const $FT_ARRAY = 0
+Global Const $FT_STRING = 1
+Global Const $FT_MSEC = 2
+Global Const $FT_UTC = 4
+Global Const $FSF_CREATEBUTTON = 1
+Global Const $FSF_NEWDIALOG = 2
+Global Const $FSF_EDITCONTROL = 4
+Global Const $FT_NONRECURSIVE = 0
+Global Const $FT_RECURSIVE = 1
+Global Const $FO_READ = 0
+Global Const $FO_APPEND = 1
+Global Const $FO_OVERWRITE = 2
+Global Const $FO_CREATEPATH = 8
+Global Const $FO_BINARY = 16
+Global Const $FO_UNICODE = 32
+Global Const $FO_UTF16_LE = 32
+Global Const $FO_UTF16_BE = 64
+Global Const $FO_UTF8 = 128
+Global Const $FO_UTF8_NOBOM = 256
+Global Const $FO_ANSI = 512
+Global Const $FO_UTF16_LE_NOBOM = 1024
+Global Const $FO_UTF16_BE_NOBOM = 2048
+Global Const $FO_UTF8_FULL = 16384
+Global Const $FO_FULLFILE_DETECT = 16384
+Global Const $EOF = + 4294967295
+Global Const $FD_FILEMUSTEXIST = 1
+Global Const $FD_PATHMUSTEXIST = 2
+Global Const $FD_MULTISELECT = 4
+Global Const $FD_PROMPTCREATENEW = 8
+Global Const $FD_PROMPTOVERWRITE = 16
+Global Const $CREATE_NEW = 1
+Global Const $CREATE_ALWAYS = 2
+Global Const $OPEN_EXISTING = 3
+Global Const $OPEN_ALWAYS = 4
+Global Const $TRUNCATE_EXISTING = 5
+Global Const $INVALID_SET_FILE_POINTER = + 4294967295
+Global Const $FILE_BEGIN = 0
+Global Const $FILE_CURRENT = 1
+Global Const $FILE_END = 2
+Global Const $FILE_ATTRIBUTE_READONLY = 1
+Global Const $FILE_ATTRIBUTE_HIDDEN = 2
+Global Const $FILE_ATTRIBUTE_SYSTEM = 4
+Global Const $FILE_ATTRIBUTE_DIRECTORY = 16
+Global Const $FILE_ATTRIBUTE_ARCHIVE = 32
+Global Const $FILE_ATTRIBUTE_DEVICE = 64
+Global Const $FILE_ATTRIBUTE_NORMAL = 128
+Global Const $FILE_ATTRIBUTE_TEMPORARY = 256
+Global Const $FILE_ATTRIBUTE_SPARSE_FILE = 512
+Global Const $FILE_ATTRIBUTE_REPARSE_POINT = 1024
+Global Const $FILE_ATTRIBUTE_COMPRESSED = 2048
+Global Const $FILE_ATTRIBUTE_OFFLINE = 4096
+Global Const $FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = 8192
+Global Const $FILE_ATTRIBUTE_ENCRYPTED = 16384
+Global Const $FILE_SHARE_READ = 1
+Global Const $FILE_SHARE_WRITE = 2
+Global Const $FILE_SHARE_DELETE = 4
+Global Const $FILE_SHARE_READWRITE = BitOR ( $FILE_SHARE_READ , $FILE_SHARE_WRITE )
+Global Const $FILE_SHARE_ANY = BitOR ( $FILE_SHARE_READ , $FILE_SHARE_WRITE , $FILE_SHARE_DELETE )
+Global Const $GENERIC_ALL = 268435456
+Global Const $GENERIC_EXECUTE = 536870912
+Global Const $GENERIC_WRITE = 1073741824
+Global Const $GENERIC_READ = 2147483648
+Global Const $GENERIC_READWRITE = BitOR ( $GENERIC_READ , $GENERIC_WRITE )
+Global Const $FILE_ENCODING_UTF16LE = 32
+Global Const $FE_ENTIRE_UTF8 = 1
+Global Const $FE_PARTIALFIRST_UTF8 = 2
+Global Const $FN_FULLPATH = 0
+Global Const $FN_RELATIVEPATH = 1
+Global Const $FV_COMMENTS = "Comments"
+Global Const $FV_COMPANYNAME = "CompanyName"
+Global Const $FV_FILEDESCRIPTION = "FileDescription"
+Global Const $FV_FILEVERSION = "FileVersion"
+Global Const $FV_INTERNALNAME = "InternalName"
+Global Const $FV_LEGALCOPYRIGHT = "LegalCopyright"
+Global Const $FV_LEGALTRADEMARKS = "LegalTrademarks"
+Global Const $FV_ORIGINALFILENAME = "OriginalFilename"
+Global Const $FV_PRODUCTNAME = "ProductName"
+Global Const $FV_PRODUCTVERSION = "ProductVersion"
+Global Const $FV_PRIVATEBUILD = "PrivateBuild"
+Global Const $FV_SPECIALBUILD = "SpecialBuild"
+Global Const $FRTA_NOCOUNT = 0
+Global Const $FRTA_COUNT = 1
+Global Const $FRTA_INTARRAYS = 2
+Global Const $FRTA_ENTIRESPLIT = 4
+Global Const $FLTA_FILESFOLDERS = 0
+Global Const $FLTA_FILES = 1
+Global Const $FLTA_FOLDERS = 2
+Global Const $FLTAR_FILESFOLDERS = 0
+Global Const $FLTAR_FILES = 1
+Global Const $FLTAR_FOLDERS = 2
+Global Const $FLTAR_NOHIDDEN = 4
+Global Const $FLTAR_NOSYSTEM = 8
+Global Const $FLTAR_NOLINK = 16
+Global Const $FLTAR_NORECUR = 0
+Global Const $FLTAR_RECUR = 1
+Global Const $FLTAR_NOSORT = 0
+Global Const $FLTAR_SORT = 1
+Global Const $FLTAR_FASTSORT = 2
+Global Const $FLTAR_NOPATH = 0
+Global Const $FLTAR_RELPATH = 1
+Global Const $FLTAR_FULLPATH = 2
+Global Const $PATH_ORIGINAL = 0
+Global Const $PATH_DRIVE = 1
+Global Const $PATH_DIRECTORY = 2
+Global Const $PATH_FILENAME = 3
+Global Const $PATH_EXTENSION = 4
+Func _FILECOUNTLINES ( $SFILEPATH )
+	FileReadToArray ( $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return @extended
+EndFunc
+Func _FILECREATE ( $SFILEPATH )
+	Local $HFILEOPEN = FileOpen ( $SFILEPATH , BitOR ( $FO_OVERWRITE , $FO_CREATEPATH ) )
+	If $HFILEOPEN = + 4294967295 Then Return SetError ( 1 , 0 , 0 )
+	Local $IFILEWRITE = FileWrite ( $HFILEOPEN , "" )
+	FileClose ( $HFILEOPEN )
+	If Not $IFILEWRITE Then Return SetError ( 2 , 0 , 0 )
+	Return 1
+EndFunc
+Func _FILELISTTOARRAY ( $SFILEPATH , $SFILTER = "*" , $IFLAG = $FLTA_FILESFOLDERS , $BRETURNPATH = False )
+	Local $SDELIMITER = "|" , $SFILELIST = "" , $SFILENAME = "" , $SFULLPATH = ""
+	$SFILEPATH = StringRegExpReplace ( $SFILEPATH , "[\\/]+$" , "" ) & "\"
+	If $IFLAG = Default Then $IFLAG = $FLTA_FILESFOLDERS
+	If $BRETURNPATH Then $SFULLPATH = $SFILEPATH
+	If $SFILTER = Default Then $SFILTER = "*"
+	If Not FileExists ( $SFILEPATH ) Then Return SetError ( 1 , 0 , 0 )
+	If StringRegExp ( $SFILTER , "[\\/:><\|]|(?s)^\s*$" ) Then Return SetError ( 2 , 0 , 0 )
+	If Not ( $IFLAG = 0 Or $IFLAG = 1 Or $IFLAG = 2 ) Then Return SetError ( 3 , 0 , 0 )
+	Local $HSEARCH = FileFindFirstFile ( $SFILEPATH & $SFILTER )
+	If @error Then Return SetError ( 4 , 0 , 0 )
+	While 1
+		$SFILENAME = FileFindNextFile ( $HSEARCH )
+		If @error Then ExitLoop
+		If ( $IFLAG + @extended = 2 ) Then ContinueLoop
+		$SFILELIST &= $SDELIMITER & $SFULLPATH & $SFILENAME
+	WEnd
+	FileClose ( $HSEARCH )
+	If $SFILELIST = "" Then Return SetError ( 4 , 0 , 0 )
+	Return StringSplit ( StringTrimLeft ( $SFILELIST , 1 ) , $SDELIMITER )
+EndFunc
+Func _FILELISTTOARRAYREC ( $SFILEPATH , $SMASK = "*" , $IRETURN = $FLTAR_FILESFOLDERS , $IRECUR = $FLTAR_NORECUR , $ISORT = $FLTAR_NOSORT , $IRETURNPATH = $FLTAR_RELPATH )
+	If Not FileExists ( $SFILEPATH ) Then Return SetError ( 1 , 1 , "" )
+	If $SMASK = Default Then $SMASK = "*"
+	If $IRETURN = Default Then $IRETURN = $FLTAR_FILESFOLDERS
+	If $IRECUR = Default Then $IRECUR = $FLTAR_NORECUR
+	If $ISORT = Default Then $ISORT = $FLTAR_NOSORT
+	If $IRETURNPATH = Default Then $IRETURNPATH = $FLTAR_RELPATH
+	If $IRECUR > 1 Or Not IsInt ( $IRECUR ) Then Return SetError ( 1 , 6 , "" )
+	Local $BLONGPATH = False
+	If StringLeft ( $SFILEPATH , 4 ) == "\\?\" Then
+		$BLONGPATH = True
+	EndIf
+	Local $SFOLDERSLASH = ""
+	If StringRight ( $SFILEPATH , 1 ) = "\" Then
+		$SFOLDERSLASH = "\"
+	Else
+		$SFILEPATH = $SFILEPATH & "\"
+	EndIf
+	Local $ASFOLDERSEARCHLIST [ 100 ] = [ 1 ]
+	$ASFOLDERSEARCHLIST [ 1 ] = $SFILEPATH
+	Local $IHIDE_HS = 0 , $SHIDE_HS = ""
+	If BitAND ( $IRETURN , $FLTAR_NOHIDDEN ) Then
+		$IHIDE_HS += 2
+		$SHIDE_HS &= "H"
+		$IRETURN -= $FLTAR_NOHIDDEN
+	EndIf
+	If BitAND ( $IRETURN , $FLTAR_NOSYSTEM ) Then
+		$IHIDE_HS += 4
+		$SHIDE_HS &= "S"
+		$IRETURN -= $FLTAR_NOSYSTEM
+	EndIf
+	Local $IHIDE_LINK = 0
+	If BitAND ( $IRETURN , $FLTAR_NOLINK ) Then
+		$IHIDE_LINK = 1024
+		$IRETURN -= $FLTAR_NOLINK
+	EndIf
+	Local $IMAXLEVEL = 0
+	If $IRECUR < 0 Then
+		StringReplace ( $SFILEPATH , "\" , "" , 0 , $STR_NOCASESENSEBASIC )
+		$IMAXLEVEL = @extended - $IRECUR
+	EndIf
+	Local $SEXCLUDE_LIST = "" , $SEXCLUDE_LIST_FOLDER = "" , $SINCLUDE_LIST = "*"
+	Local $AMASKSPLIT = StringSplit ( $SMASK , "|" )
+	Switch $AMASKSPLIT [ 0 ]
+	Case 3
+		$SEXCLUDE_LIST_FOLDER = $AMASKSPLIT [ 3 ]
+		ContinueCase
+	Case 2
+		$SEXCLUDE_LIST = $AMASKSPLIT [ 2 ]
+		ContinueCase
+	Case 1
+		$SINCLUDE_LIST = $AMASKSPLIT [ 1 ]
+	EndSwitch
+	Local $SINCLUDE_FILE_MASK = ".+"
+	If $SINCLUDE_LIST <> "*" Then
+		If Not __FLTAR_LISTTOMASK ( $SINCLUDE_FILE_MASK , $SINCLUDE_LIST ) Then Return SetError ( 1 , 2 , "" )
+	EndIf
+	Local $SINCLUDE_FOLDER_MASK = ".+"
+	Switch $IRETURN
+	Case 0
+		Switch $IRECUR
+		Case 0
+			$SINCLUDE_FOLDER_MASK = $SINCLUDE_FILE_MASK
+		EndSwitch
+	Case 2
+		$SINCLUDE_FOLDER_MASK = $SINCLUDE_FILE_MASK
+	EndSwitch
+	Local $SEXCLUDE_FILE_MASK = ":"
+	If $SEXCLUDE_LIST <> "" Then
+		If Not __FLTAR_LISTTOMASK ( $SEXCLUDE_FILE_MASK , $SEXCLUDE_LIST ) Then Return SetError ( 1 , 3 , "" )
+	EndIf
+	Local $SEXCLUDE_FOLDER_MASK = ":"
+	If $IRECUR Then
+		If $SEXCLUDE_LIST_FOLDER Then
+			If Not __FLTAR_LISTTOMASK ( $SEXCLUDE_FOLDER_MASK , $SEXCLUDE_LIST_FOLDER ) Then Return SetError ( 1 , 4 , "" )
+		EndIf
+		If $IRETURN = 2 Then
+			$SEXCLUDE_FOLDER_MASK = $SEXCLUDE_FILE_MASK
+		EndIf
+	Else
+		$SEXCLUDE_FOLDER_MASK = $SEXCLUDE_FILE_MASK
+	EndIf
+	If Not ( $IRETURN = 0 Or $IRETURN = 1 Or $IRETURN = 2 ) Then Return SetError ( 1 , 5 , "" )
+	If Not ( $ISORT = 0 Or $ISORT = 1 Or $ISORT = 2 ) Then Return SetError ( 1 , 7 , "" )
+	If Not ( $IRETURNPATH = 0 Or $IRETURNPATH = 1 Or $IRETURNPATH = 2 ) Then Return SetError ( 1 , 8 , "" )
+	If $IHIDE_LINK Then
+		Local $TFILE_DATA = DllStructCreate ( "struct;align 4;dword FileAttributes;uint64 CreationTime;uint64 LastAccessTime;uint64 LastWriteTime;" & "dword FileSizeHigh;dword FileSizeLow;dword Reserved0;dword Reserved1;wchar FileName[260];wchar AlternateFileName[14];endstruct" )
+		Local $HDLL = DllOpen ( "kernel32.dll" ) , $ADLL_RET
+	EndIf
+	Local $ASRETURNLIST [ 100 ] = [ 0 ]
+	Local $ASFILEMATCHLIST = $ASRETURNLIST , $ASROOTFILEMATCHLIST = $ASRETURNLIST , $ASFOLDERMATCHLIST = $ASRETURNLIST
+	Local $BFOLDER = False , $HSEARCH = 0 , $SCURRENTPATH = "" , $SNAME = "" , $SRETPATH = ""
+	Local $IATTRIBS = 0 , $SATTRIBS = ""
+	Local $ASFOLDERFILESECTIONLIST [ 100 ] [ 2 ] = [ [ 0 , 0 ] ]
+	While $ASFOLDERSEARCHLIST [ 0 ] > 0
+		$SCURRENTPATH = $ASFOLDERSEARCHLIST [ $ASFOLDERSEARCHLIST [ 0 ] ]
+		$ASFOLDERSEARCHLIST [ 0 ] -= 1
+		Switch $IRETURNPATH
+		Case 1
+			$SRETPATH = StringReplace ( $SCURRENTPATH , $SFILEPATH , "" )
+		Case 2
+			If $BLONGPATH Then
+				$SRETPATH = StringTrimLeft ( $SCURRENTPATH , 4 )
+			Else
+				$SRETPATH = $SCURRENTPATH
+			EndIf
+		EndSwitch
+		If $IHIDE_LINK Then
+			$ADLL_RET = DllCall ( $HDLL , "handle" , "FindFirstFileW" , "wstr" , $SCURRENTPATH & "*" , "struct*" , $TFILE_DATA )
+			If @error Or Not $ADLL_RET [ 0 ] Then
+				ContinueLoop
+			EndIf
+			$HSEARCH = $ADLL_RET [ 0 ]
+		Else
+			$HSEARCH = FileFindFirstFile ( $SCURRENTPATH & "*" )
+			If $HSEARCH = + 4294967295 Then
+				ContinueLoop
+			EndIf
+		EndIf
+		If $IRETURN = 0 And $ISORT And $IRETURNPATH Then
+			__FLTAR_ADDTOLIST ( $ASFOLDERFILESECTIONLIST , $SRETPATH , $ASFILEMATCHLIST [ 0 ] + 1 )
+		EndIf
+		$SATTRIBS = ""
+		While 1
+			If $IHIDE_LINK Then
+				$ADLL_RET = DllCall ( $HDLL , "int" , "FindNextFileW" , "handle" , $HSEARCH , "struct*" , $TFILE_DATA )
+				If @error Or Not $ADLL_RET [ 0 ] Then
+					ExitLoop
+				EndIf
+				$SNAME = DllStructGetData ( $TFILE_DATA , "FileName" )
+				If $SNAME = ".." Or $SNAME = "." Then
+					ContinueLoop
+				EndIf
+				$IATTRIBS = DllStructGetData ( $TFILE_DATA , "FileAttributes" )
+				If $IHIDE_HS And BitAND ( $IATTRIBS , $IHIDE_HS ) Then
+					ContinueLoop
+				EndIf
+				If BitAND ( $IATTRIBS , $IHIDE_LINK ) Then
+					ContinueLoop
+				EndIf
+				$BFOLDER = False
+				If BitAND ( $IATTRIBS , 16 ) Then
+					$BFOLDER = True
+				EndIf
+			Else
+				$BFOLDER = False
+				$SNAME = FileFindNextFile ( $HSEARCH , 1 )
+				If @error Then
+					ExitLoop
+				EndIf
+				If $SNAME = ".." Or $SNAME = "." Then
+					ContinueLoop
+				EndIf
+				$SATTRIBS = @extended
+				If StringInStr ( $SATTRIBS , "D" ) Then
+					$BFOLDER = True
+				EndIf
+				If StringRegExp ( $SATTRIBS , "[" & $SHIDE_HS & "]" ) Then
+					ContinueLoop
+				EndIf
+			EndIf
+			If $BFOLDER Then
+				Select
+				Case $IRECUR < 0
+					StringReplace ( $SCURRENTPATH , "\" , "" , 0 , $STR_NOCASESENSEBASIC )
+					If @extended < $IMAXLEVEL Then
+						ContinueCase
+					EndIf
+				Case $IRECUR = 1
+					If Not StringRegExp ( $SNAME , $SEXCLUDE_FOLDER_MASK ) Then
+						__FLTAR_ADDTOLIST ( $ASFOLDERSEARCHLIST , $SCURRENTPATH & $SNAME & "\" )
+					EndIf
+				EndSelect
+			EndIf
+			If $ISORT Then
+				If $BFOLDER Then
+					If StringRegExp ( $SNAME , $SINCLUDE_FOLDER_MASK ) And Not StringRegExp ( $SNAME , $SEXCLUDE_FOLDER_MASK ) Then
+						__FLTAR_ADDTOLIST ( $ASFOLDERMATCHLIST , $SRETPATH & $SNAME & $SFOLDERSLASH )
+					EndIf
+				Else
+					If StringRegExp ( $SNAME , $SINCLUDE_FILE_MASK ) And Not StringRegExp ( $SNAME , $SEXCLUDE_FILE_MASK ) Then
+						If $SCURRENTPATH = $SFILEPATH Then
+							__FLTAR_ADDTOLIST ( $ASROOTFILEMATCHLIST , $SRETPATH & $SNAME )
+						Else
+							__FLTAR_ADDTOLIST ( $ASFILEMATCHLIST , $SRETPATH & $SNAME )
+						EndIf
+					EndIf
+				EndIf
+			Else
+				If $BFOLDER Then
+					If $IRETURN <> 1 And StringRegExp ( $SNAME , $SINCLUDE_FOLDER_MASK ) And Not StringRegExp ( $SNAME , $SEXCLUDE_FOLDER_MASK ) Then
+						__FLTAR_ADDTOLIST ( $ASRETURNLIST , $SRETPATH & $SNAME & $SFOLDERSLASH )
+					EndIf
+				Else
+					If $IRETURN <> 2 And StringRegExp ( $SNAME , $SINCLUDE_FILE_MASK ) And Not StringRegExp ( $SNAME , $SEXCLUDE_FILE_MASK ) Then
+						__FLTAR_ADDTOLIST ( $ASRETURNLIST , $SRETPATH & $SNAME )
+					EndIf
+				EndIf
+			EndIf
+		WEnd
+		If $IHIDE_LINK Then
+			DllCall ( $HDLL , "int" , "FindClose" , "ptr" , $HSEARCH )
+		Else
+			FileClose ( $HSEARCH )
+		EndIf
+	WEnd
+	If $IHIDE_LINK Then
+		DllClose ( $HDLL )
+	EndIf
+	If $ISORT Then
+		Switch $IRETURN
+		Case 2
+			If $ASFOLDERMATCHLIST [ 0 ] = 0 Then Return SetError ( 1 , 9 , "" )
+			ReDim $ASFOLDERMATCHLIST [ $ASFOLDERMATCHLIST [ 0 ] + 1 ]
+			$ASRETURNLIST = $ASFOLDERMATCHLIST
+			__ARRAYDUALPIVOTSORT ( $ASRETURNLIST , 1 , $ASRETURNLIST [ 0 ] )
+		Case 1
+			If $ASROOTFILEMATCHLIST [ 0 ] = 0 And $ASFILEMATCHLIST [ 0 ] = 0 Then Return SetError ( 1 , 9 , "" )
+			If $IRETURNPATH = 0 Then
+				__FLTAR_ADDFILELISTS ( $ASRETURNLIST , $ASROOTFILEMATCHLIST , $ASFILEMATCHLIST )
+				__ARRAYDUALPIVOTSORT ( $ASRETURNLIST , 1 , $ASRETURNLIST [ 0 ] )
+			Else
+				__FLTAR_ADDFILELISTS ( $ASRETURNLIST , $ASROOTFILEMATCHLIST , $ASFILEMATCHLIST , 1 )
+			EndIf
+		Case 0
+			If $ASROOTFILEMATCHLIST [ 0 ] = 0 And $ASFOLDERMATCHLIST [ 0 ] = 0 Then Return SetError ( 1 , 9 , "" )
+			If $IRETURNPATH = 0 Then
+				__FLTAR_ADDFILELISTS ( $ASRETURNLIST , $ASROOTFILEMATCHLIST , $ASFILEMATCHLIST )
+				$ASRETURNLIST [ 0 ] += $ASFOLDERMATCHLIST [ 0 ]
+				ReDim $ASFOLDERMATCHLIST [ $ASFOLDERMATCHLIST [ 0 ] + 1 ]
+				_ARRAYCONCATENATE ( $ASRETURNLIST , $ASFOLDERMATCHLIST , 1 )
+				__ARRAYDUALPIVOTSORT ( $ASRETURNLIST , 1 , $ASRETURNLIST [ 0 ] )
+			Else
+				Local $ASRETURNLIST [ $ASFILEMATCHLIST [ 0 ] + $ASROOTFILEMATCHLIST [ 0 ] + $ASFOLDERMATCHLIST [ 0 ] + 1 ]
+				$ASRETURNLIST [ 0 ] = $ASFILEMATCHLIST [ 0 ] + $ASROOTFILEMATCHLIST [ 0 ] + $ASFOLDERMATCHLIST [ 0 ]
+				__ARRAYDUALPIVOTSORT ( $ASROOTFILEMATCHLIST , 1 , $ASROOTFILEMATCHLIST [ 0 ] )
+				For $I = 1 To $ASROOTFILEMATCHLIST [ 0 ]
+					$ASRETURNLIST [ $I ] = $ASROOTFILEMATCHLIST [ $I ]
+				Next
+				Local $INEXTINSERTIONINDEX = $ASROOTFILEMATCHLIST [ 0 ] + 1
+				__ARRAYDUALPIVOTSORT ( $ASFOLDERMATCHLIST , 1 , $ASFOLDERMATCHLIST [ 0 ] )
+				Local $SFOLDERTOFIND = ""
+				For $I = 1 To $ASFOLDERMATCHLIST [ 0 ]
+					$ASRETURNLIST [ $INEXTINSERTIONINDEX ] = $ASFOLDERMATCHLIST [ $I ]
+					$INEXTINSERTIONINDEX += 1
+					If $SFOLDERSLASH Then
+						$SFOLDERTOFIND = $ASFOLDERMATCHLIST [ $I ]
+					Else
+						$SFOLDERTOFIND = $ASFOLDERMATCHLIST [ $I ] & "\"
+					EndIf
+					Local $IFILESECTIONENDINDEX = 0 , $IFILESECTIONSTARTINDEX = 0
+					For $J = 1 To $ASFOLDERFILESECTIONLIST [ 0 ] [ 0 ]
+						If $SFOLDERTOFIND = $ASFOLDERFILESECTIONLIST [ $J ] [ 0 ] Then
+							$IFILESECTIONSTARTINDEX = $ASFOLDERFILESECTIONLIST [ $J ] [ 1 ]
+							If $J = $ASFOLDERFILESECTIONLIST [ 0 ] [ 0 ] Then
+								$IFILESECTIONENDINDEX = $ASFILEMATCHLIST [ 0 ]
+							Else
+								$IFILESECTIONENDINDEX = $ASFOLDERFILESECTIONLIST [ $J + 1 ] [ 1 ] + 4294967295
+							EndIf
+							If $ISORT = 1 Then
+								__ARRAYDUALPIVOTSORT ( $ASFILEMATCHLIST , $IFILESECTIONSTARTINDEX , $IFILESECTIONENDINDEX )
+							EndIf
+							For $K = $IFILESECTIONSTARTINDEX To $IFILESECTIONENDINDEX
+								$ASRETURNLIST [ $INEXTINSERTIONINDEX ] = $ASFILEMATCHLIST [ $K ]
+								$INEXTINSERTIONINDEX += 1
+							Next
+							ExitLoop
+						EndIf
+					Next
+				Next
+			EndIf
+		EndSwitch
+	Else
+		If $ASRETURNLIST [ 0 ] = 0 Then Return SetError ( 1 , 9 , "" )
+		ReDim $ASRETURNLIST [ $ASRETURNLIST [ 0 ] + 1 ]
+	EndIf
+	Return $ASRETURNLIST
+EndFunc
+Func __FLTAR_ADDFILELISTS ( ByRef $ASTARGET , $ASSOURCE_1 , $ASSOURCE_2 , $ISORT = 0 )
+	ReDim $ASSOURCE_1 [ $ASSOURCE_1 [ 0 ] + 1 ]
+	If $ISORT = 1 Then __ARRAYDUALPIVOTSORT ( $ASSOURCE_1 , 1 , $ASSOURCE_1 [ 0 ] )
+	$ASTARGET = $ASSOURCE_1
+	$ASTARGET [ 0 ] += $ASSOURCE_2 [ 0 ]
+	ReDim $ASSOURCE_2 [ $ASSOURCE_2 [ 0 ] + 1 ]
+	If $ISORT = 1 Then __ARRAYDUALPIVOTSORT ( $ASSOURCE_2 , 1 , $ASSOURCE_2 [ 0 ] )
+	_ARRAYCONCATENATE ( $ASTARGET , $ASSOURCE_2 , 1 )
+EndFunc
+Func __FLTAR_ADDTOLIST ( ByRef $ALIST , $VVALUE_0 , $VVALUE_1 = + 4294967295 )
+	If $VVALUE_1 = + 4294967295 Then
+		$ALIST [ 0 ] += 1
+		If UBound ( $ALIST ) <= $ALIST [ 0 ] Then ReDim $ALIST [ UBound ( $ALIST ) * 2 ]
+		$ALIST [ $ALIST [ 0 ] ] = $VVALUE_0
+	Else
+		$ALIST [ 0 ] [ 0 ] += 1
+		If UBound ( $ALIST ) <= $ALIST [ 0 ] [ 0 ] Then ReDim $ALIST [ UBound ( $ALIST ) * 2 ] [ 2 ]
+		$ALIST [ $ALIST [ 0 ] [ 0 ] ] [ 0 ] = $VVALUE_0
+		$ALIST [ $ALIST [ 0 ] [ 0 ] ] [ 1 ] = $VVALUE_1
+	EndIf
+EndFunc
+Func __FLTAR_LISTTOMASK ( ByRef $SMASK , $SLIST )
+	If StringRegExp ( $SLIST , "\\|/|:|\<|\>|\|" ) Then Return 0
+	$SLIST = StringReplace ( StringStripWS ( StringRegExpReplace ( $SLIST , "\s*;\s*" , ";" ) , BitOR ( $STR_STRIPLEADING , $STR_STRIPTRAILING ) ) , ";" , "|" )
+	$SLIST = StringReplace ( StringReplace ( StringRegExpReplace ( $SLIST , "[][$^.{}()+\-]" , "\\$0" ) , "?" , "." ) , "*" , ".*?" )
+	$SMASK = "(?i)^(" & $SLIST & ")\z"
+	Return 1
+EndFunc
+Func _FILEPRINT ( $SFILEPATH , $ISHOW = @SW_HIDE )
+	Return ShellExecute ( $SFILEPATH , "" , @WorkingDir , "print" , $ISHOW = Default ? @SW_HIDE : $ISHOW )
+EndFunc
+Func _FILEREADTOARRAY ( $SFILEPATH , ByRef $VRETURN , $IFLAGS = $FRTA_COUNT , $SDELIMITER = "" )
+	$VRETURN = 0
+	If $IFLAGS = Default Then $IFLAGS = $FRTA_COUNT
+	If $SDELIMITER = Default Then $SDELIMITER = ""
+	Local $BEXPAND = True
+	If BitAND ( $IFLAGS , $FRTA_INTARRAYS ) Then
+		$BEXPAND = False
+		$IFLAGS -= $FRTA_INTARRAYS
+	EndIf
+	Local $IENTIRE = $STR_CHRSPLIT
+	If BitAND ( $IFLAGS , $FRTA_ENTIRESPLIT ) Then
+		$IENTIRE = $STR_ENTIRESPLIT
+		$IFLAGS -= $FRTA_ENTIRESPLIT
+	EndIf
+	Local $INOCOUNT = 0
+	If $IFLAGS <> $FRTA_COUNT Then
+		$IFLAGS = $FRTA_NOCOUNT
+		$INOCOUNT = $STR_NOCOUNT
+	EndIf
+	If $SDELIMITER Then
+		Local $ALINES = FileReadToArray ( $SFILEPATH )
+		If @error Then Return SetError ( @error , 0 , 0 )
+		Local $IDIM_1 = UBound ( $ALINES ) + $IFLAGS
+		If $BEXPAND Then
+			Local $IDIM_2 = UBound ( StringSplit ( $ALINES [ 0 ] , $SDELIMITER , $IENTIRE + $STR_NOCOUNT ) )
+			Local $ATEMP_ARRAY [ $IDIM_1 ] [ $IDIM_2 ]
+			Local $IFIELDS , $ASPLIT
+			For $I = 0 To $IDIM_1 - $IFLAGS + 4294967295
+				$ASPLIT = StringSplit ( $ALINES [ $I ] , $SDELIMITER , $IENTIRE + $STR_NOCOUNT )
+				$IFIELDS = UBound ( $ASPLIT )
+				If $IFIELDS <> $IDIM_2 Then
+					Return SetError ( 3 , 0 , 0 )
+				EndIf
+				For $J = 0 To $IFIELDS + 4294967295
+					$ATEMP_ARRAY [ $I + $IFLAGS ] [ $J ] = $ASPLIT [ $J ]
+				Next
+			Next
+			If $IDIM_2 < 2 Then Return SetError ( 4 , 0 , 0 )
+			If $IFLAGS Then
+				$ATEMP_ARRAY [ 0 ] [ 0 ] = $IDIM_1 - $IFLAGS
+				$ATEMP_ARRAY [ 0 ] [ 1 ] = $IDIM_2
+			EndIf
+		Else
+			Local $ATEMP_ARRAY [ $IDIM_1 ]
+			For $I = 0 To $IDIM_1 - $IFLAGS + 4294967295
+				$ATEMP_ARRAY [ $I + $IFLAGS ] = StringSplit ( $ALINES [ $I ] , $SDELIMITER , $IENTIRE + $INOCOUNT )
+			Next
+			If $IFLAGS Then
+				$ATEMP_ARRAY [ 0 ] = $IDIM_1 - $IFLAGS
+			EndIf
+		EndIf
+		$VRETURN = $ATEMP_ARRAY
+	Else
+		If $IFLAGS Then
+			Local $HFILEOPEN = FileOpen ( $SFILEPATH , $FO_READ )
+			If $HFILEOPEN = + 4294967295 Then Return SetError ( 1 , 0 , 0 )
+			Local $SFILEREAD = FileRead ( $HFILEOPEN )
+			FileClose ( $HFILEOPEN )
+			If StringLen ( $SFILEREAD ) Then
+				$VRETURN = StringRegExp ( @LF & $SFILEREAD , "(?|(\N+)\z|(\N*)(?:\R))" , $STR_REGEXPARRAYGLOBALMATCH )
+				$VRETURN [ 0 ] = UBound ( $VRETURN ) + 4294967295
+			Else
+				Return SetError ( 2 , 0 , 0 )
+			EndIf
+		Else
+			$VRETURN = FileReadToArray ( $SFILEPATH )
+			If @error Then
+				$VRETURN = 0
+				Return SetError ( @error , 0 , 0 )
+			EndIf
+		EndIf
+	EndIf
+	Return 1
+EndFunc
+Func _FILEWRITEFROMARRAY ( $SFILEPATH , Const ByRef $AARRAY , $IBASE = Default , $IUBOUND = Default , $SDELIMITER = "|" )
+	Local $IRETURN = 0
+	If Not IsArray ( $AARRAY ) Then Return SetError ( 2 , 0 , $IRETURN )
+	Local $IDIMS = UBound ( $AARRAY , $UBOUND_DIMENSIONS )
+	If $IDIMS > 2 Then Return SetError ( 4 , 0 , 0 )
+	Local $ILAST = UBound ( $AARRAY ) + 4294967295
+	If $IUBOUND = Default Or $IUBOUND > $ILAST Then $IUBOUND = $ILAST
+	If $IBASE < 0 Or $IBASE = Default Then $IBASE = 0
+	If $IBASE > $IUBOUND Then Return SetError ( 5 , 0 , $IRETURN )
+	If $SDELIMITER = Default Then $SDELIMITER = "|"
+	Local $HFILEOPEN = $SFILEPATH
+	If IsString ( $SFILEPATH ) Then
+		$HFILEOPEN = FileOpen ( $SFILEPATH , $FO_OVERWRITE )
+		If $HFILEOPEN = + 4294967295 Then Return SetError ( 1 , 0 , $IRETURN )
+	EndIf
+	Local $IERROR = 0
+	$IRETURN = 1
+	Switch $IDIMS
+	Case 1
+		For $I = $IBASE To $IUBOUND
+			If Not FileWrite ( $HFILEOPEN , $AARRAY [ $I ] & @CRLF ) Then
+				$IERROR = 3
+				$IRETURN = 0
+				ExitLoop
+			EndIf
+		Next
+	Case 2
+		Local $STEMP = ""
+		For $I = $IBASE To $IUBOUND
+			$STEMP = $AARRAY [ $I ] [ 0 ]
+			For $J = 1 To UBound ( $AARRAY , $UBOUND_COLUMNS ) + 4294967295
+				$STEMP &= $SDELIMITER & $AARRAY [ $I ] [ $J ]
+			Next
+			If Not FileWrite ( $HFILEOPEN , $STEMP & @CRLF ) Then
+				$IERROR = 3
+				$IRETURN = 0
+				ExitLoop
+			EndIf
+		Next
+	EndSwitch
+	If IsString ( $SFILEPATH ) Then FileClose ( $HFILEOPEN )
+	Return SetError ( $IERROR , 0 , $IRETURN )
+EndFunc
+Func _FILEWRITELOG ( $SLOGPATH , $SLOGMSG , $IFLAG = + 4294967295 )
+	Local $IOPENMODE = $FO_APPEND
+	Local $SMSG = @YEAR & "-" & @MON & "-" & @MDAY & " " & @HOUR & ":" & @MIN & ":" & @SEC & " : " & $SLOGMSG
+	If $IFLAG = Default Then $IFLAG = + 4294967295
+	If $IFLAG <> + 4294967295 Then
+		$IOPENMODE = $FO_OVERWRITE
+		$SMSG &= @CRLF & FileRead ( $SLOGPATH )
+	EndIf
+	Local $HFILEOPEN = $SLOGPATH
+	If IsString ( $SLOGPATH ) Then $HFILEOPEN = FileOpen ( $SLOGPATH , $IOPENMODE )
+	If $HFILEOPEN = + 4294967295 Then Return SetError ( 1 , 0 , 0 )
+	Local $IRETURN = FileWriteLine ( $HFILEOPEN , $SMSG )
+	If IsString ( $SLOGPATH ) Then $IRETURN = FileClose ( $HFILEOPEN )
+	If $IFLAG <> + 4294967295 And Not IsString ( $SLOGPATH ) Then SetExtended ( 1 )
+	If $IRETURN = 0 Then Return SetError ( 2 , 0 , 0 )
+	Return $IRETURN
+EndFunc
+Func _FILEWRITETOLINE ( $SFILEPATH , $ILINE , $STEXT , $BOVERWRITE = False , $BFILL = False )
+	If $BOVERWRITE = Default Then $BOVERWRITE = False
+	If $BFILL = Default Then $BFILL = False
+	If Not FileExists ( $SFILEPATH ) Then Return SetError ( 2 , 0 , 0 )
+	If $ILINE <= 0 Then Return SetError ( 4 , 0 , 0 )
+	If Not ( IsBool ( $BOVERWRITE ) Or $BOVERWRITE = 0 Or $BOVERWRITE = 1 ) Then Return SetError ( 5 , 0 , 0 )
+	If Not IsString ( $STEXT ) Then
+		$STEXT = String ( $STEXT )
+		If $STEXT = "" Then Return SetError ( 6 , 0 , 0 )
+	EndIf
+	If Not IsBool ( $BFILL ) Then Return SetError ( 7 , 0 , 0 )
+	Local $AARRAY = FileReadToArray ( $SFILEPATH )
+	If @error Then Local $AARRAY [ 0 ]
+	Local $IUBOUND = UBound ( $AARRAY ) + 4294967295
+	If $BFILL Then
+		If $IUBOUND < $ILINE Then
+			ReDim $AARRAY [ $ILINE ]
+			$IUBOUND = $ILINE + 4294967295
+		EndIf
+	Else
+		If ( $IUBOUND + 1 ) < $ILINE Then Return SetError ( 1 , 0 , 0 )
+	EndIf
+	$AARRAY [ $ILINE + 4294967295 ] = ( $BOVERWRITE ? $STEXT : $STEXT & @CRLF & $AARRAY [ $ILINE + 4294967295 ] )
+	Local $SDATA = ""
+	For $I = 0 To $IUBOUND
+		$SDATA &= $AARRAY [ $I ] & @CRLF
+	Next
+	$SDATA = StringTrimRight ( $SDATA , StringLen ( @CRLF ) )
+	Local $HFILEOPEN = FileOpen ( $SFILEPATH , FileGetEncoding ( $SFILEPATH ) + $FO_OVERWRITE )
+	If $HFILEOPEN = + 4294967295 Then Return SetError ( 3 , 0 , 0 )
+	FileWrite ( $HFILEOPEN , $SDATA )
+	FileClose ( $HFILEOPEN )
+	Return 1
+EndFunc
+Func _PATHFULL ( $SRELATIVEPATH , $SBASEPATH = @WorkingDir )
+	If Not $SRELATIVEPATH Or $SRELATIVEPATH = "." Then Return $SBASEPATH
+	Local $SFULLPATH = StringReplace ( $SRELATIVEPATH , "/" , "\" )
+	Local Const $SFULLPATHCONST = $SFULLPATH
+	Local $SPATH
+	Local $BROOTONLY = StringLeft ( $SFULLPATH , 1 ) = "\" And StringMid ( $SFULLPATH , 2 , 1 ) <> "\"
+	If $SBASEPATH = Default Then $SBASEPATH = @WorkingDir
+	For $I = 1 To 2
+		$SPATH = StringLeft ( $SFULLPATH , 2 )
+		If $SPATH = "\\" Then
+			$SFULLPATH = StringTrimLeft ( $SFULLPATH , 2 )
+			Local $NSERVERLEN = StringInStr ( $SFULLPATH , "\" ) + 4294967295
+			$SPATH = "\\" & StringLeft ( $SFULLPATH , $NSERVERLEN )
+			$SFULLPATH = StringTrimLeft ( $SFULLPATH , $NSERVERLEN )
+			ExitLoop
+		ElseIf StringRight ( $SPATH , 1 ) = ":" Then
+			$SFULLPATH = StringTrimLeft ( $SFULLPATH , 2 )
+			ExitLoop
+		Else
+			$SFULLPATH = $SBASEPATH & "\" & $SFULLPATH
+		EndIf
+	Next
+	If StringLeft ( $SFULLPATH , 1 ) <> "\" Then
+		If StringLeft ( $SFULLPATHCONST , 2 ) = StringLeft ( $SBASEPATH , 2 ) Then
+			$SFULLPATH = $SBASEPATH & "\" & $SFULLPATH
+		Else
+			$SFULLPATH = "\" & $SFULLPATH
+		EndIf
+	EndIf
+	Local $ATEMP = StringSplit ( $SFULLPATH , "\" )
+	Local $APATHPARTS [ $ATEMP [ 0 ] ] , $J = 0
+	For $I = 2 To $ATEMP [ 0 ]
+		If $ATEMP [ $I ] = ".." Then
+			If $J Then $J -= 1
+		ElseIf Not ( $ATEMP [ $I ] = "" And $I <> $ATEMP [ 0 ] ) And $ATEMP [ $I ] <> "." Then
+			$APATHPARTS [ $J ] = $ATEMP [ $I ]
+			$J += 1
+		EndIf
+	Next
+	$SFULLPATH = $SPATH
+	If Not $BROOTONLY Then
+		For $I = 0 To $J + 4294967295
+			$SFULLPATH &= "\" & $APATHPARTS [ $I ]
+		Next
+	Else
+		$SFULLPATH &= $SFULLPATHCONST
+		If StringInStr ( $SFULLPATH , ".." ) Then $SFULLPATH = _PATHFULL ( $SFULLPATH )
+	EndIf
+	Do
+		$SFULLPATH = StringReplace ( $SFULLPATH , ".\" , "\" )
+	Until @extended = 0
+	Return $SFULLPATH
+EndFunc
+Func _PATHGETRELATIVE ( $SFROM , $STO )
+	If StringRight ( $SFROM , 1 ) <> "\" Then $SFROM &= "\"
+	If StringRight ( $STO , 1 ) <> "\" Then $STO &= "\"
+	If $SFROM = $STO Then Return SetError ( 1 , 0 , StringTrimRight ( $STO , 1 ) )
+	Local $ASFROM = StringSplit ( $SFROM , "\" )
+	Local $ASTO = StringSplit ( $STO , "\" )
+	If $ASFROM [ 1 ] <> $ASTO [ 1 ] Then Return SetError ( 2 , 0 , StringTrimRight ( $STO , 1 ) )
+	Local $I = 2
+	Local $IDIFF = 1
+	While 1
+		If $ASFROM [ $I ] <> $ASTO [ $I ] Then
+			$IDIFF = $I
+			ExitLoop
+		EndIf
+		$I += 1
+	WEnd
+	$I = 1
+	Local $SRELPATH = ""
+	For $J = 1 To $ASTO [ 0 ]
+		If $I >= $IDIFF Then
+			$SRELPATH &= "\" & $ASTO [ $I ]
+		EndIf
+		$I += 1
+	Next
+	$SRELPATH = StringTrimLeft ( $SRELPATH , 1 )
+	$I = 1
+	For $J = 1 To $ASFROM [ 0 ]
+		If $I > $IDIFF Then
+			$SRELPATH = "..\" & $SRELPATH
+		EndIf
+		$I += 1
+	Next
+	If StringRight ( $SRELPATH , 1 ) == "\" Then $SRELPATH = StringTrimRight ( $SRELPATH , 1 )
+	Return $SRELPATH
+EndFunc
+Func _PATHMAKE ( $SDRIVE , $SDIR , $SFILENAME , $SEXTENSION )
+	If StringLen ( $SDRIVE ) Then
+		If Not ( StringLeft ( $SDRIVE , 2 ) = "\\" ) Then $SDRIVE = StringLeft ( $SDRIVE , 1 ) & ":"
+	EndIf
+	If StringLen ( $SDIR ) Then
+		If Not ( StringRight ( $SDIR , 1 ) = "\" ) And Not ( StringRight ( $SDIR , 1 ) = "/" ) Then $SDIR = $SDIR & "\"
+	Else
+		$SDIR = "\"
+	EndIf
+	If StringLen ( $SDIR ) Then
+		If Not ( StringLeft ( $SDIR , 1 ) = "\" ) And Not ( StringLeft ( $SDIR , 1 ) = "/" ) Then $SDIR = "\" & $SDIR
+	EndIf
+	If StringLen ( $SEXTENSION ) Then
+		If Not ( StringLeft ( $SEXTENSION , 1 ) = "." ) Then $SEXTENSION = "." & $SEXTENSION
+	EndIf
+	Return $SDRIVE & $SDIR & $SFILENAME & $SEXTENSION
+EndFunc
+Func _PATHSPLIT ( $SFILEPATH , ByRef $SDRIVE , ByRef $SDIR , ByRef $SFILENAME , ByRef $SEXTENSION )
+	Local $AARRAY = StringRegExp ( $SFILEPATH , "^\h*((?:\\\\\?\\)*(\\\\[^\?\/\\]+|[A-Za-z]:)?(.*[\/\\]\h*)?((?:[^\.\/\\]|(?(?=\.[^\/\\]*\.)\.))*)?([^\/\\]*))$" , $STR_REGEXPARRAYMATCH )
+	If @error Then
+		ReDim $AARRAY [ 5 ]
+		$AARRAY [ $PATH_ORIGINAL ] = $SFILEPATH
+	EndIf
+	$SDRIVE = $AARRAY [ $PATH_DRIVE ]
+	If StringLeft ( $AARRAY [ $PATH_DIRECTORY ] , 1 ) == "/" Then
+		$SDIR = StringRegExpReplace ( $AARRAY [ $PATH_DIRECTORY ] , "\h*[\/\\]+\h*" , "\/" )
+	Else
+		$SDIR = StringRegExpReplace ( $AARRAY [ $PATH_DIRECTORY ] , "\h*[\/\\]+\h*" , "\\" )
+	EndIf
+	$AARRAY [ $PATH_DIRECTORY ] = $SDIR
+	$SFILENAME = $AARRAY [ $PATH_FILENAME ]
+	$SEXTENSION = $AARRAY [ $PATH_EXTENSION ]
+	Return $AARRAY
+EndFunc
+Func _REPLACESTRINGINFILE ( $SFILEPATH , $SSEARCHSTRING , $SREPLACESTRING , $ICASESENSITIVE = 0 , $IOCCURANCE = 1 )
+	If StringInStr ( FileGetAttrib ( $SFILEPATH ) , "R" ) Then Return SetError ( 1 , 0 , + 4294967295 )
+	Local $HFILEOPEN = FileOpen ( $SFILEPATH , $FO_READ )
+	If $HFILEOPEN = + 4294967295 Then Return SetError ( 2 , 0 , + 4294967295 )
+	Local $SFILEREAD = FileRead ( $HFILEOPEN )
+	FileClose ( $HFILEOPEN )
+	If $ICASESENSITIVE = Default Then $ICASESENSITIVE = 0
+	If $IOCCURANCE = Default Then $IOCCURANCE = 1
+	$SFILEREAD = StringReplace ( $SFILEREAD , $SSEARCHSTRING , $SREPLACESTRING , 1 - $IOCCURANCE , $ICASESENSITIVE )
+	Local $IRETURN = @extended
+	If $IRETURN Then
+		Local $IFILEENCODING = FileGetEncoding ( $SFILEPATH )
+		$HFILEOPEN = FileOpen ( $SFILEPATH , $IFILEENCODING + $FO_OVERWRITE )
+		If $HFILEOPEN = + 4294967295 Then Return SetError ( 3 , 0 , + 4294967295 )
+		FileWrite ( $HFILEOPEN , $SFILEREAD )
+		FileClose ( $HFILEOPEN )
+	EndIf
+	Return $IRETURN
+EndFunc
+Func _TEMPFILE ( $SDIRECTORYNAME = @TempDir , $SFILEPREFIX = "~" , $SFILEEXTENSION = ".tmp" , $IRANDOMLENGTH = 7 )
+	If $IRANDOMLENGTH = Default Or $IRANDOMLENGTH <= 0 Then $IRANDOMLENGTH = 7
+	If $SDIRECTORYNAME = Default Or ( Not FileExists ( $SDIRECTORYNAME ) ) Then $SDIRECTORYNAME = @TempDir
+	If $SFILEEXTENSION = Default Then $SFILEEXTENSION = ".tmp"
+	If $SFILEPREFIX = Default Then $SFILEPREFIX = "~"
+	If Not FileExists ( $SDIRECTORYNAME ) Then $SDIRECTORYNAME = @ScriptDir
+	$SDIRECTORYNAME = StringRegExpReplace ( $SDIRECTORYNAME , "[\\/]+$" , "" )
+	$SFILEEXTENSION = StringRegExpReplace ( $SFILEEXTENSION , "^\.+" , "" )
+	$SFILEPREFIX = StringRegExpReplace ( $SFILEPREFIX , "[\\/:*?""<>|]" , "" )
+	Local $STEMPNAME = ""
+	Do
+		$STEMPNAME = ""
+		While StringLen ( $STEMPNAME ) < $IRANDOMLENGTH
+			$STEMPNAME &= Chr ( Random ( 97 , 122 , 1 ) )
+		WEnd
+		$STEMPNAME = $SDIRECTORYNAME & "\" & $SFILEPREFIX & $STEMPNAME & "." & $SFILEEXTENSION
+	Until Not FileExists ( $STEMPNAME )
+	Return $STEMPNAME
+EndFunc
+Global Const $GUI_EVENT_SINGLE = 0
+Global Const $GUI_EVENT_ARRAY = 1
+Global Const $GUI_EVENT_NONE = 0
+Global Const $GUI_EVENT_CLOSE = + 4294967293
+Global Const $GUI_EVENT_MINIMIZE = + 4294967292
+Global Const $GUI_EVENT_RESTORE = + 4294967291
+Global Const $GUI_EVENT_MAXIMIZE = + 4294967290
+Global Const $GUI_EVENT_PRIMARYDOWN = + 4294967289
+Global Const $GUI_EVENT_PRIMARYUP = + 4294967288
+Global Const $GUI_EVENT_SECONDARYDOWN = + 4294967287
+Global Const $GUI_EVENT_SECONDARYUP = + 4294967286
+Global Const $GUI_EVENT_MOUSEMOVE = + 4294967285
+Global Const $GUI_EVENT_RESIZED = + 4294967284
+Global Const $GUI_EVENT_DROPPED = + 4294967283
+Global Const $GUI_RUNDEFMSG = "GUI_RUNDEFMSG"
+Global Const $GUI_AVISTOP = 0
+Global Const $GUI_AVISTART = 1
+Global Const $GUI_AVICLOSE = 2
+Global Const $GUI_CHECKED = 1
+Global Const $GUI_INDETERMINATE = 2
+Global Const $GUI_UNCHECKED = 4
+Global Const $GUI_DROPACCEPTED = 8
+Global Const $GUI_NODROPACCEPTED = 4096
+Global Const $GUI_ACCEPTFILES = $GUI_DROPACCEPTED
+Global Const $GUI_SHOW = 16
+Global Const $GUI_HIDE = 32
+Global Const $GUI_ENABLE = 64
+Global Const $GUI_DISABLE = 128
+Global Const $GUI_FOCUS = 256
+Global Const $GUI_NOFOCUS = 8192
+Global Const $GUI_DEFBUTTON = 512
+Global Const $GUI_EXPAND = 1024
+Global Const $GUI_ONTOP = 2048
+Global Const $GUI_FONTNORMAL = 0
+Global Const $GUI_FONTITALIC = 2
+Global Const $GUI_FONTUNDER = 4
+Global Const $GUI_FONTSTRIKE = 8
+Global Const $GUI_DOCKAUTO = 1
+Global Const $GUI_DOCKLEFT = 2
+Global Const $GUI_DOCKRIGHT = 4
+Global Const $GUI_DOCKHCENTER = 8
+Global Const $GUI_DOCKTOP = 32
+Global Const $GUI_DOCKBOTTOM = 64
+Global Const $GUI_DOCKVCENTER = 128
+Global Const $GUI_DOCKWIDTH = 256
+Global Const $GUI_DOCKHEIGHT = 512
+Global Const $GUI_DOCKSIZE = 768
+Global Const $GUI_DOCKMENUBAR = 544
+Global Const $GUI_DOCKSTATEBAR = 576
+Global Const $GUI_DOCKALL = 802
+Global Const $GUI_DOCKBORDERS = 102
+Global Const $GUI_GR_CLOSE = 1
+Global Const $GUI_GR_LINE = 2
+Global Const $GUI_GR_BEZIER = 4
+Global Const $GUI_GR_MOVE = 6
+Global Const $GUI_GR_COLOR = 8
+Global Const $GUI_GR_RECT = 10
+Global Const $GUI_GR_ELLIPSE = 12
+Global Const $GUI_GR_PIE = 14
+Global Const $GUI_GR_DOT = 16
+Global Const $GUI_GR_PIXEL = 18
+Global Const $GUI_GR_HINT = 20
+Global Const $GUI_GR_REFRESH = 22
+Global Const $GUI_GR_PENSIZE = 24
+Global Const $GUI_GR_NOBKCOLOR = + 4294967294
+Global Const $GUI_BKCOLOR_DEFAULT = + 4294967295
+Global Const $GUI_BKCOLOR_TRANSPARENT = + 4294967294
+Global Const $GUI_BKCOLOR_LV_ALTERNATE = 4261412864
+Global Const $GUI_READ_DEFAULT = 0
+Global Const $GUI_READ_EXTENDED = 1
+Global Const $GUI_CURSOR_NOOVERRIDE = 0
+Global Const $GUI_CURSOR_OVERRIDE = 1
+Global Const $GUI_WS_EX_PARENTDRAG = 1048576
+Global Const $GMEM_FIXED = 0
+Global Const $GMEM_MOVEABLE = 2
+Global Const $GMEM_NOCOMPACT = 16
+Global Const $GMEM_NODISCARD = 32
+Global Const $GMEM_ZEROINIT = 64
+Global Const $GMEM_MODIFY = 128
+Global Const $GMEM_DISCARDABLE = 256
+Global Const $GMEM_NOT_BANKED = 4096
+Global Const $GMEM_SHARE = 8192
+Global Const $GMEM_DDESHARE = 8192
+Global Const $GMEM_NOTIFY = 16384
+Global Const $GMEM_LOWER = 4096
+Global Const $GMEM_VALID_FLAGS = 32626
+Global Const $GMEM_INVALID_HANDLE = 32768
+Global Const $GPTR = BitOR ( $GMEM_FIXED , $GMEM_ZEROINIT )
+Global Const $GHND = BitOR ( $GMEM_MOVEABLE , $GMEM_ZEROINIT )
+Global Const $MEM_COMMIT = 4096
+Global Const $MEM_RESERVE = 8192
+Global Const $MEM_TOP_DOWN = 1048576
+Global Const $MEM_SHARED = 134217728
+Global Const $PAGE_NOACCESS = 1
+Global Const $PAGE_READONLY = 2
+Global Const $PAGE_READWRITE = 4
+Global Const $PAGE_EXECUTE = 16
+Global Const $PAGE_EXECUTE_READ = 32
+Global Const $PAGE_EXECUTE_READWRITE = 64
+Global Const $PAGE_EXECUTE_WRITECOPY = 128
+Global Const $PAGE_GUARD = 256
+Global Const $PAGE_NOCACHE = 512
+Global Const $PAGE_WRITECOMBINE = 1024
+Global Const $PAGE_WRITECOPY = 8
+Global Const $MEM_DECOMMIT = 16384
+Global Const $MEM_RELEASE = 32768
+Global Enum $MEM_LOAD , $MEM_TOTALPHYSRAM , $MEM_AVAILPHYSRAM , $MEM_TOTALPAGEFILE , $MEM_AVAILPAGEFILE , $MEM_TOTALVIRTUAL , $MEM_AVAILVIRTUAL
+Global Const $PROCESS_TERMINATE = 1
+Global Const $PROCESS_CREATE_THREAD = 2
+Global Const $PROCESS_SET_SESSIONID = 4
+Global Const $PROCESS_VM_OPERATION = 8
+Global Const $PROCESS_VM_READ = 16
+Global Const $PROCESS_VM_WRITE = 32
+Global Const $PROCESS_DUP_HANDLE = 64
+Global Const $PROCESS_CREATE_PROCESS = 128
+Global Const $PROCESS_SET_QUOTA = 256
+Global Const $PROCESS_SET_INFORMATION = 512
+Global Const $PROCESS_QUERY_INFORMATION = 1024
+Global Const $PROCESS_QUERY_LIMITED_INFORMATION = 4096
+Global Const $PROCESS_SUSPEND_RESUME = 2048
+Global Const $PROCESS_ALL_ACCESS = 2035711
+Global Const $SE_ASSIGNPRIMARYTOKEN_NAME = "SeAssignPrimaryTokenPrivilege"
+Global Const $SE_AUDIT_NAME = "SeAuditPrivilege"
+Global Const $SE_BACKUP_NAME = "SeBackupPrivilege"
+Global Const $SE_CHANGE_NOTIFY_NAME = "SeChangeNotifyPrivilege"
+Global Const $SE_CREATE_GLOBAL_NAME = "SeCreateGlobalPrivilege"
+Global Const $SE_CREATE_PAGEFILE_NAME = "SeCreatePagefilePrivilege"
+Global Const $SE_CREATE_PERMANENT_NAME = "SeCreatePermanentPrivilege"
+Global Const $SE_CREATE_SYMBOLIC_LINK_NAME = "SeCreateSymbolicLinkPrivilege"
+Global Const $SE_CREATE_TOKEN_NAME = "SeCreateTokenPrivilege"
+Global Const $SE_DEBUG_NAME = "SeDebugPrivilege"
+Global Const $SE_ENABLE_DELEGATION_NAME = "SeEnableDelegationPrivilege"
+Global Const $SE_IMPERSONATE_NAME = "SeImpersonatePrivilege"
+Global Const $SE_INC_BASE_PRIORITY_NAME = "SeIncreaseBasePriorityPrivilege"
+Global Const $SE_INC_WORKING_SET_NAME = "SeIncreaseWorkingSetPrivilege"
+Global Const $SE_INCREASE_QUOTA_NAME = "SeIncreaseQuotaPrivilege"
+Global Const $SE_LOAD_DRIVER_NAME = "SeLoadDriverPrivilege"
+Global Const $SE_LOCK_MEMORY_NAME = "SeLockMemoryPrivilege"
+Global Const $SE_MACHINE_ACCOUNT_NAME = "SeMachineAccountPrivilege"
+Global Const $SE_MANAGE_VOLUME_NAME = "SeManageVolumePrivilege"
+Global Const $SE_PROF_SINGLE_PROCESS_NAME = "SeProfileSingleProcessPrivilege"
+Global Const $SE_RELABEL_NAME = "SeRelabelPrivilege"
+Global Const $SE_REMOTE_SHUTDOWN_NAME = "SeRemoteShutdownPrivilege"
+Global Const $SE_RESTORE_NAME = "SeRestorePrivilege"
+Global Const $SE_SECURITY_NAME = "SeSecurityPrivilege"
+Global Const $SE_SHUTDOWN_NAME = "SeShutdownPrivilege"
+Global Const $SE_SYNC_AGENT_NAME = "SeSyncAgentPrivilege"
+Global Const $SE_SYSTEM_ENVIRONMENT_NAME = "SeSystemEnvironmentPrivilege"
+Global Const $SE_SYSTEM_PROFILE_NAME = "SeSystemProfilePrivilege"
+Global Const $SE_SYSTEMTIME_NAME = "SeSystemtimePrivilege"
+Global Const $SE_TAKE_OWNERSHIP_NAME = "SeTakeOwnershipPrivilege"
+Global Const $SE_TCB_NAME = "SeTcbPrivilege"
+Global Const $SE_TIME_ZONE_NAME = "SeTimeZonePrivilege"
+Global Const $SE_TRUSTED_CREDMAN_ACCESS_NAME = "SeTrustedCredManAccessPrivilege"
+Global Const $SE_UNSOLICITED_INPUT_NAME = "SeUnsolicitedInputPrivilege"
+Global Const $SE_UNDOCK_NAME = "SeUndockPrivilege"
+Global Const $SE_PRIVILEGE_ENABLED_BY_DEFAULT = 1
+Global Const $SE_PRIVILEGE_ENABLED = 2
+Global Const $SE_PRIVILEGE_REMOVED = 4
+Global Const $SE_PRIVILEGE_USED_FOR_ACCESS = 2147483648
+Global Const $SE_GROUP_MANDATORY = 1
+Global Const $SE_GROUP_ENABLED_BY_DEFAULT = 2
+Global Const $SE_GROUP_ENABLED = 4
+Global Const $SE_GROUP_OWNER = 8
+Global Const $SE_GROUP_USE_FOR_DENY_ONLY = 16
+Global Const $SE_GROUP_INTEGRITY = 32
+Global Const $SE_GROUP_INTEGRITY_ENABLED = 64
+Global Const $SE_GROUP_RESOURCE = 536870912
+Global Const $SE_GROUP_LOGON_ID = 3221225472
+Global Enum $TOKENPRIMARY = 1 , $TOKENIMPERSONATION
+Global Enum $SECURITYANONYMOUS = 0 , $SECURITYIDENTIFICATION , $SECURITYIMPERSONATION , $SECURITYDELEGATION
+Global Enum $TOKENUSER = 1 , $TOKENGROUPS , $TOKENPRIVILEGES , $TOKENOWNER , $TOKENPRIMARYGROUP , $TOKENDEFAULTDACL , $TOKENSOURCE , $TOKENTYPE , $TOKENIMPERSONATIONLEVEL , $TOKENSTATISTICS , $TOKENRESTRICTEDSIDS , $TOKENSESSIONID , $TOKENGROUPSANDPRIVILEGES , $TOKENSESSIONREFERENCE , $TOKENSANDBOXINERT , $TOKENAUDITPOLICY , $TOKENORIGIN , $TOKENELEVATIONTYPE , $TOKENLINKEDTOKEN , $TOKENELEVATION , $TOKENHASRESTRICTIONS , $TOKENACCESSINFORMATION , $TOKENVIRTUALIZATIONALLOWED , $TOKENVIRTUALIZATIONENABLED , $TOKENINTEGRITYLEVEL , $TOKENUIACCESS , $TOKENMANDATORYPOLICY , $TOKENLOGONSID
+Global Const $TOKEN_ASSIGN_PRIMARY = 1
+Global Const $TOKEN_DUPLICATE = 2
+Global Const $TOKEN_IMPERSONATE = 4
+Global Const $TOKEN_QUERY = 8
+Global Const $TOKEN_QUERY_SOURCE = 16
+Global Const $TOKEN_ADJUST_PRIVILEGES = 32
+Global Const $TOKEN_ADJUST_GROUPS = 64
+Global Const $TOKEN_ADJUST_DEFAULT = 128
+Global Const $TOKEN_ADJUST_SESSIONID = 256
+Global Const $TOKEN_ALL_ACCESS = 983551
+Global Const $TOKEN_READ = 131080
+Global Const $TOKEN_WRITE = 131296
+Global Const $TOKEN_EXECUTE = 131072
+Global Const $TOKEN_HAS_TRAVERSE_PRIVILEGE = 1
+Global Const $TOKEN_HAS_BACKUP_PRIVILEGE = 2
+Global Const $TOKEN_HAS_RESTORE_PRIVILEGE = 4
+Global Const $TOKEN_HAS_ADMIN_GROUP = 8
+Global Const $TOKEN_IS_RESTRICTED = 16
+Global Const $TOKEN_SESSION_NOT_REFERENCED = 32
+Global Const $TOKEN_SANDBOX_INERT = 64
+Global Const $TOKEN_HAS_IMPERSONATE_PRIVILEGE = 128
+Global Const $STANDARD_RIGHTS_DELETE = 65536
+Global Const $READ_CONTROL = 131072
+Global Const $WRITE_DAC = 262144
+Global Const $WRITE_OWNER = 524288
+Global Const $STANDARD_RIGHTS_SYNCHRONIZE = 1048576
+Global Const $ACCESS_SYSTEM_SECURITY = 16777216
+Global Const $STANDARD_RIGHTS_REQUIRED = 983040
+Global Const $STANDARD_RIGHTS_READ = $READ_CONTROL
+Global Const $STANDARD_RIGHTS_WRITE = $READ_CONTROL
+Global Const $STANDARD_RIGHTS_EXECUTE = $READ_CONTROL
+Global Const $STANDARD_RIGHTS_ALL = 2031616
+Global Const $SPECIFIC_RIGHTS_ALL = 65535
+Global Enum $NOT_USED_ACCESS = 0 , $GRANT_ACCESS , $SET_ACCESS , $DENY_ACCESS , $REVOKE_ACCESS , $SET_AUDIT_SUCCESS , $SET_AUDIT_FAILURE
+Global Enum $TRUSTEE_IS_UNKNOWN = 0 , $TRUSTEE_IS_USER , $TRUSTEE_IS_GROUP , $TRUSTEE_IS_DOMAIN , $TRUSTEE_IS_ALIAS , $TRUSTEE_IS_WELL_KNOWN_GROUP , $TRUSTEE_IS_DELETED , $TRUSTEE_IS_INVALID , $TRUSTEE_IS_COMPUTER
+Global Const $LOGON_WITH_PROFILE = 1
+Global Const $LOGON_NETCREDENTIALS_ONLY = 2
+Global Enum $SIDTYPEUSER = 1 , $SIDTYPEGROUP , $SIDTYPEDOMAIN , $SIDTYPEALIAS , $SIDTYPEWELLKNOWNGROUP , $SIDTYPEDELETEDACCOUNT , $SIDTYPEINVALID , $SIDTYPEUNKNOWN , $SIDTYPECOMPUTER , $SIDTYPELABEL
+Global Const $SID_ADMINISTRATORS = "S-1-5-32-544"
+Global Const $SID_USERS = "S-1-5-32-545"
+Global Const $SID_GUESTS = "S-1-5-32-546"
+Global Const $SID_ACCOUNT_OPERATORS = "S-1-5-32-548"
+Global Const $SID_SERVER_OPERATORS = "S-1-5-32-549"
+Global Const $SID_PRINT_OPERATORS = "S-1-5-32-550"
+Global Const $SID_BACKUP_OPERATORS = "S-1-5-32-551"
+Global Const $SID_REPLICATOR = "S-1-5-32-552"
+Global Const $SID_OWNER = "S-1-3-0"
+Global Const $SID_EVERYONE = "S-1-1-0"
+Global Const $SID_NETWORK = "S-1-5-2"
+Global Const $SID_INTERACTIVE = "S-1-5-4"
+Global Const $SID_SYSTEM = "S-1-5-18"
+Global Const $SID_AUTHENTICATED_USERS = "S-1-5-11"
+Global Const $SID_SCHANNEL_AUTHENTICATION = "S-1-5-64-14"
+Global Const $SID_DIGEST_AUTHENTICATION = "S-1-5-64-21"
+Global Const $SID_NT_SERVICE = "S-1-5-80"
+Global Const $SID_UNTRUSTED_MANDATORY_LEVEL = "S-1-16-0"
+Global Const $SID_LOW_MANDATORY_LEVEL = "S-1-16-4096"
+Global Const $SID_MEDIUM_MANDATORY_LEVEL = "S-1-16-8192"
+Global Const $SID_MEDIUM_PLUS_MANDATORY_LEVEL = "S-1-16-8448"
+Global Const $SID_HIGH_MANDATORY_LEVEL = "S-1-16-12288"
+Global Const $SID_SYSTEM_MANDATORY_LEVEL = "S-1-16-16384"
+Global Const $SID_PROTECTED_PROCESS_MANDATORY_LEVEL = "S-1-16-20480"
+Global Const $SID_SECURE_PROCESS_MANDATORY_LEVEL = "S-1-16-28672"
+Global Const $SID_ALL_SERVICES = "S-1-5-80-0"
+#Region Global Variables and Constants
+Global Const $FORMAT_MESSAGE_ALLOCATE_BUFFER = 256
+Global Const $FORMAT_MESSAGE_IGNORE_INSERTS = 512
+Global Const $FORMAT_MESSAGE_FROM_STRING = 1024
+Global Const $FORMAT_MESSAGE_FROM_HMODULE = 2048
+Global Const $FORMAT_MESSAGE_FROM_SYSTEM = 4096
+Global Const $FORMAT_MESSAGE_ARGUMENT_ARRAY = 8192
+#EndRegion Global Variables and Constants
+Func _WINAPI_BEEP ( $IFREQ = 500 , $IDURATION = 1000 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "Beep" , "dword" , $IFREQ , "dword" , $IDURATION )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FORMATMESSAGE ( $IFLAGS , $PSOURCE , $IMESSAGEID , $ILANGUAGEID , ByRef $PBUFFER , $ISIZE , $VARGUMENTS )
+	Local $SBUFFERTYPE = "struct*"
+	If IsString ( $PBUFFER ) Then $SBUFFERTYPE = "wstr"
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "FormatMessageW" , "dword" , $IFLAGS , "struct*" , $PSOURCE , "dword" , $IMESSAGEID , "dword" , $ILANGUAGEID , $SBUFFERTYPE , $PBUFFER , "dword" , $ISIZE , "ptr" , $VARGUMENTS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If Not $ACALL [ 0 ] Then Return SetError ( 10 , _WINAPI_GETLASTERROR ( ) , 0 )
+	If $SBUFFERTYPE = "wstr" Then $PBUFFER = $ACALL [ 5 ]
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETERRORMESSAGE ( $ICODE , $ILANGUAGE = 0 , Const $_ICALLERERROR = @error , Const $_ICALLEREXTENDED = @extended )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "FormatMessageW" , "dword" , BitOR ( $FORMAT_MESSAGE_FROM_SYSTEM , $FORMAT_MESSAGE_IGNORE_INSERTS ) , "ptr" , 0 , "dword" , $ICODE , "dword" , $ILANGUAGE , "wstr" , "" , "dword" , 4096 , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return SetError ( $_ICALLERERROR , $_ICALLEREXTENDED , StringRegExpReplace ( $ACALL [ 5 ] , "[" & @LF & "," & @CR & "]*\Z" , "" ) )
+EndFunc
+Func _WINAPI_GETLASTERROR ( Const $_ICALLERERROR = @error , Const $_ICALLEREXTENDED = @extended )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "GetLastError" )
+	Return SetError ( $_ICALLERERROR , $_ICALLEREXTENDED , $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_GETLASTERRORMESSAGE ( Const $_ICALLERERROR = @error , Const $_ICALLEREXTENDED = @extended )
+	Local $ILASTERROR = _WINAPI_GETLASTERROR ( )
+	Local $TBUFFERPTR = DllStructCreate ( "ptr" )
+	Local $NCOUNT = _WINAPI_FORMATMESSAGE ( BitOR ( $FORMAT_MESSAGE_ALLOCATE_BUFFER , $FORMAT_MESSAGE_FROM_SYSTEM , $FORMAT_MESSAGE_IGNORE_INSERTS ) , 0 , $ILASTERROR , 0 , $TBUFFERPTR , 0 , 0 )
+	If @error Then Return SetError ( - @error , @extended , "" )
+	Local $STEXT = ""
+	Local $PBUFFER = DllStructGetData ( $TBUFFERPTR , 1 )
+	If $PBUFFER Then
+		If $NCOUNT > 0 Then
+			Local $TBUFFER = DllStructCreate ( "wchar[" & ( $NCOUNT + 1 ) & "]" , $PBUFFER )
+			$STEXT = DllStructGetData ( $TBUFFER , 1 )
+			If StringRight ( $STEXT , 2 ) = @CRLF Then $STEXT = StringTrimRight ( $STEXT , 2 )
+		EndIf
+		DllCall ( "kernel32.dll" , "handle" , "LocalFree" , "handle" , $PBUFFER )
+	EndIf
+	Return SetError ( $_ICALLERERROR , $_ICALLEREXTENDED , $STEXT )
+EndFunc
+Func _WINAPI_MESSAGEBEEP ( $ITYPE = 1 )
+	Local $ISOUND
+	Switch $ITYPE
+	Case 1
+		$ISOUND = 0
+	Case 2
+		$ISOUND = 16
+	Case 3
+		$ISOUND = 32
+	Case 4
+		$ISOUND = 48
+	Case 5
+		$ISOUND = 64
+Case Else
+		$ISOUND = + 4294967295
+	EndSwitch
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "MessageBeep" , "uint" , $ISOUND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MSGBOX ( $IFLAGS , $STITLE , $STEXT )
+	BlockInput ( 0 )
+	MsgBox ( $IFLAGS , $STITLE , $STEXT & "      " )
+EndFunc
+Func _WINAPI_SETLASTERROR ( $IERRORCODE , Const $_ICALLERERROR = @error , Const $_ICALLEREXTENDED = @extended )
+	DllCall ( "kernel32.dll" , "none" , "SetLastError" , "dword" , $IERRORCODE )
+	Return SetError ( $_ICALLERERROR , $_ICALLEREXTENDED , Null )
+EndFunc
+Func _WINAPI_SHOWERROR ( $STEXT , $BEXIT = True )
+	BlockInput ( 0 )
+	MsgBox ( $MB_SYSTEMMODAL , "Error" , $STEXT & "      " )
+	If $BEXIT Then Exit
+EndFunc
+Func _WINAPI_SHOWLASTERROR ( $STEXT = "" , $BABORT = False , $ILANGUAGE = 0 , Const $_ICALLERERROR = @error , Const $_ICALLEREXTENDED = @extended )
+	Local $SERROR
+	Local $ILASTERROR = _WINAPI_GETLASTERROR ( )
+	While 1
+		$SERROR = _WINAPI_GETERRORMESSAGE ( $ILASTERROR , $ILANGUAGE )
+		If @error And $ILANGUAGE Then
+			$ILANGUAGE = 0
+		Else
+			ExitLoop
+		EndIf
+	WEnd
+	If StringStripWS ( $STEXT , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then
+		$STEXT &= @CRLF & @CRLF
+	Else
+		$STEXT = ""
+	EndIf
+	_WINAPI_MSGBOX ( BitOR ( 262144 , BitShift ( 16 , + 4294967294 * ( Not $ILASTERROR ) ) ) , $ILASTERROR , $STEXT & $SERROR )
+	If $ILASTERROR Then
+		_WINAPI_SETLASTERROR ( $ILASTERROR )
+		If $BABORT Then
+			Exit $ILASTERROR
+		EndIf
+	EndIf
+	Return SetError ( $_ICALLERERROR , $_ICALLEREXTENDED , 1 )
+EndFunc
+Func _WINAPI_SHOWMSG ( $STEXT )
+	_WINAPI_MSGBOX ( $MB_SYSTEMMODAL , "Information" , $STEXT )
+EndFunc
+Func __COMERRORFORMATING ( ByRef $OCOMERROR , $SPREFIX = @TAB )
+	Local Const $STR_STRIPTRAILING = 2
+	Local $SERROR = "COM Error encountered in " & @ScriptName & " (" & $OCOMERROR .Scriptline & ") :" & @CRLF & $SPREFIX & "Number        " & @TAB & "= 0x" & Hex ( $OCOMERROR .Number , 8 ) & " (" & $OCOMERROR .Number & ")" & @CRLF & $SPREFIX & "WinDescription" & @TAB & "= " & StringStripWS ( $OCOMERROR .WinDescription , $STR_STRIPTRAILING ) & @CRLF & $SPREFIX & "Description   " & @TAB & "= " & StringStripWS ( $OCOMERROR .Description , $STR_STRIPTRAILING ) & @CRLF & $SPREFIX & "Source        " & @TAB & "= " & $OCOMERROR .Source & @CRLF & $SPREFIX & "HelpFile      " & @TAB & "= " & $OCOMERROR .HelpFile & @CRLF & $SPREFIX & "HelpContext   " & @TAB & "= " & $OCOMERROR .HelpContext & @CRLF & $SPREFIX & "LastDllError  " & @TAB & "= " & $OCOMERROR .LastDllError & @CRLF & $SPREFIX & "Retcode       " & @TAB & "= 0x" & Hex ( $OCOMERROR .retcode )
+	Return $SERROR
+EndFunc
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _SECURITY__ADJUSTTOKENPRIVILEGES ( $HTOKEN , $BDISABLEALL , $TNEWSTATE , $IBUFFERLEN , $TPREVSTATE = 0 , $PREQUIRED = 0 )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "AdjustTokenPrivileges" , "handle" , $HTOKEN , "bool" , $BDISABLEALL , "struct*" , $TNEWSTATE , "dword" , $IBUFFERLEN , "struct*" , $TPREVSTATE , "struct*" , $PREQUIRED )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return Not ( $ACALL [ 0 ] = 0 )
+EndFunc
+Func _SECURITY__CREATEPROCESSWITHTOKEN ( $HTOKEN , $ILOGONFLAGS , $SCOMMANDLINE , $ICREATIONFLAGS , $SCURDIR , $TSTARTUPINFO , $TPROCESS_INFORMATION )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "CreateProcessWithTokenW" , "handle" , $HTOKEN , "dword" , $ILOGONFLAGS , "ptr" , 0 , "wstr" , $SCOMMANDLINE , "dword" , $ICREATIONFLAGS , "struct*" , 0 , "wstr" , $SCURDIR , "struct*" , $TSTARTUPINFO , "struct*" , $TPROCESS_INFORMATION )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , False )
+	Return True
+EndFunc
+Func _SECURITY__DUPLICATETOKENEX ( $HEXISTINGTOKEN , $IDESIREDACCESS , $IIMPERSONATIONLEVEL , $ITOKENTYPE )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "DuplicateTokenEx" , "handle" , $HEXISTINGTOKEN , "dword" , $IDESIREDACCESS , "struct*" , 0 , "int" , $IIMPERSONATIONLEVEL , "int" , $ITOKENTYPE , "handle*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 6 ]
+EndFunc
+Func _SECURITY__GETACCOUNTSID ( $SACCOUNT , $SSYSTEM = "" )
+	Local $AACCT = _SECURITY__LOOKUPACCOUNTNAME ( $SACCOUNT , $SSYSTEM )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If IsArray ( $AACCT ) Then Return _SECURITY__STRINGSIDTOSID ( $AACCT [ 0 ] )
+	Return ""
+EndFunc
+Func _SECURITY__GETLENGTHSID ( $PSID )
+	If Not _SECURITY__ISVALIDSID ( $PSID ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ACALL = DllCall ( "advapi32.dll" , "dword" , "GetLengthSid" , "struct*" , $PSID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _SECURITY__GETTOKENINFORMATION ( $HTOKEN , $ICLASS )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "GetTokenInformation" , "handle" , $HTOKEN , "int" , $ICLASS , "struct*" , 0 , "dword" , 0 , "dword*" , 0 )
+	If @error Or Not $ACALL [ 5 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $ILEN = $ACALL [ 5 ]
+	Local $TBUFFER = DllStructCreate ( "byte[" & $ILEN & "]" )
+	$ACALL = DllCall ( "advapi32.dll" , "bool" , "GetTokenInformation" , "handle" , $HTOKEN , "int" , $ICLASS , "struct*" , $TBUFFER , "dword" , DllStructGetSize ( $TBUFFER ) , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TBUFFER
+EndFunc
+Func _SECURITY__IMPERSONATESELF ( $ILEVEL = $SECURITYIMPERSONATION )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "ImpersonateSelf" , "int" , $ILEVEL )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return Not ( $ACALL [ 0 ] = 0 )
+EndFunc
+Func _SECURITY__ISVALIDSID ( $PSID )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "IsValidSid" , "struct*" , $PSID )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return Not ( $ACALL [ 0 ] = 0 )
+EndFunc
+Func _SECURITY__LOOKUPACCOUNTNAME ( $SACCOUNT , $SSYSTEM = "" )
+	Local $TDATA = DllStructCreate ( "byte SID[256]" )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "LookupAccountNameW" , "wstr" , $SSYSTEM , "wstr" , $SACCOUNT , "struct*" , $TDATA , "dword*" , DllStructGetSize ( $TDATA ) , "wstr" , "" , "dword*" , DllStructGetSize ( $TDATA ) , "int*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $AACCT [ 3 ]
+	$AACCT [ 0 ] = _SECURITY__SIDTOSTRINGSID ( DllStructGetPtr ( $TDATA , "SID" ) )
+	$AACCT [ 1 ] = $ACALL [ 5 ]
+	$AACCT [ 2 ] = $ACALL [ 7 ]
+	Return $AACCT
+EndFunc
+Func _SECURITY__LOOKUPACCOUNTSID ( $VSID , $SSYSTEM = "" )
+	Local $PSID , $AACCT [ 3 ]
+	If IsString ( $VSID ) Then
+		$PSID = _SECURITY__STRINGSIDTOSID ( $VSID )
+	Else
+		$PSID = $VSID
+	EndIf
+	If Not _SECURITY__ISVALIDSID ( $PSID ) Then Return SetError ( @error + 20 , @extended , 0 )
+	If $SSYSTEM = "" Then $SSYSTEM = Null
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "LookupAccountSidW" , "wstr" , $SSYSTEM , "struct*" , $PSID , "wstr" , "" , "dword*" , 65536 , "wstr" , "" , "dword*" , 65536 , "int*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $AACCT [ 3 ]
+	$AACCT [ 0 ] = $ACALL [ 3 ]
+	$AACCT [ 1 ] = $ACALL [ 5 ]
+	$AACCT [ 2 ] = $ACALL [ 7 ]
+	Return $AACCT
+EndFunc
+Func _SECURITY__LOOKUPPRIVILEGEVALUE ( $SSYSTEM , $SNAME )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "LookupPrivilegeValueW" , "wstr" , $SSYSTEM , "wstr" , $SNAME , "int64*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _SECURITY__OPENPROCESSTOKEN ( $HPROCESS , $IACCESS )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "OpenProcessToken" , "handle" , $HPROCESS , "dword" , $IACCESS , "handle*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _SECURITY__OPENTHREADTOKEN ( $IACCESS , $HTHREAD = 0 , $BOPENASSELF = False )
+	Local $ACALL
+	If $HTHREAD = 0 Then
+		$ACALL = DllCall ( "kernel32.dll" , "handle" , "GetCurrentThread" )
+		If @error Then Return SetError ( @error + 20 , @extended , 0 )
+		$HTHREAD = $ACALL [ 0 ]
+	EndIf
+	$ACALL = DllCall ( "advapi32.dll" , "bool" , "OpenThreadToken" , "handle" , $HTHREAD , "dword" , $IACCESS , "bool" , $BOPENASSELF , "handle*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 4 ]
+EndFunc
+Func _SECURITY__OPENTHREADTOKENEX ( $IACCESS , $HTHREAD = 0 , $BOPENASSELF = False )
+	Local $HTOKEN = _SECURITY__OPENTHREADTOKEN ( $IACCESS , $HTHREAD , $BOPENASSELF )
+	If $HTOKEN = 0 Then
+		Local Const $ERROR_NO_TOKEN = 1008
+		If _WINAPI_GETLASTERROR ( ) <> $ERROR_NO_TOKEN Then Return SetError ( 20 , _WINAPI_GETLASTERROR ( ) , 0 )
+		If Not _SECURITY__IMPERSONATESELF ( ) Then Return SetError ( @error + 10 , _WINAPI_GETLASTERROR ( ) , 0 )
+		$HTOKEN = _SECURITY__OPENTHREADTOKEN ( $IACCESS , $HTHREAD , $BOPENASSELF )
+		If $HTOKEN = 0 Then Return SetError ( @error , _WINAPI_GETLASTERROR ( ) , 0 )
+	EndIf
+	Return $HTOKEN
+EndFunc
+Func _SECURITY__SETPRIVILEGE ( $HTOKEN , $SPRIVILEGE , $BENABLE )
+	Local $ILUID = _SECURITY__LOOKUPPRIVILEGEVALUE ( "" , $SPRIVILEGE )
+	If $ILUID = 0 Then Return SetError ( @error + 10 , @extended , False )
+	Local Const $TAGTOKEN_PRIVILEGES = "dword Count;align 4;int64 LUID;dword Attributes"
+	Local $TCURRSTATE = DllStructCreate ( $TAGTOKEN_PRIVILEGES )
+	Local $ICURRSTATE = DllStructGetSize ( $TCURRSTATE )
+	Local $TPREVSTATE = DllStructCreate ( $TAGTOKEN_PRIVILEGES )
+	Local $IPREVSTATE = DllStructGetSize ( $TPREVSTATE )
+	Local $TREQUIRED = DllStructCreate ( "int Data" )
+	DllStructSetData ( $TCURRSTATE , "Count" , 1 )
+	DllStructSetData ( $TCURRSTATE , "LUID" , $ILUID )
+	If Not _SECURITY__ADJUSTTOKENPRIVILEGES ( $HTOKEN , False , $TCURRSTATE , $ICURRSTATE , $TPREVSTATE , $TREQUIRED ) Then Return SetError ( 2 , @error , False )
+	DllStructSetData ( $TPREVSTATE , "Count" , 1 )
+	DllStructSetData ( $TPREVSTATE , "LUID" , $ILUID )
+	Local $IATTRIBUTES = DllStructGetData ( $TPREVSTATE , "Attributes" )
+	If $BENABLE Then
+		$IATTRIBUTES = BitOR ( $IATTRIBUTES , $SE_PRIVILEGE_ENABLED )
+	Else
+		$IATTRIBUTES = BitAND ( $IATTRIBUTES , BitNOT ( $SE_PRIVILEGE_ENABLED ) )
+	EndIf
+	DllStructSetData ( $TPREVSTATE , "Attributes" , $IATTRIBUTES )
+	If Not _SECURITY__ADJUSTTOKENPRIVILEGES ( $HTOKEN , False , $TPREVSTATE , $IPREVSTATE , $TCURRSTATE , $TREQUIRED ) Then Return SetError ( 3 , @error , False )
+	Return True
+EndFunc
+Func _SECURITY__SETTOKENINFORMATION ( $HTOKEN , $ITOKENINFORMATION , $VTOKENINFORMATION , $ITOKENINFORMATIONLENGTH )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "SetTokenInformation" , "handle" , $HTOKEN , "int" , $ITOKENINFORMATION , "struct*" , $VTOKENINFORMATION , "dword" , $ITOKENINFORMATIONLENGTH )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , False )
+	Return True
+EndFunc
+Func _SECURITY__SIDTOSTRINGSID ( $PSID )
+	If Not _SECURITY__ISVALIDSID ( $PSID ) Then Return SetError ( @error + 10 , 0 , "" )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "ConvertSidToStringSidW" , "struct*" , $PSID , "ptr*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Local $PSTRINGSID = $ACALL [ 2 ]
+	Local $ALEN = DllCall ( "kernel32.dll" , "int" , "lstrlenW" , "struct*" , $PSTRINGSID )
+	Local $SSID = DllStructGetData ( DllStructCreate ( "wchar Text[" & $ALEN [ 0 ] + 1 & "]" , $PSTRINGSID ) , "Text" )
+	DllCall ( "kernel32.dll" , "handle" , "LocalFree" , "handle" , $PSTRINGSID )
+	Return $SSID
+EndFunc
+Func _SECURITY__SIDTYPESTR ( $ITYPE )
+	Switch $ITYPE
+	Case $SIDTYPEUSER
+		Return "User"
+	Case $SIDTYPEGROUP
+		Return "Group"
+	Case $SIDTYPEDOMAIN
+		Return "Domain"
+	Case $SIDTYPEALIAS
+		Return "Alias"
+	Case $SIDTYPEWELLKNOWNGROUP
+		Return "Well Known Group"
+	Case $SIDTYPEDELETEDACCOUNT
+		Return "Deleted Account"
+	Case $SIDTYPEINVALID
+		Return "Invalid"
+	Case $SIDTYPEUNKNOWN
+		Return "Unknown Type"
+	Case $SIDTYPECOMPUTER
+		Return "Computer"
+	Case $SIDTYPELABEL
+		Return "A mandatory integrity label SID"
+Case Else
+		Return "Unknown SID Type"
+	EndSwitch
+EndFunc
+Func _SECURITY__STRINGSIDTOSID ( $SSID )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "ConvertStringSidToSidW" , "wstr" , $SSID , "ptr*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $PSID = $ACALL [ 2 ]
+	Local $TBUFFER = DllStructCreate ( "byte Data[" & _SECURITY__GETLENGTHSID ( $PSID ) & "]" , $PSID )
+	Local $TSID = DllStructCreate ( "byte Data[" & DllStructGetSize ( $TBUFFER ) & "]" )
+	DllStructSetData ( $TSID , "Data" , DllStructGetData ( $TBUFFER , "Data" ) )
+	DllCall ( "kernel32.dll" , "handle" , "LocalFree" , "handle" , $PSID )
+	Return $TSID
+EndFunc
+#EndRegion Public Functions
+Global Const $TAGPOINT = "struct;long X;long Y;endstruct"
+Global Const $TAGRECT = "struct;long Left;long Top;long Right;long Bottom;endstruct"
+Global Const $TAGSIZE = "struct;long X;long Y;endstruct"
+Global Const $TAGMARGINS = "int cxLeftWidth;int cxRightWidth;int cyTopHeight;int cyBottomHeight"
+Global Const $TAGFILETIME = "struct;dword Lo;dword Hi;endstruct"
+Global Const $TAGSYSTEMTIME = "struct;word Year;word Month;word Dow;word Day;word Hour;word Minute;word Second;word MSeconds;endstruct"
+Global Const $TAGTIME_ZONE_INFORMATION = "struct;long Bias;wchar StdName[32];word StdDate[8];long StdBias;wchar DayName[32];word DayDate[8];long DayBias;endstruct"
+Global Const $TAGNMHDR = "struct;hwnd hWndFrom;uint_ptr IDFrom;INT Code;endstruct"
+Global Const $TAGCOMBOBOXEXITEM = "uint Mask;int_ptr Item;ptr Text;int TextMax;int Image;int SelectedImage;int OverlayImage;" & "int Indent;lparam Param"
+Global Const $TAGNMCBEDRAGBEGIN = $TAGNMHDR & ";int ItemID;wchar szText[260]"
+Global Const $TAGNMCBEENDEDIT = $TAGNMHDR & ";bool fChanged;int NewSelection;wchar szText[260];int Why"
+Global Const $TAGNMCOMBOBOXEX = $TAGNMHDR & ";uint Mask;int_ptr Item;ptr Text;int TextMax;int Image;" & "int SelectedImage;int OverlayImage;int Indent;lparam Param"
+Global Const $TAGDTPRANGE = "word MinYear;word MinMonth;word MinDOW;word MinDay;word MinHour;word MinMinute;" & "word MinSecond;word MinMSecond;word MaxYear;word MaxMonth;word MaxDOW;word MaxDay;word MaxHour;" & "word MaxMinute;word MaxSecond;word MaxMSecond;bool MinValid;bool MaxValid"
+Global Const $TAGNMDATETIMECHANGE = $TAGNMHDR & ";dword Flag;" & $TAGSYSTEMTIME
+Global Const $TAGNMDATETIMEFORMAT = $TAGNMHDR & ";ptr Format;" & $TAGSYSTEMTIME & ";ptr pDisplay;wchar Display[64]"
+Global Const $TAGNMDATETIMEFORMATQUERY = $TAGNMHDR & ";ptr Format;struct;long SizeX;long SizeY;endstruct"
+Global Const $TAGNMDATETIMEKEYDOWN = $TAGNMHDR & ";int VirtKey;ptr Format;" & $TAGSYSTEMTIME
+Global Const $TAGNMDATETIMESTRING = $TAGNMHDR & ";ptr UserString;" & $TAGSYSTEMTIME & ";dword Flags"
+Global Const $TAGEVENTLOGRECORD = "dword Length;dword Reserved;dword RecordNumber;dword TimeGenerated;dword TimeWritten;dword EventID;" & "word EventType;word NumStrings;word EventCategory;word ReservedFlags;dword ClosingRecordNumber;dword StringOffset;" & "dword UserSidLength;dword UserSidOffset;dword DataLength;dword DataOffset"
+Global Const $TAGGDIP_EFFECTPARAMS_BLUR = "float Radius; bool ExpandEdge"
+Global Const $TAGGDIP_EFFECTPARAMS_BRIGHTNESSCONTRAST = "int BrightnessLevel; int ContrastLevel"
+Global Const $TAGGDIP_EFFECTPARAMS_COLORBALANCE = "int CyanRed; int MagentaGreen; int YellowBlue"
+Global Const $TAGGDIP_EFFECTPARAMS_COLORCURVE = "int Adjustment; int Channel; int AdjustValue"
+Global Const $TAGGDIP_EFFECTPARAMS_COLORLUT = "byte LutB[256]; byte LutG[256]; byte LutR[256]; byte LutA[256]"
+Global Const $TAGGDIP_EFFECTPARAMS_HUESATURATIONLIGHTNESS = "int HueLevel; int SaturationLevel; int LightnessLevel"
+Global Const $TAGGDIP_EFFECTPARAMS_LEVELS = "int Highlight; int Midtone; int Shadow"
+Global Const $TAGGDIP_EFFECTPARAMS_REDEYECORRECTION = "uint NumberOfAreas; ptr Areas"
+Global Const $TAGGDIP_EFFECTPARAMS_SHARPEN = "float Radius; float Amount"
+Global Const $TAGGDIP_EFFECTPARAMS_TINT = "int Hue; int Amount"
+Global Const $TAGGDIPBITMAPDATA = "uint Width;uint Height;int Stride;int Format;ptr Scan0;uint_ptr Reserved"
+Global Const $TAGGDIPCOLORMATRIX = "float m[25]"
+Global Const $TAGGDIPENCODERPARAM = "struct;byte GUID[16];ulong NumberOfValues;ulong Type;ptr Values;endstruct"
+Global Const $TAGGDIPENCODERPARAMS = "uint Count;" & $TAGGDIPENCODERPARAM
+Global Const $TAGGDIPRECTF = "struct;float X;float Y;float Width;float Height;endstruct"
+Global Const $TAGGDIPSTARTUPINPUT = "uint Version;ptr Callback;bool NoThread;bool NoCodecs"
+Global Const $TAGGDIPSTARTUPOUTPUT = "ptr HookProc;ptr UnhookProc"
+Global Const $TAGGDIPIMAGECODECINFO = "byte CLSID[16];byte FormatID[16];ptr CodecName;ptr DllName;ptr FormatDesc;ptr FileExt;" & "ptr MimeType;dword Flags;dword Version;dword SigCount;dword SigSize;ptr SigPattern;ptr SigMask"
+Global Const $TAGGDIPPENCODERPARAMS = "uint Count;byte Params[1]"
+Global Const $TAGHDITEM = "uint Mask;int XY;ptr Text;handle hBMP;int TextMax;int Fmt;lparam Param;int Image;int Order;uint Type;ptr pFilter;uint State"
+Global Const $TAGNMHDDISPINFO = $TAGNMHDR & ";int Item;uint Mask;ptr Text;int TextMax;int Image;lparam lParam"
+Global Const $TAGNMHDFILTERBTNCLICK = $TAGNMHDR & ";int Item;" & $TAGRECT
+Global Const $TAGNMHEADER = $TAGNMHDR & ";int Item;int Button;ptr pItem"
+Global Const $TAGGETIPADDRESS = "byte Field4;byte Field3;byte Field2;byte Field1"
+Global Const $TAGNMIPADDRESS = $TAGNMHDR & ";int Field;int Value"
+Global Const $TAGLVFINDINFO = "struct;uint Flags;ptr Text;lparam Param;" & $TAGPOINT & ";uint Direction;endstruct"
+Global Const $TAGLVHITTESTINFO = $TAGPOINT & ";uint Flags;int Item;int SubItem;int iGroup"
+Global Const $TAGLVITEM = "struct;uint Mask;int Item;int SubItem;uint State;uint StateMask;ptr Text;int TextMax;int Image;lparam Param;" & "int Indent;int GroupID;uint Columns;ptr pColumns;ptr piColFmt;int iGroup;endstruct"
+Global Const $TAGNMLISTVIEW = $TAGNMHDR & ";int Item;int SubItem;uint NewState;uint OldState;uint Changed;" & "struct;long ActionX;long ActionY;endstruct;lparam Param"
+Global Const $TAGNMLVCUSTOMDRAW = "struct;" & $TAGNMHDR & ";dword dwDrawStage;handle hdc;" & $TAGRECT & ";dword_ptr dwItemSpec;uint uItemState;lparam lItemlParam;endstruct" & ";dword clrText;dword clrTextBk;int iSubItem;dword dwItemType;dword clrFace;int iIconEffect;" & "int iIconPhase;int iPartID;int iStateID;struct;long TextLeft;long TextTop;long TextRight;long TextBottom;endstruct;uint uAlign"
+Global Const $TAGNMLVDISPINFO = $TAGNMHDR & ";" & $TAGLVITEM
+Global Const $TAGNMLVFINDITEM = $TAGNMHDR & ";int Start;" & $TAGLVFINDINFO
+Global Const $TAGNMLVGETINFOTIP = $TAGNMHDR & ";dword Flags;ptr Text;int TextMax;int Item;int SubItem;lparam lParam"
+Global Const $TAGNMITEMACTIVATE = $TAGNMHDR & ";int Index;int SubItem;uint NewState;uint OldState;uint Changed;" & $TAGPOINT & ";lparam lParam;uint KeyFlags"
+Global Const $TAGNMLVKEYDOWN = $TAGNMHDR & ";align 2;word VKey;uint Flags"
+Global Const $TAGNMLVSCROLL = $TAGNMHDR & ";int DX;int DY"
+Global Const $TAGMCHITTESTINFO = "uint Size;" & $TAGPOINT & ";uint Hit;" & $TAGSYSTEMTIME & ";" & $TAGRECT & ";int iOffset;int iRow;int iCol"
+Global Const $TAGMCMONTHRANGE = "word MinYear;word MinMonth;word MinDOW;word MinDay;word MinHour;word MinMinute;word MinSecond;" & "word MinMSeconds;word MaxYear;word MaxMonth;word MaxDOW;word MaxDay;word MaxHour;word MaxMinute;word MaxSecond;" & "word MaxMSeconds;short Span"
+Global Const $TAGMCRANGE = "word MinYear;word MinMonth;word MinDOW;word MinDay;word MinHour;word MinMinute;word MinSecond;" & "word MinMSeconds;word MaxYear;word MaxMonth;word MaxDOW;word MaxDay;word MaxHour;word MaxMinute;word MaxSecond;" & "word MaxMSeconds;short MinSet;short MaxSet"
+Global Const $TAGMCSELRANGE = "word MinYear;word MinMonth;word MinDOW;word MinDay;word MinHour;word MinMinute;word MinSecond;" & "word MinMSeconds;word MaxYear;word MaxMonth;word MaxDOW;word MaxDay;word MaxHour;word MaxMinute;word MaxSecond;" & "word MaxMSeconds"
+Global Const $TAGNMDAYSTATE = $TAGNMHDR & ";" & $TAGSYSTEMTIME & ";int DayState;ptr pDayState"
+Global Const $TAGNMSELCHANGE = $TAGNMHDR & ";struct;word BegYear;word BegMonth;word BegDOW;word BegDay;word BegHour;word BegMinute;word BegSecond;word BegMSeconds;endstruct;" & "struct;word EndYear;word EndMonth;word EndDOW;word EndDay;word EndHour;word EndMinute;word EndSecond;word EndMSeconds;endstruct"
+Global Const $TAGNMOBJECTNOTIFY = $TAGNMHDR & ";int Item;ptr piid;ptr pObject;long Result;dword dwFlags"
+Global Const $TAGNMTCKEYDOWN = $TAGNMHDR & ";align 2;word VKey;uint Flags"
+Global Const $TAGTVITEM = "struct;uint Mask;handle hItem;uint State;uint StateMask;ptr Text;int TextMax;int Image;int SelectedImage;" & "int Children;lparam Param;endstruct"
+Global Const $TAGTVITEMEX = "struct;" & $TAGTVITEM & ";int Integral;uint uStateEx;hwnd hwnd;int iExpandedImage;int iReserved;endstruct"
+Global Const $TAGNMTREEVIEW = $TAGNMHDR & ";uint Action;" & "struct;uint OldMask;handle OldhItem;uint OldState;uint OldStateMask;" & "ptr OldText;int OldTextMax;int OldImage;int OldSelectedImage;int OldChildren;lparam OldParam;endstruct;" & "struct;uint NewMask;handle NewhItem;uint NewState;uint NewStateMask;" & "ptr NewText;int NewTextMax;int NewImage;int NewSelectedImage;int NewChildren;lparam NewParam;endstruct;" & "struct;long PointX;long PointY;endstruct"
+Global Const $TAGNMTVCUSTOMDRAW = "struct;" & $TAGNMHDR & ";dword DrawStage;handle HDC;" & $TAGRECT & ";dword_ptr ItemSpec;uint ItemState;lparam ItemParam;endstruct" & ";dword ClrText;dword ClrTextBk;int Level"
+Global Const $TAGNMTVDISPINFO = $TAGNMHDR & ";" & $TAGTVITEM
+Global Const $TAGNMTVGETINFOTIP = $TAGNMHDR & ";ptr Text;int TextMax;handle hItem;lparam lParam"
+Global Const $TAGNMTVITEMCHANGE = $TAGNMHDR & ";uint Changed;handle hItem;uint StateNew;uint StateOld;lparam lParam;"
+Global Const $TAGTVHITTESTINFO = $TAGPOINT & ";uint Flags;handle Item"
+Global Const $TAGNMTVKEYDOWN = $TAGNMHDR & ";align 2;word VKey;uint Flags"
+Global Const $TAGNMMOUSE = $TAGNMHDR & ";dword_ptr ItemSpec;dword_ptr ItemData;" & $TAGPOINT & ";lparam HitInfo"
+Global Const $TAGTOKEN_PRIVILEGES = "dword Count;align 4;int64 LUID;dword Attributes"
+Global Const $TAGIMAGEINFO = "handle hBitmap;handle hMask;int Unused1;int Unused2;" & $TAGRECT
+Global Const $TAGMENUINFO = "dword Size;INT Mask;dword Style;uint YMax;handle hBack;dword ContextHelpID;ulong_ptr MenuData"
+Global Const $TAGMENUITEMINFO = "uint Size;uint Mask;uint Type;uint State;uint ID;handle SubMenu;handle BmpChecked;handle BmpUnchecked;" & "ulong_ptr ItemData;ptr TypeData;uint CCH;handle BmpItem"
+Global Const $TAGREBARBANDINFO = "uint cbSize;uint fMask;uint fStyle;dword clrFore;dword clrBack;ptr lpText;uint cch;" & "int iImage;hwnd hwndChild;uint cxMinChild;uint cyMinChild;uint cx;handle hbmBack;uint wID;uint cyChild;uint cyMaxChild;" & "uint cyIntegral;uint cxIdeal;lparam lParam;uint cxHeader" & ( ( @OSVersion = "WIN_XP" ) ? "" : ";" & $TAGRECT & ";uint uChevronState" )
+Global Const $TAGNMREBARAUTOBREAK = $TAGNMHDR & ";uint uBand;uint wID;lparam lParam;uint uMsg;uint fStyleCurrent;bool fAutoBreak"
+Global Const $TAGNMRBAUTOSIZE = $TAGNMHDR & ";bool fChanged;" & "struct;long TargetLeft;long TargetTop;long TargetRight;long TargetBottom;endstruct;" & "struct;long ActualLeft;long ActualTop;long ActualRight;long ActualBottom;endstruct"
+Global Const $TAGNMREBAR = $TAGNMHDR & ";dword dwMask;uint uBand;uint fStyle;uint wID;lparam lParam"
+Global Const $TAGNMREBARCHEVRON = $TAGNMHDR & ";uint uBand;uint wID;lparam lParam;" & $TAGRECT & ";lparam lParamNM"
+Global Const $TAGNMREBARCHILDSIZE = $TAGNMHDR & ";uint uBand;uint wID;" & "struct;long CLeft;long CTop;long CRight;long CBottom;endstruct;" & "struct;long BLeft;long BTop;long BRight;long BBottom;endstruct"
+Global Const $TAGCOLORSCHEME = "dword Size;dword BtnHighlight;dword BtnShadow"
+Global Const $TAGNMTOOLBAR = $TAGNMHDR & ";int iItem;" & "struct;int iBitmap;int idCommand;byte fsState;byte fsStyle;dword_ptr dwData;int_ptr iString;endstruct" & ";int cchText;ptr pszText;" & $TAGRECT
+Global Const $TAGNMTBHOTITEM = $TAGNMHDR & ";int idOld;int idNew;dword dwFlags"
+Global Const $TAGTBBUTTON = "int Bitmap;int Command;byte State;byte Style;dword_ptr Param;int_ptr String"
+Global Const $TAGTBBUTTONINFO = "uint Size;dword Mask;int Command;int Image;byte State;byte Style;word CX;dword_ptr Param;ptr Text;int TextMax"
+Global Const $TAGNETRESOURCE = "dword Scope;dword Type;dword DisplayType;dword Usage;ptr LocalName;ptr RemoteName;ptr Comment;ptr Provider"
+Global Const $TAGOVERLAPPED = "ulong_ptr Internal;ulong_ptr InternalHigh;struct;dword Offset;dword OffsetHigh;endstruct;handle hEvent"
+Global Const $TAGOPENFILENAME = "dword StructSize;hwnd hwndOwner;handle hInstance;ptr lpstrFilter;ptr lpstrCustomFilter;" & "dword nMaxCustFilter;dword nFilterIndex;ptr lpstrFile;dword nMaxFile;ptr lpstrFileTitle;dword nMaxFileTitle;" & "ptr lpstrInitialDir;ptr lpstrTitle;dword Flags;word nFileOffset;word nFileExtension;ptr lpstrDefExt;lparam lCustData;" & "ptr lpfnHook;ptr lpTemplateName;ptr pvReserved;dword dwReserved;dword FlagsEx"
+Global Const $TAGBITMAPINFOHEADER = "struct;dword biSize;long biWidth;long biHeight;word biPlanes;word biBitCount;" & "dword biCompression;dword biSizeImage;long biXPelsPerMeter;long biYPelsPerMeter;dword biClrUsed;dword biClrImportant;endstruct"
+Global Const $TAGBITMAPINFO = $TAGBITMAPINFOHEADER & ";dword biRGBQuad[1]"
+Global Const $TAGBLENDFUNCTION = "byte Op;byte Flags;byte Alpha;byte Format"
+Global Const $TAGGUID = "struct;ulong Data1;ushort Data2;ushort Data3;byte Data4[8];endstruct"
+Global Const $TAGWINDOWPLACEMENT = "uint length;uint flags;uint showCmd;long ptMinPosition[2];long ptMaxPosition[2];long rcNormalPosition[4]"
+Global Const $TAGWINDOWPOS = "hwnd hWnd;hwnd InsertAfter;int X;int Y;int CX;int CY;uint Flags"
+Global Const $TAGSCROLLINFO = "uint cbSize;uint fMask;int nMin;int nMax;uint nPage;int nPos;int nTrackPos"
+Global Const $TAGSCROLLBARINFO = "dword cbSize;" & $TAGRECT & ";int dxyLineButton;int xyThumbTop;" & "int xyThumbBottom;int reserved;dword rgstate[6]"
+Global Const $TAGLOGFONT = "struct;long Height;long Width;long Escapement;long Orientation;long Weight;byte Italic;byte Underline;" & "byte Strikeout;byte CharSet;byte OutPrecision;byte ClipPrecision;byte Quality;byte PitchAndFamily;wchar FaceName[32];endstruct"
+Global Const $TAGKBDLLHOOKSTRUCT = "dword vkCode;dword scanCode;dword flags;dword time;ulong_ptr dwExtraInfo"
+Global Const $TAGPROCESS_INFORMATION = "handle hProcess;handle hThread;dword ProcessID;dword ThreadID"
+Global Const $TAGSTARTUPINFO = "dword Size;ptr Reserved1;ptr Desktop;ptr Title;dword X;dword Y;dword XSize;dword YSize;dword XCountChars;" & "dword YCountChars;dword FillAttribute;dword Flags;word ShowWindow;word Reserved2;ptr Reserved3;handle StdInput;" & "handle StdOutput;handle StdError"
+Global Const $TAGSECURITY_ATTRIBUTES = "dword Length;ptr Descriptor;bool InheritHandle"
+Global Const $TAGWIN32_FIND_DATA = "dword dwFileAttributes;dword ftCreationTime[2];dword ftLastAccessTime[2];dword ftLastWriteTime[2];dword nFileSizeHigh;dword nFileSizeLow;dword dwReserved0;dword dwReserved1;wchar cFileName[260];wchar cAlternateFileName[14]"
+Global Const $TAGTEXTMETRIC = "long tmHeight;long tmAscent;long tmDescent;long tmInternalLeading;long tmExternalLeading;" & "long tmAveCharWidth;long tmMaxCharWidth;long tmWeight;long tmOverhang;long tmDigitizedAspectX;long tmDigitizedAspectY;" & "wchar tmFirstChar;wchar tmLastChar;wchar tmDefaultChar;wchar tmBreakChar;byte tmItalic;byte tmUnderlined;byte tmStruckOut;" & "byte tmPitchAndFamily;byte tmCharSet"
+#Region Functions list
+#EndRegion Functions list
+#Region Global Variables and Constants
+Global Const $TAGMEMMAP = "handle hProc;ulong_ptr Size;ptr Mem"
+#EndRegion Global Variables and Constants
+#Region Public Functions
+Func _MEMFREE ( ByRef $TMEMMAP )
+	Local $PMEMORY = DllStructGetData ( $TMEMMAP , "Mem" )
+	Local $HPROCESS = DllStructGetData ( $TMEMMAP , "hProc" )
+	Local $BRESULT = _MEMVIRTUALFREEEX ( $HPROCESS , $PMEMORY , 0 , $MEM_RELEASE )
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HPROCESS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $BRESULT
+EndFunc
+Func _MEMGLOBALALLOC ( $IBYTES , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "GlobalAlloc" , "uint" , $IFLAGS , "ulong_ptr" , $IBYTES )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMGLOBALFREE ( $HMEMORY )
+	Local $ACALL = DllCall ( "kernel32.dll" , "ptr" , "GlobalFree" , "handle" , $HMEMORY )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMGLOBALLOCK ( $HMEMORY )
+	Local $ACALL = DllCall ( "kernel32.dll" , "ptr" , "GlobalLock" , "handle" , $HMEMORY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMGLOBALREALLOC ( $HMEMORY , $IBYTES , $IFLAGS = 0 )
+	Local $ARESULT = DllCall ( "kernel32.dll" , "handle" , "GlobalReAlloc" , "handle" , $HMEMORY , "ulong_ptr" , $IBYTES , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ARESULT [ 0 ]
+EndFunc
+Func _MEMGLOBALSIZE ( $HMEMORY )
+	Local $ACALL = DllCall ( "kernel32.dll" , "ulong_ptr" , "GlobalSize" , "handle" , $HMEMORY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMGLOBALUNLOCK ( $HMEMORY )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GlobalUnlock" , "handle" , $HMEMORY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMINIT ( $HWND , $ISIZE , ByRef $TMEMMAP )
+	Local $ACALL = DllCall ( "user32.dll" , "dword" , "GetWindowThreadProcessId" , "hwnd" , $HWND , "dword*" , 0 )
+	If @error Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $IPROCESSID = $ACALL [ 2 ]
+	If $IPROCESSID = 0 Then Return SetError ( 1 , 0 , 0 )
+	Local $IACCESS = BitOR ( $PROCESS_VM_OPERATION , $PROCESS_VM_READ , $PROCESS_VM_WRITE )
+	Local $HPROCESS = __MEM_OPENPROCESS ( $IACCESS , False , $IPROCESSID , True )
+	Local $IALLOC = BitOR ( $MEM_RESERVE , $MEM_COMMIT )
+	Local $PMEMORY = _MEMVIRTUALALLOCEX ( $HPROCESS , 0 , $ISIZE , $IALLOC , $PAGE_READWRITE )
+	If $PMEMORY = 0 Then Return SetError ( 2 , 0 , 0 )
+	$TMEMMAP = DllStructCreate ( $TAGMEMMAP )
+	DllStructSetData ( $TMEMMAP , "hProc" , $HPROCESS )
+	DllStructSetData ( $TMEMMAP , "Size" , $ISIZE )
+	DllStructSetData ( $TMEMMAP , "Mem" , $PMEMORY )
+	Return $PMEMORY
+EndFunc
+Func _MEMMOVEMEMORY ( $PSOURCE , $PDEST , $ILENGTH )
+	DllCall ( "kernel32.dll" , "none" , "RtlMoveMemory" , "struct*" , $PDEST , "struct*" , $PSOURCE , "ulong_ptr" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended )
+EndFunc
+Func _MEMREAD ( ByRef $TMEMMAP , $PSRCE , $PDEST , $ISIZE )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadProcessMemory" , "handle" , DllStructGetData ( $TMEMMAP , "hProc" ) , "ptr" , $PSRCE , "struct*" , $PDEST , "ulong_ptr" , $ISIZE , "ulong_ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMWRITE ( ByRef $TMEMMAP , $PSRCE , $PDEST = 0 , $ISIZE = 0 , $SSRCE = "struct*" )
+	If $PDEST = 0 Then $PDEST = DllStructGetData ( $TMEMMAP , "Mem" )
+	If $ISIZE = 0 Then $ISIZE = DllStructGetData ( $TMEMMAP , "Size" )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "WriteProcessMemory" , "handle" , DllStructGetData ( $TMEMMAP , "hProc" ) , "ptr" , $PDEST , $SSRCE , $PSRCE , "ulong_ptr" , $ISIZE , "ulong_ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMVIRTUALALLOC ( $PADDRESS , $ISIZE , $IALLOCATION , $IPROTECT )
+	Local $ACALL = DllCall ( "kernel32.dll" , "ptr" , "VirtualAlloc" , "ptr" , $PADDRESS , "ulong_ptr" , $ISIZE , "dword" , $IALLOCATION , "dword" , $IPROTECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMVIRTUALALLOCEX ( $HPROCESS , $PADDRESS , $ISIZE , $IALLOCATION , $IPROTECT )
+	Local $ACALL = DllCall ( "kernel32.dll" , "ptr" , "VirtualAllocEx" , "handle" , $HPROCESS , "ptr" , $PADDRESS , "ulong_ptr" , $ISIZE , "dword" , $IALLOCATION , "dword" , $IPROTECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMVIRTUALFREE ( $PADDRESS , $ISIZE , $IFREETYPE )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "VirtualFree" , "ptr" , $PADDRESS , "ulong_ptr" , $ISIZE , "dword" , $IFREETYPE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _MEMVIRTUALFREEEX ( $HPROCESS , $PADDRESS , $ISIZE , $IFREETYPE )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "VirtualFreeEx" , "handle" , $HPROCESS , "ptr" , $PADDRESS , "ulong_ptr" , $ISIZE , "dword" , $IFREETYPE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+Func __MEM_OPENPROCESS ( $IACCESS , $BINHERIT , $IPID , $BDEBUGPRIV = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , $IACCESS , "bool" , $BINHERIT , "dword" , $IPID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return $ACALL [ 0 ]
+	If Not $BDEBUGPRIV Then Return SetError ( 100 , 0 , 0 )
+	Local $HTOKEN = _SECURITY__OPENTHREADTOKENEX ( BitOR ( $TOKEN_ADJUST_PRIVILEGES , $TOKEN_QUERY ) )
+	If @error Then Return SetError ( @error + 10 , @extended , 0 )
+	_SECURITY__SETPRIVILEGE ( $HTOKEN , $SE_DEBUG_NAME , True )
+	Local $IERROR = @error
+	Local $IEXTENDED = @extended
+	Local $IRET = 0
+	If Not @error Then
+		$ACALL = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , $IACCESS , "bool" , $BINHERIT , "dword" , $IPID )
+		$IERROR = @error
+		$IEXTENDED = @extended
+		If $ACALL [ 0 ] Then $IRET = $ACALL [ 0 ]
+		_SECURITY__SETPRIVILEGE ( $HTOKEN , $SE_DEBUG_NAME , False )
+		If @error Then
+			$IERROR = @error + 20
+			$IEXTENDED = @extended
+		EndIf
+	Else
+		$IERROR = @error + 30
+	EndIf
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HTOKEN )
+	Return SetError ( $IERROR , $IEXTENDED , $IRET )
+EndFunc
+#EndRegion Internal Functions
+Func _SENDMESSAGE ( $HWND , $IMSG , $WPARAM = 0 , $LPARAM = 0 , $IRETURN = 0 , $WPARAMTYPE = "wparam" , $LPARAMTYPE = "lparam" , $SRETURNTYPE = "lresult" )
+	Local $ACALL = DllCall ( "user32.dll" , $SRETURNTYPE , "SendMessageW" , "hwnd" , $HWND , "uint" , $IMSG , $WPARAMTYPE , $WPARAM , $LPARAMTYPE , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $IRETURN >= 0 And $IRETURN <= 4 Then Return $ACALL [ $IRETURN ]
+	Return $ACALL
+EndFunc
+Func _SENDMESSAGEA ( $HWND , $IMSG , $WPARAM = 0 , $LPARAM = 0 , $IRETURN = 0 , $WPARAMTYPE = "wparam" , $LPARAMTYPE = "lparam" , $SRETURNTYPE = "lresult" )
+	Local $ACALL = DllCall ( "user32.dll" , $SRETURNTYPE , "SendMessageA" , "hwnd" , $HWND , "uint" , $IMSG , $WPARAMTYPE , $WPARAM , $LPARAMTYPE , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $IRETURN >= 0 And $IRETURN <= 4 Then Return $ACALL [ $IRETURN ]
+	Return $ACALL
+EndFunc
+#Region Global Variables and Constants
+Global $__G_VENUM , $__G_VEXT = 0
+Global $__G_IRGBMODE = 1
+Global Const $TAGOSVERSIONINFO = "struct;dword OSVersionInfoSize;dword MajorVersion;dword MinorVersion;dword BuildNumber;dword PlatformId;wchar CSDVersion[128];endstruct"
+Global Const $IMAGE_BITMAP = 0
+Global Const $IMAGE_ICON = 1
+Global Const $IMAGE_CURSOR = 2
+Global Const $IMAGE_ENHMETAFILE = 3
+Global Const $LR_DEFAULTCOLOR = 0
+Global Const $LR_MONOCHROME = 1
+Global Const $LR_COLOR = 2
+Global Const $LR_COPYRETURNORG = 4
+Global Const $LR_COPYDELETEORG = 8
+Global Const $LR_LOADFROMFILE = 16
+Global Const $LR_LOADTRANSPARENT = 32
+Global Const $LR_DEFAULTSIZE = 64
+Global Const $LR_VGACOLOR = 128
+Global Const $LR_LOADMAP3DCOLORS = 4096
+Global Const $LR_CREATEDIBSECTION = 8192
+Global Const $LR_COPYFROMRESOURCE = 16384
+Global Const $LR_SHARED = 32768
+Global Const $__TAGCURSORINFO = "dword Size;dword Flags;handle hCursor;" & "struct;long X;long Y;endstruct"
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_CREATEFILE ( $SFILENAME , $ICREATION , $IACCESS = 4 , $ISHARE = 0 , $IATTRIBUTES = 0 , $TSECURITY = 0 )
+	Local $IDA = 0 , $ISM = 0 , $ICD = 0 , $IFA = 0
+	If BitAND ( $IACCESS , 1 ) <> 0 Then $IDA = BitOR ( $IDA , $GENERIC_EXECUTE )
+	If BitAND ( $IACCESS , 2 ) <> 0 Then $IDA = BitOR ( $IDA , $GENERIC_READ )
+	If BitAND ( $IACCESS , 4 ) <> 0 Then $IDA = BitOR ( $IDA , $GENERIC_WRITE )
+	If BitAND ( $ISHARE , 1 ) <> 0 Then $ISM = BitOR ( $ISM , $FILE_SHARE_DELETE )
+	If BitAND ( $ISHARE , 2 ) <> 0 Then $ISM = BitOR ( $ISM , $FILE_SHARE_READ )
+	If BitAND ( $ISHARE , 4 ) <> 0 Then $ISM = BitOR ( $ISM , $FILE_SHARE_WRITE )
+	Switch $ICREATION
+	Case 0
+		$ICD = $CREATE_NEW
+	Case 1
+		$ICD = $CREATE_ALWAYS
+	Case 2
+		$ICD = $OPEN_EXISTING
+	Case 3
+		$ICD = $OPEN_ALWAYS
+	Case 4
+		$ICD = $TRUNCATE_EXISTING
+	EndSwitch
+	If BitAND ( $IATTRIBUTES , 1 ) <> 0 Then $IFA = BitOR ( $IFA , $FILE_ATTRIBUTE_ARCHIVE )
+	If BitAND ( $IATTRIBUTES , 2 ) <> 0 Then $IFA = BitOR ( $IFA , $FILE_ATTRIBUTE_HIDDEN )
+	If BitAND ( $IATTRIBUTES , 4 ) <> 0 Then $IFA = BitOR ( $IFA , $FILE_ATTRIBUTE_READONLY )
+	If BitAND ( $IATTRIBUTES , 8 ) <> 0 Then $IFA = BitOR ( $IFA , $FILE_ATTRIBUTE_SYSTEM )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "CreateFileW" , "wstr" , $SFILENAME , "dword" , $IDA , "dword" , $ISM , "struct*" , $TSECURITY , "dword" , $ICD , "dword" , $IFA , "ptr" , 0 )
+	If @error Or ( $ACALL [ 0 ] = Ptr ( + 4294967295 ) ) Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FREELIBRARY ( $HMODULE )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "FreeLibrary" , "handle" , $HMODULE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCURSORINFO ( )
+	Local $TCURSOR = DllStructCreate ( $__TAGCURSORINFO )
+	Local $ICURSOR = DllStructGetSize ( $TCURSOR )
+	DllStructSetData ( $TCURSOR , "Size" , $ICURSOR )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetCursorInfo" , "struct*" , $TCURSOR )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ACURSOR [ 5 ]
+	$ACURSOR [ 0 ] = True
+	$ACURSOR [ 1 ] = DllStructGetData ( $TCURSOR , "Flags" ) <> 0
+	$ACURSOR [ 2 ] = DllStructGetData ( $TCURSOR , "hCursor" )
+	$ACURSOR [ 3 ] = DllStructGetData ( $TCURSOR , "X" )
+	$ACURSOR [ 4 ] = DllStructGetData ( $TCURSOR , "Y" )
+	Return $ACURSOR
+EndFunc
+Func _WINAPI_GETDLGCTRLID ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "GetDlgCtrlID" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETMODULEHANDLE ( $SMODULENAME )
+	If $SMODULENAME = "" Then $SMODULENAME = Null
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "GetModuleHandleW" , "wstr" , $SMODULENAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETSTRING ( $PSTRING , $BUNICODE = True )
+	Local $ILENGTH = _WINAPI_STRLEN ( $PSTRING , $BUNICODE )
+	If @error Or Not $ILENGTH Then Return SetError ( @error + 10 , @extended , "" )
+	Local $TSTRING = DllStructCreate ( ( $BUNICODE ? "wchar" : "char" ) & "[" & ( $ILENGTH + 1 ) & "]" , $PSTRING )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return SetExtended ( $ILENGTH , DllStructGetData ( $TSTRING , 1 ) )
+EndFunc
+Func _WINAPI_GETVERSION ( )
+	Local $TOSVI = DllStructCreate ( $TAGOSVERSIONINFO )
+	DllStructSetData ( $TOSVI , 1 , DllStructGetSize ( $TOSVI ) )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetVersionExW" , "struct*" , $TOSVI )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return Number ( DllStructGetData ( $TOSVI , 2 ) & "." & DllStructGetData ( $TOSVI , 3 ) , $NUMBER_DOUBLE )
+EndFunc
+Func _WINAPI_ISWOW64PROCESS ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( _WINAPI_GETVERSION ( ) < 6.0 ? 1024 : 4096 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "IsWow64Process" , "handle" , $HPROCESS [ 0 ] , "bool*" , 0 )
+	If __CHECKERRORCLOSEHANDLE ( $ACALL , $HPROCESS [ 0 ] ) Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_LOADIMAGE ( $HINSTANCE , $SIMAGE , $ITYPE , $IXDESIRED , $IYDESIRED , $ILOAD )
+	Local $ACALL , $SIMAGETYPE = "int"
+	If IsString ( $SIMAGE ) Then $SIMAGETYPE = "wstr"
+	$ACALL = DllCall ( "user32.dll" , "handle" , "LoadImageW" , "handle" , $HINSTANCE , $SIMAGETYPE , $SIMAGE , "uint" , $ITYPE , "int" , $IXDESIRED , "int" , $IYDESIRED , "uint" , $ILOAD )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOADLIBRARY ( $SFILENAME )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "LoadLibraryW" , "wstr" , $SFILENAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISDIRECTORY ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsDirectoryW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_READFILE ( $HFILE , $PBUFFER , $ITOREAD , ByRef $IREAD , $TOVERLAPPED = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadFile" , "handle" , $HFILE , "struct*" , $PBUFFER , "dword" , $ITOREAD , "dword*" , 0 , "struct*" , $TOVERLAPPED )
+	If @error Then Return SetError ( @error , @extended , False )
+	$IREAD = $ACALL [ 4 ]
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_STRLEN ( $PSTRING , $BUNICODE = True )
+	Local $W = ""
+	If $BUNICODE Then $W = "W"
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "lstrlen" & $W , "struct*" , $PSTRING )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SWITCHCOLOR ( $ICOLOR )
+	If $ICOLOR = + 4294967295 Then Return $ICOLOR
+	Return BitOR ( BitAND ( $ICOLOR , 65280 ) , BitShift ( BitAND ( $ICOLOR , 255 ) , + 4294967280 ) , BitShift ( BitAND ( $ICOLOR , 16711680 ) , 16 ) )
+EndFunc
+Func _WINAPI_WRITEFILE ( $HFILE , $PBUFFER , $ITOWRITE , ByRef $IWRITTEN , $TOVERLAPPED = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "WriteFile" , "handle" , $HFILE , "struct*" , $PBUFFER , "dword" , $ITOWRITE , "dword*" , 0 , "struct*" , $TOVERLAPPED )
+	If @error Then Return SetError ( @error , @extended , False )
+	$IWRITTEN = $ACALL [ 4 ]
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+Func __CHECKERRORARRAYBOUNDS ( Const ByRef $ADATA , ByRef $ISTART , ByRef $IEND , $NDIM = 1 , $IDIM = $UBOUND_DIMENSIONS )
+	If Not IsArray ( $ADATA ) Then Return SetError ( 1 , 0 , 1 )
+	If UBound ( $ADATA , $IDIM ) <> $NDIM Then Return SetError ( 2 , 0 , 1 )
+	If $ISTART < 0 Then $ISTART = 0
+	Local $IUBOUND = UBound ( $ADATA ) + 4294967295
+	If $IEND < 1 Or $IEND > $IUBOUND Then $IEND = $IUBOUND
+	If $ISTART > $IEND Then Return SetError ( 4 , 0 , 1 )
+	Return 0
+EndFunc
+Func __CHECKERRORCLOSEHANDLE ( $ACALL , $HFILE , $BLASTERROR = False , $ICURERR = @error , $ICUREXT = @extended )
+	If Not $ICURERR And Not $ACALL [ 0 ] Then $ICURERR = 10
+	Local $ALASTERROR = DllCall ( "kernel32.dll" , "dword" , "GetLastError" )
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HFILE )
+	If $ICURERR Then DllCall ( "kernel32.dll" , "none" , "SetLastError" , "dword" , $ALASTERROR [ 0 ] )
+	If $BLASTERROR Then $ICUREXT = $ALASTERROR [ 0 ]
+	Return SetError ( $ICURERR , $ICUREXT , $ICURERR )
+EndFunc
+Func __DLL ( $SPATH , $BPIN = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetModuleHandleExW" , "dword" , ( $BPIN ? 1 : 2 ) , "wstr" , $SPATH , "ptr*" , 0 )
+	If Not $ACALL [ 3 ] Then
+		$ACALL = DllCall ( "kernel32.dll" , "handle" , "LoadLibraryW" , "wstr" , $SPATH )
+		If @error Or Not $ACALL [ 0 ] Then Return 0
+	EndIf
+	Return 1
+EndFunc
+Func __ENUMWINDOWSPROC ( $HWND , $BVISIBLE )
+	Local $ACALL
+	If $BVISIBLE Then
+		$ACALL = DllCall ( "user32.dll" , "bool" , "IsWindowVisible" , "hwnd" , $HWND )
+		If Not $ACALL [ 0 ] Then
+			Return 1
+		EndIf
+	EndIf
+	__INC ( $__G_VENUM )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 0 ] = $HWND
+	$ACALL = DllCall ( "user32.dll" , "int" , "GetClassNameW" , "hwnd" , $HWND , "wstr" , "" , "int" , 4096 )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 1 ] = $ACALL [ 2 ]
+	Return 1
+EndFunc
+Func __FATALEXIT ( $ICODE , $STEXT = "" )
+	If $STEXT Then MsgBox ( $MB_SYSTEMMODAL , "AutoIt" , $STEXT )
+	DllCall ( "kernel32.dll" , "none" , "FatalExit" , "int" , $ICODE )
+EndFunc
+Func __INC ( ByRef $ADATA , $IINCREMENT = 100 )
+	Select
+	Case UBound ( $ADATA , $UBOUND_COLUMNS )
+		If $IINCREMENT < 0 Then
+			ReDim $ADATA [ $ADATA [ 0 ] [ 0 ] + 1 ] [ UBound ( $ADATA , $UBOUND_COLUMNS ) ]
+		Else
+			$ADATA [ 0 ] [ 0 ] += 1
+			If $ADATA [ 0 ] [ 0 ] > UBound ( $ADATA ) + 4294967295 Then
+				ReDim $ADATA [ $ADATA [ 0 ] [ 0 ] + $IINCREMENT ] [ UBound ( $ADATA , $UBOUND_COLUMNS ) ]
+			EndIf
+		EndIf
+	Case UBound ( $ADATA , $UBOUND_ROWS )
+		If $IINCREMENT < 0 Then
+			ReDim $ADATA [ $ADATA [ 0 ] + 1 ]
+		Else
+			$ADATA [ 0 ] += 1
+			If $ADATA [ 0 ] > UBound ( $ADATA ) + 4294967295 Then
+				ReDim $ADATA [ $ADATA [ 0 ] + $IINCREMENT ]
+			EndIf
+		EndIf
+Case Else
+		Return 0
+	EndSelect
+	Return 1
+EndFunc
+Func __RGB ( $ICOLOR )
+	If $__G_IRGBMODE Then
+		$ICOLOR = _WINAPI_SWITCHCOLOR ( $ICOLOR )
+	EndIf
+	Return $ICOLOR
+EndFunc
+#EndRegion Internal Functions
+#Region Global Variables and Constants
+Global $__G_AINPROCESS_WINAPI [ 64 ] [ 2 ] = [ [ 0 , 0 ] ]
+Global $__G_AWINLIST_WINAPI [ 64 ] [ 2 ] = [ [ 0 , 0 ] ]
+Global Const $GW_HWNDFIRST = 0
+Global Const $GW_HWNDLAST = 1
+Global Const $GW_HWNDNEXT = 2
+Global Const $GW_HWNDPREV = 3
+Global Const $GW_OWNER = 4
+Global Const $GW_CHILD = 5
+Global Const $GW_ENABLEDPOPUP = 6
+Global Const $GWL_WNDPROC = 4294967292
+Global Const $GWL_HINSTANCE = 4294967290
+Global Const $GWL_HWNDPARENT = 4294967288
+Global Const $GWL_ID = 4294967284
+Global Const $GWL_STYLE = 4294967280
+Global Const $GWL_EXSTYLE = 4294967276
+Global Const $GWL_USERDATA = 4294967275
+Global Const $__WINAPICONSTANT_WM_SETFONT = 48
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_CREATEWINDOWEX ( $IEXSTYLE , $SCLASS , $SNAME , $ISTYLE , $IX , $IY , $IWIDTH , $IHEIGHT , $HPARENT , $HMENU = 0 , $HINSTANCE = 0 , $PPARAM = 0 )
+	If $HINSTANCE = 0 Then $HINSTANCE = _WINAPI_GETMODULEHANDLE ( "" )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "CreateWindowExW" , "dword" , $IEXSTYLE , "wstr" , $SCLASS , "wstr" , $SNAME , "dword" , $ISTYLE , "int" , $IX , "int" , $IY , "int" , $IWIDTH , "int" , $IHEIGHT , "hwnd" , $HPARENT , "handle" , $HMENU , "handle" , $HINSTANCE , "struct*" , $PPARAM )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCLIENTRECT ( $HWND )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetClientRect" , "hwnd" , $HWND , "struct*" , $TRECT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_GETDESKTOPWINDOW ( )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetDesktopWindow" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DESTROYWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DestroyWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENABLEWINDOW ( $HWND , $BENABLE = True )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EnableWindow" , "hwnd" , $HWND , "bool" , $BENABLE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENUMWINDOWS ( $BVISIBLE = True , $HWND = Default )
+	__WINAPI_ENUMWINDOWSINIT ( )
+	If $HWND = Default Then $HWND = _WINAPI_GETDESKTOPWINDOW ( )
+	__WINAPI_ENUMWINDOWSCHILD ( $HWND , $BVISIBLE )
+	Return $__G_AWINLIST_WINAPI
+EndFunc
+Func _WINAPI_ENUMWINDOWSPOPUP ( )
+	__WINAPI_ENUMWINDOWSINIT ( )
+	Local $HWND = _WINAPI_GETWINDOW ( _WINAPI_GETDESKTOPWINDOW ( ) , $GW_CHILD )
+	Local $SCLASS
+	While $HWND <> 0
+		If _WINAPI_ISWINDOWVISIBLE ( $HWND ) Then
+			$SCLASS = _WINAPI_GETCLASSNAME ( $HWND )
+			If $SCLASS = "#32768" Then
+				__WINAPI_ENUMWINDOWSADD ( $HWND )
+			ElseIf $SCLASS = "ToolbarWindow32" Then
+				__WINAPI_ENUMWINDOWSADD ( $HWND )
+			ElseIf $SCLASS = "ToolTips_Class32" Then
+				__WINAPI_ENUMWINDOWSADD ( $HWND )
+			ElseIf $SCLASS = "BaseBar" Then
+				__WINAPI_ENUMWINDOWSCHILD ( $HWND )
+			EndIf
+		EndIf
+		$HWND = _WINAPI_GETWINDOW ( $HWND , $GW_HWNDNEXT )
+	WEnd
+	Return $__G_AWINLIST_WINAPI
+EndFunc
+Func _WINAPI_ENUMWINDOWSTOP ( )
+	__WINAPI_ENUMWINDOWSINIT ( )
+	Local $HWND = _WINAPI_GETWINDOW ( _WINAPI_GETDESKTOPWINDOW ( ) , $GW_CHILD )
+	While $HWND <> 0
+		If _WINAPI_ISWINDOWVISIBLE ( $HWND ) Then __WINAPI_ENUMWINDOWSADD ( $HWND )
+		$HWND = _WINAPI_GETWINDOW ( $HWND , $GW_HWNDNEXT )
+	WEnd
+	Return $__G_AWINLIST_WINAPI
+EndFunc
+Func _WINAPI_GETCLASSNAME ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "GetClassNameW" , "hwnd" , $HWND , "wstr" , "" , "int" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return SetExtended ( $ACALL [ 0 ] , $ACALL [ 2 ] )
+EndFunc
+Func _WINAPI_GETFOCUS ( )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetFocus" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETPARENT ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetParent" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETSYSCOLOR ( $IINDEX )
+	Local $ACALL = DllCall ( "user32.dll" , "INT" , "GetSysColor" , "int" , $IINDEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETSYSTEMMETRICS ( $IINDEX )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "GetSystemMetrics" , "int" , $IINDEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETWINDOW ( $HWND , $ICMD )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetWindow" , "hwnd" , $HWND , "uint" , $ICMD )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETWINDOWHEIGHT ( $HWND )
+	Local $TRECT = _WINAPI_GETWINDOWRECT ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return DllStructGetData ( $TRECT , "Bottom" ) - DllStructGetData ( $TRECT , "Top" )
+EndFunc
+Func _WINAPI_GETWINDOWLONG ( $HWND , $IINDEX )
+	Local $SFUNCNAME = "GetWindowLongW"
+	If @AutoItX64 Then $SFUNCNAME = "GetWindowLongPtrW"
+	Local $ACALL = DllCall ( "user32.dll" , "long_ptr" , $SFUNCNAME , "hwnd" , $HWND , "int" , $IINDEX )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETWINDOWRECT ( $HWND )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetWindowRect" , "hwnd" , $HWND , "struct*" , $TRECT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_GETWINDOWTEXT ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "GetWindowTextW" , "hwnd" , $HWND , "wstr" , "" , "int" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return SetExtended ( $ACALL [ 0 ] , $ACALL [ 2 ] )
+EndFunc
+Func _WINAPI_GETWINDOWTHREADPROCESSID ( $HWND , ByRef $IPID )
+	Local $ACALL = DllCall ( "user32.dll" , "dword" , "GetWindowThreadProcessId" , "hwnd" , $HWND , "dword*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	$IPID = $ACALL [ 2 ]
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETWINDOWWIDTH ( $HWND )
+	Local $TRECT = _WINAPI_GETWINDOWRECT ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return DllStructGetData ( $TRECT , "Right" ) - DllStructGetData ( $TRECT , "Left" )
+EndFunc
+Func _WINAPI_INPROCESS ( $HWND , ByRef $HLASTWND )
+	If $HWND = $HLASTWND Then Return True
+	For $II = $__G_AINPROCESS_WINAPI [ 0 ] [ 0 ] To 1 Step + 4294967295
+		If $HWND = $__G_AINPROCESS_WINAPI [ $II ] [ 0 ] Then
+			If $__G_AINPROCESS_WINAPI [ $II ] [ 1 ] Then
+				$HLASTWND = $HWND
+				Return True
+			Else
+				Return False
+			EndIf
+		EndIf
+	Next
+	Local $IPID
+	_WINAPI_GETWINDOWTHREADPROCESSID ( $HWND , $IPID )
+	Local $ICOUNT = $__G_AINPROCESS_WINAPI [ 0 ] [ 0 ] + 1
+	If $ICOUNT >= 64 Then $ICOUNT = 1
+	$__G_AINPROCESS_WINAPI [ 0 ] [ 0 ] = $ICOUNT
+	$__G_AINPROCESS_WINAPI [ $ICOUNT ] [ 0 ] = $HWND
+	$__G_AINPROCESS_WINAPI [ $ICOUNT ] [ 1 ] = ( $IPID = @AutoItPID )
+	Return $__G_AINPROCESS_WINAPI [ $ICOUNT ] [ 1 ]
+EndFunc
+Func _WINAPI_INVALIDATERECT ( $HWND , $TRECT = 0 , $BERASE = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "InvalidateRect" , "hwnd" , $HWND , "struct*" , $TRECT , "bool" , $BERASE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISCLASSNAME ( $HWND , $SCLASSNAME )
+	Local $SSEPARATOR = Opt ( "GUIDataSeparatorChar" )
+	Local $ACLASSNAME = StringSplit ( $SCLASSNAME , $SSEPARATOR )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $SCLASSCHECK = _WINAPI_GETCLASSNAME ( $HWND )
+	For $X = 1 To UBound ( $ACLASSNAME ) + 4294967295
+		If StringUpper ( StringMid ( $SCLASSCHECK , 1 , StringLen ( $ACLASSNAME [ $X ] ) ) ) = StringUpper ( $ACLASSNAME [ $X ] ) Then Return True
+	Next
+	Return False
+EndFunc
+Func _WINAPI_ISWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISWINDOWVISIBLE ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsWindowVisible" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MOVEWINDOW ( $HWND , $IX , $IY , $IWIDTH , $IHEIGHT , $BREPAINT = True )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "MoveWindow" , "hwnd" , $HWND , "int" , $IX , "int" , $IY , "int" , $IWIDTH , "int" , $IHEIGHT , "bool" , $BREPAINT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETFOCUS ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "SetFocus" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETFONT ( $HWND , $HFONT , $BREDRAW = True )
+	_SENDMESSAGE ( $HWND , $__WINAPICONSTANT_WM_SETFONT , $HFONT , $BREDRAW , 0 , "hwnd" )
+EndFunc
+Func _WINAPI_SETPARENT ( $HWNDCHILD , $HWNDPARENT )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "SetParent" , "hwnd" , $HWNDCHILD , "hwnd" , $HWNDPARENT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINDOWPOS ( $HWND , $HAFTER , $IX , $IY , $ICX , $ICY , $IFLAGS )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetWindowPos" , "hwnd" , $HWND , "hwnd" , $HAFTER , "int" , $IX , "int" , $IY , "int" , $ICX , "int" , $ICY , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINDOWTEXT ( $HWND , $STEXT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetWindowTextW" , "hwnd" , $HWND , "wstr" , $STEXT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SHOWWINDOW ( $HWND , $ICMDSHOW = 5 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ShowWindow" , "hwnd" , $HWND , "int" , $ICMDSHOW )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UPDATEWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UpdateWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+Func __WINAPI_ENUMWINDOWSADD ( $HWND , $SCLASS = "" )
+	If $SCLASS = "" Then $SCLASS = _WINAPI_GETCLASSNAME ( $HWND )
+	$__G_AWINLIST_WINAPI [ 0 ] [ 0 ] += 1
+	Local $ICOUNT = $__G_AWINLIST_WINAPI [ 0 ] [ 0 ]
+	If $ICOUNT >= $__G_AWINLIST_WINAPI [ 0 ] [ 1 ] Then
+		ReDim $__G_AWINLIST_WINAPI [ $ICOUNT + 64 ] [ 2 ]
+		$__G_AWINLIST_WINAPI [ 0 ] [ 1 ] += 64
+	EndIf
+	$__G_AWINLIST_WINAPI [ $ICOUNT ] [ 0 ] = $HWND
+	$__G_AWINLIST_WINAPI [ $ICOUNT ] [ 1 ] = $SCLASS
+EndFunc
+Func __WINAPI_ENUMWINDOWSCHILD ( $HWND , $BVISIBLE = True )
+	$HWND = _WINAPI_GETWINDOW ( $HWND , $GW_CHILD )
+	While $HWND <> 0
+		If ( Not $BVISIBLE ) Or _WINAPI_ISWINDOWVISIBLE ( $HWND ) Then
+			__WINAPI_ENUMWINDOWSADD ( $HWND )
+			__WINAPI_ENUMWINDOWSCHILD ( $HWND , $BVISIBLE )
+		EndIf
+		$HWND = _WINAPI_GETWINDOW ( $HWND , $GW_HWNDNEXT )
+	WEnd
+EndFunc
+Func __WINAPI_ENUMWINDOWSINIT ( )
+	ReDim $__G_AWINLIST_WINAPI [ 64 ] [ 2 ]
+	$__G_AWINLIST_WINAPI [ 0 ] [ 0 ] = 0
+	$__G_AWINLIST_WINAPI [ 0 ] [ 1 ] = 64
+EndFunc
+#EndRegion Internal Functions
+#Region Global Variables and Constants
+Global $__G_HGUICTRL_LASTWND
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+Func __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , ByRef $TITEM , $TBUFFER = 0 , $BRETITEM = False , $IELEMENT = + 4294967295 , $BRETBUFFER = False , $IELEMENTMAX = $IELEMENT )
+	If $IELEMENT > 0 Then
+		DllStructSetData ( $TITEM , $IELEMENT , DllStructGetPtr ( $TBUFFER ) )
+		If $IELEMENT = $IELEMENTMAX Then DllStructSetData ( $TITEM , $IELEMENT + 1 , DllStructGetSize ( $TBUFFER ) )
+	EndIf
+	Local $IRET
+	If IsHWnd ( $HWND ) Then
+		If _WINAPI_INPROCESS ( $HWND , $__G_HGUICTRL_LASTWND ) Then
+			$IRET = DllCall ( "user32.dll" , "lresult" , "SendMessageW" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $IINDEX , "struct*" , $TITEM ) [ 0 ]
+		Else
+			Local $IITEM = DllStructGetSize ( $TITEM )
+			Local $TMEMMAP , $PTEXT
+			Local $IBUFFER = 0
+			If ( $IELEMENT > 0 ) Or ( $IELEMENTMAX = 0 ) Then $IBUFFER = DllStructGetSize ( $TBUFFER )
+			Local $PMEMORY = _MEMINIT ( $HWND , $IITEM + $IBUFFER , $TMEMMAP )
+			If $IBUFFER Then
+				$PTEXT = $PMEMORY + $IITEM
+				If $IELEMENTMAX Then
+					DllStructSetData ( $TITEM , $IELEMENT , $PTEXT )
+				Else
+					$IINDEX = $PTEXT
+				EndIf
+				_MEMWRITE ( $TMEMMAP , $TBUFFER , $PTEXT , $IBUFFER )
+			EndIf
+			_MEMWRITE ( $TMEMMAP , $TITEM , $PMEMORY , $IITEM )
+			$IRET = DllCall ( "user32.dll" , "lresult" , "SendMessageW" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $IINDEX , "ptr" , $PMEMORY ) [ 0 ]
+			If $IBUFFER And $BRETBUFFER Then _MEMREAD ( $TMEMMAP , $PTEXT , $TBUFFER , $IBUFFER )
+			If $BRETITEM Then _MEMREAD ( $TMEMMAP , $PMEMORY , $TITEM , $IITEM )
+			_MEMFREE ( $TMEMMAP )
+		EndIf
+	Else
+		$IRET = GUICtrlSendMsg ( $HWND , $IMSG , $IINDEX , DllStructGetPtr ( $TITEM ) )
+	EndIf
+	Return $IRET
+EndFunc
+Func __GUICTRL_SENDMSG_INIT ( $HWND , $IMSG , $IINDEX , ByRef $TITEM , $TBUFFER = 0 , $BRETITEM = False , $IELEMENT = + 4294967295 , $BRETBUFFER = False , $IELEMENTMAX = $IELEMENT )
+	#forceref $iMsg, $iIndex, $bRetItem, $bRetBuffer
+	DllStructSetData ( $TITEM , $IELEMENT , DllStructGetPtr ( $TBUFFER ) )
+	If $IELEMENT = $IELEMENTMAX Then DllStructSetData ( $TITEM , $IELEMENT + 1 , DllStructGetSize ( $TBUFFER ) )
+	Local $PFUNC
+	If IsHWnd ( $HWND ) Then
+		If _WINAPI_INPROCESS ( $HWND , $__G_HGUICTRL_LASTWND ) Then
+			$PFUNC = __GUICTRL_SENDMSG_INPROCESS
+			SetExtended ( 1 )
+		Else
+			$PFUNC = __GUICTRL_SENDMSG_OUTPROCESS
+			SetExtended ( 2 )
+		EndIf
+	Else
+		$PFUNC = __GUICTRL_SENDMSG_INTERNAL
+		SetExtended ( 3 )
+	EndIf
+	Return $PFUNC
+EndFunc
+Func __GUICTRL_SENDMSG_INPROCESS ( $HWND , $IMSG , $IINDEX , ByRef $TITEM , $TBUFFER = 0 , $BRETITEM = False , $IELEMENT = + 4294967295 , $BRETBUFFER = False , $IELEMENTMAX = $IELEMENT )
+	#forceref $tBuffer, $bRetItem, $bRetBuffer, $iElementMax
+	Return DllCall ( "user32.dll" , "lresult" , "SendMessageW" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $IINDEX , "struct*" , $TITEM ) [ 0 ]
+EndFunc
+Func __GUICTRL_SENDMSG_OUTPROCESS ( $HWND , $IMSG , $IINDEX , ByRef $TITEM , $TBUFFER = 0 , $BRETITEM = False , $IELEMENT = + 4294967295 , $BRETBUFFER = False , $IELEMENTMAX = $IELEMENT )
+	Local $IITEM = DllStructGetSize ( $TITEM )
+	Local $TMEMMAP , $PTEXT
+	Local $IBUFFER = 0
+	If ( $IELEMENT > 0 ) Or ( $IELEMENTMAX = 0 ) Then $IBUFFER = DllStructGetSize ( $TBUFFER )
+	Local $PMEMORY = _MEMINIT ( $HWND , $IITEM + $IBUFFER , $TMEMMAP )
+	If $IBUFFER Then
+		$PTEXT = $PMEMORY + $IITEM
+		If $IELEMENTMAX Then
+			DllStructSetData ( $TITEM , $IELEMENT , $PTEXT )
+		Else
+			$IINDEX = $PTEXT
+		EndIf
+		_MEMWRITE ( $TMEMMAP , $TBUFFER , $PTEXT , $IBUFFER )
+	EndIf
+	_MEMWRITE ( $TMEMMAP , $TITEM , $PMEMORY , $IITEM )
+	Local $IRET = DllCall ( "user32.dll" , "lresult" , "SendMessageW" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $IINDEX , "ptr" , $PMEMORY ) [ 0 ]
+	If $IBUFFER And $BRETBUFFER Then _MEMREAD ( $TMEMMAP , $PTEXT , $TBUFFER , $IBUFFER )
+	If $BRETITEM Then _MEMREAD ( $TMEMMAP , $PMEMORY , $TITEM , $IITEM )
+	_MEMFREE ( $TMEMMAP )
+	Return $IRET
+EndFunc
+Func __GUICTRL_SENDMSG_INTERNAL ( $HWND , $IMSG , $IINDEX , ByRef $TITEM , $TBUFFER = 0 , $BRETITEM = False , $IELEMENT = + 4294967295 , $BRETBUFFER = False , $IELEMENTMAX = $IELEMENT )
+	#forceref $tBuffer, $bRetItem, $bRetBuffer, $iElementMax
+	Return GUICtrlSendMsg ( $HWND , $IMSG , $IINDEX , DllStructGetPtr ( $TITEM ) )
+EndFunc
+Global Const $HDF_LEFT = 0
+Global Const $HDF_RIGHT = 1
+Global Const $HDF_CENTER = 2
+Global Const $HDF_JUSTIFYMASK = 3
+Global Const $HDF_BITMAP_ON_RIGHT = 4096
+Global Const $HDF_BITMAP = 8192
+Global Const $HDF_STRING = 16384
+Global Const $HDF_OWNERDRAW = 32768
+Global Const $HDF_DISPLAYMASK = 61440
+Global Const $HDF_RTLREADING = 4
+Global Const $HDF_SORTDOWN = 512
+Global Const $HDF_IMAGE = 2048
+Global Const $HDF_SORTUP = 1024
+Global Const $HDF_FLAGMASK = 3588
+Global Const $HDI_WIDTH = 1
+Global Const $HDI_TEXT = 2
+Global Const $HDI_FORMAT = 4
+Global Const $HDI_PARAM = 8
+Global Const $HDI_BITMAP = 16
+Global Const $HDI_IMAGE = 32
+Global Const $HDI_DI_SETITEM = 64
+Global Const $HDI_ORDER = 128
+Global Const $HDI_FILTER = 256
+Global Const $HHT_NOWHERE = 1
+Global Const $HHT_ONHEADER = 2
+Global Const $HHT_ONDIVIDER = 4
+Global Const $HHT_ONDIVOPEN = 8
+Global Const $HHT_ONFILTER = 16
+Global Const $HHT_ONFILTERBUTTON = 32
+Global Const $HHT_ABOVE = 256
+Global Const $HHT_BELOW = 512
+Global Const $HHT_TORIGHT = 1024
+Global Const $HHT_TOLEFT = 2048
+Global Const $HDM_FIRST = 4608
+Global Const $HDM_CLEARFILTER = $HDM_FIRST + 24
+Global Const $HDM_CREATEDRAGIMAGE = $HDM_FIRST + 16
+Global Const $HDM_DELETEITEM = $HDM_FIRST + 2
+Global Const $HDM_EDITFILTER = $HDM_FIRST + 23
+Global Const $HDM_GETBITMAPMARGIN = $HDM_FIRST + 21
+Global Const $HDM_GETFOCUSEDITEM = $HDM_FIRST + 27
+Global Const $HDM_GETIMAGELIST = $HDM_FIRST + 9
+Global Const $HDM_GETITEMA = $HDM_FIRST + 3
+Global Const $HDM_GETITEMW = $HDM_FIRST + 11
+Global Const $HDM_GETITEMCOUNT = $HDM_FIRST + 0
+Global Const $HDM_GETITEMDROPDOWNRECT = $HDM_FIRST + 25
+Global Const $HDM_GETITEMRECT = $HDM_FIRST + 7
+Global Const $HDM_GETORDERARRAY = $HDM_FIRST + 17
+Global Const $HDM_GETOVERFLOWRECT = $HDM_FIRST + 26
+Global Const $HDM_GETUNICODEFORMAT = 8192 + 6
+Global Const $HDM_HITTEST = $HDM_FIRST + 6
+Global Const $HDM_INSERTITEMA = $HDM_FIRST + 1
+Global Const $HDM_INSERTITEMW = $HDM_FIRST + 10
+Global Const $HDM_LAYOUT = $HDM_FIRST + 5
+Global Const $HDM_ORDERTOINDEX = $HDM_FIRST + 15
+Global Const $HDM_SETBITMAPMARGIN = $HDM_FIRST + 20
+Global Const $HDM_SETFILTERCHANGETIMEOUT = $HDM_FIRST + 22
+Global Const $HDM_SETFOCUSEDITEM = $HDM_FIRST + 28
+Global Const $HDM_SETHOTDIVIDER = $HDM_FIRST + 19
+Global Const $HDM_SETIMAGELIST = $HDM_FIRST + 8
+Global Const $HDM_SETITEMA = $HDM_FIRST + 4
+Global Const $HDM_SETITEMW = $HDM_FIRST + 12
+Global Const $HDM_SETORDERARRAY = $HDM_FIRST + 18
+Global Const $HDM_SETUNICODEFORMAT = 8192 + 5
+Global Const $HDN_FIRST = + 4294966996
+Global Const $HDN_BEGINDRAG = $HDN_FIRST + 4294967286
+Global Const $HDN_BEGINTRACK = $HDN_FIRST + 4294967290
+Global Const $HDN_DIVIDERDBLCLICK = $HDN_FIRST + 4294967291
+Global Const $HDN_ENDDRAG = $HDN_FIRST + 4294967285
+Global Const $HDN_ENDTRACK = $HDN_FIRST + 4294967289
+Global Const $HDN_FILTERBTNCLICK = $HDN_FIRST + 4294967283
+Global Const $HDN_FILTERCHANGE = $HDN_FIRST + 4294967284
+Global Const $HDN_GETDISPINFO = $HDN_FIRST + 4294967287
+Global Const $HDN_ITEMCHANGED = $HDN_FIRST + 4294967295
+Global Const $HDN_ITEMCHANGING = $HDN_FIRST + 0
+Global Const $HDN_ITEMCLICK = $HDN_FIRST + 4294967294
+Global Const $HDN_ITEMDBLCLICK = $HDN_FIRST + 4294967293
+Global Const $HDN_TRACK = $HDN_FIRST + 4294967288
+Global Const $HDN_BEGINTRACKW = $HDN_FIRST + 4294967270
+Global Const $HDN_DIVIDERDBLCLICKW = $HDN_FIRST + 4294967271
+Global Const $HDN_ENDTRACKW = $HDN_FIRST + 4294967269
+Global Const $HDN_GETDISPINFOW = $HDN_FIRST + 4294967267
+Global Const $HDN_ITEMCHANGEDW = $HDN_FIRST + 4294967275
+Global Const $HDN_ITEMCHANGINGW = $HDN_FIRST + 4294967276
+Global Const $HDN_ITEMCLICKW = $HDN_FIRST + 4294967274
+Global Const $HDN_ITEMDBLCLICKW = $HDN_FIRST + 4294967273
+Global Const $HDN_TRACKW = $HDN_FIRST + 4294967268
+Global Const $HDS_BUTTONS = 2
+Global Const $HDS_CHECKBOXES = 1024
+Global Const $HDS_DRAGDROP = 64
+Global Const $HDS_FILTERBAR = 256
+Global Const $HDS_FLAT = 512
+Global Const $HDS_FULLDRAG = 128
+Global Const $HDS_HIDDEN = 8
+Global Const $HDS_HORZ = 0
+Global Const $HDS_HOTTRACK = 4
+Global Const $HDS_NOSIZING = 2048
+Global Const $HDS_OVERFLOW = 4096
+Global Const $HDS_DEFAULT = 70
+Global Const $_UDF_GLOBALIDS_OFFSET = 2
+Global Const $_UDF_GLOBALID_MAX_WIN = 16
+Global Const $_UDF_STARTID = 10000
+Global Const $_UDF_GLOBALID_MAX_IDS = 55535
+Global Const $__UDFGUICONSTANT_WS_TABSTOP = 65536
+Global Const $__UDFGUICONSTANT_WS_VISIBLE = 268435456
+Global Const $__UDFGUICONSTANT_WS_CHILD = 1073741824
+Global $__G_AUDF_GLOBALIDS_USED [ $_UDF_GLOBALID_MAX_WIN ] [ $_UDF_GLOBALID_MAX_IDS + $_UDF_GLOBALIDS_OFFSET + 1 ]
+Func __UDF_GETNEXTGLOBALID ( $HWND )
+	Local $NCTRLID , $IUSEDINDEX = + 4294967295 , $BALLUSED = True
+	If Not WinExists ( $HWND ) Then Return SetError ( + 4294967295 , + 4294967295 , 0 )
+	For $IINDEX = 0 To $_UDF_GLOBALID_MAX_WIN + 4294967295
+		If $__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ 0 ] <> 0 Then
+			If Not WinExists ( $__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ 0 ] ) Then
+				For $X = 0 To UBound ( $__G_AUDF_GLOBALIDS_USED , $UBOUND_COLUMNS ) + 4294967295
+					$__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ $X ] = 0
+				Next
+				$__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ 1 ] = $_UDF_STARTID
+				$BALLUSED = False
+			EndIf
+		EndIf
+	Next
+	For $IINDEX = 0 To $_UDF_GLOBALID_MAX_WIN + 4294967295
+		If $__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ 0 ] = $HWND Then
+			$IUSEDINDEX = $IINDEX
+			ExitLoop
+		EndIf
+	Next
+	If $IUSEDINDEX = + 4294967295 Then
+		For $IINDEX = 0 To $_UDF_GLOBALID_MAX_WIN + 4294967295
+			If $__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ 0 ] = 0 Then
+				$__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ 0 ] = $HWND
+				$__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ 1 ] = $_UDF_STARTID
+				$BALLUSED = False
+				$IUSEDINDEX = $IINDEX
+				ExitLoop
+			EndIf
+		Next
+	EndIf
+	If $IUSEDINDEX = + 4294967295 And $BALLUSED Then Return SetError ( 16 , 0 , 0 )
+	If $__G_AUDF_GLOBALIDS_USED [ $IUSEDINDEX ] [ 1 ] = $_UDF_STARTID + $_UDF_GLOBALID_MAX_IDS Then
+		For $IIDINDEX = $_UDF_GLOBALIDS_OFFSET To UBound ( $__G_AUDF_GLOBALIDS_USED , $UBOUND_COLUMNS ) + 4294967295
+			If $__G_AUDF_GLOBALIDS_USED [ $IUSEDINDEX ] [ $IIDINDEX ] = 0 Then
+				$NCTRLID = ( $IIDINDEX - $_UDF_GLOBALIDS_OFFSET ) + 10000
+				$__G_AUDF_GLOBALIDS_USED [ $IUSEDINDEX ] [ $IIDINDEX ] = $NCTRLID
+				Return $NCTRLID
+			EndIf
+		Next
+		Return SetError ( + 4294967295 , $_UDF_GLOBALID_MAX_IDS , 0 )
+	EndIf
+	$NCTRLID = $__G_AUDF_GLOBALIDS_USED [ $IUSEDINDEX ] [ 1 ]
+	$__G_AUDF_GLOBALIDS_USED [ $IUSEDINDEX ] [ 1 ] += 1
+	$__G_AUDF_GLOBALIDS_USED [ $IUSEDINDEX ] [ ( $NCTRLID + 4294957296 ) + $_UDF_GLOBALIDS_OFFSET ] = $NCTRLID
+	Return $NCTRLID
+EndFunc
+Func __UDF_FREEGLOBALID ( $HWND , $IGLOBALID )
+	If $IGLOBALID - $_UDF_STARTID < 0 Or $IGLOBALID - $_UDF_STARTID > $_UDF_GLOBALID_MAX_IDS Then Return SetError ( + 4294967295 , 0 , False )
+	For $IINDEX = 0 To $_UDF_GLOBALID_MAX_WIN + 4294967295
+		If $__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ 0 ] = $HWND Then
+			For $X = $_UDF_GLOBALIDS_OFFSET To UBound ( $__G_AUDF_GLOBALIDS_USED , $UBOUND_COLUMNS ) + 4294967295
+				If $__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ $X ] = $IGLOBALID Then
+					$__G_AUDF_GLOBALIDS_USED [ $IINDEX ] [ $X ] = 0
+					Return True
+				EndIf
+			Next
+			Return SetError ( + 4294967293 , 0 , False )
+		EndIf
+	Next
+	Return SetError ( + 4294967294 , 0 , False )
+EndFunc
+#Region Global Variables and Constants
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_CHARTOOEM ( $SSTR )
+	Local $ACALL , $SRETSTR = "" , $NLEN = StringLen ( $SSTR ) + 1 , $ISTART = 1
+	While $ISTART < $NLEN
+		$ACALL = DllCall ( "user32.dll" , "bool" , "CharToOemW" , "wstr" , StringMid ( $SSTR , $ISTART , 65536 ) , "wstr" , "" )
+		If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+		$ISTART += 65536
+		$SRETSTR &= $ACALL [ 2 ]
+	WEnd
+	Return $SRETSTR
+EndFunc
+Func _WINAPI_CLIENTTOSCREEN ( $HWND , ByRef $TPOINT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ClientToScreen" , "hwnd" , $HWND , "struct*" , $TPOINT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_DWORDTOFLOAT ( $IVALUE )
+	Local $TDWORD = DllStructCreate ( "dword" )
+	Local $TFLOAT = DllStructCreate ( "float" , DllStructGetPtr ( $TDWORD ) )
+	DllStructSetData ( $TDWORD , 1 , $IVALUE )
+	Return DllStructGetData ( $TFLOAT , 1 )
+EndFunc
+Func _WINAPI_DWORDTOINT ( $IVALUE )
+	Local $TDATA = DllStructCreate ( "int" )
+	DllStructSetData ( $TDATA , 1 , $IVALUE )
+	Return DllStructGetData ( $TDATA , 1 )
+EndFunc
+Func _WINAPI_FLOATTODWORD ( $IVALUE )
+	Local $TFLOAT = DllStructCreate ( "float" )
+	Local $TDWORD = DllStructCreate ( "dword" , DllStructGetPtr ( $TFLOAT ) )
+	DllStructSetData ( $TFLOAT , 1 , $IVALUE )
+	Return DllStructGetData ( $TDWORD , 1 )
+EndFunc
+Func _WINAPI_FLOATTOINT ( $NFLOAT )
+	Local $TFLOAT = DllStructCreate ( "float" )
+	Local $TINT = DllStructCreate ( "int" , DllStructGetPtr ( $TFLOAT ) )
+	DllStructSetData ( $TFLOAT , 1 , $NFLOAT )
+	Return DllStructGetData ( $TINT , 1 )
+EndFunc
+Func _WINAPI_GETXYFROMPOINT ( ByRef $TPOINT , ByRef $IX , ByRef $IY )
+	$IX = DllStructGetData ( $TPOINT , "X" )
+	$IY = DllStructGetData ( $TPOINT , "Y" )
+EndFunc
+Func _WINAPI_GUIDFROMSTRING ( $SGUID )
+	Local $TGUID = DllStructCreate ( $TAGGUID )
+	If Not _WINAPI_GUIDFROMSTRINGEX ( $SGUID , $TGUID ) Then Return SetError ( @error , @extended , 0 )
+	Return $TGUID
+EndFunc
+Func _WINAPI_GUIDFROMSTRINGEX ( $SGUID , $TGUID )
+	Local $ACALL = DllCall ( "ole32.dll" , "long" , "CLSIDFromString" , "wstr" , $SGUID , "struct*" , $TGUID )
+	If @error Then Return SetError ( @error , @extended , False )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , False )
+	Return True
+EndFunc
+Func _WINAPI_HASHDATA ( $PMEMORY , $ISIZE , $ILENGTH = 32 )
+	If ( $ILENGTH <= 0 ) Or ( $ILENGTH > 256 ) Then Return SetError ( 11 , 0 , 0 )
+	Local $TDATA = DllStructCreate ( "byte[" & $ILENGTH & "]" )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "uint" , "HashData" , "struct*" , $PMEMORY , "dword" , $ISIZE , "struct*" , $TDATA , "dword" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return DllStructGetData ( $TDATA , 1 )
+EndFunc
+Func _WINAPI_HASHSTRING ( $SSTRING , $BCASESENSITIVE = True , $ILENGTH = 32 )
+	Local $ILENGTHS = StringLen ( $SSTRING )
+	If Not $ILENGTHS Or ( $ILENGTH > 256 ) Then Return SetError ( 12 , 0 , 0 )
+	Local $TSTRING = DllStructCreate ( "wchar[" & ( $ILENGTHS + 1 ) & "]" )
+	If Not $BCASESENSITIVE Then
+		$SSTRING = StringLower ( $SSTRING )
+	EndIf
+	DllStructSetData ( $TSTRING , 1 , $SSTRING )
+	Local $SHASH = _WINAPI_HASHDATA ( $TSTRING , 2 * $ILENGTHS , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $SHASH
+EndFunc
+Func _WINAPI_HIBYTE ( $IVALUE )
+	Return BitAND ( BitShift ( $IVALUE , 8 ) , 255 )
+EndFunc
+Func _WINAPI_HIDWORD ( $IVALUE )
+	Local $TINT64 = DllStructCreate ( "int64" )
+	Local $TQWORD = DllStructCreate ( "dword;dword" , DllStructGetPtr ( $TINT64 ) )
+	DllStructSetData ( $TINT64 , 1 , $IVALUE )
+	Return DllStructGetData ( $TQWORD , 2 )
+EndFunc
+Func _WINAPI_HIWORD ( $ILONG )
+	Return BitShift ( $ILONG , 16 )
+EndFunc
+Func _WINAPI_INTTODWORD ( $IVALUE )
+	Local $TDATA = DllStructCreate ( "dword" )
+	DllStructSetData ( $TDATA , 1 , $IVALUE )
+	Return DllStructGetData ( $TDATA , 1 )
+EndFunc
+Func _WINAPI_INTTOFLOAT ( $IINT )
+	Local $TINT = DllStructCreate ( "int" )
+	Local $TFLOAT = DllStructCreate ( "float" , DllStructGetPtr ( $TINT ) )
+	DllStructSetData ( $TINT , 1 , $IINT )
+	Return DllStructGetData ( $TFLOAT , 1 )
+EndFunc
+Func _WINAPI_LOBYTE ( $IVALUE )
+	Return BitAND ( $IVALUE , 255 )
+EndFunc
+Func _WINAPI_LODWORD ( $IVALUE )
+	Local $TINT64 = DllStructCreate ( "int64" )
+	Local $TQWORD = DllStructCreate ( "dword;dword" , DllStructGetPtr ( $TINT64 ) )
+	DllStructSetData ( $TINT64 , 1 , $IVALUE )
+	Return DllStructGetData ( $TQWORD , 1 )
+EndFunc
+Func _WINAPI_LOWORD ( $ILONG )
+	Return BitAND ( $ILONG , 65535 )
+EndFunc
+Func _WINAPI_LONGMID ( $IVALUE , $ISTART , $ICOUNT )
+	Return BitAND ( BitShift ( $IVALUE , $ISTART ) , BitOR ( BitShift ( BitShift ( 2147483647 , 32 - ( $ICOUNT + 1 ) ) , 1 ) , BitShift ( 1 , - ( $ICOUNT + 4294967295 ) ) ) )
+EndFunc
+Func _WINAPI_MAKELANGID ( $ILNGIDPRIMARY , $ILNGIDSUB )
+	Return BitOR ( BitShift ( $ILNGIDSUB , + 4294967286 ) , $ILNGIDPRIMARY )
+EndFunc
+Func _WINAPI_MAKELCID ( $ILNGID , $ISORTID )
+	Return BitOR ( BitShift ( $ISORTID , + 4294967280 ) , $ILNGID )
+EndFunc
+Func _WINAPI_MAKELONG ( $ILO , $IHI )
+	Return BitOR ( BitShift ( $IHI , + 4294967280 ) , BitAND ( $ILO , 65535 ) )
+EndFunc
+Func _WINAPI_MAKEQWORD ( $ILODWORD , $IHIDWORD )
+	Local $TINT64 = DllStructCreate ( "uint64" )
+	Local $TDWORDS = DllStructCreate ( "dword;dword" , DllStructGetPtr ( $TINT64 ) )
+	DllStructSetData ( $TDWORDS , 1 , $ILODWORD )
+	DllStructSetData ( $TDWORDS , 2 , $IHIDWORD )
+	Return DllStructGetData ( $TINT64 , 1 )
+EndFunc
+Func _WINAPI_MAKEWORD ( $ILO , $IHI )
+	Local $TWORD = DllStructCreate ( "ushort" )
+	Local $TBYTE = DllStructCreate ( "byte;byte" , DllStructGetPtr ( $TWORD ) )
+	DllStructSetData ( $TBYTE , 1 , $IHI )
+	DllStructSetData ( $TBYTE , 2 , $ILO )
+	Return DllStructGetData ( $TWORD , 1 )
+EndFunc
+Func _WINAPI_MULTIBYTETOWIDECHAR ( $VTEXT , $ICODEPAGE = 0 , $IFLAGS = 0 , $BRETSTRING = False )
+	Local $STEXTTYPE = ""
+	If IsString ( $VTEXT ) Then $STEXTTYPE = "str"
+	If ( IsDllStruct ( $VTEXT ) Or IsPtr ( $VTEXT ) ) Then $STEXTTYPE = "struct*"
+	If $STEXTTYPE = "" Then Return SetError ( 1 , 0 , 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "MultiByteToWideChar" , "uint" , $ICODEPAGE , "dword" , $IFLAGS , $STEXTTYPE , $VTEXT , "int" , + 4294967295 , "ptr" , 0 , "int" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $IOUT = $ACALL [ 0 ]
+	Local $TOUT = DllStructCreate ( "wchar[" & $IOUT & "]" )
+	$ACALL = DllCall ( "kernel32.dll" , "int" , "MultiByteToWideChar" , "uint" , $ICODEPAGE , "dword" , $IFLAGS , $STEXTTYPE , $VTEXT , "int" , + 4294967295 , "struct*" , $TOUT , "int" , $IOUT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	If $BRETSTRING Then Return DllStructGetData ( $TOUT , 1 )
+	Return $TOUT
+EndFunc
+Func _WINAPI_MULTIBYTETOWIDECHAREX ( $STEXT , $PTEXT , $ICODEPAGE = 0 , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "MultiByteToWideChar" , "uint" , $ICODEPAGE , "dword" , $IFLAGS , "STR" , $STEXT , "int" , + 4294967295 , "struct*" , $PTEXT , "int" , ( StringLen ( $STEXT ) + 1 ) * 2 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OEMTOCHAR ( $SSTR )
+	Local $ACALL , $SRETSTR = "" , $NLEN = StringLen ( $SSTR ) + 1 , $ISTART = 1
+	While $ISTART < $NLEN
+		$ACALL = DllCall ( "user32.dll" , "bool" , "OemToCharA" , "str" , StringMid ( $SSTR , $ISTART , 65536 ) , "str" , "" )
+		If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+		$SRETSTR &= $ACALL [ 2 ]
+		$ISTART += 65536
+	WEnd
+	Return $SRETSTR
+EndFunc
+Func _WINAPI_POINTFROMRECT ( ByRef $TRECT , $BCENTER = True )
+	Local $IX1 = DllStructGetData ( $TRECT , "Left" )
+	Local $IY1 = DllStructGetData ( $TRECT , "Top" )
+	Local $IX2 = DllStructGetData ( $TRECT , "Right" )
+	Local $IY2 = DllStructGetData ( $TRECT , "Bottom" )
+	If $BCENTER Then
+		$IX1 = $IX1 + ( ( $IX2 - $IX1 ) / 2 )
+		$IY1 = $IY1 + ( ( $IY2 - $IY1 ) / 2 )
+	EndIf
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	DllStructSetData ( $TPOINT , "X" , $IX1 )
+	DllStructSetData ( $TPOINT , "Y" , $IY1 )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_PRIMARYLANGID ( $ILNGID )
+	Return BitAND ( $ILNGID , 1023 )
+EndFunc
+Func _WINAPI_SCREENTOCLIENT ( $HWND , ByRef $TPOINT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ScreenToClient" , "hwnd" , $HWND , "struct*" , $TPOINT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SHORTTOWORD ( $IVALUE )
+	Return BitAND ( $IVALUE , 65535 )
+EndFunc
+Func _WINAPI_STRFORMATBYTESIZE ( $ISIZE )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "ptr" , "StrFormatByteSizeW" , "int64" , $ISIZE , "wstr" , "" , "uint" , 1024 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_STRFORMATBYTESIZEEX ( $ISIZE )
+	Local $ASYMBOL = DllCall ( "kernel32.dll" , "int" , "GetLocaleInfoW" , "dword" , 1024 , "dword" , 15 , "wstr" , "" , "int" , 2048 )
+	If @error Then Return SetError ( @error + 10 , @extended , "" )
+	Local $SSIZE = _WINAPI_STRFORMATBYTESIZE ( 0 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return StringReplace ( $SSIZE , "0" , StringRegExpReplace ( Number ( $ISIZE ) , "(?<=\d)(?=(\d{3})+\z)" , $ASYMBOL [ 3 ] ) )
+EndFunc
+Func _WINAPI_STRFORMATKBSIZE ( $ISIZE )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "ptr" , "StrFormatKBSizeW" , "int64" , $ISIZE , "wstr" , "" , "uint" , 1024 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_STRFROMTIMEINTERVAL ( $ITIME , $IDIGITS = 7 )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "int" , "StrFromTimeIntervalW" , "wstr" , "" , "uint" , 1024 , "dword" , $ITIME , "int" , $IDIGITS )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return StringStripWS ( $ACALL [ 1 ] , $STR_STRIPLEADING + $STR_STRIPTRAILING )
+EndFunc
+Func _WINAPI_STRINGFROMGUID ( $TGUID )
+	Local $ACALL = DllCall ( "ole32.dll" , "int" , "StringFromGUID2" , "struct*" , $TGUID , "wstr" , "" , "int" , 40 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return SetExtended ( $ACALL [ 0 ] , $ACALL [ 2 ] )
+EndFunc
+Func _WINAPI_SUBLANGID ( $ILNGID )
+	Return BitShift ( $ILNGID , 10 )
+EndFunc
+Func _WINAPI_SWAPDWORD ( $IVALUE )
+	Local $TSTRUCT1 = DllStructCreate ( "dword;dword" )
+	Local $TSTRUCT2 = DllStructCreate ( "byte[4];byte[4]" , DllStructGetPtr ( $TSTRUCT1 ) )
+	DllStructSetData ( $TSTRUCT1 , 1 , $IVALUE )
+	For $I = 1 To 4
+		DllStructSetData ( $TSTRUCT2 , 2 , DllStructGetData ( $TSTRUCT2 , 1 , 5 - $I ) , $I )
+	Next
+	Return DllStructGetData ( $TSTRUCT1 , 2 )
+EndFunc
+Func _WINAPI_SWAPQWORD ( $IVALUE )
+	Local $TSTRUCT1 = DllStructCreate ( "int64;int64" )
+	Local $TSTRUCT2 = DllStructCreate ( "byte[8];byte[8]" , DllStructGetPtr ( $TSTRUCT1 ) )
+	DllStructSetData ( $TSTRUCT1 , 1 , $IVALUE )
+	For $I = 1 To 8
+		DllStructSetData ( $TSTRUCT2 , 2 , DllStructGetData ( $TSTRUCT2 , 1 , 9 - $I ) , $I )
+	Next
+	Return DllStructGetData ( $TSTRUCT1 , 2 )
+EndFunc
+Func _WINAPI_SWAPWORD ( $IVALUE )
+	Local $TSTRUCT1 = DllStructCreate ( "word;word" )
+	Local $TSTRUCT2 = DllStructCreate ( "byte[2];byte[2]" , DllStructGetPtr ( $TSTRUCT1 ) )
+	DllStructSetData ( $TSTRUCT1 , 1 , $IVALUE )
+	For $I = 1 To 2
+		DllStructSetData ( $TSTRUCT2 , 2 , DllStructGetData ( $TSTRUCT2 , 1 , 3 - $I ) , $I )
+	Next
+	Return DllStructGetData ( $TSTRUCT1 , 2 )
+EndFunc
+Func _WINAPI_WIDECHARTOMULTIBYTE ( $VUNICODE , $ICODEPAGE = 0 , $BRETNOSTRUCT = True , $BRETBINARY = False )
+	Local $SUNICODETYPE = "wstr"
+	If Not IsString ( $VUNICODE ) Then $SUNICODETYPE = "struct*"
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "WideCharToMultiByte" , "uint" , $ICODEPAGE , "dword" , 0 , $SUNICODETYPE , $VUNICODE , "int" , + 4294967295 , "ptr" , 0 , "int" , 0 , "ptr" , 0 , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , "" )
+	Local $TMULTIBYTE = DllStructCreate ( ( ( $BRETBINARY ) ? ( "byte" ) : ( "char" ) ) & "[" & $ACALL [ 0 ] & "]" )
+	$ACALL = DllCall ( "kernel32.dll" , "int" , "WideCharToMultiByte" , "uint" , $ICODEPAGE , "dword" , 0 , $SUNICODETYPE , $VUNICODE , "int" , + 4294967295 , "struct*" , $TMULTIBYTE , "int" , $ACALL [ 0 ] , "ptr" , 0 , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	If $BRETNOSTRUCT Then Return DllStructGetData ( $TMULTIBYTE , 1 )
+	Return $TMULTIBYTE
+EndFunc
+Func _WINAPI_WORDTOSHORT ( $IVALUE )
+	If BitAND ( $IVALUE , 32768 ) Then
+		Return BitOR ( $IVALUE , 4294934528 )
+	EndIf
+	Return BitAND ( $IVALUE , 32767 )
+EndFunc
+#EndRegion Public Functions
+#Region Global Variables and Constants
+Global Const $DUPLICATE_CLOSE_SOURCE = 1
+Global Const $DUPLICATE_SAME_ACCESS = 2
+Global Const $OBJ_BITMAP = 7
+Global Const $OBJ_BRUSH = 2
+Global Const $OBJ_COLORSPACE = 14
+Global Const $OBJ_DC = 3
+Global Const $OBJ_ENHMETADC = 12
+Global Const $OBJ_ENHMETAFILE = 13
+Global Const $OBJ_EXTPEN = 11
+Global Const $OBJ_FONT = 6
+Global Const $OBJ_MEMDC = 10
+Global Const $OBJ_METADC = 4
+Global Const $OBJ_METAFILE = 9
+Global Const $OBJ_PAL = 5
+Global Const $OBJ_PEN = 1
+Global Const $OBJ_REGION = 8
+Global Const $NULL_BRUSH = 5
+Global Const $NULL_PEN = 8
+Global Const $BLACK_BRUSH = 4
+Global Const $DKGRAY_BRUSH = 3
+Global Const $DC_BRUSH = 18
+Global Const $GRAY_BRUSH = 2
+Global Const $HOLLOW_BRUSH = $NULL_BRUSH
+Global Const $LTGRAY_BRUSH = 1
+Global Const $WHITE_BRUSH = 0
+Global Const $BLACK_PEN = 7
+Global Const $DC_PEN = 19
+Global Const $WHITE_PEN = 6
+Global Const $ANSI_FIXED_FONT = 11
+Global Const $ANSI_VAR_FONT = 12
+Global Const $DEVICE_DEFAULT_FONT = 14
+Global Const $DEFAULT_GUI_FONT = 17
+Global Const $OEM_FIXED_FONT = 10
+Global Const $SYSTEM_FONT = 13
+Global Const $SYSTEM_FIXED_FONT = 16
+Global Const $DEFAULT_PALETTE = 15
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_CLOSEHANDLE ( $HOBJECT )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HOBJECT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DELETEOBJECT ( $HOBJECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "DeleteObject" , "handle" , $HOBJECT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DUPLICATEHANDLE ( $HSOURCEPROCESSHANDLE , $HSOURCEHANDLE , $HTARGETPROCESSHANDLE , $IDESIREDACCESS , $IINHERITHANDLE , $IOPTIONS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "DuplicateHandle" , "handle" , $HSOURCEPROCESSHANDLE , "handle" , $HSOURCEHANDLE , "handle" , $HTARGETPROCESSHANDLE , "handle*" , 0 , "dword" , $IDESIREDACCESS , "bool" , $IINHERITHANDLE , "dword" , $IOPTIONS )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 4 ]
+EndFunc
+Func _WINAPI_GETCURRENTOBJECT ( $HDC , $ITYPE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "GetCurrentObject" , "handle" , $HDC , "uint" , $ITYPE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCURRENTPROCESS ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "GetCurrentProcess" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETOBJECT ( $HOBJECT , $ISIZE , $POBJECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetObjectW" , "handle" , $HOBJECT , "int" , $ISIZE , "struct*" , $POBJECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETOBJECTINFOBYHANDLE ( $HOBJECT )
+	Local $TAGPUBLIC_OBJECT_BASIC_INFORMATION = "ulong Attributes;ulong GrantedAcess;ulong HandleCount;ulong PointerCount;ulong Reserved[10]"
+	Local $TPOBI = DllStructCreate ( $TAGPUBLIC_OBJECT_BASIC_INFORMATION )
+	Local $ACALL = DllCall ( "ntdll.dll" , "long" , "ZwQueryObject" , "handle" , $HOBJECT , "uint" , 0 , "struct*" , $TPOBI , "ulong" , DllStructGetSize ( $TPOBI ) , "ptr" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Local $ARET [ 4 ]
+	For $I = 0 To 3
+		$ARET [ $I ] = DllStructGetData ( $TPOBI , $I + 1 )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETOBJECTNAMEBYHANDLE ( $HOBJECT )
+	Local $TAGUNICODE_STRING = "struct;ushort Length;ushort MaximumLength;ptr Buffer;endstruct"
+	Local $TAGPUBLIC_OBJECT_TYPE_INFORMATION = "struct;" & $TAGUNICODE_STRING & ";ulong Reserved[22];endstruct"
+	Local $TPOTI = DllStructCreate ( $TAGPUBLIC_OBJECT_TYPE_INFORMATION & ";byte[32]" )
+	Local $ACALL = DllCall ( "ntdll.dll" , "long" , "ZwQueryObject" , "handle" , $HOBJECT , "uint" , 2 , "struct*" , $TPOTI , "ulong" , DllStructGetSize ( $TPOTI ) , "ulong*" , 0 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Local $PDATA = DllStructGetData ( $TPOTI , 3 )
+	If Not $PDATA Then Return SetError ( 11 , 0 , "" )
+	Return _WINAPI_GETSTRING ( $PDATA )
+EndFunc
+Func _WINAPI_GETOBJECTTYPE ( $HOBJECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "dword" , "GetObjectType" , "handle" , $HOBJECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETSTDHANDLE ( $ISTDHANDLE )
+	If $ISTDHANDLE < 0 Or $ISTDHANDLE > 2 Then Return SetError ( 2 , 0 , + 4294967295 )
+	Local Const $AHANDLE [ 3 ] = [ + 4294967286 , + 4294967285 , + 4294967284 ]
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "GetStdHandle" , "dword" , $AHANDLE [ $ISTDHANDLE ] )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETSTOCKOBJECT ( $IOBJECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "GetStockObject" , "int" , $IOBJECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SELECTOBJECT ( $HDC , $HGDIOBJ )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDC , "handle" , $HGDIOBJ )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETHANDLEINFORMATION ( $HOBJECT , $IMASK , $IFLAGS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "SetHandleInformation" , "handle" , $HOBJECT , "dword" , $IMASK , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+Global $__G_THEADERBUFFER , $__G_THEADERBUFFERANSI
+Global Const $__HEADERCONSTANT_CLASSNAME = "SysHeader32"
+Global Const $__HEADERCONSTANT_DEFAULT_GUI_FONT = 17
+Global Const $__HEADERCONSTANT_SWP_SHOWWINDOW = 64
+Global Const $TAGHDHITTESTINFO = $TAGPOINT & ";uint Flags;int Item"
+Global Const $TAGHDLAYOUT = "ptr Rect;ptr WindowPos"
+Global Const $TAGHDTEXTFILTER = "ptr Text;int TextMax"
+Func _GUICTRLHEADER_ADDITEM ( $HWND , $STEXT , $IWIDTH = 50 , $IALIGN = 0 , $IIMAGE = + 4294967295 , $BONRIGHT = False )
+	Return _GUICTRLHEADER_INSERTITEM ( $HWND , _GUICTRLHEADER_GETITEMCOUNT ( $HWND ) , $STEXT , $IWIDTH , $IALIGN , $IIMAGE , $BONRIGHT )
+EndFunc
+Func _GUICTRLHEADER_CLEARFILTER ( $HWND , $IINDEX )
+	Return _SENDMESSAGE ( $HWND , $HDM_CLEARFILTER , $IINDEX ) <> 0
+EndFunc
+Func _GUICTRLHEADER_CLEARFILTERALL ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $HDM_CLEARFILTER , + 4294967295 ) <> 0
+EndFunc
+Func _GUICTRLHEADER_CREATE ( $HWND , $ISTYLE = 70 )
+	$ISTYLE = BitOR ( $ISTYLE , $__UDFGUICONSTANT_WS_CHILD , $__UDFGUICONSTANT_WS_VISIBLE )
+	Local $NCTRLID = __UDF_GETNEXTGLOBALID ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $HHEADER = _WINAPI_CREATEWINDOWEX ( 0 , $__HEADERCONSTANT_CLASSNAME , "" , $ISTYLE , 0 , 0 , 0 , 0 , $HWND , $NCTRLID )
+	Local $TRECT = _WINAPI_GETCLIENTRECT ( $HWND )
+	Local $TWINDOWPOS = _GUICTRLHEADER_LAYOUT ( $HHEADER , $TRECT )
+	Local $IFLAGS = BitOR ( DllStructGetData ( $TWINDOWPOS , "Flags" ) , $__HEADERCONSTANT_SWP_SHOWWINDOW )
+	_WINAPI_SETWINDOWPOS ( $HHEADER , DllStructGetData ( $TWINDOWPOS , "InsertAfter" ) , DllStructGetData ( $TWINDOWPOS , "X" ) , DllStructGetData ( $TWINDOWPOS , "Y" ) , DllStructGetData ( $TWINDOWPOS , "CX" ) , DllStructGetData ( $TWINDOWPOS , "CY" ) , $IFLAGS )
+	_WINAPI_SETFONT ( $HHEADER , _WINAPI_GETSTOCKOBJECT ( $__HEADERCONSTANT_DEFAULT_GUI_FONT ) )
+	Return $HHEADER
+EndFunc
+Func _GUICTRLHEADER_CREATEDRAGIMAGE ( $HWND , $IINDEX )
+	Return Ptr ( _SENDMESSAGE ( $HWND , $HDM_CREATEDRAGIMAGE , $IINDEX ) )
+EndFunc
+Func _GUICTRLHEADER_DELETEITEM ( $HWND , $IINDEX )
+	Return _SENDMESSAGE ( $HWND , $HDM_DELETEITEM , $IINDEX ) <> 0
+EndFunc
+Func _GUICTRLHEADER_DESTROY ( ByRef $HWND )
+	If Not _WINAPI_ISCLASSNAME ( $HWND , $__HEADERCONSTANT_CLASSNAME ) Then Return SetError ( 2 , 2 , False )
+	Local $IDESTROYED = 0
+	If IsHWnd ( $HWND ) Then
+		If _WINAPI_INPROCESS ( $HWND , $__G_HGUICTRL_LASTWND ) Then
+			Local $NCTRLID = _WINAPI_GETDLGCTRLID ( $HWND )
+			Local $HPARENT = _WINAPI_GETPARENT ( $HWND )
+			$IDESTROYED = _WINAPI_DESTROYWINDOW ( $HWND )
+			Local $IRET = __UDF_FREEGLOBALID ( $HPARENT , $NCTRLID )
+			If Not $IRET Then
+			EndIf
+		Else
+			Return SetError ( 1 , 1 , False )
+		EndIf
+	Else
+		$IDESTROYED = GUICtrlDelete ( $HWND )
+	EndIf
+	If $IDESTROYED Then $HWND = 0
+	Return $IDESTROYED <> 0
+EndFunc
+Func _GUICTRLHEADER_EDITFILTER ( $HWND , $IINDEX , $BDISCARD = True )
+	Return _SENDMESSAGE ( $HWND , $HDM_EDITFILTER , $IINDEX , $BDISCARD ) <> 0
+EndFunc
+Func _GUICTRLHEADER_GETFILTERTEXT ( $HWND , $IINDEX )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLHEADER_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = DllStructCreate ( "wchar Text[64]" )
+		$IMSG = $HDM_GETITEMW
+	Else
+		$TBUFFER = DllStructCreate ( "char Text[64]" )
+		$IMSG = $HDM_GETITEMA
+	EndIf
+	Local $TFILTER = DllStructCreate ( $TAGHDTEXTFILTER )
+	DllStructSetData ( $TFILTER , "Text" , DllStructGetPtr ( $TBUFFER ) )
+	DllStructSetData ( $TFILTER , "TextMax" , DllStructGetSize ( $TBUFFER ) )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_FILTER )
+	DllStructSetData ( $TITEM , "Type" , 0 )
+	DllStructSetData ( $TITEM , "pFilter" , DllStructGetPtr ( $TFILTER ) )
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TITEM , $TBUFFER , False , + 4294967295 , True )
+	Return DllStructGetData ( $TBUFFER , "Text" )
+EndFunc
+Func _GUICTRLHEADER_GETBITMAPMARGIN ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $HDM_GETBITMAPMARGIN )
+EndFunc
+Func _GUICTRLHEADER_GETIMAGELIST ( $HWND )
+	Return Ptr ( _SENDMESSAGE ( $HWND , $HDM_GETIMAGELIST ) )
+EndFunc
+Func _GUICTRLHEADER_GETITEM ( $HWND , $IINDEX , ByRef $TITEM )
+	Local $IMSG
+	If _GUICTRLHEADER_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $HDM_GETITEMW
+	Else
+		$IMSG = $HDM_GETITEMA
+	EndIf
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TITEM , 0 , True )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLHEADER_GETITEMALIGN ( $HWND , $IINDEX )
+	Switch BitAND ( _GUICTRLHEADER_GETITEMFORMAT ( $HWND , $IINDEX ) , $HDF_JUSTIFYMASK )
+	Case $HDF_LEFT
+		Return 0
+	Case $HDF_RIGHT
+		Return 1
+	Case $HDF_CENTER
+		Return 2
+Case Else
+		Return + 4294967295
+	EndSwitch
+EndFunc
+Func _GUICTRLHEADER_GETITEMBITMAP ( $HWND , $IINDEX )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_BITMAP )
+	_GUICTRLHEADER_GETITEM ( $HWND , $IINDEX , $TITEM )
+	Return DllStructGetData ( $TITEM , "hBmp" )
+EndFunc
+Func _GUICTRLHEADER_GETITEMCOUNT ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $HDM_GETITEMCOUNT )
+EndFunc
+Func _GUICTRLHEADER_GETITEMDISPLAY ( $HWND , $IINDEX )
+	Local $IRET = 0
+	Local $IFORMAT = _GUICTRLHEADER_GETITEMFORMAT ( $HWND , $IINDEX )
+	If BitAND ( $IFORMAT , $HDF_BITMAP ) <> 0 Then $IRET = BitOR ( $IRET , 1 )
+	If BitAND ( $IFORMAT , $HDF_BITMAP_ON_RIGHT ) <> 0 Then $IRET = BitOR ( $IRET , 2 )
+	If BitAND ( $IFORMAT , $HDF_OWNERDRAW ) <> 0 Then $IRET = BitOR ( $IRET , 4 )
+	If BitAND ( $IFORMAT , $HDF_STRING ) <> 0 Then $IRET = BitOR ( $IRET , 8 )
+	Return $IRET
+EndFunc
+Func _GUICTRLHEADER_GETITEMFLAGS ( $HWND , $IINDEX )
+	Local $IRET = 0
+	Local $IFORMAT = _GUICTRLHEADER_GETITEMFORMAT ( $HWND , $IINDEX )
+	If BitAND ( $IFORMAT , $HDF_IMAGE ) <> 0 Then $IRET = BitOR ( $IRET , 1 )
+	If BitAND ( $IFORMAT , $HDF_RTLREADING ) <> 0 Then $IRET = BitOR ( $IRET , 2 )
+	If BitAND ( $IFORMAT , $HDF_SORTDOWN ) <> 0 Then $IRET = BitOR ( $IRET , 4 )
+	If BitAND ( $IFORMAT , $HDF_SORTUP ) <> 0 Then $IRET = BitOR ( $IRET , 8 )
+	Return $IRET
+EndFunc
+Func _GUICTRLHEADER_GETITEMFORMAT ( $HWND , $IINDEX )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_FORMAT )
+	_GUICTRLHEADER_GETITEM ( $HWND , $IINDEX , $TITEM )
+	Return DllStructGetData ( $TITEM , "Fmt" )
+EndFunc
+Func _GUICTRLHEADER_GETITEMIMAGE ( $HWND , $IINDEX )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_IMAGE )
+	_GUICTRLHEADER_GETITEM ( $HWND , $IINDEX , $TITEM )
+	Return DllStructGetData ( $TITEM , "Image" )
+EndFunc
+Func _GUICTRLHEADER_GETITEMORDER ( $HWND , $IINDEX )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_ORDER )
+	_GUICTRLHEADER_GETITEM ( $HWND , $IINDEX , $TITEM )
+	Return DllStructGetData ( $TITEM , "Order" )
+EndFunc
+Func _GUICTRLHEADER_GETITEMPARAM ( $HWND , $IINDEX )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_PARAM )
+	_GUICTRLHEADER_GETITEM ( $HWND , $IINDEX , $TITEM )
+	Return DllStructGetData ( $TITEM , "Param" )
+EndFunc
+Func _GUICTRLHEADER_GETITEMRECT ( $HWND , $IINDEX )
+	Local $ARECT [ 4 ]
+	Local $TRECT = _GUICTRLHEADER_GETITEMRECTEX ( $HWND , $IINDEX )
+	$ARECT [ 0 ] = DllStructGetData ( $TRECT , "Left" )
+	$ARECT [ 1 ] = DllStructGetData ( $TRECT , "Top" )
+	$ARECT [ 2 ] = DllStructGetData ( $TRECT , "Right" )
+	$ARECT [ 3 ] = DllStructGetData ( $TRECT , "Bottom" )
+	Return $ARECT
+EndFunc
+Func _GUICTRLHEADER_GETITEMRECTEX ( $HWND , $IINDEX )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	__GUICTRL_SENDMSG ( $HWND , $HDM_GETITEMRECT , $IINDEX , $TRECT , 0 , True )
+	Return $TRECT
+EndFunc
+Func _GUICTRLHEADER_GETITEMTEXT ( $HWND , $IINDEX )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLHEADER_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_THEADERBUFFER
+		$IMSG = $HDM_GETITEMW
+	Else
+		$TBUFFER = $__G_THEADERBUFFERANSI
+		$IMSG = $HDM_GETITEMA
+	EndIf
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_TEXT )
+	DllStructSetData ( $TITEM , "TextMax" , DllStructGetSize ( $TBUFFER ) )
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TITEM , $TBUFFER , False , 3 , True , 5 )
+	Return DllStructGetData ( $TBUFFER , "Text" )
+EndFunc
+Func _GUICTRLHEADER_GETITEMWIDTH ( $HWND , $IINDEX )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_WIDTH )
+	_GUICTRLHEADER_GETITEM ( $HWND , $IINDEX , $TITEM )
+	Return DllStructGetData ( $TITEM , "XY" )
+EndFunc
+Func _GUICTRLHEADER_GETORDERARRAY ( $HWND )
+	Local $IITEMS = _GUICTRLHEADER_GETITEMCOUNT ( $HWND )
+	Local $TBUFFER = DllStructCreate ( "int[" & $IITEMS & "]" )
+	__GUICTRL_SENDMSG ( $HWND , $HDM_GETORDERARRAY , $IITEMS , $TBUFFER , 0 , True )
+	Local $ABUFFER [ $IITEMS + 1 ]
+	$ABUFFER [ 0 ] = $IITEMS
+	For $II = 1 To $IITEMS
+		$ABUFFER [ $II ] = DllStructGetData ( $TBUFFER , 1 , $II )
+	Next
+	Return $ABUFFER
+EndFunc
+Func _GUICTRLHEADER_GETUNICODEFORMAT ( $HWND )
+	If Not IsDllStruct ( $__G_THEADERBUFFER ) Then
+		$__G_THEADERBUFFER = DllStructCreate ( "wchar Text[4096]" )
+		$__G_THEADERBUFFERANSI = DllStructCreate ( "char Text[4096]" , DllStructGetPtr ( $__G_THEADERBUFFER ) )
+	EndIf
+	Return _SENDMESSAGE ( $HWND , $HDM_GETUNICODEFORMAT ) <> 0
+EndFunc
+Func _GUICTRLHEADER_HITTEST ( $HWND , $IX , $IY )
+	Local $TTEST = DllStructCreate ( $TAGHDHITTESTINFO )
+	DllStructSetData ( $TTEST , "X" , $IX )
+	DllStructSetData ( $TTEST , "Y" , $IY )
+	Local $ATEST [ 11 ]
+	$ATEST [ 0 ] = __GUICTRL_SENDMSG ( $HWND , $HDM_HITTEST , 0 , $TTEST , 0 , True )
+	Local $IFLAGS = DllStructGetData ( $TTEST , "Flags" )
+	$ATEST [ 1 ] = BitAND ( $IFLAGS , $HHT_NOWHERE ) <> 0
+	$ATEST [ 2 ] = BitAND ( $IFLAGS , $HHT_ONHEADER ) <> 0
+	$ATEST [ 3 ] = BitAND ( $IFLAGS , $HHT_ONDIVIDER ) <> 0
+	$ATEST [ 4 ] = BitAND ( $IFLAGS , $HHT_ONDIVOPEN ) <> 0
+	$ATEST [ 5 ] = BitAND ( $IFLAGS , $HHT_ONFILTER ) <> 0
+	$ATEST [ 6 ] = BitAND ( $IFLAGS , $HHT_ONFILTERBUTTON ) <> 0
+	$ATEST [ 7 ] = BitAND ( $IFLAGS , $HHT_ABOVE ) <> 0
+	$ATEST [ 8 ] = BitAND ( $IFLAGS , $HHT_BELOW ) <> 0
+	$ATEST [ 9 ] = BitAND ( $IFLAGS , $HHT_TORIGHT ) <> 0
+	$ATEST [ 10 ] = BitAND ( $IFLAGS , $HHT_TOLEFT ) <> 0
+	Return $ATEST
+EndFunc
+Func _GUICTRLHEADER_INSERTITEM ( $HWND , $IINDEX , $STEXT , $IWIDTH = 50 , $IALIGN = 0 , $IIMAGE = + 4294967295 , $BONRIGHT = False )
+	Local $AALIGN [ 3 ] = [ $HDF_LEFT , $HDF_RIGHT , $HDF_CENTER ]
+	Local $TBUFFER , $PBUFFER , $IMSG
+	If _GUICTRLHEADER_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $HDM_INSERTITEMW
+		$TBUFFER = $__G_THEADERBUFFER
+	Else
+		$TBUFFER = $__G_THEADERBUFFERANSI
+		$IMSG = $HDM_INSERTITEMA
+	EndIf
+	Local $IBUFFER
+	If $STEXT <> + 4294967295 Then
+		$IBUFFER = StringLen ( $STEXT ) + 1
+		DllStructSetData ( $TBUFFER , "Text" , $STEXT )
+		$PBUFFER = DllStructGetPtr ( $TBUFFER )
+	Else
+		$IBUFFER = 0
+		$TBUFFER = 0
+		$PBUFFER = + 4294967295
+	EndIf
+	Local $IFMT = $AALIGN [ $IALIGN ]
+	Local $IMASK = BitOR ( $HDI_WIDTH , $HDI_FORMAT )
+	If $STEXT <> "" Then
+		$IMASK = BitOR ( $IMASK , $HDI_TEXT )
+		$IFMT = BitOR ( $IFMT , $HDF_STRING )
+	EndIf
+	If $IIMAGE <> + 4294967295 Then
+		$IMASK = BitOR ( $IMASK , $HDI_IMAGE )
+		$IFMT = BitOR ( $IFMT , $HDF_IMAGE )
+	EndIf
+	If $BONRIGHT Then $IFMT = BitOR ( $IFMT , $HDF_BITMAP_ON_RIGHT )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $IMASK )
+	DllStructSetData ( $TITEM , "XY" , $IWIDTH )
+	DllStructSetData ( $TITEM , "Fmt" , $IFMT )
+	DllStructSetData ( $TITEM , "Image" , $IIMAGE )
+	DllStructSetData ( $TITEM , "Text" , $PBUFFER )
+	DllStructSetData ( $TITEM , "TextMax" , $IBUFFER )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TITEM , $TBUFFER , False , + 4294967295 )
+	Return $IRET
+EndFunc
+Func _GUICTRLHEADER_LAYOUT ( $HWND , ByRef $TRECT )
+	Local $TLAYOUT = DllStructCreate ( $TAGHDLAYOUT )
+	Local $TWINDOWPOS = DllStructCreate ( $TAGWINDOWPOS )
+	If _WINAPI_INPROCESS ( $HWND , $__G_HGUICTRL_LASTWND ) Then
+		DllStructSetData ( $TLAYOUT , "Rect" , DllStructGetPtr ( $TRECT ) )
+		DllStructSetData ( $TLAYOUT , "WindowPos" , DllStructGetPtr ( $TWINDOWPOS ) )
+		_SENDMESSAGE ( $HWND , $HDM_LAYOUT , 0 , $TLAYOUT , 0 , "wparam" , "struct*" )
+	Else
+		Local $ILAYOUT = DllStructGetSize ( $TLAYOUT )
+		Local $IRECT = DllStructGetSize ( $TRECT )
+		Local $IWINDOWPOS = DllStructGetSize ( $TWINDOWPOS )
+		Local $TMEMMAP
+		Local $PMEMORY = _MEMINIT ( $HWND , $ILAYOUT + $IRECT + $IWINDOWPOS , $TMEMMAP )
+		DllStructSetData ( $TLAYOUT , "Rect" , $PMEMORY + $ILAYOUT )
+		DllStructSetData ( $TLAYOUT , "WindowPos" , $PMEMORY + $ILAYOUT + $IRECT )
+		_MEMWRITE ( $TMEMMAP , $TLAYOUT , $PMEMORY , $ILAYOUT )
+		_MEMWRITE ( $TMEMMAP , $TRECT , $PMEMORY + $ILAYOUT , $IRECT )
+		_SENDMESSAGE ( $HWND , $HDM_LAYOUT , 0 , $PMEMORY , 0 , "wparam" , "ptr" )
+		_MEMREAD ( $TMEMMAP , $PMEMORY + $ILAYOUT + $IRECT , $TWINDOWPOS , $IWINDOWPOS )
+		_MEMFREE ( $TMEMMAP )
+	EndIf
+	Return $TWINDOWPOS
+EndFunc
+Func _GUICTRLHEADER_ORDERTOINDEX ( $HWND , $IORDER )
+	Return _SENDMESSAGE ( $HWND , $HDM_ORDERTOINDEX , $IORDER )
+EndFunc
+Func _GUICTRLHEADER_SETBITMAPMARGIN ( $HWND , $IWIDTH )
+	Return _SENDMESSAGE ( $HWND , $HDM_SETBITMAPMARGIN , $IWIDTH )
+EndFunc
+Func _GUICTRLHEADER_SETFILTERCHANGETIMEOUT ( $HWND , $ITIMEOUT )
+	Return _SENDMESSAGE ( $HWND , $HDM_SETFILTERCHANGETIMEOUT , 0 , $ITIMEOUT )
+EndFunc
+Func _GUICTRLHEADER_SETHOTDIVIDER ( $HWND , $IFLAG , $IINPUTVALUE )
+	Return _SENDMESSAGE ( $HWND , $HDM_SETHOTDIVIDER , $IFLAG , $IINPUTVALUE )
+EndFunc
+Func _GUICTRLHEADER_SETIMAGELIST ( $HWND , $HIMAGE )
+	Return _SENDMESSAGE ( $HWND , $HDM_SETIMAGELIST , 0 , $HIMAGE , 0 , "wparam" , "handle" , "handle" )
+EndFunc
+Func _GUICTRLHEADER_SETITEM ( $HWND , $IINDEX , ByRef $TITEM )
+	Local $IMSG
+	If _GUICTRLHEADER_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $HDM_SETITEMW
+	Else
+		$IMSG = $HDM_SETITEMA
+	EndIf
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TITEM )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLHEADER_SETITEMALIGN ( $HWND , $IINDEX , $IALIGN )
+	Local $AALIGN [ 3 ] = [ $HDF_LEFT , $HDF_RIGHT , $HDF_CENTER ]
+	Local $IFORMAT = _GUICTRLHEADER_GETITEMFORMAT ( $HWND , $IINDEX )
+	$IFORMAT = BitAND ( $IFORMAT , BitNOT ( $HDF_JUSTIFYMASK ) )
+	$IFORMAT = BitOR ( $IFORMAT , $AALIGN [ $IALIGN ] )
+	Return _GUICTRLHEADER_SETITEMFORMAT ( $HWND , $IINDEX , $IFORMAT )
+EndFunc
+Func _GUICTRLHEADER_SETITEMBITMAP ( $HWND , $IINDEX , $HBITMAP )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , BitOR ( $HDI_FORMAT , $HDI_BITMAP ) )
+	DllStructSetData ( $TITEM , "Fmt" , $HDF_BITMAP )
+	DllStructSetData ( $TITEM , "hBMP" , $HBITMAP )
+	Return _GUICTRLHEADER_SETITEM ( $HWND , $IINDEX , $TITEM )
+EndFunc
+Func _GUICTRLHEADER_SETITEMDISPLAY ( $HWND , $IINDEX , $IDISPLAY )
+	Local $IFORMAT = BitAND ( _GUICTRLHEADER_GETITEMFORMAT ( $HWND , $IINDEX ) , Not $HDF_DISPLAYMASK )
+	If BitAND ( $IDISPLAY , 1 ) <> 0 Then $IFORMAT = BitOR ( $IFORMAT , $HDF_BITMAP )
+	If BitAND ( $IDISPLAY , 2 ) <> 0 Then $IFORMAT = BitOR ( $IFORMAT , $HDF_BITMAP_ON_RIGHT )
+	If BitAND ( $IDISPLAY , 4 ) <> 0 Then $IFORMAT = BitOR ( $IFORMAT , $HDF_OWNERDRAW )
+	If BitAND ( $IDISPLAY , 8 ) <> 0 Then $IFORMAT = BitOR ( $IFORMAT , $HDF_STRING )
+	Return _GUICTRLHEADER_SETITEMFORMAT ( $HWND , $IINDEX , $IFORMAT )
+EndFunc
+Func _GUICTRLHEADER_SETITEMFLAGS ( $HWND , $IINDEX , $IFLAGS )
+	Local $IFORMAT = _GUICTRLHEADER_GETITEMFORMAT ( $HWND , $IINDEX )
+	$IFORMAT = BitAND ( $IFORMAT , BitNOT ( $HDF_FLAGMASK ) )
+	If BitAND ( $IFLAGS , 1 ) <> 0 Then $IFORMAT = BitOR ( $IFORMAT , $HDF_IMAGE )
+	If BitAND ( $IFLAGS , 2 ) <> 0 Then $IFORMAT = BitOR ( $IFORMAT , $HDF_RTLREADING )
+	If BitAND ( $IFLAGS , 4 ) <> 0 Then $IFORMAT = BitOR ( $IFORMAT , $HDF_SORTDOWN )
+	If BitAND ( $IFLAGS , 8 ) <> 0 Then $IFORMAT = BitOR ( $IFORMAT , $HDF_SORTUP )
+	Return _GUICTRLHEADER_SETITEMFORMAT ( $HWND , $IINDEX , $IFORMAT )
+EndFunc
+Func _GUICTRLHEADER_SETITEMFORMAT ( $HWND , $IINDEX , $IFORMAT )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_FORMAT )
+	DllStructSetData ( $TITEM , "Fmt" , $IFORMAT )
+	Return _GUICTRLHEADER_SETITEM ( $HWND , $IINDEX , $TITEM )
+EndFunc
+Func _GUICTRLHEADER_SETITEMIMAGE ( $HWND , $IINDEX , $IIMAGE )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_IMAGE )
+	DllStructSetData ( $TITEM , "Image" , $IIMAGE )
+	Return _GUICTRLHEADER_SETITEM ( $HWND , $IINDEX , $TITEM )
+EndFunc
+Func _GUICTRLHEADER_SETITEMORDER ( $HWND , $IINDEX , $IORDER )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_ORDER )
+	DllStructSetData ( $TITEM , "Order" , $IORDER )
+	Return _GUICTRLHEADER_SETITEM ( $HWND , $IINDEX , $TITEM )
+EndFunc
+Func _GUICTRLHEADER_SETITEMPARAM ( $HWND , $IINDEX , $IPARAM )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_PARAM )
+	DllStructSetData ( $TITEM , "Param" , $IPARAM )
+	Return _GUICTRLHEADER_SETITEM ( $HWND , $IINDEX , $TITEM )
+EndFunc
+Func _GUICTRLHEADER_SETITEMTEXT ( $HWND , $IINDEX , $STEXT )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLHEADER_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_THEADERBUFFER
+		$IMSG = $HDM_SETITEMW
+	Else
+		$TBUFFER = $__G_THEADERBUFFERANSI
+		$IMSG = $HDM_SETITEMA
+	EndIf
+	Local $IBUFFER , $PBUFFER
+	If $STEXT <> + 4294967295 Then
+		$IBUFFER = StringLen ( $STEXT ) + 1
+		DllStructSetData ( $TBUFFER , "Text" , $STEXT )
+		$PBUFFER = DllStructGetPtr ( $TBUFFER )
+	Else
+		$IBUFFER = 0
+		$TBUFFER = 0
+		$PBUFFER = + 4294967295
+	EndIf
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_TEXT )
+	DllStructSetData ( $TITEM , "Text" , $PBUFFER )
+	DllStructSetData ( $TITEM , "TextMax" , $IBUFFER )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TITEM , $TBUFFER , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLHEADER_SETITEMWIDTH ( $HWND , $IINDEX , $IWIDTH )
+	Local $TITEM = DllStructCreate ( $TAGHDITEM )
+	DllStructSetData ( $TITEM , "Mask" , $HDI_WIDTH )
+	DllStructSetData ( $TITEM , "XY" , $IWIDTH )
+	Return _GUICTRLHEADER_SETITEM ( $HWND , $IINDEX , $TITEM )
+EndFunc
+Func _GUICTRLHEADER_SETORDERARRAY ( $HWND , ByRef $AORDER )
+	Local $TBUFFER = DllStructCreate ( "int[" & $AORDER [ 0 ] & "]" )
+	For $II = 1 To $AORDER [ 0 ]
+		DllStructSetData ( $TBUFFER , 1 , $AORDER [ $II ] , $II )
+	Next
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $HDM_SETORDERARRAY , $AORDER [ 0 ] , $TBUFFER )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLHEADER_SETUNICODEFORMAT ( $HWND , $BUNICODE )
+	Return _SENDMESSAGE ( $HWND , $HDM_SETUNICODEFORMAT , $BUNICODE )
+EndFunc
+Global Const $LVGS_NORMAL = 0
+Global Const $LVGS_COLLAPSED = 1
+Global Const $LVGS_HIDDEN = 2
+Global Const $LVGS_NOHEADER = 4
+Global Const $LVGS_COLLAPSIBLE = 8
+Global Const $LVGS_FOCUSED = 16
+Global Const $LVGS_SELECTED = 32
+Global Const $LVGS_SUBSETED = 64
+Global Const $LVGS_SUBSETLINKFOCUSED = 128
+Global Const $LVGGR_GROUP = 0
+Global Const $LVGGR_HEADER = 1
+Global Const $LVGGR_LABEL = 2
+Global Const $LVGGR_SUBSETLINK = 3
+Global Const $LV_ERR = + 4294967295
+Global Const $LVBKIF_SOURCE_NONE = 0
+Global Const $LVBKIF_SOURCE_HBITMAP = 1
+Global Const $LVBKIF_SOURCE_URL = 2
+Global Const $LVBKIF_SOURCE_MASK = 3
+Global Const $LVBKIF_STYLE_NORMAL = 0
+Global Const $LVBKIF_STYLE_TILE = 16
+Global Const $LVBKIF_STYLE_MASK = 16
+Global Const $LVBKIF_FLAG_TILEOFFSET = 256
+Global Const $LVBKIF_TYPE_WATERMARK = 268435456
+Global Const $LV_VIEW_DETAILS = 1
+Global Const $LV_VIEW_ICON = 0
+Global Const $LV_VIEW_LIST = 3
+Global Const $LV_VIEW_SMALLICON = 2
+Global Const $LV_VIEW_TILE = 4
+Global Const $LVA_ALIGNLEFT = 1
+Global Const $LVA_ALIGNTOP = 2
+Global Const $LVA_DEFAULT = 0
+Global Const $LVA_SNAPTOGRID = 5
+Global Const $LVCDI_ITEM = 0
+Global Const $LVCDI_GROUP = 1
+Global Const $LVCF_ALLDATA = 63
+Global Const $LVCF_FMT = 1
+Global Const $LVCF_IMAGE = 16
+Global Const $LVCFMT_JUSTIFYMASK = 3
+Global Const $LVCF_TEXT = 4
+Global Const $LVCF_WIDTH = 2
+Global Const $LVCFMT_BITMAP_ON_RIGHT = 4096
+Global Const $LVCFMT_CENTER = 2
+Global Const $LVCFMT_COL_HAS_IMAGES = 32768
+Global Const $LVCFMT_IMAGE = 2048
+Global Const $LVCFMT_LEFT = 0
+Global Const $LVCFMT_RIGHT = 1
+Global Const $LVCFMT_LINE_BREAK = 1048576
+Global Const $LVCFMT_FILL = 2097152
+Global Const $LVCFMT_WRAP = 4194304
+Global Const $LVCFMT_NO_TITLE = 8388608
+Global Const $LVCFMT_TILE_PLACEMENTMASK = BitOR ( $LVCFMT_LINE_BREAK , $LVCFMT_FILL )
+Global Const $LVFI_NEARESTXY = 64
+Global Const $LVFI_PARAM = 1
+Global Const $LVFI_PARTIAL = 8
+Global Const $LVFI_STRING = 2
+Global Const $LVFI_SUBSTRING = 4
+Global Const $LVFI_WRAP = 32
+Global Const $LVGA_FOOTER_LEFT = 8
+Global Const $LVGA_FOOTER_CENTER = 16
+Global Const $LVGA_FOOTER_RIGHT = 32
+Global Const $LVGA_HEADER_LEFT = 1
+Global Const $LVGA_HEADER_CENTER = 2
+Global Const $LVGA_HEADER_RIGHT = 4
+Global Const $LVGF_ALIGN = 8
+Global Const $LVGF_DESCRIPTIONTOP = 1024
+Global Const $LVGF_DESCRIPTIONBOTTOM = 2048
+Global Const $LVGF_EXTENDEDIMAGE = 8192
+Global Const $LVGF_FOOTER = 2
+Global Const $LVGF_GROUPID = 16
+Global Const $LVGF_HEADER = 1
+Global Const $LVGF_ITEMS = 16384
+Global Const $LVGF_NONE = 0
+Global Const $LVGF_STATE = 4
+Global Const $LVGF_SUBSET = 32768
+Global Const $LVGF_SUBSETITEMS = 65536
+Global Const $LVGF_SUBTITLE = 256
+Global Const $LVGF_TASK = 512
+Global Const $LVGF_TITLEIMAGE = 4096
+Global Const $LVHT_ABOVE = 8
+Global Const $LVHT_BELOW = 16
+Global Const $LVHT_NOWHERE = 1
+Global Const $LVHT_ONITEMICON = 2
+Global Const $LVHT_ONITEMLABEL = 4
+Global Const $LVHT_ONITEMSTATEICON = 8
+Global Const $LVHT_TOLEFT = 64
+Global Const $LVHT_TORIGHT = 32
+Global Const $LVHT_ONITEM = BitOR ( $LVHT_ONITEMICON , $LVHT_ONITEMLABEL , $LVHT_ONITEMSTATEICON )
+Global Const $LVHT_EX_GROUP_HEADER = 268435456
+Global Const $LVHT_EX_GROUP_FOOTER = 536870912
+Global Const $LVHT_EX_GROUP_COLLAPSE = 1073741824
+Global Const $LVHT_EX_GROUP_BACKGROUND = 2147483648
+Global Const $LVHT_EX_GROUP_STATEICON = 16777216
+Global Const $LVHT_EX_GROUP_SUBSETLINK = 33554432
+Global Const $LVHT_EX_GROUP = BitOR ( $LVHT_EX_GROUP_BACKGROUND , $LVHT_EX_GROUP_COLLAPSE , $LVHT_EX_GROUP_FOOTER , $LVHT_EX_GROUP_HEADER , $LVHT_EX_GROUP_STATEICON , $LVHT_EX_GROUP_SUBSETLINK )
+Global Const $LVHT_EX_ONCONTENTS = 67108864
+Global Const $LVHT_EX_FOOTER = 134217728
+Global Const $LVIF_COLFMT = 65536
+Global Const $LVIF_COLUMNS = 512
+Global Const $LVIF_GROUPID = 256
+Global Const $LVIF_IMAGE = 2
+Global Const $LVIF_INDENT = 16
+Global Const $LVIF_NORECOMPUTE = 2048
+Global Const $LVIF_PARAM = 4
+Global Const $LVIF_STATE = 8
+Global Const $LVIF_TEXT = 1
+Global Const $LVIM_AFTER = 1
+Global Const $LVIR_BOUNDS = 0
+Global Const $LVIR_ICON = 1
+Global Const $LVIR_LABEL = 2
+Global Const $LVIR_SELECTBOUNDS = 3
+Global Const $LVIS_CUT = 4
+Global Const $LVIS_DROPHILITED = 8
+Global Const $LVIS_FOCUSED = 1
+Global Const $LVIS_OVERLAYMASK = 3840
+Global Const $LVIS_SELECTED = 2
+Global Const $LVIS_STATEIMAGEMASK = 61440
+Global Const $LVS_ALIGNLEFT = 2048
+Global Const $LVS_ALIGNMASK = 3072
+Global Const $LVS_ALIGNTOP = 0
+Global Const $LVS_AUTOARRANGE = 256
+Global Const $LVS_DEFAULT = 13
+Global Const $LVS_EDITLABELS = 512
+Global Const $LVS_ICON = 0
+Global Const $LVS_LIST = 3
+Global Const $LVS_NOCOLUMNHEADER = 16384
+Global Const $LVS_NOLABELWRAP = 128
+Global Const $LVS_NOSCROLL = 8192
+Global Const $LVS_NOSORTHEADER = 32768
+Global Const $LVS_OWNERDATA = 4096
+Global Const $LVS_OWNERDRAWFIXED = 1024
+Global Const $LVS_REPORT = 1
+Global Const $LVS_SHAREIMAGELISTS = 64
+Global Const $LVS_SHOWSELALWAYS = 8
+Global Const $LVS_SINGLESEL = 4
+Global Const $LVS_SMALLICON = 2
+Global Const $LVS_SORTASCENDING = 16
+Global Const $LVS_SORTDESCENDING = 32
+Global Const $LVS_TYPEMASK = 3
+Global Const $LVS_TYPESTYLEMASK = 64512
+Global Const $LVS_EX_AUTOAUTOARRANGE = 16777216
+Global Const $LVS_EX_AUTOCHECKSELECT = 134217728
+Global Const $LVS_EX_AUTOSIZECOLUMNS = 268435456
+Global Const $LVS_EX_BORDERSELECT = 32768
+Global Const $LVS_EX_CHECKBOXES = 4
+Global Const $LVS_EX_COLUMNOVERFLOW = 2147483648
+Global Const $LVS_EX_COLUMNSNAPPOINTS = 1073741824
+Global Const $LVS_EX_DOUBLEBUFFER = 65536
+Global Const $LVS_EX_FLATSB = 256
+Global Const $LVS_EX_FULLROWSELECT = 32
+Global Const $LVS_EX_GRIDLINES = 1
+Global Const $LVS_EX_HEADERDRAGDROP = 16
+Global Const $LVS_EX_HEADERINALLVIEWS = 33554432
+Global Const $LVS_EX_HIDELABELS = 131072
+Global Const $LVS_EX_INFOTIP = 1024
+Global Const $LVS_EX_JUSTIFYCOLUMNS = 2097152
+Global Const $LVS_EX_LABELTIP = 16384
+Global Const $LVS_EX_MULTIWORKAREAS = 8192
+Global Const $LVS_EX_ONECLICKACTIVATE = 64
+Global Const $LVS_EX_REGIONAL = 512
+Global Const $LVS_EX_SIMPLESELECT = 1048576
+Global Const $LVS_EX_SNAPTOGRID = 524288
+Global Const $LVS_EX_SUBITEMIMAGES = 2
+Global Const $LVS_EX_TRACKSELECT = 8
+Global Const $LVS_EX_TRANSPARENTBKGND = 4194304
+Global Const $LVS_EX_TRANSPARENTSHADOWTEXT = 8388608
+Global Const $LVS_EX_TWOCLICKACTIVATE = 128
+Global Const $LVS_EX_UNDERLINECOLD = 4096
+Global Const $LVS_EX_UNDERLINEHOT = 2048
+Global Const $GUI_SS_DEFAULT_LISTVIEW = BitOR ( $LVS_SHOWSELALWAYS , $LVS_SINGLESEL )
+Global Const $LVM_FIRST = 4096
+Global Const $LVM_APPROXIMATEVIEWRECT = ( $LVM_FIRST + 64 )
+Global Const $LVM_ARRANGE = ( $LVM_FIRST + 22 )
+Global Const $LVM_CANCELEDITLABEL = ( $LVM_FIRST + 179 )
+Global Const $LVM_CREATEDRAGIMAGE = ( $LVM_FIRST + 33 )
+Global Const $LVM_DELETEALLITEMS = ( $LVM_FIRST + 9 )
+Global Const $LVM_DELETECOLUMN = ( $LVM_FIRST + 28 )
+Global Const $LVM_DELETEITEM = ( $LVM_FIRST + 8 )
+Global Const $LVM_EDITLABELA = ( $LVM_FIRST + 23 )
+Global Const $LVM_EDITLABELW = ( $LVM_FIRST + 118 )
+Global Const $LVM_EDITLABEL = $LVM_EDITLABELA
+Global Const $LVM_ENABLEGROUPVIEW = ( $LVM_FIRST + 157 )
+Global Const $LVM_ENSUREVISIBLE = ( $LVM_FIRST + 19 )
+Global Const $LVM_FINDITEM = ( $LVM_FIRST + 13 )
+Global Const $LVM_GETBKCOLOR = ( $LVM_FIRST + 0 )
+Global Const $LVM_GETBKIMAGEA = ( $LVM_FIRST + 69 )
+Global Const $LVM_GETBKIMAGEW = ( $LVM_FIRST + 139 )
+Global Const $LVM_GETCALLBACKMASK = ( $LVM_FIRST + 10 )
+Global Const $LVM_GETCOLUMNA = ( $LVM_FIRST + 25 )
+Global Const $LVM_GETCOLUMNW = ( $LVM_FIRST + 95 )
+Global Const $LVM_GETCOLUMNORDERARRAY = ( $LVM_FIRST + 59 )
+Global Const $LVM_GETCOLUMNWIDTH = ( $LVM_FIRST + 29 )
+Global Const $LVM_GETCOUNTPERPAGE = ( $LVM_FIRST + 40 )
+Global Const $LVM_GETEDITCONTROL = ( $LVM_FIRST + 24 )
+Global Const $LVM_GETEMPTYTEXT = ( $LVM_FIRST + 204 )
+Global Const $LVM_GETEXTENDEDLISTVIEWSTYLE = ( $LVM_FIRST + 55 )
+Global Const $LVM_GETFOCUSEDGROUP = ( $LVM_FIRST + 93 )
+Global Const $LVM_GETFOOTERINFO = ( $LVM_FIRST + 206 )
+Global Const $LVM_GETFOOTERITEM = ( $LVM_FIRST + 208 )
+Global Const $LVM_GETFOOTERITEMRECT = ( $LVM_FIRST + 207 )
+Global Const $LVM_GETFOOTERRECT = ( $LVM_FIRST + 205 )
+Global Const $LVM_GETGROUPCOUNT = ( $LVM_FIRST + 152 )
+Global Const $LVM_GETGROUPINFO = ( $LVM_FIRST + 149 )
+Global Const $LVM_GETGROUPINFOBYINDEX = ( $LVM_FIRST + 153 )
+Global Const $LVM_GETGROUPMETRICS = ( $LVM_FIRST + 156 )
+Global Const $LVM_GETGROUPRECT = ( $LVM_FIRST + 98 )
+Global Const $LVM_GETGROUPSTATE = ( $LVM_FIRST + 92 )
+Global Const $LVM_GETHEADER = ( $LVM_FIRST + 31 )
+Global Const $LVM_GETHOTCURSOR = ( $LVM_FIRST + 63 )
+Global Const $LVM_GETHOTITEM = ( $LVM_FIRST + 61 )
+Global Const $LVM_GETHOVERTIME = ( $LVM_FIRST + 72 )
+Global Const $LVM_GETIMAGELIST = ( $LVM_FIRST + 2 )
+Global Const $LVM_GETINSERTMARK = ( $LVM_FIRST + 167 )
+Global Const $LVM_GETINSERTMARKCOLOR = ( $LVM_FIRST + 171 )
+Global Const $LVM_GETINSERTMARKRECT = ( $LVM_FIRST + 169 )
+Global Const $LVM_GETISEARCHSTRINGA = ( $LVM_FIRST + 52 )
+Global Const $LVM_GETISEARCHSTRINGW = ( $LVM_FIRST + 117 )
+Global Const $LVM_GETITEMA = ( $LVM_FIRST + 5 )
+Global Const $LVM_GETITEMW = ( $LVM_FIRST + 75 )
+Global Const $LVM_GETITEMCOUNT = ( $LVM_FIRST + 4 )
+Global Const $LVM_GETITEMINDEXRECT = ( $LVM_FIRST + 209 )
+Global Const $LVM_GETITEMPOSITION = ( $LVM_FIRST + 16 )
+Global Const $LVM_GETITEMRECT = ( $LVM_FIRST + 14 )
+Global Const $LVM_GETITEMSPACING = ( $LVM_FIRST + 51 )
+Global Const $LVM_GETITEMSTATE = ( $LVM_FIRST + 44 )
+Global Const $LVM_GETITEMTEXTA = ( $LVM_FIRST + 45 )
+Global Const $LVM_GETITEMTEXTW = ( $LVM_FIRST + 115 )
+Global Const $LVM_GETNEXTITEM = ( $LVM_FIRST + 12 )
+Global Const $LVM_GETNEXTITEMINDEX = ( $LVM_FIRST + 211 )
+Global Const $LVM_GETNUMBEROFWORKAREAS = ( $LVM_FIRST + 73 )
+Global Const $LVM_GETORIGIN = ( $LVM_FIRST + 41 )
+Global Const $LVM_GETOUTLINECOLOR = ( $LVM_FIRST + 176 )
+Global Const $LVM_GETSELECTEDCOLUMN = ( $LVM_FIRST + 174 )
+Global Const $LVM_GETSELECTEDCOUNT = ( $LVM_FIRST + 50 )
+Global Const $LVM_GETSELECTIONMARK = ( $LVM_FIRST + 66 )
+Global Const $LVM_GETSTRINGWIDTHA = ( $LVM_FIRST + 17 )
+Global Const $LVM_GETSTRINGWIDTHW = ( $LVM_FIRST + 87 )
+Global Const $LVM_GETSUBITEMRECT = ( $LVM_FIRST + 56 )
+Global Const $LVM_GETTEXTBKCOLOR = ( $LVM_FIRST + 37 )
+Global Const $LVM_GETTEXTCOLOR = ( $LVM_FIRST + 35 )
+Global Const $LVM_GETTILEINFO = ( $LVM_FIRST + 165 )
+Global Const $LVM_GETTILEVIEWINFO = ( $LVM_FIRST + 163 )
+Global Const $LVM_GETTOOLTIPS = ( $LVM_FIRST + 78 )
+Global Const $LVM_GETTOPINDEX = ( $LVM_FIRST + 39 )
+Global Const $LVM_GETUNICODEFORMAT = 8192 + 6
+Global Const $LVM_GETVIEW = ( $LVM_FIRST + 143 )
+Global Const $LVM_GETVIEWRECT = ( $LVM_FIRST + 34 )
+Global Const $LVM_GETWORKAREAS = ( $LVM_FIRST + 70 )
+Global Const $LVM_HASGROUP = ( $LVM_FIRST + 161 )
+Global Const $LVM_HITTEST = ( $LVM_FIRST + 18 )
+Global Const $LVM_INSERTCOLUMNA = ( $LVM_FIRST + 27 )
+Global Const $LVM_INSERTCOLUMNW = ( $LVM_FIRST + 97 )
+Global Const $LVM_INSERTGROUP = ( $LVM_FIRST + 145 )
+Global Const $LVM_INSERTGROUPSORTED = ( $LVM_FIRST + 159 )
+Global Const $LVM_INSERTITEMA = ( $LVM_FIRST + 7 )
+Global Const $LVM_INSERTITEMW = ( $LVM_FIRST + 77 )
+Global Const $LVM_INSERTMARKHITTEST = ( $LVM_FIRST + 168 )
+Global Const $LVM_ISGROUPVIEWENABLED = ( $LVM_FIRST + 175 )
+Global Const $LVM_ISITEMVISIBLE = ( $LVM_FIRST + 182 )
+Global Const $LVM_MAPIDTOINDEX = ( $LVM_FIRST + 181 )
+Global Const $LVM_MAPINDEXTOID = ( $LVM_FIRST + 180 )
+Global Const $LVM_MOVEGROUP = ( $LVM_FIRST + 151 )
+Global Const $LVM_REDRAWITEMS = ( $LVM_FIRST + 21 )
+Global Const $LVM_REMOVEALLGROUPS = ( $LVM_FIRST + 160 )
+Global Const $LVM_REMOVEGROUP = ( $LVM_FIRST + 150 )
+Global Const $LVM_SCROLL = ( $LVM_FIRST + 20 )
+Global Const $LVM_SETBKCOLOR = ( $LVM_FIRST + 1 )
+Global Const $LVM_SETBKIMAGEA = ( $LVM_FIRST + 68 )
+Global Const $LVM_SETBKIMAGEW = ( $LVM_FIRST + 138 )
+Global Const $LVM_SETCALLBACKMASK = ( $LVM_FIRST + 11 )
+Global Const $LVM_SETCOLUMNA = ( $LVM_FIRST + 26 )
+Global Const $LVM_SETCOLUMNW = ( $LVM_FIRST + 96 )
+Global Const $LVM_SETCOLUMNORDERARRAY = ( $LVM_FIRST + 58 )
+Global Const $LVM_SETCOLUMNWIDTH = ( $LVM_FIRST + 30 )
+Global Const $LVM_SETEXTENDEDLISTVIEWSTYLE = ( $LVM_FIRST + 54 )
+Global Const $LVM_SETGROUPINFO = ( $LVM_FIRST + 147 )
+Global Const $LVM_SETGROUPMETRICS = ( $LVM_FIRST + 155 )
+Global Const $LVM_SETHOTCURSOR = ( $LVM_FIRST + 62 )
+Global Const $LVM_SETHOTITEM = ( $LVM_FIRST + 60 )
+Global Const $LVM_SETHOVERTIME = ( $LVM_FIRST + 71 )
+Global Const $LVM_SETICONSPACING = ( $LVM_FIRST + 53 )
+Global Const $LVM_SETIMAGELIST = ( $LVM_FIRST + 3 )
+Global Const $LVM_SETINFOTIP = ( $LVM_FIRST + 173 )
+Global Const $LVM_SETINSERTMARK = ( $LVM_FIRST + 166 )
+Global Const $LVM_SETINSERTMARKCOLOR = ( $LVM_FIRST + 170 )
+Global Const $LVM_SETITEMA = ( $LVM_FIRST + 6 )
+Global Const $LVM_SETITEMW = ( $LVM_FIRST + 76 )
+Global Const $LVM_SETITEMCOUNT = ( $LVM_FIRST + 47 )
+Global Const $LVM_SETITEMINDEXSTATE = ( $LVM_FIRST + 210 )
+Global Const $LVM_SETITEMPOSITION = ( $LVM_FIRST + 15 )
+Global Const $LVM_SETITEMPOSITION32 = ( $LVM_FIRST + 49 )
+Global Const $LVM_SETITEMSTATE = ( $LVM_FIRST + 43 )
+Global Const $LVM_SETITEMTEXTA = ( $LVM_FIRST + 46 )
+Global Const $LVM_SETITEMTEXTW = ( $LVM_FIRST + 116 )
+Global Const $LVM_SETOUTLINECOLOR = ( $LVM_FIRST + 177 )
+Global Const $LVM_SETSELECTEDCOLUMN = ( $LVM_FIRST + 140 )
+Global Const $LVM_SETSELECTIONMARK = ( $LVM_FIRST + 67 )
+Global Const $LVM_SETTEXTBKCOLOR = ( $LVM_FIRST + 38 )
+Global Const $LVM_SETTEXTCOLOR = ( $LVM_FIRST + 36 )
+Global Const $LVM_SETTILEINFO = ( $LVM_FIRST + 164 )
+Global Const $LVM_SETTILEVIEWINFO = ( $LVM_FIRST + 162 )
+Global Const $LVM_SETTILEWIDTH = ( $LVM_FIRST + 141 )
+Global Const $LVM_SETTOOLTIPS = ( $LVM_FIRST + 74 )
+Global Const $LVM_SETUNICODEFORMAT = 8192 + 5
+Global Const $LVM_SETVIEW = ( $LVM_FIRST + 142 )
+Global Const $LVM_SETWORKAREAS = ( $LVM_FIRST + 65 )
+Global Const $LVM_SORTGROUPS = ( $LVM_FIRST + 158 )
+Global Const $LVM_SORTITEMS = ( $LVM_FIRST + 48 )
+Global Const $LVM_SORTITEMSEX = ( $LVM_FIRST + 81 )
+Global Const $LVM_SUBITEMHITTEST = ( $LVM_FIRST + 57 )
+Global Const $LVM_UPDATE = ( $LVM_FIRST + 42 )
+Global Const $LVN_FIRST = + 4294967196
+Global Const $LVN_LAST = + 4294967097
+Global Const $LVN_BEGINDRAG = ( $LVN_FIRST + 4294967287 )
+Global Const $LVN_BEGINLABELEDITA = ( $LVN_FIRST + 4294967291 )
+Global Const $LVN_BEGINLABELEDITW = ( $LVN_FIRST + 4294967221 )
+Global Const $LVN_BEGINRDRAG = ( $LVN_FIRST + 4294967285 )
+Global Const $LVN_BEGINSCROLL = ( $LVN_FIRST + 4294967216 )
+Global Const $LVN_COLUMNCLICK = ( $LVN_FIRST + 4294967288 )
+Global Const $LVN_COLUMNDROPDOWN = ( $LVN_FIRST + 4294967232 )
+Global Const $LVN_COLUMNOVERFLOWCLICK = ( $LVN_FIRST + 4294967230 )
+Global Const $LVN_DELETEALLITEMS = ( $LVN_FIRST + 4294967292 )
+Global Const $LVN_DELETEITEM = ( $LVN_FIRST + 4294967293 )
+Global Const $LVN_ENDLABELEDITA = ( $LVN_FIRST + 4294967290 )
+Global Const $LVN_ENDLABELEDITW = ( $LVN_FIRST + 4294967220 )
+Global Const $LVN_ENDSCROLL = ( $LVN_FIRST + 4294967215 )
+Global Const $LVN_GETDISPINFOA = ( $LVN_FIRST + 4294967246 )
+Global Const $LVN_GETDISPINFOW = ( $LVN_FIRST + 4294967219 )
+Global Const $LVN_GETDISPINFO = $LVN_GETDISPINFOA
+Global Const $LVN_GETEMPTYMARKUP = ( $LVN_FIRST + 4294967209 )
+Global Const $LVN_GETINFOTIPA = ( $LVN_FIRST + 4294967239 )
+Global Const $LVN_GETINFOTIPW = ( $LVN_FIRST + 4294967238 )
+Global Const $LVN_HOTTRACK = ( $LVN_FIRST + 4294967275 )
+Global Const $LVN_INCREMENTALSEARCHA = ( $LVN_FIRST + 4294967234 )
+Global Const $LVN_INCREMENTALSEARCHW = ( $LVN_FIRST + 4294967233 )
+Global Const $LVN_INSERTITEM = ( $LVN_FIRST + 4294967294 )
+Global Const $LVN_ITEMACTIVATE = ( $LVN_FIRST + 4294967282 )
+Global Const $LVN_ITEMCHANGED = ( $LVN_FIRST + 4294967295 )
+Global Const $LVN_ITEMCHANGING = ( $LVN_FIRST + 0 )
+Global Const $LVN_KEYDOWN = ( $LVN_FIRST + 4294967241 )
+Global Const $LVN_LINKCLICK = ( $LVN_FIRST + 4294967212 )
+Global Const $LVN_MARQUEEBEGIN = ( $LVN_FIRST + 4294967240 )
+Global Const $LVN_ODCACHEHINT = ( $LVN_FIRST + 4294967283 )
+Global Const $LVN_ODFINDITEMA = ( $LVN_FIRST + 4294967244 )
+Global Const $LVN_ODFINDITEMW = ( $LVN_FIRST + 4294967217 )
+Global Const $LVN_ODFINDITEM = $LVN_ODFINDITEMA
+Global Const $LVN_ODSTATECHANGED = ( $LVN_FIRST + 4294967281 )
+Global Const $LVN_SETDISPINFOA = ( $LVN_FIRST + 4294967245 )
+Global Const $LVN_SETDISPINFOW = ( $LVN_FIRST + 4294967218 )
+Global Const $LVNI_ABOVE = 256
+Global Const $LVNI_BELOW = 512
+Global Const $LVNI_TOLEFT = 1024
+Global Const $LVNI_TORIGHT = 2048
+Global Const $LVNI_ALL = 0
+Global Const $LVNI_CUT = 4
+Global Const $LVNI_DROPHILITED = 8
+Global Const $LVNI_FOCUSED = 1
+Global Const $LVNI_SELECTED = 2
+Global Const $LVSCW_AUTOSIZE = + 4294967295
+Global Const $LVSCW_AUTOSIZE_USEHEADER = + 4294967294
+Global Const $LVSICF_NOINVALIDATEALL = 1
+Global Const $LVSICF_NOSCROLL = 2
+Global Const $LVSIL_NORMAL = 0
+Global Const $LVSIL_SMALL = 1
+Global Const $LVSIL_STATE = 2
+Global Const $LVFN_DIR_LEFT = 0
+Global Const $LVFN_DIR_RIGHT = 1
+Global Const $LVFN_DIR_UP = 2
+Global Const $LVFN_DIR_DOWN = 3
+Global Const $LVFN_DIR_START = 4
+Global Const $LVFN_DIR_MEND = 5
+Global Const $LVFN_DIR_PRIOR = 6
+Global Const $LVFN_DIR_NEXT = 7
+Global Const $FR_PRIVATE = 16
+Global Const $FR_NOT_ENUM = 32
+Global Const $COMPRESSION_BITMAP_PNG = 0
+Global Const $COMPRESSION_BITMAP_JPEG = 1
+Global Const $BS_DIBPATTERN = 5
+Global Const $BS_DIBPATTERN8X8 = 8
+Global Const $BS_DIBPATTERNPT = 6
+Global Const $BS_HATCHED = 2
+Global Const $BS_HOLLOW = 1
+Global Const $BS_NULL = 1
+Global Const $BS_PATTERN = 3
+Global Const $BS_PATTERN8X8 = 7
+Global Const $BS_SOLID = 0
+Global Const $HS_BDIAGONAL = 3
+Global Const $HS_CROSS = 4
+Global Const $HS_DIAGCROSS = 5
+Global Const $HS_FDIAGONAL = 2
+Global Const $HS_HORIZONTAL = 0
+Global Const $HS_VERTICAL = 1
+Global Const $DIB_PAL_COLORS = 1
+Global Const $DIB_RGB_COLORS = 0
+Global Const $CA_NEGATIVE = 1
+Global Const $CA_LOG_FILTER = 2
+Global Const $ILLUMINANT_DEVICE_DEFAULT = 0
+Global Const $ILLUMINANT_A = 1
+Global Const $ILLUMINANT_B = 2
+Global Const $ILLUMINANT_C = 3
+Global Const $ILLUMINANT_D50 = 4
+Global Const $ILLUMINANT_D55 = 5
+Global Const $ILLUMINANT_D65 = 6
+Global Const $ILLUMINANT_D75 = 7
+Global Const $ILLUMINANT_F2 = 8
+Global Const $ILLUMINANT_TUNGSTEN = $ILLUMINANT_A
+Global Const $ILLUMINANT_DAYLIGHT = $ILLUMINANT_C
+Global Const $ILLUMINANT_FLUORESCENT = $ILLUMINANT_F2
+Global Const $ILLUMINANT_NTSC = $ILLUMINANT_C
+Global Const $BI_RGB = 0
+Global Const $BI_RLE8 = 1
+Global Const $BI_RLE4 = 2
+Global Const $BI_BITFIELDS = 3
+Global Const $BI_JPEG = 4
+Global Const $BI_PNG = 5
+Global Const $ALTERNATE = 1
+Global Const $WINDING = 2
+Global Const $DWMWA_NCRENDERING_ENABLED = 1
+Global Const $DWMWA_NCRENDERING_POLICY = 2
+Global Const $DWMWA_TRANSITIONS_FORCEDISABLED = 3
+Global Const $DWMWA_ALLOW_NCPAINT = 4
+Global Const $DWMWA_CAPTION_BUTTON_BOUNDS = 5
+Global Const $DWMWA_NONCLIENT_RTL_LAYOUT = 6
+Global Const $DWMWA_FORCE_ICONIC_REPRESENTATION = 7
+Global Const $DWMWA_FLIP3D_POLICY = 8
+Global Const $DWMWA_EXTENDED_FRAME_BOUNDS = 9
+Global Const $DWMWA_HAS_ICONIC_BITMAP = 10
+Global Const $DWMWA_DISALLOW_PEEK = 11
+Global Const $DWMWA_EXCLUDED_FROM_PEEK = 12
+Global Const $DWMNCRP_USEWINDOWSTYLE = 0
+Global Const $DWMNCRP_DISABLED = 1
+Global Const $DWMNCRP_ENABLED = 2
+Global Const $DWMFLIP3D_DEFAULT = 0
+Global Const $DWMFLIP3D_EXCLUDEBELOW = 1
+Global Const $DWMFLIP3D_EXCLUDEABOVE = 2
+Global Const $DM_BITSPERPEL = 262144
+Global Const $DM_COLLATE = 32768
+Global Const $DM_COLOR = 2048
+Global Const $DM_COPIES = 256
+Global Const $DM_DEFAULTSOURCE = 512
+Global Const $DM_DISPLAYFIXEDOUTPUT = 536870912
+Global Const $DM_DISPLAYFLAGS = 2097152
+Global Const $DM_DISPLAYFREQUENCY = 4194304
+Global Const $DM_DISPLAYORIENTATION = 128
+Global Const $DM_DITHERTYPE = 67108864
+Global Const $DM_DUPLEX = 4096
+Global Const $DM_FORMNAME = 65536
+Global Const $DM_ICMINTENT = 16777216
+Global Const $DM_ICMMETHOD = 8388608
+Global Const $DM_LOGPIXELS = 131072
+Global Const $DM_MEDIATYPE = 33554432
+Global Const $DM_NUP = 64
+Global Const $DM_ORIENTATION = 1
+Global Const $DM_PANNINGHEIGHT = 268435456
+Global Const $DM_PANNINGWIDTH = 134217728
+Global Const $DM_PAPERLENGTH = 4
+Global Const $DM_PAPERSIZE = 2
+Global Const $DM_PAPERWIDTH = 8
+Global Const $DM_PELSHEIGHT = 1048576
+Global Const $DM_PELSWIDTH = 524288
+Global Const $DM_POSITION = 32
+Global Const $DM_PRINTQUALITY = 1024
+Global Const $DM_SCALE = 16
+Global Const $DM_TTOPTION = 16384
+Global Const $DM_YRESOLUTION = 8192
+Global Const $DMPAPER_LETTER = 1
+Global Const $DMPAPER_LETTERSMALL = 2
+Global Const $DMPAPER_TABLOID = 3
+Global Const $DMPAPER_LEDGER = 4
+Global Const $DMPAPER_LEGAL = 5
+Global Const $DMPAPER_STATEMENT = 6
+Global Const $DMPAPER_EXECUTIVE = 7
+Global Const $DMPAPER_A3 = 8
+Global Const $DMPAPER_A4 = 9
+Global Const $DMPAPER_A4SMALL = 10
+Global Const $DMPAPER_A5 = 11
+Global Const $DMPAPER_B4 = 12
+Global Const $DMPAPER_B5 = 13
+Global Const $DMPAPER_FOLIO = 14
+Global Const $DMPAPER_QUARTO = 15
+Global Const $DMPAPER_10X14 = 16
+Global Const $DMPAPER_11X17 = 17
+Global Const $DMPAPER_NOTE = 18
+Global Const $DMPAPER_ENV_9 = 19
+Global Const $DMPAPER_ENV_10 = 20
+Global Const $DMPAPER_ENV_11 = 21
+Global Const $DMPAPER_ENV_12 = 22
+Global Const $DMPAPER_ENV_14 = 23
+Global Const $DMPAPER_CSHEET = 24
+Global Const $DMPAPER_DSHEET = 25
+Global Const $DMPAPER_ESHEET = 26
+Global Const $DMPAPER_ENV_DL = 27
+Global Const $DMPAPER_ENV_C5 = 28
+Global Const $DMPAPER_ENV_C3 = 29
+Global Const $DMPAPER_ENV_C4 = 30
+Global Const $DMPAPER_ENV_C6 = 31
+Global Const $DMPAPER_ENV_C65 = 32
+Global Const $DMPAPER_ENV_B4 = 33
+Global Const $DMPAPER_ENV_B5 = 34
+Global Const $DMPAPER_ENV_B6 = 35
+Global Const $DMPAPER_ENV_ITALY = 36
+Global Const $DMPAPER_ENV_MONARCH = 37
+Global Const $DMPAPER_ENV_PERSONAL = 38
+Global Const $DMPAPER_FANFOLD_US = 39
+Global Const $DMPAPER_FANFOLD_STD_GERMAN = 40
+Global Const $DMPAPER_FANFOLD_LGL_GERMAN = 41
+Global Const $DMPAPER_ISO_B4 = 42
+Global Const $DMPAPER_JAPANESE_POSTCARD = 43
+Global Const $DMPAPER_9X11 = 44
+Global Const $DMPAPER_10X11 = 45
+Global Const $DMPAPER_15X11 = 46
+Global Const $DMPAPER_ENV_INVITE = 47
+Global Const $DMPAPER_RESERVED_48 = 48
+Global Const $DMPAPER_RESERVED_49 = 49
+Global Const $DMPAPER_LETTER_EXTRA = 50
+Global Const $DMPAPER_LEGAL_EXTRA = 51
+Global Const $DMPAPER_TABLOID_EXTRA = 52
+Global Const $DMPAPER_A4_EXTRA = 53
+Global Const $DMPAPER_LETTER_TRANSVERSE = 54
+Global Const $DMPAPER_A4_TRANSVERSE = 55
+Global Const $DMPAPER_LETTER_EXTRA_TRANSVERSE = 56
+Global Const $DMPAPER_A_PLUS = 57
+Global Const $DMPAPER_B_PLUS = 58
+Global Const $DMPAPER_LETTER_PLUS = 59
+Global Const $DMPAPER_A4_PLUS = 60
+Global Const $DMPAPER_A5_TRANSVERSE = 61
+Global Const $DMPAPER_B5_TRANSVERSE = 62
+Global Const $DMPAPER_A3_EXTRA = 63
+Global Const $DMPAPER_A5_EXTRA = 64
+Global Const $DMPAPER_B5_EXTRA = 65
+Global Const $DMPAPER_A2 = 66
+Global Const $DMPAPER_A3_TRANSVERSE = 67
+Global Const $DMPAPER_A3_EXTRA_TRANSVERSE = 68
+Global Const $DMPAPER_DBL_JAPANESE_POSTCARD = 69
+Global Const $DMPAPER_A6 = 70
+Global Const $DMPAPER_JENV_KAKU2 = 71
+Global Const $DMPAPER_JENV_KAKU3 = 72
+Global Const $DMPAPER_JENV_CHOU3 = 73
+Global Const $DMPAPER_JENV_CHOU4 = 74
+Global Const $DMPAPER_LETTER_ROTATED = 75
+Global Const $DMPAPER_A3_ROTATED = 76
+Global Const $DMPAPER_A4_ROTATED = 77
+Global Const $DMPAPER_A5_ROTATED = 78
+Global Const $DMPAPER_B4_JIS_ROTATED = 79
+Global Const $DMPAPER_B5_JIS_ROTATED = 80
+Global Const $DMPAPER_JAPANESE_POSTCARD_ROTATED = 81
+Global Const $DMPAPER_DBL_JAPANESE_POSTCARD_ROTATED = 82
+Global Const $DMPAPER_A6_ROTATED = 83
+Global Const $DMPAPER_JENV_KAKU2_ROTATED = 84
+Global Const $DMPAPER_JENV_KAKU3_ROTATED = 85
+Global Const $DMPAPER_JENV_CHOU3_ROTATED = 86
+Global Const $DMPAPER_JENV_CHOU4_ROTATED = 87
+Global Const $DMPAPER_B6_JIS = 88
+Global Const $DMPAPER_B6_JIS_ROTATED = 89
+Global Const $DMPAPER_12X11 = 90
+Global Const $DMPAPER_JENV_YOU4 = 91
+Global Const $DMPAPER_JENV_YOU4_ROTATED = 92
+Global Const $DMPAPER_P16K = 93
+Global Const $DMPAPER_P32K = 94
+Global Const $DMPAPER_P32KBIG = 95
+Global Const $DMPAPER_PENV_1 = 96
+Global Const $DMPAPER_PENV_2 = 97
+Global Const $DMPAPER_PENV_3 = 98
+Global Const $DMPAPER_PENV_4 = 99
+Global Const $DMPAPER_PENV_5 = 100
+Global Const $DMPAPER_PENV_6 = 101
+Global Const $DMPAPER_PENV_7 = 102
+Global Const $DMPAPER_PENV_8 = 103
+Global Const $DMPAPER_PENV_9 = 104
+Global Const $DMPAPER_PENV_10 = 105
+Global Const $DMPAPER_P16K_ROTATED = 106
+Global Const $DMPAPER_P32K_ROTATED = 107
+Global Const $DMPAPER_P32KBIG_ROTATED = 108
+Global Const $DMPAPER_PENV_1_ROTATED = 109
+Global Const $DMPAPER_PENV_2_ROTATED = 110
+Global Const $DMPAPER_PENV_3_ROTATED = 111
+Global Const $DMPAPER_PENV_4_ROTATED = 112
+Global Const $DMPAPER_PENV_5_ROTATED = 113
+Global Const $DMPAPER_PENV_6_ROTATED = 114
+Global Const $DMPAPER_PENV_7_ROTATED = 115
+Global Const $DMPAPER_PENV_8_ROTATED = 116
+Global Const $DMPAPER_PENV_9_ROTATED = 117
+Global Const $DMPAPER_PENV_10_ROTATED = 118
+Global Const $DMPAPER_USER = 256
+Global Const $DMBIN_UPPER = 1
+Global Const $DMBIN_LOWER = 2
+Global Const $DMBIN_MIDDLE = 3
+Global Const $DMBIN_MANUAL = 4
+Global Const $DMBIN_ENVELOPE = 5
+Global Const $DMBIN_ENVMANUAL = 6
+Global Const $DMBIN_AUTO = 7
+Global Const $DMBIN_TRACTOR = 8
+Global Const $DMBIN_SMALLFMT = 9
+Global Const $DMBIN_LARGEFMT = 10
+Global Const $DMBIN_LARGECAPACITY = 11
+Global Const $DMBIN_CASSETTE = 14
+Global Const $DMBIN_FORMSOURCE = 15
+Global Const $DMBIN_USER = 256
+Global Const $DMRES_DRAFT = + 4294967295
+Global Const $DMRES_LOW = + 4294967294
+Global Const $DMRES_MEDIUM = + 4294967293
+Global Const $DMRES_HIGH = + 4294967292
+Global Const $DMDO_DEFAULT = 0
+Global Const $DMDO_90 = 1
+Global Const $DMDO_180 = 2
+Global Const $DMDO_270 = 3
+Global Const $DMDFO_DEFAULT = 0
+Global Const $DMDFO_STRETCH = 1
+Global Const $DMDFO_CENTER = 2
+Global Const $DMCOLOR_MONOCHROME = 1
+Global Const $DMCOLOR_COLOR = 2
+Global Const $DMDUP_SIMPLEX = 1
+Global Const $DMDUP_VERTICAL = 2
+Global Const $DMDUP_HORIZONTAL = 3
+Global Const $DMTT_BITMAP = 1
+Global Const $DMTT_DOWNLOAD = 2
+Global Const $DMTT_SUBDEV = 3
+Global Const $DMTT_DOWNLOAD_OUTLINE = 4
+Global Const $DMCOLLATE_FALSE = 0
+Global Const $DMCOLLATE_TRUE = 1
+Global Const $DM_GRAYSCALE = 1
+Global Const $DM_INTERLACED = 2
+Global Const $DMNUP_SYSTEM = 1
+Global Const $DMNUP_ONEUP = 2
+Global Const $DMICMMETHOD_NONE = 1
+Global Const $DMICMMETHOD_SYSTEM = 2
+Global Const $DMICMMETHOD_DRIVER = 3
+Global Const $DMICMMETHOD_DEVICE = 4
+Global Const $DMICMMETHOD_USER = 256
+Global Const $DMICM_SATURATE = 1
+Global Const $DMICM_CONTRAST = 2
+Global Const $DMICM_COLORIMETRIC = 3
+Global Const $DMICM_ABS_COLORIMETRIC = 4
+Global Const $DMICM_USER = 256
+Global Const $DMMEDIA_STANDARD = 1
+Global Const $DMMEDIA_TRANSPARENCY = 2
+Global Const $DMMEDIA_GLOSSY = 3
+Global Const $DMMEDIA_USER = 256
+Global Const $DMDITHER_NONE = 1
+Global Const $DMDITHER_COARSE = 2
+Global Const $DMDITHER_FINE = 3
+Global Const $DMDITHER_LINEART = 4
+Global Const $DMDITHER_ERRORDIFFUSION = 5
+Global Const $DMDITHER_RESERVED6 = 6
+Global Const $DMDITHER_RESERVED7 = 7
+Global Const $DMDITHER_RESERVED8 = 8
+Global Const $DMDITHER_RESERVED9 = 9
+Global Const $DMDITHER_GRAYSCALE = 10
+Global Const $DMDITHER_USER = 256
+Global Const $ENUM_CURRENT_SETTINGS = + 4294967295
+Global Const $ENUM_REGISTRY_SETTINGS = + 4294967294
+Global Const $DEVICE_FONTTYPE = 2
+Global Const $RASTER_FONTTYPE = 1
+Global Const $TRUETYPE_FONTTYPE = 4
+Global Const $NTM_BOLD = 32
+Global Const $NTM_DSIG = 2097152
+Global Const $NTM_ITALIC = 1
+Global Const $NTM_MULTIPLEMASTER = 524288
+Global Const $NTM_NONNEGATIVE_AC = 65536
+Global Const $NTM_PS_OPENTYPE = 131072
+Global Const $NTM_REGULAR = 64
+Global Const $NTM_TT_OPENTYPE = 262144
+Global Const $NTM_TYPE1 = 1048576
+Global Const $FLOODFILLBORDER = 0
+Global Const $FLOODFILLSURFACE = 1
+Global Const $AD_COUNTERCLOCKWISE = 1
+Global Const $AD_CLOCKWISE = 2
+Global Const $DCB_ACCUMULATE = 2
+Global Const $DCB_DISABLE = 8
+Global Const $DCB_ENABLE = 4
+Global Const $DCB_RESET = 1
+Global Const $DCB_SET = BitOR ( $DCB_RESET , $DCB_ACCUMULATE )
+Global Const $DCX_WINDOW = 1
+Global Const $DCX_CACHE = 2
+Global Const $DCX_PARENTCLIP = 32
+Global Const $DCX_CLIPSIBLINGS = 16
+Global Const $DCX_CLIPCHILDREN = 8
+Global Const $DCX_NORESETATTRS = 4
+Global Const $DCX_LOCKWINDOWUPDATE = 1024
+Global Const $DCX_EXCLUDERGN = 64
+Global Const $DCX_INTERSECTRGN = 128
+Global Const $DCX_INTERSECTUPDATE = 512
+Global Const $DCX_VALIDATE = 2097152
+Global Const $GGO_BEZIER = 3
+Global Const $GGO_BITMAP = 1
+Global Const $GGO_GLYPH_INDEX = 128
+Global Const $GGO_GRAY2_BITMAP = 4
+Global Const $GGO_GRAY4_BITMAP = 5
+Global Const $GGO_GRAY8_BITMAP = 6
+Global Const $GGO_METRICS = 0
+Global Const $GGO_NATIVE = 2
+Global Const $GGO_UNHINTED = 256
+Global Const $GM_COMPATIBLE = 1
+Global Const $GM_ADVANCED = 2
+Global Const $MM_ANISOTROPIC = 8
+Global Const $MM_HIENGLISH = 5
+Global Const $MM_HIMETRIC = 3
+Global Const $MM_ISOTROPIC = 7
+Global Const $MM_LOENGLISH = 4
+Global Const $MM_LOMETRIC = 2
+Global Const $MM_TEXT = 1
+Global Const $MM_TWIPS = 6
+Global Const $R2_BLACK = 1
+Global Const $R2_COPYPEN = 13
+Global Const $R2_LAST = 16
+Global Const $R2_MASKNOTPEN = 3
+Global Const $R2_MASKPEN = 9
+Global Const $R2_MASKPENNOT = 5
+Global Const $R2_MERGENOTPEN = 12
+Global Const $R2_MERGEPEN = 15
+Global Const $R2_MERGEPENNOT = 14
+Global Const $R2_NOP = 11
+Global Const $R2_NOT = 6
+Global Const $R2_NOTCOPYPEN = 4
+Global Const $R2_NOTMASKPEN = 8
+Global Const $R2_NOTMERGEPEN = 2
+Global Const $R2_NOTXORPEN = 10
+Global Const $R2_WHITE = 16
+Global Const $R2_XORPEN = 7
+Global Const $BLACKONWHITE = 1
+Global Const $COLORONCOLOR = 3
+Global Const $HALFTONE = 4
+Global Const $WHITEONBLACK = 2
+Global Const $STRETCH_ANDSCANS = $BLACKONWHITE
+Global Const $STRETCH_DELETESCANS = $COLORONCOLOR
+Global Const $STRETCH_HALFTONE = $HALFTONE
+Global Const $STRETCH_ORSCANS = $WHITEONBLACK
+Global Const $TA_BASELINE = 24
+Global Const $TA_BOTTOM = 8
+Global Const $TA_TOP = 0
+Global Const $TA_CENTER = 6
+Global Const $TA_LEFT = 0
+Global Const $TA_RIGHT = 2
+Global Const $TA_NOUPDATECP = 0
+Global Const $TA_RTLREADING = 256
+Global Const $TA_UPDATECP = 1
+Global Const $VTA_BASELINE = $TA_BASELINE
+Global Const $VTA_BOTTOM = $TA_RIGHT
+Global Const $VTA_TOP = $TA_LEFT
+Global Const $VTA_CENTER = $TA_CENTER
+Global Const $VTA_LEFT = $TA_BOTTOM
+Global Const $VTA_RIGHT = $TA_TOP
+Global Const $UDF_BGR = 1
+Global Const $UDF_RGB = 0
+Global Const $MWT_IDENTITY = 1
+Global Const $MWT_LEFTMULTIPLY = 2
+Global Const $MWT_RIGHTMULTIPLY = 3
+Global Const $MWT_SET = 4
+Global Const $MONITOR_DEFAULTTONEAREST = 2
+Global Const $MONITOR_DEFAULTTONULL = 0
+Global Const $MONITOR_DEFAULTTOPRIMARY = 1
+Global Const $PT_BEZIERTO = 4
+Global Const $PT_LINETO = 2
+Global Const $PT_MOVETO = 6
+Global Const $PT_CLOSEFIGURE = 1
+Global Const $COINIT_APARTMENTTHREADED = 2
+Global Const $COINIT_DISABLE_OLE1DDE = 4
+Global Const $COINIT_MULTITHREADED = 0
+Global Const $COINIT_SPEED_OVER_MEMORY = 8
+#Region Global Variables and Constants
+Global Const $__TAGWINAPICOM_GUID = "struct;ulong Data1;ushort Data2;ushort Data3;byte Data4[8];endstruct"
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_CLSIDFROMPROGID ( $SPROGID )
+	Local $TGUID = DllStructCreate ( $__TAGWINAPICOM_GUID )
+	Local $ACALL = DllCall ( "ole32.dll" , "long" , "CLSIDFromProgID" , "wstr" , $SPROGID , "struct*" , $TGUID )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	$ACALL = DllCall ( "ole32.dll" , "int" , "StringFromGUID2" , "struct*" , $TGUID , "wstr" , "" , "int" , 39 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_COINITIALIZE ( $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "ole32.dll" , "long" , "CoInitializeEx" , "ptr" , 0 , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_COTASKMEMALLOC ( $ISIZE )
+	Local $ACALL = DllCall ( "ole32.dll" , "ptr" , "CoTaskMemAlloc" , "uint_ptr" , $ISIZE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_COTASKMEMFREE ( $PMEMORY )
+	DllCall ( "ole32.dll" , "none" , "CoTaskMemFree" , "ptr" , $PMEMORY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_COTASKMEMREALLOC ( $PMEMORY , $ISIZE )
+	Local $ACALL = DllCall ( "ole32.dll" , "ptr" , "CoTaskMemRealloc" , "ptr" , $PMEMORY , "ulong_ptr" , $ISIZE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_COUNINITIALIZE ( )
+	DllCall ( "ole32.dll" , "none" , "CoUninitialize" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_CREATEGUID ( )
+	Local $TGUID = DllStructCreate ( $__TAGWINAPICOM_GUID )
+	Local $ACALL = DllCall ( "ole32.dll" , "long" , "CoCreateGuid" , "struct*" , $TGUID )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	$ACALL = DllCall ( "ole32.dll" , "int" , "StringFromGUID2" , "struct*" , $TGUID , "wstr" , "" , "int" , 65536 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_CREATESTREAMONHGLOBAL ( $HGLOBAL = 0 , $BDELETEONRELEASE = True )
+	Local $ACALL = DllCall ( "ole32.dll" , "long" , "CreateStreamOnHGlobal" , "handle" , $HGLOBAL , "bool" , $BDELETEONRELEASE , "ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_GETHGLOBALFROMSTREAM ( $PSTREAM )
+	Local $ACALL = DllCall ( "ole32.dll" , "uint" , "GetHGlobalFromStream" , "ptr" , $PSTREAM , "ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_PROGIDFROMCLSID ( $SCLSID )
+	Local $TGUID = DllStructCreate ( $__TAGWINAPICOM_GUID )
+	Local $ACALL = DllCall ( "ole32.dll" , "uint" , "CLSIDFromString" , "wstr" , $SCLSID , "struct*" , $TGUID )
+	If @error Or $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , "" )
+	$ACALL = DllCall ( "ole32.dll" , "uint" , "ProgIDFromCLSID" , "struct*" , $TGUID , "ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Local $SID = _WINAPI_GETSTRING ( $ACALL [ 2 ] )
+	_WINAPI_COTASKMEMFREE ( $ACALL [ 2 ] )
+	Return $SID
+EndFunc
+Func _WINAPI_RELEASESTREAM ( $PSTREAM )
+	Local $ACALL = DllCall ( "oleaut32.dll" , "long" , "DispCallFunc" , "ptr" , $PSTREAM , "ulong_ptr" , 8 * ( 1 + @AutoItX64 ) , "uint" , 4 , "ushort" , 23 , "uint" , 0 , "ptr" , 0 , "ptr" , 0 , "str" , "" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+#EndRegion Public Functions
+#Region Global Variables and Constants
+Global $__G_HHEAP = 0
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_CREATEBUFFER ( $ILENGTH , $PBUFFER = 0 , $BABORT = True )
+	$PBUFFER = __HEAPREALLOC ( $PBUFFER , $ILENGTH , 0 , $BABORT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $PBUFFER
+EndFunc
+Func _WINAPI_CREATEBUFFERFROMSTRUCT ( $TSTRUCT , $PBUFFER = 0 , $BABORT = True )
+	If Not IsDllStruct ( $TSTRUCT ) Then Return SetError ( 1 , 0 , 0 )
+	$PBUFFER = __HEAPREALLOC ( $PBUFFER , DllStructGetSize ( $TSTRUCT ) , 0 , $BABORT )
+	If @error Then Return SetError ( @error + 100 , @extended , 0 )
+	_WINAPI_MOVEMEMORY ( $PBUFFER , $TSTRUCT , DllStructGetSize ( $TSTRUCT ) )
+	Return $PBUFFER
+EndFunc
+Func _WINAPI_CREATESTRING ( $SSTRING , $PSTRING = 0 , $ILENGTH = + 4294967295 , $BUNICODE = True , $BABORT = True )
+	$ILENGTH = Number ( $ILENGTH )
+	If $ILENGTH >= 0 Then
+		$SSTRING = StringLeft ( $SSTRING , $ILENGTH )
+	Else
+		$ILENGTH = StringLen ( $SSTRING )
+	EndIf
+	Local $ISIZE = $ILENGTH + 1
+	If $BUNICODE Then
+		$ISIZE *= 2
+	EndIf
+	$PSTRING = __HEAPREALLOC ( $PSTRING , $ISIZE , 0 , $BABORT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	DllStructSetData ( DllStructCreate ( ( $BUNICODE ? "wchar" : "char" ) & "[" & ( $ILENGTH + 1 ) & "]" , $PSTRING ) , 1 , $SSTRING )
+	Return SetExtended ( $ILENGTH , $PSTRING )
+EndFunc
+Func _WINAPI_EQUALMEMORY ( $PSOURCE1 , $PSOURCE2 , $ILENGTH )
+	If _WINAPI_ISBADREADPTR ( $PSOURCE1 , $ILENGTH ) Then Return SetError ( 11 , @extended , 0 )
+	If _WINAPI_ISBADREADPTR ( $PSOURCE2 , $ILENGTH ) Then Return SetError ( 12 , @extended , 0 )
+	Local $ACALL = DllCall ( "ntdll.dll" , "ulong_ptr" , "RtlCompareMemory" , "struct*" , $PSOURCE1 , "struct*" , $PSOURCE2 , "ulong_ptr" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return Number ( $ACALL [ 0 ] = $ILENGTH )
+EndFunc
+Func _WINAPI_FILLMEMORY ( $PMEMORY , $ILENGTH , $IVALUE = 0 )
+	If _WINAPI_ISBADWRITEPTR ( $PMEMORY , $ILENGTH ) Then Return SetError ( 11 , @extended , 0 )
+	DllCall ( "ntdll.dll" , "none" , "RtlFillMemory" , "struct*" , $PMEMORY , "ulong_ptr" , $ILENGTH , "byte" , $IVALUE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_FREEMEMORY ( $PMEMORY )
+	If Not __HEAPFREE ( $PMEMORY , 1 ) Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_GETMEMORYSIZE ( $PMEMORY )
+	Local $IRESULT = __HEAPSIZE ( $PMEMORY , 1 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $IRESULT
+EndFunc
+Func _WINAPI_GLOBALMEMORYSTATUS ( )
+	Local Const $TAGMEMORYSTATUSEX = "dword Length;dword MemoryLoad;" & "uint64 TotalPhys;uint64 AvailPhys;uint64 TotalPageFile;uint64 AvailPageFile;" & "uint64 TotalVirtual;uint64 AvailVirtual;uint64 AvailExtendedVirtual"
+	Local $TMEM = DllStructCreate ( $TAGMEMORYSTATUSEX )
+	DllStructSetData ( $TMEM , 1 , DllStructGetSize ( $TMEM ) )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GlobalMemoryStatusEx" , "struct*" , $TMEM )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $AMEM [ 7 ]
+	$AMEM [ 0 ] = DllStructGetData ( $TMEM , 2 )
+	$AMEM [ 1 ] = DllStructGetData ( $TMEM , 3 )
+	$AMEM [ 2 ] = DllStructGetData ( $TMEM , 4 )
+	$AMEM [ 3 ] = DllStructGetData ( $TMEM , 5 )
+	$AMEM [ 4 ] = DllStructGetData ( $TMEM , 6 )
+	$AMEM [ 5 ] = DllStructGetData ( $TMEM , 7 )
+	$AMEM [ 6 ] = DllStructGetData ( $TMEM , 8 )
+	Return $AMEM
+EndFunc
+Func _WINAPI_ISBADCODEPTR ( $PADDRESS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "IsBadCodePtr" , "struct*" , $PADDRESS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISBADREADPTR ( $PADDRESS , $ILENGTH )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "IsBadReadPtr" , "struct*" , $PADDRESS , "uint_ptr" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISBADSTRINGPTR ( $PADDRESS , $ILENGTH )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "IsBadStringPtr" , "struct*" , $PADDRESS , "uint_ptr" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISBADWRITEPTR ( $PADDRESS , $ILENGTH )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "IsBadWritePtr" , "struct*" , $PADDRESS , "uint_ptr" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISMEMORY ( $PMEMORY )
+	Local $BRESULT = __HEAPVALIDATE ( $PMEMORY )
+	Return SetError ( @error , @extended , $BRESULT )
+EndFunc
+Func _WINAPI_LOCALFREE ( $HMEMORY )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "LocalFree" , "handle" , $HMEMORY )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MOVEMEMORY ( $PDESTINATION , $PSOURCE , $ILENGTH )
+	If _WINAPI_ISBADREADPTR ( $PSOURCE , $ILENGTH ) Then Return SetError ( 10 , @extended , 0 )
+	If _WINAPI_ISBADWRITEPTR ( $PDESTINATION , $ILENGTH ) Then Return SetError ( 11 , @extended , 0 )
+	DllCall ( "ntdll.dll" , "none" , "RtlMoveMemory" , "struct*" , $PDESTINATION , "struct*" , $PSOURCE , "ulong_ptr" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_READPROCESSMEMORY ( $HPROCESS , $PBASEADDRESS , $PBUFFER , $ISIZE , ByRef $IREAD )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadProcessMemory" , "handle" , $HPROCESS , "ptr" , $PBASEADDRESS , "struct*" , $PBUFFER , "ulong_ptr" , $ISIZE , "ulong_ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , False )
+	$IREAD = $ACALL [ 5 ]
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_WRITEPROCESSMEMORY ( $HPROCESS , $PBASEADDRESS , $PBUFFER , $ISIZE , ByRef $IWRITTEN , $SBUFFERTYPE = "ptr" )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "WriteProcessMemory" , "handle" , $HPROCESS , "ptr" , $PBASEADDRESS , $SBUFFERTYPE , $PBUFFER , "ulong_ptr" , $ISIZE , "ulong_ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , False )
+	$IWRITTEN = $ACALL [ 5 ]
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ZEROMEMORY ( $PMEMORY , $ILENGTH )
+	If _WINAPI_ISBADWRITEPTR ( $PMEMORY , $ILENGTH ) Then Return SetError ( 11 , @extended , 0 )
+	DllCall ( "ntdll.dll" , "none" , "RtlZeroMemory" , "struct*" , $PMEMORY , "ulong_ptr" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+Func __HEAPALLOC ( $ISIZE , $BABORT = False )
+	Local $ACALL
+	If Not $__G_HHEAP Then
+		$ACALL = DllCall ( "kernel32.dll" , "handle" , "HeapCreate" , "dword" , 0 , "ulong_ptr" , 0 , "ulong_ptr" , 0 )
+		If @error Or Not $ACALL [ 0 ] Then __FATALEXIT ( 1 , "Error allocating memory." )
+		$__G_HHEAP = $ACALL [ 0 ]
+	EndIf
+	$ACALL = DllCall ( "kernel32.dll" , "ptr" , "HeapAlloc" , "handle" , $__G_HHEAP , "dword" , 8 , "ulong_ptr" , $ISIZE )
+	If @error Or Not $ACALL [ 0 ] Then
+		If $BABORT Then __FATALEXIT ( 1 , "Error allocating memory." )
+		Return SetError ( @error + 30 , @extended , 0 )
+	EndIf
+	Return $ACALL [ 0 ]
+EndFunc
+Func __HEAPFREE ( ByRef $PMEMORY , $BCHECK = False , $ICURERR = @error , $ICUREXT = @extended )
+	If $BCHECK And ( Not __HEAPVALIDATE ( $PMEMORY ) ) Then Return SetError ( @error , @extended , 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "HeapFree" , "handle" , $__G_HHEAP , "dword" , 0 , "ptr" , $PMEMORY )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 40 , @extended , 0 )
+	$PMEMORY = 0
+	Return SetError ( $ICURERR , $ICUREXT , 1 )
+EndFunc
+Func __HEAPREALLOC ( $PMEMORY , $ISIZE , $BAMOUNT = False , $BABORT = False )
+	Local $PRET
+	If __HEAPVALIDATE ( $PMEMORY ) Then
+		If $BAMOUNT And ( __HEAPSIZE ( $PMEMORY ) >= $ISIZE ) Then Return SetExtended ( 1 , Ptr ( $PMEMORY ) )
+		Local $ACALL = DllCall ( "kernel32.dll" , "ptr" , "HeapReAlloc" , "handle" , $__G_HHEAP , "dword" , 8 , "ptr" , $PMEMORY , "ulong_ptr" , $ISIZE )
+		If @error Or Not $ACALL [ 0 ] Then
+			If $BABORT Then __FATALEXIT ( 1 , "Error allocating memory." )
+			Return SetError ( @error + 20 , @extended , Ptr ( $PMEMORY ) )
+		EndIf
+		$PRET = $ACALL [ 0 ]
+	Else
+		$PRET = __HEAPALLOC ( $ISIZE , $BABORT )
+		If @error Then Return SetError ( @error , @extended , 0 )
+	EndIf
+	Return $PRET
+EndFunc
+Func __HEAPSIZE ( $PMEMORY , $BCHECK = False )
+	If $BCHECK And ( Not __HEAPVALIDATE ( $PMEMORY ) ) Then Return SetError ( @error , @extended , 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "ulong_ptr" , "HeapSize" , "handle" , $__G_HHEAP , "dword" , 0 , "ptr" , $PMEMORY )
+	If @error Or ( $ACALL [ 0 ] = Ptr ( + 4294967295 ) ) Then Return SetError ( @error + 50 , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func __HEAPVALIDATE ( $PMEMORY )
+	If ( Not $__G_HHEAP ) Or ( Not Ptr ( $PMEMORY ) ) Then Return SetError ( 9 , 0 , False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "HeapValidate" , "handle" , $__G_HHEAP , "dword" , 0 , "ptr" , $PMEMORY )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Internal Functions
+Global Const $SND_APPLICATION = 128
+Global Const $SND_ALIAS = 65536
+Global Const $SND_ALIAS_ID = 1114112
+Global Const $SND_ASYNC = 1
+Global Const $SND_FILENAME = 131072
+Global Const $SND_LOOP = 8
+Global Const $SND_MEMORY = 4
+Global Const $SND_NODEFAULT = 2
+Global Const $SND_NOSTOP = 16
+Global Const $SND_NOWAIT = 8192
+Global Const $SND_PURGE = 64
+Global Const $SND_RESOURCE = 262148
+Global Const $SND_SENTRY = 524288
+Global Const $SND_SYNC = 0
+Global Const $SND_SYSTEM = 2097152
+Global Const $SND_SYSTEM_NOSTOP = 2097168
+Global Const $SND_ALIAS_SYSTEMASTERISK = "SystemAsterisk"
+Global Const $SND_ALIAS_SYSTEMDEFAULT = "SystemDefault"
+Global Const $SND_ALIAS_SYSTEMEXCLAMATION = "SystemExclamation"
+Global Const $SND_ALIAS_SYSTEMEXIT = "SystemExit"
+Global Const $SND_ALIAS_SYSTEMHAND = "SystemHand"
+Global Const $SND_ALIAS_SYSTEMQUESTION = "SystemQuestion"
+Global Const $SND_ALIAS_SYSTEMSTART = "SystemStart"
+Global Const $SND_ALIAS_SYSTEMWELCOME = "SystemWelcome"
+#Region Global Variables and Constants
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_ARRAYTOSTRUCT ( Const ByRef $ADATA , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $ADATA , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TAGSTRUCT = ""
+	For $I = $ISTART To $IEND
+		$TAGSTRUCT &= "wchar[" & ( StringLen ( $ADATA [ $I ] ) + 1 ) & "];"
+	Next
+	Local $TDATA = DllStructCreate ( $TAGSTRUCT & "wchar[1]" )
+	Local $ICOUNT = 1
+	For $I = $ISTART To $IEND
+		DllStructSetData ( $TDATA , $ICOUNT , $ADATA [ $I ] )
+		$ICOUNT += 1
+	Next
+	DllStructSetData ( $TDATA , $ICOUNT , ChrW ( 0 ) )
+	Return $TDATA
+EndFunc
+Func _WINAPI_CREATEMARGINS ( $ILEFTWIDTH , $IRIGHTWIDTH , $ITOPHEIGHT , $IBOTTOMHEIGHT )
+	Local $TMARGINS = DllStructCreate ( $TAGMARGINS )
+	DllStructSetData ( $TMARGINS , 1 , $ILEFTWIDTH )
+	DllStructSetData ( $TMARGINS , 2 , $IRIGHTWIDTH )
+	DllStructSetData ( $TMARGINS , 3 , $ITOPHEIGHT )
+	DllStructSetData ( $TMARGINS , 4 , $IBOTTOMHEIGHT )
+	Return $TMARGINS
+EndFunc
+Func _WINAPI_CREATEPOINT ( $IX , $IY )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	DllStructSetData ( $TPOINT , 1 , $IX )
+	DllStructSetData ( $TPOINT , 2 , $IY )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_CREATERECT ( $ILEFT , $ITOP , $IRIGHT , $IBOTTOM )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , 1 , $ILEFT )
+	DllStructSetData ( $TRECT , 2 , $ITOP )
+	DllStructSetData ( $TRECT , 3 , $IRIGHT )
+	DllStructSetData ( $TRECT , 4 , $IBOTTOM )
+	Return $TRECT
+EndFunc
+Func _WINAPI_CREATERECTEX ( $IX , $IY , $IWIDTH , $IHEIGHT )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , 1 , $IX )
+	DllStructSetData ( $TRECT , 2 , $IY )
+	DllStructSetData ( $TRECT , 3 , $IX + $IWIDTH )
+	DllStructSetData ( $TRECT , 4 , $IY + $IHEIGHT )
+	Return $TRECT
+EndFunc
+Func _WINAPI_CREATESIZE ( $IWIDTH , $IHEIGHT )
+	Local $TSIZE = DllStructCreate ( $TAGSIZE )
+	DllStructSetData ( $TSIZE , 1 , $IWIDTH )
+	DllStructSetData ( $TSIZE , 2 , $IHEIGHT )
+	Return $TSIZE
+EndFunc
+Func _WINAPI_COPYSTRUCT ( $TSTRUCT , $SSTRUCT = "" )
+	Local $ISIZE = DllStructGetSize ( $TSTRUCT )
+	If Not $ISIZE Then Return SetError ( 1 , 0 , 0 )
+	Local $TRESULT
+	If Not StringStripWS ( $SSTRUCT , $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES ) Then
+		$TRESULT = DllStructCreate ( "byte[" & $ISIZE & "]" )
+	Else
+		$TRESULT = DllStructCreate ( $SSTRUCT )
+	EndIf
+	If DllStructGetSize ( $TRESULT ) < $ISIZE Then Return SetError ( 2 , 0 , 0 )
+	_WINAPI_MOVEMEMORY ( $TRESULT , $TSTRUCT , $ISIZE )
+	Return $TRESULT
+EndFunc
+Func _WINAPI_GETEXTENDED ( )
+	Return $__G_VEXT
+EndFunc
+Func _WINAPI_GETMOUSEPOS ( $BTOCLIENT = False , $HWND = 0 )
+	Local $IMODE = Opt ( "MouseCoordMode" , 1 )
+	Local $APOS = MouseGetPos ( )
+	Opt ( "MouseCoordMode" , $IMODE )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	DllStructSetData ( $TPOINT , "X" , $APOS [ 0 ] )
+	DllStructSetData ( $TPOINT , "Y" , $APOS [ 1 ] )
+	If $BTOCLIENT And Not _WINAPI_SCREENTOCLIENT ( $HWND , $TPOINT ) Then Return SetError ( @error + 20 , @extended , 0 )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_GETMOUSEPOSX ( $BTOCLIENT = False , $HWND = 0 )
+	Local $TPOINT = _WINAPI_GETMOUSEPOS ( $BTOCLIENT , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return DllStructGetData ( $TPOINT , "X" )
+EndFunc
+Func _WINAPI_GETMOUSEPOSY ( $BTOCLIENT = False , $HWND = 0 )
+	Local $TPOINT = _WINAPI_GETMOUSEPOS ( $BTOCLIENT , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return DllStructGetData ( $TPOINT , "Y" )
+EndFunc
+Func _WINAPI_MULDIV ( $INUMBER , $INUMERATOR , $IDENOMINATOR )
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "MulDiv" , "int" , $INUMBER , "int" , $INUMERATOR , "int" , $IDENOMINATOR )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PLAYSOUND ( $SSOUND , $IFLAGS = $SND_SYSTEM_NOSTOP , $HINSTANCE = 0 )
+	Local $STYPEOFSOUND = "ptr"
+	If $SSOUND Then
+		If IsString ( $SSOUND ) Then
+			$STYPEOFSOUND = "wstr"
+		EndIf
+	Else
+		$SSOUND = 0
+		$IFLAGS = 0
+	EndIf
+	Local $ACALL = DllCall ( "winmm.dll" , "bool" , "PlaySoundW" , $STYPEOFSOUND , $SSOUND , "handle" , $HINSTANCE , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_STRINGLENA ( Const ByRef $TSTRING )
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "lstrlenA" , "struct*" , $TSTRING )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_STRINGLENW ( Const ByRef $TSTRING )
+	Local $ACALL = DllCall ( "kernel32.dll" , "int" , "lstrlenW" , "struct*" , $TSTRING )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_STRUCTTOARRAY ( ByRef $TSTRUCT , $IITEMS = 0 )
+	Local $ISIZE = 2 * Floor ( DllStructGetSize ( $TSTRUCT ) / 2 )
+	Local $PSTRUCT = DllStructGetPtr ( $TSTRUCT )
+	If Not $ISIZE Or Not $PSTRUCT Then Return SetError ( 1 , 0 , 0 )
+	Local $TDATA , $ILENGTH , $IOFFSET = 0
+	Local $ARET [ 101 ] = [ 0 ]
+	While 1
+		$ILENGTH = _WINAPI_STRLEN ( $PSTRUCT + $IOFFSET )
+		If Not $ILENGTH Then
+			ExitLoop
+		EndIf
+		If 2 * ( 1 + $ILENGTH ) + $IOFFSET > $ISIZE Then Return SetError ( 3 , 0 , 0 )
+		$TDATA = DllStructCreate ( "wchar[" & ( 1 + $ILENGTH ) & "]" , $PSTRUCT + $IOFFSET )
+		If @error Then Return SetError ( @error + 10 , 0 , 0 )
+		__INC ( $ARET )
+		$ARET [ $ARET [ 0 ] ] = DllStructGetData ( $TDATA , 1 )
+		If $ARET [ 0 ] = $IITEMS Then
+			ExitLoop
+		EndIf
+		$IOFFSET += 2 * ( 1 + $ILENGTH )
+		If $IOFFSET >= $ISIZE Then Return SetError ( 3 , 0 , 0 )
+	WEnd
+	If Not $ARET [ 0 ] Then Return SetError ( 2 , 0 , 0 )
+	__INC ( $ARET , + 4294967295 )
+	Return $ARET
+EndFunc
+Func _WINAPI_UNIONSTRUCT ( $TSTRUCT1 , $TSTRUCT2 , $SSTRUCT = "" )
+	Local $ASIZE [ 2 ] = [ DllStructGetSize ( $TSTRUCT1 ) , DllStructGetSize ( $TSTRUCT2 ) ]
+	If Not $ASIZE [ 0 ] Or Not $ASIZE [ 1 ] Then Return SetError ( 1 , 0 , 0 )
+	Local $TRESULT
+	If Not StringStripWS ( $SSTRUCT , $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES ) Then
+		$TRESULT = DllStructCreate ( "byte[" & ( $ASIZE [ 0 ] + $ASIZE [ 1 ] ) & "]" )
+	Else
+		$TRESULT = DllStructCreate ( $SSTRUCT )
+	EndIf
+	If DllStructGetSize ( $TRESULT ) < ( $ASIZE [ 0 ] + $ASIZE [ 1 ] ) Then Return SetError ( 2 , 0 , 0 )
+	_WINAPI_MOVEMEMORY ( $TRESULT , $TSTRUCT1 , $ASIZE [ 0 ] )
+	_WINAPI_MOVEMEMORY ( DllStructGetPtr ( $TRESULT ) + $ASIZE [ 0 ] , $TSTRUCT2 , $ASIZE [ 1 ] )
+	Return $TRESULT
+EndFunc
+#EndRegion Public Functions
+#Region Global Variables and Constants
+Global Const $TAGBITMAP = "struct;long bmType;long bmWidth;long bmHeight;long bmWidthBytes;ushort bmPlanes;ushort bmBitsPixel;ptr bmBits;endstruct"
+Global Const $TAGBITMAPV5HEADER = "struct;dword bV5Size;long bV5Width;long bV5Height;ushort bV5Planes;ushort bV5BitCount;dword bV5Compression;dword bV5SizeImage;long bV5XPelsPerMeter;long bV5YPelsPerMeter;dword bV5ClrUsed;dword bV5ClrImportant;dword bV5RedMask;dword bV5GreenMask;dword bV5BlueMask;dword bV5AlphaMask;dword bV5CSType;int bV5Endpoints[9];dword bV5GammaRed;dword bV5GammaGreen;dword bV5GammaBlue;dword bV5Intent;dword bV5ProfileData;dword bV5ProfileSize;dword bV5Reserved;endstruct"
+Global Const $TAGDIBSECTION = $TAGBITMAP & ";" & $TAGBITMAPINFOHEADER & ";dword dsBitfields[3];ptr dshSection;dword dsOffset"
+Global Const $TMPF_FIXED_PITCH = 1
+Global Const $TMPF_VECTOR = 2
+Global Const $TMPF_TRUETYPE = 4
+Global Const $TMPF_DEVICE = 8
+Global Const $__WINAPICONSTANT_FW_NORMAL = 400
+Global Const $__WINAPICONSTANT_DEFAULT_CHARSET = 1
+Global Const $__WINAPICONSTANT_OUT_DEFAULT_PRECIS = 0
+Global Const $__WINAPICONSTANT_CLIP_DEFAULT_PRECIS = 0
+Global Const $__WINAPICONSTANT_DEFAULT_QUALITY = 0
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_BITBLT ( $HDESTDC , $IXDEST , $IYDEST , $IWIDTH , $IHEIGHT , $HSRCDC , $IXSRC , $IYSRC , $IROP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "BitBlt" , "handle" , $HDESTDC , "int" , $IXDEST , "int" , $IYDEST , "int" , $IWIDTH , "int" , $IHEIGHT , "handle" , $HSRCDC , "int" , $IXSRC , "int" , $IYSRC , "dword" , $IROP )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_COMBINERGN ( $HRGNDEST , $HRGNSRC1 , $HRGNSRC2 , $ICOMBINEMODE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "CombineRgn" , "handle" , $HRGNDEST , "handle" , $HRGNSRC1 , "handle" , $HRGNSRC2 , "int" , $ICOMBINEMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_COPYBITMAP ( $HBITMAP )
+	$HBITMAP = _WINAPI_COPYIMAGE ( $HBITMAP , 0 , 0 , 0 , 8192 )
+	Return SetError ( @error , @extended , $HBITMAP )
+EndFunc
+Func _WINAPI_COPYIMAGE ( $HIMAGE , $ITYPE = 0 , $IXDESIREDPIXELS = 0 , $IYDESIREDPIXELS = 0 , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "CopyImage" , "handle" , $HIMAGE , "uint" , $ITYPE , "int" , $IXDESIREDPIXELS , "int" , $IYDESIREDPIXELS , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEANDBITMAP ( $HBITMAP )
+	Local $IERROR = 0 , $HDIB = 0
+	$HBITMAP = _WINAPI_COPYBITMAP ( $HBITMAP )
+	If Not $HBITMAP Then Return SetError ( @error + 20 , @extended , 0 )
+	Do
+		Local $ATDIB [ 2 ]
+		$ATDIB [ 0 ] = DllStructCreate ( $TAGDIBSECTION )
+		If ( Not _WINAPI_GETOBJECT ( $HBITMAP , DllStructGetSize ( $ATDIB [ 0 ] ) , $ATDIB [ 0 ] ) ) Or ( DllStructGetData ( $ATDIB [ 0 ] , "bmBitsPixel" ) <> 32 ) Or ( DllStructGetData ( $ATDIB [ 0 ] , "biCompression" ) ) Then
+			$IERROR = 10
+			ExitLoop
+		EndIf
+		$ATDIB [ 1 ] = DllStructCreate ( $TAGBITMAP )
+		$HDIB = _WINAPI_CREATEDIB ( DllStructGetData ( $ATDIB [ 0 ] , "bmWidth" ) , DllStructGetData ( $ATDIB [ 0 ] , "bmHeight" ) , 1 )
+		If Not _WINAPI_GETOBJECT ( $HDIB , DllStructGetSize ( $ATDIB [ 1 ] ) , $ATDIB [ 1 ] ) Then
+			$IERROR = 11
+			ExitLoop
+		EndIf
+		Local $ACALL = DllCall ( "user32.dll" , "lresult" , "CallWindowProc" , "ptr" , __ANDPROC ( ) , "ptr" , 0 , "uint" , 0 , "wparam" , DllStructGetPtr ( $ATDIB [ 0 ] ) , "lparam" , DllStructGetPtr ( $ATDIB [ 1 ] ) )
+		If @error Then
+			$IERROR = @error
+			ExitLoop
+		EndIf
+		If Not $ACALL [ 0 ] Then
+			$IERROR = 12
+			ExitLoop
+		EndIf
+		$IERROR = 0
+	Until 1
+	_WINAPI_DELETEOBJECT ( $HBITMAP )
+	If $IERROR Then
+		If $HDIB Then
+			_WINAPI_DELETEOBJECT ( $HDIB )
+		EndIf
+		$HDIB = 0
+	EndIf
+	Return SetError ( $IERROR , 0 , $HDIB )
+EndFunc
+Func _WINAPI_CREATEBITMAP ( $IWIDTH , $IHEIGHT , $IPLANES = 1 , $IBITSPERPEL = 1 , $PBITS = 0 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateBitmap" , "int" , $IWIDTH , "int" , $IHEIGHT , "uint" , $IPLANES , "uint" , $IBITSPERPEL , "struct*" , $PBITS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATECOMPATIBLEBITMAP ( $HDC , $IWIDTH , $IHEIGHT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleBitmap" , "handle" , $HDC , "int" , $IWIDTH , "int" , $IHEIGHT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEDIB ( $IWIDTH , $IHEIGHT , $IBITSPERPEL = 32 , $TCOLORTABLE = 0 , $ICOLORCOUNT = 0 )
+	Local $ARGBQ [ 2 ] , $ICOLORS , $TAGRGBQ
+	Switch $IBITSPERPEL
+	Case 1
+		$ICOLORS = 2
+	Case 4
+		$ICOLORS = 16
+	Case 8
+		$ICOLORS = 256
+Case Else
+		$ICOLORS = 0
+	EndSwitch
+	If $ICOLORS Then
+		If Not IsDllStruct ( $TCOLORTABLE ) Then
+			Switch $IBITSPERPEL
+			Case 1
+				$ARGBQ [ 0 ] = 0
+				$ARGBQ [ 1 ] = 16777215
+				$TCOLORTABLE = _WINAPI_CREATEDIBCOLORTABLE ( $ARGBQ )
+		Case Else
+			EndSwitch
+		Else
+			If $ICOLORS > $ICOLORCOUNT Then
+				$ICOLORS = $ICOLORCOUNT
+			EndIf
+			If ( Not $ICOLORS ) Or ( ( 4 * $ICOLORS ) > DllStructGetSize ( $TCOLORTABLE ) ) Then
+				Return SetError ( 20 , 0 , 0 )
+			EndIf
+		EndIf
+		$TAGRGBQ = ";dword aRGBQuad[" & $ICOLORS & "]"
+	Else
+		$TAGRGBQ = ""
+	EndIf
+	Local $TBITMAPINFO = DllStructCreate ( $TAGBITMAPINFOHEADER & $TAGRGBQ )
+	DllStructSetData ( $TBITMAPINFO , "biSize" , 40 )
+	DllStructSetData ( $TBITMAPINFO , "biWidth" , $IWIDTH )
+	DllStructSetData ( $TBITMAPINFO , "biHeight" , $IHEIGHT )
+	DllStructSetData ( $TBITMAPINFO , "biPlanes" , 1 )
+	DllStructSetData ( $TBITMAPINFO , "biBitCount" , $IBITSPERPEL )
+	DllStructSetData ( $TBITMAPINFO , "biCompression" , 0 )
+	DllStructSetData ( $TBITMAPINFO , "biSizeImage" , 0 )
+	DllStructSetData ( $TBITMAPINFO , "biXPelsPerMeter" , 0 )
+	DllStructSetData ( $TBITMAPINFO , "biYPelsPerMeter" , 0 )
+	DllStructSetData ( $TBITMAPINFO , "biClrUsed" , $ICOLORS )
+	DllStructSetData ( $TBITMAPINFO , "biClrImportant" , 0 )
+	If $ICOLORS Then
+		If IsDllStruct ( $TCOLORTABLE ) Then
+			_WINAPI_MOVEMEMORY ( DllStructGetPtr ( $TBITMAPINFO , "aRGBQuad" ) , $TCOLORTABLE , 4 * $ICOLORS )
+		Else
+			_WINAPI_ZEROMEMORY ( DllStructGetPtr ( $TBITMAPINFO , "aRGBQuad" ) , 4 * $ICOLORS )
+		EndIf
+	EndIf
+	Local $HBITMAP = _WINAPI_CREATEDIBSECTION ( 0 , $TBITMAPINFO , 0 , $__G_VEXT )
+	If Not $HBITMAP Then Return SetError ( @error , @extended , 0 )
+	Return $HBITMAP
+EndFunc
+Func _WINAPI_CREATEDIBSECTION ( $HDC , $TBITMAPINFO , $IUSAGE , ByRef $PBITS , $HSECTION = 0 , $IOFFSET = 0 )
+	$PBITS = 0
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateDIBSection" , "handle" , $HDC , "struct*" , $TBITMAPINFO , "uint" , $IUSAGE , "ptr*" , 0 , "handle" , $HSECTION , "dword" , $IOFFSET )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	$PBITS = $ACALL [ 4 ]
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEDIBCOLORTABLE ( Const ByRef $ACOLORTABLE , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $ACOLORTABLE , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TCOLORTABLE = DllStructCreate ( "dword[" & ( $IEND - $ISTART + 1 ) & "]" )
+	Local $ICOUNT = 1
+	For $I = $ISTART To $IEND
+		DllStructSetData ( $TCOLORTABLE , 1 , _WINAPI_SWITCHCOLOR ( __RGB ( $ACOLORTABLE [ $I ] ) ) , $ICOUNT )
+		$ICOUNT += 1
+	Next
+	Return $TCOLORTABLE
+EndFunc
+Func _WINAPI_CREATEFONT ( $IHEIGHT , $IWIDTH , $IESCAPE = 0 , $IORIENTN = 0 , $IWEIGHT = $__WINAPICONSTANT_FW_NORMAL , $BITALIC = False , $BUNDERLINE = False , $BSTRIKEOUT = False , $ICHARSET = $__WINAPICONSTANT_DEFAULT_CHARSET , $IOUTPUTPREC = $__WINAPICONSTANT_OUT_DEFAULT_PRECIS , $ICLIPPREC = $__WINAPICONSTANT_CLIP_DEFAULT_PRECIS , $IQUALITY = $__WINAPICONSTANT_DEFAULT_QUALITY , $IPITCH = 0 , $SFACE = "Arial" )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateFontW" , "int" , $IHEIGHT , "int" , $IWIDTH , "int" , $IESCAPE , "int" , $IORIENTN , "int" , $IWEIGHT , "dword" , $BITALIC , "dword" , $BUNDERLINE , "dword" , $BSTRIKEOUT , "dword" , $ICHARSET , "dword" , $IOUTPUTPREC , "dword" , $ICLIPPREC , "dword" , $IQUALITY , "dword" , $IPITCH , "wstr" , $SFACE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEFONTINDIRECT ( $TLOGFONT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateFontIndirectW" , "struct*" , $TLOGFONT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATERECTRGN ( $ILEFTRECT , $ITOPRECT , $IRIGHTRECT , $IBOTTOMRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateRectRgn" , "int" , $ILEFTRECT , "int" , $ITOPRECT , "int" , $IRIGHTRECT , "int" , $IBOTTOMRECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEROUNDRECTRGN ( $ILEFTRECT , $ITOPRECT , $IRIGHTRECT , $IBOTTOMRECT , $IWIDTHELLIPSE , $IHEIGHTELLIPSE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateRoundRectRgn" , "int" , $ILEFTRECT , "int" , $ITOPRECT , "int" , $IRIGHTRECT , "int" , $IBOTTOMRECT , "int" , $IWIDTHELLIPSE , "int" , $IHEIGHTELLIPSE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATESOLIDBRUSH ( $ICOLOR )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateSolidBrush" , "INT" , $ICOLOR )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETBITMAPDIMENSION ( $HBITMAP )
+	Local $TOBJ = DllStructCreate ( $TAGBITMAP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetObject" , "handle" , $HBITMAP , "int" , DllStructGetSize ( $TOBJ ) , "struct*" , $TOBJ )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return _WINAPI_CREATESIZE ( DllStructGetData ( $TOBJ , "bmWidth" ) , DllStructGetData ( $TOBJ , "bmHeight" ) )
+EndFunc
+Func _WINAPI_GETSYSCOLORBRUSH ( $IINDEX )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetSysColorBrush" , "int" , $IINDEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETTEXTEXTENTPOINT32 ( $HDC , $STEXT )
+	Local $TSIZE = DllStructCreate ( $TAGSIZE )
+	Local $ISIZE = StringLen ( $STEXT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetTextExtentPoint32W" , "handle" , $HDC , "wstr" , $STEXT , "int" , $ISIZE , "struct*" , $TSIZE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TSIZE
+EndFunc
+Func _WINAPI_GETTEXTMETRICS ( $HDC )
+	Local $TTEXTMETRIC = DllStructCreate ( $TAGTEXTMETRIC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetTextMetricsW" , "handle" , $HDC , "struct*" , $TTEXTMETRIC )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TTEXTMETRIC
+EndFunc
+Func _WINAPI_GETWINDOWRGN ( $HWND , $HRGN )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "GetWindowRgn" , "hwnd" , $HWND , "handle" , $HRGN )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISALPHABITMAP ( $HBITMAP )
+	$HBITMAP = _WINAPI_COPYBITMAP ( $HBITMAP )
+	If Not $HBITMAP Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $ACALL , $IERROR = 0
+	Do
+		Local $TDIB = DllStructCreate ( $TAGDIBSECTION )
+		If ( Not _WINAPI_GETOBJECT ( $HBITMAP , DllStructGetSize ( $TDIB ) , $TDIB ) ) Or ( DllStructGetData ( $TDIB , "bmBitsPixel" ) <> 32 ) Or ( DllStructGetData ( $TDIB , "biCompression" ) ) Then
+			$IERROR = 1
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "user32.dll" , "int" , "CallWindowProc" , "ptr" , __ALPHAPROC ( ) , "ptr" , 0 , "uint" , 0 , "struct*" , $TDIB , "ptr" , 0 )
+		If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then
+			$IERROR = @error + 10
+			ExitLoop
+		EndIf
+	Until 1
+	_WINAPI_DELETEOBJECT ( $HBITMAP )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PTINRECT ( ByRef $TRECT , ByRef $TPOINT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "PtInRect" , "struct*" , $TRECT , "struct" , $TPOINT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REDRAWWINDOW ( $HWND , $TRECT = 0 , $HREGION = 0 , $IFLAGS = 5 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "RedrawWindow" , "hwnd" , $HWND , "struct*" , $TRECT , "handle" , $HREGION , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINDOWRGN ( $HWND , $HRGN , $BREDRAW = True )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "SetWindowRgn" , "hwnd" , $HWND , "handle" , $HRGN , "bool" , $BREDRAW )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+#Region Embedded DLL Functions
+Func __ALPHAPROC ( )
+	Static $PPROC = 0
+	If Not $PPROC Then
+		If @AutoItX64 Then
+			$PPROC = __INIT ( Binary ( "0x48894C240848895424104C894424184C894C24205541574831C050504883EC28" & "48837C24600074054831C0EB0748C7C0010000004821C0751F488B6C24604883" & "7D180074054831C0EB0748C7C0010000004821C07502EB0948C7C001000000EB" & "034831C04821C0740C48C7C0FFFFFFFF4863C0EB6F48C744242800000000488B" & "6C24604C637D04488B6C2460486345084C0FAFF849C1E7024983C7FC4C3B7C24" & "287C36488B6C24604C8B7D184C037C24284983C7034C897C2430488B6C243080" & "7D0000740C48C7C0010000004863C0EB1348834424280471A54831C04863C0EB" & "034831C04883C438415F5DC3" ) )
+		Else
+			$PPROC = __INIT ( Binary ( "0x555331C05050837C241C00740431C0EB05B80100000021C075198B6C241C837D" & "1400740431C0EB05B80100000021C07502EB07B801000000EB0231C021C07407" & "B8FFFFFFFFEB4FC70424000000008B6C241C8B5D048B6C241C0FAF5D08C1E302" & "83C3FC3B1C247C288B6C241C8B5D14031C2483C303895C24048B6C2404807D00" & "007407B801000000EB0C8304240471BE31C0EB0231C083C4085B5DC21000" ) )
+		EndIf
+	EndIf
+	Return $PPROC
+EndFunc
+Func __ANDPROC ( )
+	Static $PPROC = 0
+	If Not $PPROC Then
+		If @AutoItX64 Then
+			$PPROC = __INIT ( Binary ( "0x48894C240848895424104C894424184C894C2420554157415648C7C009000000" & "4883EC0848C704240000000048FFC875EF4883EC284883BC24A0000000007405" & "4831C0EB0748C7C0010000004821C00F85840000004883BC24A8000000007405" & "4831C0EB0748C7C0010000004821C07555488BAC24A000000048837D18007405" & "4831C0EB0748C7C0010000004821C07522488BAC24A800000048837D18007405" & "4831C0EB0748C7C0010000004821C07502EB0948C7C001000000EB034831C048" & "21C07502EB0948C7C001000000EB034831C04821C07502EB0948C7C001000000" & "EB034831C04821C0740B4831C04863C0E9D701000048C74424280000000048C7" & "44243000000000488BAC24A00000004C637D0849FFCF4C3B7C24300F8C9C0100" & "0048C74424380000000048C74424400000000048C744244800000000488BAC24" & "A00000004C637D0449FFCF4C3B7C24480F8CDB000000488BAC24A00000004C8B" & "7D184C037C24284983C7034C897C2450488B6C2450807D000074264C8B7C2440" & "4C8B74243849F7DE4983C61F4C89F148C7C00100000048D3E04909C74C897C24" & "4048FF4424384C8B7C24384983FF1F7E6F4C8B7C244049F7D74C897C244048C7" & "442458180000004831C0483B4424587F3D488BAC24A80000004C8B7D184C037C" & "24604C897C24504C8B7C2440488B4C245849D3FF4C89F850488B6C2458588845" & "0048FF4424604883442458F871B948C74424380000000048C744244000000000" & "48834424280448FF4424480F810BFFFFFF48837C24380074794C8B7C244049F7" & "D74C8B74243849F7DE4983C6204C89F148C7C0FFFFFFFF48D3E04921C74C897C" & "244048C7442458180000004831C0483B4424587F3D488BAC24A80000004C8B7D" & "184C037C24604C897C24504C8B7C2440488B4C245849D3FF4C89F850488B6C24" & "585888450048FF4424604883442458F871B948FF4424300F814AFEFFFF48C7C0" & "010000004863C0EB034831C04883C470415E415F5DC3" ) )
+		Else
+			$PPROC = __INIT ( Binary ( "0x555357BA0800000083EC04C70424000000004A75F3837C243800740431C0EB05" & "B80100000021C07562837C243C00740431C0EB05B80100000021C0753F8B6C24" & "38837D1400740431C0EB05B80100000021C075198B6C243C837D1400740431C0" & "EB05B80100000021C07502EB07B801000000EB0231C021C07502EB07B8010000" & "00EB0231C021C07502EB07B801000000EB0231C021C0740731C0E969010000C7" & "042400000000C7442404000000008B6C24388B5D084B3B5C24040F8C3F010000" & "C744240800000000C744240C00000000C7442410000000008B6C24388B5D044B" & "3B5C24100F8CA90000008B6C24388B5D14031C2483C303895C24148B6C241480" & "7D0000741C8B5C240C8B7C2408F7DF83C71F89F9B801000000D3E009C3895C24" & "0CFF4424088B5C240883FB1F7E578B5C240CF7D3895C240CC744241818000000" & "31C03B4424187F2D8B6C243C8B5D14035C241C895C24148B5C240C8B4C2418D3" & "FB538B6C241858884500FF44241C83442418F871CBC744240800000000C74424" & "0C0000000083042404FF4424100F8145FFFFFF837C240800745B8B5C240CF7D3" & "8B7C2408F7DF83C72089F9B8FFFFFFFFD3E021C3895C240CC744241818000000" & "31C03B4424187F2D8B6C243C8B5D14035C241C895C24148B5C240C8B4C2418D3" & "FB538B6C241858884500FF44241C83442418F871CBFF4424040F81AFFEFFFFB8" & "01000000EB0231C083C4205F5B5DC21000" ) )
+		EndIf
+	EndIf
+	Return $PPROC
+EndFunc
+Func __XORPROC ( )
+	Static $PPROC = 0
+	If Not $PPROC Then
+		If @AutoItX64 Then
+			$PPROC = __INIT ( Binary ( "0x48894C240848895424104C894424184C894C24205541574831C050504883EC28" & "48837C24600074054831C0EB0748C7C0010000004821C0751B48837C24680074" & "054831C0EB0748C7C0010000004821C07502EB0948C7C001000000EB034831C0" & "4821C074084831C04863C0EB7748C7442428000000004C637C24584983C7FC4C" & "3B7C24287C4F4C8B7C24604C037C24284C897C2430488B6C2430807D00007405" & "4831C0EB0748C7C0010000004821C0741C4C8B7C24684C037C24284983C7034C" & "897C2430488B6C2430C64500FF48834424280471A148C7C0010000004863C0EB" & "034831C04883C438415F5DC3" ) )
+		Else
+			$PPROC = __INIT ( Binary ( "0x555331C05050837C241C00740431C0EB05B80100000021C07516837C24200074" & "0431C0EB05B80100000021C07502EB07B801000000EB0231C021C0740431C0EB" & "5AC70424000000008B5C241883C3FC3B1C247C3E8B5C241C031C24895C24048B" & "6C2404807D0000740431C0EB05B80100000021C074168B5C2420031C2483C303" & "895C24048B6C2404C64500FF8304240471B6B801000000EB0231C083C4085B5D" & "C21000" ) )
+		EndIf
+	EndIf
+	Return $PPROC
+EndFunc
+#EndRegion Embedded DLL Functions
+#Region Internal Functions
+Func __INIT ( $DDATA )
+	Local $ILENGTH = BinaryLen ( $DDATA )
+	Local $ACALL = DllCall ( "kernel32.dll" , "ptr" , "VirtualAlloc" , "ptr" , 0 , "ulong_ptr" , $ILENGTH , "dword" , 4096 , "dword" , 64 )
+	If @error Or Not $ACALL [ 0 ] Then __FATALEXIT ( 1 , "Error allocating memory." )
+	Local $TDATA = DllStructCreate ( "byte[" & $ILENGTH & "]" , $ACALL [ 0 ] )
+	DllStructSetData ( $TDATA , 1 , $DDATA )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Internal Functions
+#Region Global Variables and Constants
+Global Const $DI_MASK = 1
+Global Const $DI_IMAGE = 2
+Global Const $DI_NORMAL = 3
+Global Const $DI_COMPAT = 4
+Global Const $DI_DEFAULTSIZE = 8
+Global Const $DI_NOMIRROR = 16
+Global Const $DISPLAY_DEVICE_ATTACHED_TO_DESKTOP = 1
+Global Const $DISPLAY_DEVICE_MULTI_DRIVER = 2
+Global Const $DISPLAY_DEVICE_PRIMARY_DEVICE = 4
+Global Const $DISPLAY_DEVICE_MIRRORING_DRIVER = 8
+Global Const $DISPLAY_DEVICE_VGA_COMPATIBLE = 16
+Global Const $DISPLAY_DEVICE_REMOVABLE = 32
+Global Const $DISPLAY_DEVICE_DISCONNECT = 33554432
+Global Const $DISPLAY_DEVICE_REMOTE = 67108864
+Global Const $DISPLAY_DEVICE_MODESPRUNED = 134217728
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_CREATECOMPATIBLEDC ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleDC" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DELETEDC ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "DeleteDC" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAWEDGE ( $HDC , $TRECT , $IEDGETYPE , $IFLAGS )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DrawEdge" , "handle" , $HDC , "struct*" , $TRECT , "uint" , $IEDGETYPE , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAWFRAMECONTROL ( $HDC , $TRECT , $ITYPE , $ISTATE )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DrawFrameControl" , "handle" , $HDC , "struct*" , $TRECT , "uint" , $ITYPE , "uint" , $ISTATE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAWICON ( $HDC , $IX , $IY , $HICON )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DrawIcon" , "handle" , $HDC , "int" , $IX , "int" , $IY , "handle" , $HICON )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAWICONEX ( $HDC , $IX , $IY , $HICON , $IWIDTH = 0 , $IHEIGHT = 0 , $ISTEP = 0 , $HBRUSH = 0 , $IFLAGS = 3 )
+	Local $IOPTIONS
+	Switch $IFLAGS
+	Case 1
+		$IOPTIONS = $DI_MASK
+	Case 2
+		$IOPTIONS = $DI_IMAGE
+	Case 3
+		$IOPTIONS = $DI_NORMAL
+	Case 4
+		$IOPTIONS = $DI_COMPAT
+	Case 5
+		$IOPTIONS = $DI_DEFAULTSIZE
+Case Else
+		$IOPTIONS = $DI_NOMIRROR
+	EndSwitch
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DrawIconEx" , "handle" , $HDC , "int" , $IX , "int" , $IY , "handle" , $HICON , "int" , $IWIDTH , "int" , $IHEIGHT , "uint" , $ISTEP , "handle" , $HBRUSH , "uint" , $IOPTIONS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAWTEXT ( $HDC , $STEXT , ByRef $TRECT , $IFLAGS )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "DrawTextW" , "handle" , $HDC , "wstr" , $STEXT , "int" , + 4294967295 , "struct*" , $TRECT , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENUMDISPLAYDEVICES ( $SDEVICE , $IDEVNUM )
+	Local $TNAME = 0 , $IFLAGS = 0 , $ADEVICE [ 5 ]
+	If $SDEVICE <> "" Then
+		$TNAME = DllStructCreate ( "wchar Text[" & StringLen ( $SDEVICE ) + 1 & "]" )
+		DllStructSetData ( $TNAME , "Text" , $SDEVICE )
+	EndIf
+	Local Const $TAGDISPLAY_DEVICE = "dword Size;wchar Name[32];wchar String[128];dword Flags;wchar ID[128];wchar Key[128]"
+	Local $TDEVICE = DllStructCreate ( $TAGDISPLAY_DEVICE )
+	Local $IDEVICE = DllStructGetSize ( $TDEVICE )
+	DllStructSetData ( $TDEVICE , "Size" , $IDEVICE )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EnumDisplayDevicesW" , "struct*" , $TNAME , "dword" , $IDEVNUM , "struct*" , $TDEVICE , "dword" , 1 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $IN = DllStructGetData ( $TDEVICE , "Flags" )
+	If BitAND ( $IN , $DISPLAY_DEVICE_ATTACHED_TO_DESKTOP ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 1 )
+	If BitAND ( $IN , $DISPLAY_DEVICE_PRIMARY_DEVICE ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 2 )
+	If BitAND ( $IN , $DISPLAY_DEVICE_MIRRORING_DRIVER ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 4 )
+	If BitAND ( $IN , $DISPLAY_DEVICE_VGA_COMPATIBLE ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 8 )
+	If BitAND ( $IN , $DISPLAY_DEVICE_REMOVABLE ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 16 )
+	If BitAND ( $IN , $DISPLAY_DEVICE_MODESPRUNED ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 32 )
+	$ADEVICE [ 0 ] = True
+	$ADEVICE [ 1 ] = DllStructGetData ( $TDEVICE , "Name" )
+	$ADEVICE [ 2 ] = DllStructGetData ( $TDEVICE , "String" )
+	$ADEVICE [ 3 ] = $IFLAGS
+	$ADEVICE [ 4 ] = DllStructGetData ( $TDEVICE , "ID" )
+	Return $ADEVICE
+EndFunc
+Func _WINAPI_FILLRECT ( $HDC , $TRECT , $HBRUSH )
+	Local $ACALL
+	If IsPtr ( $HBRUSH ) Then
+		$ACALL = DllCall ( "user32.dll" , "int" , "FillRect" , "handle" , $HDC , "struct*" , $TRECT , "handle" , $HBRUSH )
+	Else
+		$ACALL = DllCall ( "user32.dll" , "int" , "FillRect" , "handle" , $HDC , "struct*" , $TRECT , "dword_ptr" , $HBRUSH )
+	EndIf
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FRAMERECT ( $HDC , $TRECT , $HBRUSH )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "FrameRect" , "handle" , $HDC , "struct*" , $TRECT , "handle" , $HBRUSH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETBKMODE ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetBkMode" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETDC ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetDC" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETDCEX ( $HWND , $HRGN , $IFLAGS )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetDCEx" , "hwnd" , $HWND , "handle" , $HRGN , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETDEVICECAPS ( $HDC , $IINDEX )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetDeviceCaps" , "handle" , $HDC , "int" , $IINDEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETTEXTCOLOR ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "dword" , "GetTextColor" , "handle" , $HDC )
+	If @error Or ( $ACALL [ 0 ] = 4294967295 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return __RGB ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_GETWINDOWDC ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetWindowDC" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PRINTWINDOW ( $HWND , $HDC , $BCLIENT = False )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "PrintWindow" , "hwnd" , $HWND , "handle" , $HDC , "uint" , $BCLIENT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_RELEASEDC ( $HWND , $HDC )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "ReleaseDC" , "hwnd" , $HWND , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_RESTOREDC ( $HDC , $IID )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "RestoreDC" , "handle" , $HDC , "int" , $IID )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SAVEDC ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SaveDC" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETBKCOLOR ( $HDC , $ICOLOR )
+	Local $ACALL = DllCall ( "gdi32.dll" , "INT" , "SetBkColor" , "handle" , $HDC , "INT" , $ICOLOR )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETBKMODE ( $HDC , $IBKMODE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetBkMode" , "handle" , $HDC , "int" , $IBKMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETTEXTCOLOR ( $HDC , $ICOLOR )
+	Local $ACALL = DllCall ( "gdi32.dll" , "INT" , "SetTextColor" , "handle" , $HDC , "INT" , $ICOLOR )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_TWIPSPERPIXELX ( )
+	Local $HDC , $ITWIPSPERPIXELX
+	$HDC = _WINAPI_GETDC ( 0 )
+	Local Const $__WINAPICONSTANT_LOGPIXELSX = 88
+	$ITWIPSPERPIXELX = 1440 / _WINAPI_GETDEVICECAPS ( $HDC , $__WINAPICONSTANT_LOGPIXELSX )
+	_WINAPI_RELEASEDC ( 0 , $HDC )
+	Return $ITWIPSPERPIXELX
+EndFunc
+Func _WINAPI_TWIPSPERPIXELY ( )
+	Local $HDC , $ITWIPSPERPIXELY
+	$HDC = _WINAPI_GETDC ( 0 )
+	Local Const $__WINAPICONSTANT_LOGPIXELSY = 90
+	$ITWIPSPERPIXELY = 1440 / _WINAPI_GETDEVICECAPS ( $HDC , $__WINAPICONSTANT_LOGPIXELSY )
+	_WINAPI_RELEASEDC ( 0 , $HDC )
+	Return $ITWIPSPERPIXELY
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+#EndRegion Internal Functions
+#Region Global Variables and Constants
+Global Const $IDC_UNKNOWN = 0
+Global Const $IDC_APPSTARTING = 32650
+Global Const $IDC_ARROW = 32512
+Global Const $IDC_CROSS = 32515
+Global Const $IDC_HAND = 32649
+Global Const $IDC_HELP = 32651
+Global Const $IDC_IBEAM = 32513
+Global Const $IDC_NO = 32648
+Global Const $IDC_SIZEALL = 32646
+Global Const $IDC_SIZENESW = 32643
+Global Const $IDC_SIZENS = 32645
+Global Const $IDC_SIZENWSE = 32642
+Global Const $IDC_SIZEWE = 32644
+Global Const $IDC_UPARROW = 32516
+Global Const $IDC_WAIT = 32514
+Global Const $IDI_APPLICATION = 32512
+Global Const $IDI_ASTERISK = 32516
+Global Const $IDI_EXCLAMATION = 32515
+Global Const $IDI_HAND = 32513
+Global Const $IDI_QUESTION = 32514
+Global Const $IDI_WINLOGO = 32517
+Global Const $IDI_SHIELD = 32518
+Global Const $IDI_ERROR = $IDI_HAND
+Global Const $IDI_INFORMATION = $IDI_ASTERISK
+Global Const $IDI_WARNING = $IDI_EXCLAMATION
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Global Const $TAGICONINFO = "bool Icon;dword XHotSpot;dword YHotSpot;handle hMask;handle hColor"
+Func _WINAPI_ADDICONTRANSPARENCY ( $HICON , $IPERCENT = 50 , $BDELETE = False )
+	Local $TBITMAP , $HDIB = 0 , $HRESULT = 0
+	Local $AHBITMAP [ 2 ]
+	Local $TICONINFO = DllStructCreate ( $TAGICONINFO )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetIconInfo" , "handle" , $HICON , "struct*" , $TICONINFO )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	For $I = 0 To 1
+		$AHBITMAP [ $I ] = DllStructGetData ( $TICONINFO , $I + 4 )
+	Next
+	Local $IERROR = 0
+	Do
+		$HDIB = _WINAPI_COPYBITMAP ( $AHBITMAP [ 1 ] )
+		If Not $HDIB Then
+			$IERROR = 20
+			ExitLoop
+		EndIf
+		$TBITMAP = DllStructCreate ( $TAGBITMAP )
+		If ( Not _WINAPI_GETOBJECT ( $HDIB , DllStructGetSize ( $TBITMAP ) , $TBITMAP ) ) Or ( DllStructGetData ( $TBITMAP , "bmBitsPixel" ) <> 32 ) Then
+			$IERROR = 21
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "user32.dll" , "lresult" , "CallWindowProc" , "PTR" , __TRANSPARENCYPROC ( ) , "hwnd" , 0 , "uint" , $IPERCENT , "wparam" , DllStructGetPtr ( $TBITMAP ) , "lparam" , 0 )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 30
+			ExitLoop
+		EndIf
+		If $ACALL [ 0 ] = + 4294967295 Then
+			$HRESULT = _WINAPI_CREATEEMPTYICON ( DllStructGetData ( $TBITMAP , "bmWidth" ) , DllStructGetData ( $TBITMAP , "bmHeight" ) )
+		Else
+			$HRESULT = _WINAPI_CREATEICONINDIRECT ( $HDIB , $AHBITMAP [ 0 ] )
+		EndIf
+		If Not $HRESULT Then $IERROR = 22
+	Until 1
+	If $HDIB Then
+		_WINAPI_DELETEOBJECT ( $HDIB )
+	EndIf
+	For $I = 0 To 1
+		If $AHBITMAP [ $I ] Then
+			_WINAPI_DELETEOBJECT ( $AHBITMAP [ $I ] )
+		EndIf
+	Next
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	If $BDELETE Then
+		_WINAPI_DESTROYICON ( $HICON )
+	EndIf
+	Return $HRESULT
+EndFunc
+Func _WINAPI_COPYICON ( $HICON )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "CopyIcon" , "handle" , $HICON )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATE32BITHICON ( $HICON , $BDELETE = False )
+	Local $AHBITMAP [ 2 ] , $HRESULT = 0
+	Local $ADIB [ 2 ] [ 2 ] = [ [ 0 , 0 ] , [ 0 , 0 ] ]
+	Local $TICONINFO = DllStructCreate ( $TAGICONINFO )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetIconInfo" , "handle" , $HICON , "struct*" , $TICONINFO )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	For $I = 0 To 1
+		$AHBITMAP [ $I ] = DllStructGetData ( $TICONINFO , $I + 4 )
+	Next
+	If _WINAPI_ISALPHABITMAP ( $AHBITMAP [ 1 ] ) Then
+		$ADIB [ 0 ] [ 0 ] = _WINAPI_CREATEANDBITMAP ( $AHBITMAP [ 1 ] )
+		If Not @error Then
+			$HRESULT = _WINAPI_CREATEICONINDIRECT ( $AHBITMAP [ 1 ] , $ADIB [ 0 ] [ 0 ] )
+		EndIf
+	Else
+		Local $TSIZE = _WINAPI_GETBITMAPDIMENSION ( $AHBITMAP [ 1 ] )
+		Local $ASIZE [ 2 ]
+		For $I = 0 To 1
+			$ASIZE [ $I ] = DllStructGetData ( $TSIZE , $I + 1 )
+		Next
+		Local $HSRCDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+		Local $HDSTDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+		Local $HSRCSV , $HDSTSV
+		For $I = 0 To 1
+			$ADIB [ $I ] [ 0 ] = _WINAPI_CREATEDIB ( $ASIZE [ 0 ] , $ASIZE [ 1 ] )
+			$ADIB [ $I ] [ 1 ] = $__G_VEXT
+			$HSRCSV = _WINAPI_SELECTOBJECT ( $HSRCDC , $AHBITMAP [ $I ] )
+			$HDSTSV = _WINAPI_SELECTOBJECT ( $HDSTDC , $ADIB [ $I ] [ 0 ] )
+			_WINAPI_BITBLT ( $HDSTDC , 0 , 0 , $ASIZE [ 0 ] , $ASIZE [ 1 ] , $HSRCDC , 0 , 0 , 12583114 )
+			_WINAPI_SELECTOBJECT ( $HSRCDC , $HSRCSV )
+			_WINAPI_SELECTOBJECT ( $HDSTDC , $HDSTSV )
+		Next
+		_WINAPI_DELETEDC ( $HSRCDC )
+		_WINAPI_DELETEDC ( $HDSTDC )
+		$ACALL = DllCall ( "user32.dll" , "lresult" , "CallWindowProc" , "ptr" , __XORPROC ( ) , "ptr" , 0 , "uint" , $ASIZE [ 0 ] * $ASIZE [ 1 ] * 4 , "wparam" , $ADIB [ 0 ] [ 1 ] , "lparam" , $ADIB [ 1 ] [ 1 ] )
+		If Not @error And $ACALL [ 0 ] Then
+			$HRESULT = _WINAPI_CREATEICONINDIRECT ( $ADIB [ 1 ] [ 0 ] , $AHBITMAP [ 0 ] )
+		EndIf
+	EndIf
+	For $I = 0 To 1
+		_WINAPI_DELETEOBJECT ( $AHBITMAP [ $I ] )
+		If $ADIB [ $I ] [ 0 ] Then
+			_WINAPI_DELETEOBJECT ( $ADIB [ $I ] [ 0 ] )
+		EndIf
+	Next
+	If Not $HRESULT Then Return SetError ( 11 , 0 , 0 )
+	If $BDELETE Then
+		_WINAPI_DESTROYICON ( $HICON )
+	EndIf
+	Return $HRESULT
+EndFunc
+Func _WINAPI_CREATEEMPTYICON ( $IWIDTH , $IHEIGHT , $IBITSPERPEL = 32 )
+	Local $HXOR = _WINAPI_CREATEDIB ( $IWIDTH , $IHEIGHT , $IBITSPERPEL )
+	Local $HAND = _WINAPI_CREATEDIB ( $IWIDTH , $IHEIGHT , 1 )
+	Local $HDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+	Local $HSV = _WINAPI_SELECTOBJECT ( $HDC , $HAND )
+	Local $HBRUSH = _WINAPI_CREATESOLIDBRUSH ( 16777215 )
+	Local $TRECT = _WINAPI_CREATERECT ( 0 , 0 , $IWIDTH , $IHEIGHT )
+	_WINAPI_FILLRECT ( $HDC , $TRECT , $HBRUSH )
+	_WINAPI_DELETEOBJECT ( $HBRUSH )
+	_WINAPI_SELECTOBJECT ( $HDC , $HSV )
+	_WINAPI_DELETEDC ( $HDC )
+	Local $HICON = _WINAPI_CREATEICONINDIRECT ( $HXOR , $HAND )
+	Local $IERROR = @error
+	If $HXOR Then
+		_WINAPI_DELETEOBJECT ( $HXOR )
+	EndIf
+	If $HAND Then
+		_WINAPI_DELETEOBJECT ( $HAND )
+	EndIf
+	If Not $HICON Then Return SetError ( $IERROR + 10 , 0 , 0 )
+	Return $HICON
+EndFunc
+Func _WINAPI_CREATEICON ( $HINSTANCE , $IWIDTH , $IHEIGHT , $IPLANES , $IBITSPIXEL , $PANDBITS , $PXORBITS )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "CreateIcon" , "handle" , $HINSTANCE , "int" , $IWIDTH , "int" , $IHEIGHT , "byte" , $IPLANES , "byte" , $IBITSPIXEL , "struct*" , $PANDBITS , "struct*" , $PXORBITS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEICONFROMRESOURCEEX ( $PDATA , $ISIZE , $BICON = True , $IXDESIREDPIXELS = 0 , $IYDESIREDPIXELS = 0 , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "CreateIconFromResourceEx" , "ptr" , $PDATA , "dword" , $ISIZE , "bool" , $BICON , "dword" , 196608 , "int" , $IXDESIREDPIXELS , "int" , $IYDESIREDPIXELS , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEICONINDIRECT ( $HBITMAP , $HMASK , $IXHOTSPOT = 0 , $IYHOTSPOT = 0 , $BICON = True )
+	Local $TICONINFO = DllStructCreate ( $TAGICONINFO )
+	DllStructSetData ( $TICONINFO , 1 , $BICON )
+	DllStructSetData ( $TICONINFO , 2 , $IXHOTSPOT )
+	DllStructSetData ( $TICONINFO , 3 , $IYHOTSPOT )
+	DllStructSetData ( $TICONINFO , 4 , $HMASK )
+	DllStructSetData ( $TICONINFO , 5 , $HBITMAP )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "CreateIconIndirect" , "struct*" , $TICONINFO )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DESTROYICON ( $HICON )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DestroyIcon" , "handle" , $HICON )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_EXTRACTICON ( $SICON , $IINDEX , $BSMALL = False )
+	Local $PLARGE , $PSMALL , $TPTR = DllStructCreate ( "ptr" )
+	If $BSMALL Then
+		$PLARGE = 0
+		$PSMALL = DllStructGetPtr ( $TPTR )
+	Else
+		$PLARGE = DllStructGetPtr ( $TPTR )
+		$PSMALL = 0
+	EndIf
+	DllCall ( "shell32.dll" , "uint" , "ExtractIconExW" , "wstr" , $SICON , "int" , $IINDEX , "ptr" , $PLARGE , "ptr" , $PSMALL , "uint" , 1 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return DllStructGetData ( $TPTR , 1 )
+EndFunc
+Func _WINAPI_EXTRACTICONEX ( $SFILEPATH , $IINDEX , $PALARGE , $PASMALL , $IICONS )
+	Local $ACALL = DllCall ( "shell32.dll" , "uint" , "ExtractIconExW" , "wstr" , $SFILEPATH , "int" , $IINDEX , "struct*" , $PALARGE , "struct*" , $PASMALL , "uint" , $IICONS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FILEICONINIT ( $BRESTORE = True )
+	Local $ACALL = DllCall ( "shell32.dll" , "int" , 660 , "int" , $BRESTORE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_GETICONDIMENSION ( $HICON )
+	Local $TICONINFO = DllStructCreate ( $TAGICONINFO )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetIconInfo" , "handle" , $HICON , "struct*" , $TICONINFO )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TSIZE = _WINAPI_GETBITMAPDIMENSION ( DllStructGetData ( $TICONINFO , 5 ) )
+	For $I = 4 To 5
+		_WINAPI_DELETEOBJECT ( DllStructGetData ( $TICONINFO , $I ) )
+	Next
+	If Not IsDllStruct ( $TSIZE ) Then Return SetError ( 20 , 0 , 0 )
+	Return $TSIZE
+EndFunc
+Func _WINAPI_GETICONINFO ( $HICON )
+	Local $TINFO = DllStructCreate ( $TAGICONINFO )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetIconInfo" , "handle" , $HICON , "struct*" , $TINFO )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $AICON [ 6 ]
+	$AICON [ 0 ] = True
+	$AICON [ 1 ] = DllStructGetData ( $TINFO , "Icon" ) <> 0
+	$AICON [ 2 ] = DllStructGetData ( $TINFO , "XHotSpot" )
+	$AICON [ 3 ] = DllStructGetData ( $TINFO , "YHotSpot" )
+	$AICON [ 4 ] = DllStructGetData ( $TINFO , "hMask" )
+	$AICON [ 5 ] = DllStructGetData ( $TINFO , "hColor" )
+	Return $AICON
+EndFunc
+Func _WINAPI_GETICONINFOEX ( $HICON )
+	Local $TIIEX = DllStructCreate ( "dword;int;dword;dword;ptr;ptr;ushort;wchar[260];wchar[260]" )
+	DllStructSetData ( $TIIEX , 1 , DllStructGetSize ( $TIIEX ) )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetIconInfoExW" , "handle" , $HICON , "struct*" , $TIIEX )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 8 ]
+	For $I = 0 To 7
+		$ARET [ $I ] = DllStructGetData ( $TIIEX , $I + 2 )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_LOADICON ( $HINSTANCE , $SNAME )
+	Local $STYPEOFNAME = "int"
+	If IsString ( $SNAME ) Then
+		$STYPEOFNAME = "wstr"
+	EndIf
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "LoadIconW" , "handle" , $HINSTANCE , $STYPEOFNAME , $SNAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOADICONMETRIC ( $HINSTANCE , $SNAME , $IMETRIC )
+	Local $STYPEOFNAME = "int"
+	If IsString ( $SNAME ) Then
+		$STYPEOFNAME = "wstr"
+	EndIf
+	Local $ACALL = DllCall ( "comctl32.dll" , "long" , "LoadIconMetric" , "handle" , $HINSTANCE , $STYPEOFNAME , $SNAME , "int" , $IMETRIC , "handle*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 4 ]
+EndFunc
+Func _WINAPI_LOADICONWITHSCALEDOWN ( $HINSTANCE , $SNAME , $IWIDTH , $IHEIGHT )
+	Local $STYPEOFNAME = "int"
+	If IsString ( $SNAME ) Then
+		$STYPEOFNAME = "wstr"
+	EndIf
+	Local $ACALL = DllCall ( "comctl32.dll" , "long" , "LoadIconWithScaleDown" , "handle" , $HINSTANCE , $STYPEOFNAME , $SNAME , "int" , $IWIDTH , "int" , $IHEIGHT , "handle*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 5 ]
+EndFunc
+Func _WINAPI_LOADSHELL32ICON ( $IICONID )
+	Local $TICONS = DllStructCreate ( "ptr Data" )
+	Local $IICONS = _WINAPI_EXTRACTICONEX ( "shell32.dll" , $IICONID , 0 , $TICONS , 1 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $IICONS <= 0 Then Return SetError ( 10 , 0 , 0 )
+	Return DllStructGetData ( $TICONS , "Data" )
+EndFunc
+Func _WINAPI_LOOKUPICONIDFROMDIRECTORYEX ( $PDATA , $BICON = True , $IXDESIREDPIXELS = 0 , $IYDESIREDPIXELS = 0 , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "LookupIconIdFromDirectoryEx" , "ptr" , $PDATA , "bool" , $BICON , "int" , $IXDESIREDPIXELS , "int" , $IYDESIREDPIXELS , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MIRRORICON ( $HICON , $BDELETE = False )
+	If Not $BDELETE Then
+		$HICON = _WINAPI_COPYICON ( $HICON )
+	EndIf
+	Local $ACALL = DllCall ( "comctl32.dll" , "int" , 414 , "ptr" , 0 , "ptr*" , $HICON )
+	If @error Or Not $ACALL [ 0 ] Then
+		Local $IERROR = @error + 10
+		If $HICON And Not $BDELETE Then
+			_WINAPI_DESTROYICON ( $HICON )
+		EndIf
+		Return SetError ( $IERROR , 0 , 0 )
+	EndIf
+	Return $ACALL [ 2 ]
+EndFunc
+#EndRegion Public Functions
+#Region Embedded DLL Functions
+Func __TRANSPARENCYPROC ( )
+	Static $PPROC = 0
+	If Not $PPROC Then
+		If @AutoItX64 Then
+			$PPROC = __INIT ( Binary ( "0x48894C240848895424104C894424184C894C24205541574831C0505050505050" & "4883EC284883BC24800000000074054831C0EB0748C7C0010000004821C07522" & "488BAC248000000048837D180074054831C0EB0748C7C0010000004821C07502" & "EB0948C7C001000000EB034831C04821C0740B4831C04863C0E93C0100004C63" & "7C24784983FF647E0F48C7C0010000004863C0E9220100004C637C24784D21FF" & "7D08C74424780000000048C74424280100000048C74424300000000048C74424" & "3800000000488BAC24800000004C637D04488BAC2480000000486345084C0FAF" & "F849C1E7024983C7FC4C3B7C24380F8C88000000488BAC24800000004C8B7D18" & "4C037C24384983C7034C897C2440488B6C2440480FB64500505888442448807C" & "244800744B4C0FB67C244848634424784C0FAFF84C89F848C7C1640000004899" & "48F7F94989C74C89F850488B6C244858884500488B6C2440807D0000740948C7" & "4424280000000048C7442430010000004883442438040F8149FFFFFF48837C24" & "3000741148837C242800740948C7C001000000EB034831C04821C0740E48C7C0" & "FFFFFFFF4863C0EB11EB0C48C7C0010000004863C0EB034831C04883C458415F" & "5DC3" ) )
+		Else
+			$PPROC = __INIT ( Binary ( "0x555331C05050505050837C242800740431C0EB05B80100000021C075198B6C24" & "28837D1400740431C0EB05B80100000021C07502EB07B801000000EB0231C021" & "C0740731C0E9E50000008B5C242483FB647E0AB801000000E9D20000008B5C24" & "2421DB7D08C744242400000000C7042401000000C744240400000000C7442408" & "000000008B6C24288B5D048B6C24280FAF5D08C1E30283C3FC3B5C24087C648B" & "6C24288B5D14035C240883C303895C240C8B6C240C0FB6450088442410807C24" & "100074380FB65C24100FAF5C242489D8B96400000099F7F989C3538B6C241058" & "8845008B6C240C807D00007407C7042400000000C74424040100000083442408" & "047181837C240400740D833C24007407B801000000EB0231C021C07409B8FFFF" & "FFFFEB0BEB07B801000000EB0231C083C4145B5DC21000" ) )
+		EndIf
+	EndIf
+	Return $PPROC
+EndFunc
+#EndRegion Embedded DLL Functions
+#Region Global Variables and Constants
+Global Const $TAGBITMAPV4HEADER = "struct;dword bV4Size;long bV4Width;long bV4Height;ushort bV4Planes;ushort bV4BitCount;dword bV4Compression;dword bV4SizeImage;long bV4XPelsPerMeter;long bV4YPelsPerMeter;dword bV4ClrUsed;dword bV4ClrImportant;dword bV4RedMask;dword bV4GreenMask;dword bV4BlueMask;dword bV4AlphaMask;dword bV4CSType;int bV4Endpoints[9];dword bV4GammaRed;dword bV4GammaGreen;dword bV4GammaBlue;endstruct"
+Global Const $TAGCOLORADJUSTMENT = "ushort Size;ushort Flags;ushort IlluminantIndex;ushort RedGamma;ushort GreenGamma;ushort BlueGamma;ushort ReferenceBlack;ushort ReferenceWhite;short Contrast;short Brightness;short Colorfulness;short RedGreenTint"
+Global Const $TAGDEVMODE = "wchar DeviceName[32];ushort SpecVersion;ushort DriverVersion;ushort Size;ushort DriverExtra;dword Fields;short Orientation;short PaperSize;short PaperLength;short PaperWidth;short Scale;short Copies;short DefaultSource;short PrintQuality;short Color;short Duplex;short YResolution;short TTOption;short Collate;wchar FormName[32];ushort Unused1;dword Unused2[3];dword Nup;dword Unused3;dword ICMMethod;dword ICMIntent;dword MediaType;dword DitherType;dword Reserved1;dword Reserved2;dword PanningWidth;dword PanningHeight"
+Global Const $TAGDEVMODE_DISPLAY = "wchar DeviceName[32];ushort SpecVersion;ushort DriverVersion;ushort Size;ushort DriverExtra;dword Fields;" & $TAGPOINT & ";dword DisplayOrientation;dword DisplayFixedOutput;short Unused1[5];wchar Unused2[32];ushort LogPixels;dword BitsPerPel;dword PelsWidth;dword PelsHeight;dword DisplayFlags;dword DisplayFrequency"
+Global Const $TAGDWM_COLORIZATION_PARAMETERS = "dword Color;dword AfterGlow;uint ColorBalance;uint AfterGlowBalance;uint BlurBalance;uint GlassReflectionIntensity; uint OpaqueBlend"
+Global Const $TAGENHMETAHEADER = "struct;dword Type;dword Size;long rcBounds[4];long rcFrame[4];dword Signature;dword Version;dword Bytes;dword Records;ushort Handles;ushort Reserved;dword Description;dword OffDescription;dword PalEntries;long Device[2];long Millimeters[2];dword PixelFormat;dword OffPixelFormat;dword OpenGL;long Micrometers[2];endstruct"
+Global Const $TAGEXTLOGPEN = "dword PenStyle;dword Width;uint BrushStyle;dword Color;ulong_ptr Hatch;dword NumEntries"
+Global Const $TAGFONTSIGNATURE = "dword fsUsb[4];dword fsCsb[2]"
+Global Const $TAGGLYPHMETRICS = "uint BlackBoxX;uint BlackBoxY;" & $TAGPOINT & ";short CellIncX;short CellIncY"
+Global Const $TAGLOGBRUSH = "uint Style;dword Color;ulong_ptr Hatch"
+Global Const $TAGLOGPEN = "uint Style;dword Width;dword Color"
+Global Const $TAGMAT2 = "short eM11[2];short eM12[2];short eM21[2];short eM22[2]"
+Global Const $TAGNEWTEXTMETRIC = $TAGTEXTMETRIC & ";dword ntmFlags;uint ntmSizeEM;uint ntmCellHeight;uint ntmAvgWidth"
+Global Const $TAGNEWTEXTMETRICEX = $TAGNEWTEXTMETRIC & ";" & $TAGFONTSIGNATURE
+Global Const $TAGPANOSE = "struct;byte bFamilyType;byte bSerifStyle;byte bWeight;byte bProportion;byte bContrast;byte bStrokeVariation;byte bArmStyle;byte bLetterform;byte bMidline;byte bXHeight;endstruct"
+Global Const $TAGOUTLINETEXTMETRIC = "struct;uint otmSize;" & $TAGTEXTMETRIC & ";byte otmFiller;" & $TAGPANOSE & ";byte bugFiller[3];uint otmSelection;uint otmType;int otmCharSlopeRise;int otmCharSlopeRun;int otmItalicAngle;uint otmEMSquare;int otmAscent;int otmDescent;uint otmLineGap;uint otmCapEmHeight;uint otmXHeight;long otmFontBox[4];int otmMacAscent;int otmMacDescent;uint otmMacLineGap;uint otmMinimumPPEM;long otmSubscriptSize[2];long otmSubscriptOffset[2];long otmSuperscriptSize[2];long otmSuperscriptOffse[2];uint otmStrikeoutSize;int otmStrikeoutPosition;int otmUnderscoreSize;int otmUnderscorePosition;uint_ptr otmFamilyName;uint_ptr otmFaceName;uint_ptr otmStyleName;uint_ptr otmFullName;endstruct"
+Global Const $TAGPAINTSTRUCT = "hwnd hDC;int fErase;dword rPaint[4];int fRestore;int fIncUpdate;byte rgbReserved[32]"
+Global Const $TAGRGNDATAHEADER = "struct;dword Size;dword Type;dword Count;dword RgnSize;" & $TAGRECT & ";endstruct"
+Global Const $TAGXFORM = "float eM11;float eM12;float eM21;float eM22;float eDx;float eDy"
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_ABORTPATH ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "AbortPath" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ADDFONTMEMRESOURCEEX ( $PDATA , $ISIZE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "AddFontMemResourceEx" , "ptr" , $PDATA , "dword" , $ISIZE , "ptr" , 0 , "dword*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return SetExtended ( $ACALL [ 4 ] , $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_ADDFONTRESOURCEEX ( $SFONT , $IFLAG = 0 , $BNOTIFY = False )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "AddFontResourceExW" , "wstr" , $SFONT , "dword" , $IFLAG , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	If $BNOTIFY Then
+		Local Const $WM_FONTCHANGE = 29
+		Local Const $HWND_BROADCAST = 65535
+		DllCall ( "user32.dll" , "lresult" , "SendMessage" , "hwnd" , $HWND_BROADCAST , "uint" , $WM_FONTCHANGE , "wparam" , 0 , "lparam" , 0 )
+	EndIf
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ADDICONOVERLAY ( $HICON , $HOVERLAY )
+	Local $ACALL , $HRESULT = 0 , $IERROR = 0
+	Local $AHDEV [ 2 ] = [ 0 , 0 ]
+	Local $TSIZE = _WINAPI_GETICONDIMENSION ( $HICON )
+	Local $HIL = DllCall ( "comctl32.dll" , "handle" , "ImageList_Create" , "int" , DllStructGetData ( $TSIZE , 1 ) , "int" , DllStructGetData ( $TSIZE , 2 ) , "uint" , 33 , "int" , 2 , "int" , 2 )
+	If @error Or Not $HIL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Do
+		$AHDEV [ 0 ] = _WINAPI_CREATE32BITHICON ( $HICON )
+		If @error Then
+			$IERROR = @error + 100
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "comctl32.dll" , "int" , "ImageList_ReplaceIcon" , "handle" , $HIL [ 0 ] , "int" , + 4294967295 , "handle" , $AHDEV [ 0 ] )
+		If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then
+			$IERROR = @error + 200
+			ExitLoop
+		EndIf
+		$AHDEV [ 1 ] = _WINAPI_CREATE32BITHICON ( $HOVERLAY )
+		If @error Then
+			$IERROR = @error + 300
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "comctl32.dll" , "int" , "ImageList_ReplaceIcon" , "handle" , $HIL [ 0 ] , "int" , + 4294967295 , "handle" , $AHDEV [ 1 ] )
+		If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then
+			$IERROR = @error + 400
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "comctl32.dll" , "bool" , "ImageList_SetOverlayImage" , "handle" , $HIL [ 0 ] , "int" , 1 , "int" , 1 )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 500
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "comctl32.dll" , "handle" , "ImageList_GetIcon" , "handle" , $HIL [ 0 ] , "int" , 0 , "uint" , 256 )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 600
+			ExitLoop
+		EndIf
+		$HRESULT = $ACALL [ 0 ]
+	Until 1
+	DllCall ( "comctl32.dll" , "bool" , "ImageList_Destroy" , "handle" , $HIL [ 0 ] )
+	For $I = 0 To 1
+		If $AHDEV [ $I ] Then
+			_WINAPI_DESTROYICON ( $AHDEV [ $I ] )
+		EndIf
+	Next
+	If Not $HRESULT Then Return SetError ( $IERROR , 0 , 0 )
+	Return $HRESULT
+EndFunc
+Func _WINAPI_ADJUSTBITMAP ( $HBITMAP , $IWIDTH , $IHEIGHT , $IMODE = 3 , $TADJUSTMENT = 0 )
+	Local $TOBJ = DllStructCreate ( $TAGBITMAP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetObject" , "handle" , $HBITMAP , "int" , DllStructGetSize ( $TOBJ ) , "struct*" , $TOBJ )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	If $IWIDTH = + 4294967295 Then
+		$IWIDTH = DllStructGetData ( $TOBJ , "bmWidth" )
+	EndIf
+	If $IHEIGHT = + 4294967295 Then
+		$IHEIGHT = DllStructGetData ( $TOBJ , "bmHeight" )
+	EndIf
+	$ACALL = DllCall ( "user32.dll" , "handle" , "GetDC" , "hwnd" , 0 )
+	Local $HDC = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleDC" , "handle" , $HDC )
+	Local $HDESTDC = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleBitmap" , "handle" , $HDC , "int" , $IWIDTH , "int" , $IHEIGHT )
+	Local $HBMP = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDESTDC , "handle" , $HBMP )
+	Local $HDESTSV = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleDC" , "handle" , $HDC )
+	Local $HSRCDC = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HSRCDC , "handle" , $HBITMAP )
+	Local $HSRCSV = $ACALL [ 0 ]
+	If _WINAPI_SETSTRETCHBLTMODE ( $HDESTDC , $IMODE ) Then
+		Switch $IMODE
+		Case 4
+			If IsDllStruct ( $TADJUSTMENT ) Then
+				If Not _WINAPI_SETCOLORADJUSTMENT ( $HDESTDC , $TADJUSTMENT ) Then
+				EndIf
+			EndIf
+	Case Else
+		EndSwitch
+	EndIf
+	$ACALL = _WINAPI_STRETCHBLT ( $HDESTDC , 0 , 0 , $IWIDTH , $IHEIGHT , $HSRCDC , 0 , 0 , DllStructGetData ( $TOBJ , "bmWidth" ) , DllStructGetData ( $TOBJ , "bmHeight" ) , 13369376 )
+	DllCall ( "user32.dll" , "int" , "ReleaseDC" , "hwnd" , 0 , "handle" , $HDC )
+	DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDESTDC , "handle" , $HDESTSV )
+	DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HSRCDC , "handle" , $HSRCSV )
+	DllCall ( "gdi32.dll" , "bool" , "DeleteDC" , "handle" , $HDESTDC )
+	DllCall ( "gdi32.dll" , "bool" , "DeleteDC" , "handle" , $HSRCDC )
+	If Not $ACALL Then Return SetError ( 10 , 0 , 0 )
+	Return $HBMP
+EndFunc
+Func _WINAPI_ALPHABLEND ( $HDESTDC , $IXDEST , $IYDEST , $IWIDTHDEST , $IHEIGHTDEST , $HSRCDC , $IXSRC , $IYSRC , $IWIDTHSRC , $IHEIGHTSRC , $IALPHA , $BALPHA = False )
+	Local $IBLEND = BitOR ( BitShift ( Not ( $BALPHA = False ) , + 4294967272 ) , BitShift ( BitAND ( $IALPHA , 255 ) , + 4294967280 ) )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GdiAlphaBlend" , "handle" , $HDESTDC , "int" , $IXDEST , "int" , $IYDEST , "int" , $IWIDTHDEST , "int" , $IHEIGHTDEST , "handle" , $HSRCDC , "int" , $IXSRC , "int" , $IYSRC , "int" , $IWIDTHSRC , "int" , $IHEIGHTSRC , "dword" , $IBLEND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ANGLEARC ( $HDC , $IX , $IY , $IRADIUS , $NSTARTANGLE , $NSWEEPANGLE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "AngleArc" , "handle" , $HDC , "int" , $IX , "int" , $IY , "dword" , $IRADIUS , "float" , $NSTARTANGLE , "float" , $NSWEEPANGLE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ARC ( $HDC , $TRECT , $IXSTARTARC , $IYSTARTARC , $IXENDARC , $IYENDARC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "Arc" , "handle" , $HDC , "int" , DllStructGetData ( $TRECT , 1 ) , "int" , DllStructGetData ( $TRECT , 2 ) , "int" , DllStructGetData ( $TRECT , 3 ) , "int" , DllStructGetData ( $TRECT , 4 ) , "int" , $IXSTARTARC , "int" , $IYSTARTARC , "int" , $IXENDARC , "int" , $IYENDARC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ARCTO ( $HDC , $TRECT , $IXRADIAL1 , $IYRADIAL1 , $IXRADIAL2 , $IYRADIAL2 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "ArcTo" , "handle" , $HDC , "int" , DllStructGetData ( $TRECT , 1 ) , "int" , DllStructGetData ( $TRECT , 2 ) , "int" , DllStructGetData ( $TRECT , 3 ) , "int" , DllStructGetData ( $TRECT , 4 ) , "int" , $IXRADIAL1 , "int" , $IYRADIAL1 , "int" , $IXRADIAL2 , "int" , $IYRADIAL2 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_BEGINPAINT ( $HWND , ByRef $TPAINTSTRUCT )
+	$TPAINTSTRUCT = DllStructCreate ( $TAGPAINTSTRUCT )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "BeginPaint" , "hwnd" , $HWND , "struct*" , $TPAINTSTRUCT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_BEGINPATH ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "BeginPath" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CLOSEENHMETAFILE ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CloseEnhMetaFile" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CLOSEFIGURE ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "CloseFigure" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_COLORADJUSTLUMA ( $IRGB , $IPERCENT , $BSCALE = True )
+	If $IRGB = + 4294967295 Then Return SetError ( 10 , 0 , + 4294967295 )
+	If $BSCALE Then
+		$IPERCENT = Floor ( $IPERCENT * 10 )
+	EndIf
+	Local $ACALL = DllCall ( "shlwapi.dll" , "dword" , "ColorAdjustLuma" , "dword" , __RGB ( $IRGB ) , "int" , $IPERCENT , "bool" , $BSCALE )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return __RGB ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_COLORHLSTORGB ( $IHUE , $ILUMINANCE , $ISATURATION )
+	If Not $ISATURATION Then $IHUE = 160
+	Local $ACALL = DllCall ( "shlwapi.dll" , "dword" , "ColorHLSToRGB" , "word" , $IHUE , "word" , $ILUMINANCE , "word" , $ISATURATION )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return __RGB ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_COLORRGBTOHLS ( $IRGB , ByRef $IHUE , ByRef $ILUMINANCE , ByRef $ISATURATION )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "none" , "ColorRGBToHLS" , "dword" , __RGB ( $IRGB ) , "word*" , 0 , "word*" , 0 , "word*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	$IHUE = $ACALL [ 2 ]
+	$ILUMINANCE = $ACALL [ 3 ]
+	$ISATURATION = $ACALL [ 4 ]
+	Return 1
+EndFunc
+Func _WINAPI_COMBINETRANSFORM ( $TXFORM1 , $TXFORM2 )
+	Local $TXFORM = DllStructCreate ( $TAGXFORM )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "CombineTransform" , "struct*" , $TXFORM , "struct*" , $TXFORM1 , "struct*" , $TXFORM2 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TXFORM
+EndFunc
+Func _WINAPI_COMPRESSBITMAPBITS ( $HBITMAP , ByRef $PBUFFER , $ICOMPRESSION = 0 , $IQUALITY = 100 )
+	If Not __DLL ( "gdiplus.dll" ) Then Return SetError ( 103 , 0 , 0 )
+	Local $ASIZE [ 2 ] , $ICOUNT , $IFORMAT , $ILENGTH , $SMIME , $ACALL , $HDC , $HSV , $HMEM , $TBITS , $TDATA , $PDATA , $IERROR = 1
+	Local $HSOURCE = 0 , $HIMAGE = 0 , $HTOKEN = 0 , $PSTREAM = 0 , $TPARAM = 0
+	Local $TDIB = DllStructCreate ( $TAGDIBSECTION )
+	Do
+		Switch $ICOMPRESSION
+		Case 0
+			$SMIME = "image/png"
+		Case 1
+			$SMIME = "image/jpeg"
+	Case Else
+			$IERROR = 10
+			ExitLoop
+		EndSwitch
+		While $HBITMAP
+			If Not _WINAPI_GETOBJECT ( $HBITMAP , DllStructGetSize ( $TDIB ) , $TDIB ) Then
+				$IERROR = 11
+				ExitLoop 2
+			EndIf
+			If ( DllStructGetData ( $TDIB , "bmBitsPixel" ) = 32 ) And ( Not DllStructGetData ( $TDIB , "biCompression" ) ) Then
+				$IERROR = 12
+				ExitLoop
+			EndIf
+			If $HSOURCE Then
+				$IERROR = 13
+				ExitLoop 2
+			EndIf
+			$HSOURCE = _WINAPI_CREATEDIB ( DllStructGetData ( $TDIB , "bmWidth" ) , DllStructGetData ( $TDIB , "bmHeight" ) )
+			If Not $HSOURCE Then
+				$IERROR = @error + 100
+				ExitLoop 2
+			EndIf
+			$HDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+			$HSV = _WINAPI_SELECTOBJECT ( $HDC , $HSOURCE )
+			If _WINAPI_DRAWBITMAP ( $HDC , 0 , 0 , $HBITMAP ) Then
+				$HBITMAP = $HSOURCE
+			Else
+				$IERROR = @error + 200
+				$HBITMAP = 0
+			EndIf
+			_WINAPI_SELECTOBJECT ( $HDC , $HSV )
+			_WINAPI_DELETEDC ( $HDC )
+		WEnd
+		If Not $HBITMAP Then
+			ExitLoop
+		EndIf
+		For $I = 0 To 1
+			$ASIZE [ $I ] = DllStructGetData ( $TDIB , $I + 2 )
+		Next
+		$TBITS = DllStructCreate ( "byte[" & ( $ASIZE [ 0 ] * $ASIZE [ 1 ] * 4 ) & "]" )
+		If Not _WINAPI_GETBITMAPBITS ( $HBITMAP , DllStructGetSize ( $TBITS ) , $TBITS ) Then
+			$IERROR = @error + 300
+			ExitLoop
+		EndIf
+		$TDATA = DllStructCreate ( $TAGGDIPSTARTUPINPUT )
+		DllStructSetData ( $TDATA , "Version" , 1 )
+		$ACALL = DllCall ( "gdiplus.dll" , "int" , "GdiplusStartup" , "ulong_ptr*" , 0 , "struct*" , $TDATA , "ptr" , 0 )
+		If @error Or $ACALL [ 0 ] Then
+			$IERROR = @error + 400
+			ExitLoop
+		EndIf
+		If _WINAPI_ISALPHABITMAP ( $HBITMAP ) Then
+			$IFORMAT = 2498570
+		Else
+			$IFORMAT = 139273
+		EndIf
+		$HTOKEN = $ACALL [ 1 ]
+		$ACALL = DllCall ( "gdiplus.dll" , "int" , "GdipCreateBitmapFromScan0" , "int" , $ASIZE [ 0 ] , "int" , $ASIZE [ 1 ] , "uint" , $ASIZE [ 0 ] * 4 , "int" , $IFORMAT , "struct*" , $TBITS , "ptr*" , 0 )
+		If @error Or $ACALL [ 0 ] Then
+			$IERROR = @error + 500
+			ExitLoop
+		EndIf
+		$HIMAGE = $ACALL [ 6 ]
+		$ACALL = DllCall ( "gdiplus.dll" , "int" , "GdipGetImageEncodersSize" , "uint*" , 0 , "uint*" , 0 )
+		If @error Or $ACALL [ 0 ] Then
+			$IERROR = @error + 600
+			ExitLoop
+		EndIf
+		$ICOUNT = $ACALL [ 1 ]
+		$TDATA = DllStructCreate ( "byte[" & $ACALL [ 2 ] & "]" )
+		If @error Then
+			$IERROR = @error + 700
+			ExitLoop
+		EndIf
+		$PDATA = DllStructGetPtr ( $TDATA )
+		$ACALL = DllCall ( "gdiplus.dll" , "int" , "GdipGetImageEncoders" , "uint" , $ICOUNT , "uint" , $ACALL [ 2 ] , "struct*" , $TDATA )
+		If @error Or $ACALL [ 0 ] Then
+			$IERROR = @error + 800
+			ExitLoop
+		EndIf
+		Local $TCODEC , $PENCODER = 0
+		For $I = 1 To $ICOUNT
+			$TCODEC = DllStructCreate ( $TAGGDIPIMAGECODECINFO , $PDATA )
+			If Not StringInStr ( _WINAPI_GETSTRING ( DllStructGetData ( $TCODEC , "MimeType" ) ) , $SMIME ) Then
+				$PDATA += DllStructGetSize ( $TAGGDIPIMAGECODECINFO )
+			Else
+				$PENCODER = $PDATA
+				$IERROR = 0
+				ExitLoop
+			EndIf
+		Next
+		If Not $PENCODER Then
+			$IERROR = 15
+			ExitLoop
+		EndIf
+		Switch $ICOMPRESSION
+		Case 0
+		Case 1
+			Local Const $TAGENCODERPARAMETER = "byte[16] GUID;ulong NumberOfValues;dword Type;ptr pValue"
+			$TPARAM = DllStructCreate ( "dword Count;" & $TAGENCODERPARAMETER & ";ulong Quality" )
+			DllStructSetData ( $TPARAM , "Count" , 1 )
+			DllStructSetData ( $TPARAM , "NumberOfValues" , 1 )
+			DllStructSetData ( $TPARAM , "Type" , 4 )
+			DllStructSetData ( $TPARAM , "pValue" , DllStructGetPtr ( $TPARAM , "Quality" ) )
+			DllStructSetData ( $TPARAM , "Quality" , $IQUALITY )
+			$ACALL = DllCall ( "ole32.dll" , "long" , "CLSIDFromString" , "wstr" , "{1D5BE4B5-FA4A-452D-9CDD-5DB35105E7EB}" , "ptr" , DllStructGetPtr ( $TPARAM , 2 ) )
+			If @error Or $ACALL [ 0 ] Then
+				$TPARAM = 0
+			EndIf
+		EndSwitch
+		$PSTREAM = _WINAPI_CREATESTREAMONHGLOBAL ( )
+		$ACALL = DllCall ( "gdiplus.dll" , "int" , "GdipSaveImageToStream" , "handle" , $HIMAGE , "ptr" , $PSTREAM , "ptr" , $PENCODER , "struct*" , $TPARAM )
+		If @error Or $ACALL [ 0 ] Then
+			$IERROR = @error + 900
+			ExitLoop
+		EndIf
+		$HMEM = _WINAPI_GETHGLOBALFROMSTREAM ( $PSTREAM )
+		$ACALL = DllCall ( "kernel32.dll" , "ulong_ptr" , "GlobalSize" , "handle" , $HMEM )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 1000
+			ExitLoop
+		EndIf
+		$ILENGTH = $ACALL [ 0 ]
+		$ACALL = DllCall ( "kernel32.dll" , "ptr" , "GlobalLock" , "handle" , $HMEM )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 1100
+			ExitLoop
+		EndIf
+		$PBUFFER = __HEAPREALLOC ( $PBUFFER , $ILENGTH , 1 )
+		If Not @error Then
+			_WINAPI_MOVEMEMORY ( $PBUFFER , $ACALL [ 0 ] , $ILENGTH )
+		Else
+			$IERROR = @error + 1300
+		EndIf
+	Until 1
+	If $PSTREAM Then
+		_WINAPI_RELEASESTREAM ( $PSTREAM )
+	EndIf
+	If $HIMAGE Then
+		DllCall ( "gdiplus.dll" , "int" , "GdipDisposeImage" , "handle" , $HIMAGE )
+	EndIf
+	If $HTOKEN Then
+		DllCall ( "gdiplus.dll" , "none" , "GdiplusShutdown" , "ulong_ptr" , $HTOKEN )
+	EndIf
+	If $HSOURCE Then
+		_WINAPI_DELETEOBJECT ( $HSOURCE )
+	EndIf
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Return $ILENGTH
+EndFunc
+Func _WINAPI_COPYENHMETAFILE ( $HEMF , $SFILEPATH = "" )
+	If Not StringStripWS ( $SFILEPATH , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then $SFILEPATH = Null
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CopyEnhMetaFileW" , "handle" , $HEMF , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_COPYRECT ( $TRECT )
+	Local $TDATA = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "CopyRect" , "struct*" , $TDATA , "struct*" , $TRECT )
+	If @error Or Not $ACALL [ 0 ] Then SetError ( @error + 10 , @extended , 0 )
+	Return $TDATA
+EndFunc
+Func _WINAPI_CREATE32BITHBITMAP ( $HICON , $BDIB = False , $BDELETE = False )
+	Local $HBITMAP = 0
+	Local $ADIB [ 2 ] = [ 0 , 0 ]
+	Local $HTEMP = _WINAPI_CREATE32BITHICON ( $HICON )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $IERROR = 0
+	Do
+		Local $TICONINFO = DllStructCreate ( $TAGICONINFO )
+		Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetIconInfo" , "handle" , $HTEMP , "struct*" , $TICONINFO )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 10
+			ExitLoop
+		EndIf
+		For $I = 0 To 1
+			$ADIB [ $I ] = DllStructGetData ( $TICONINFO , $I + 4 )
+		Next
+		Local $TBITMAP = DllStructCreate ( $TAGBITMAP )
+		If Not _WINAPI_GETOBJECT ( $ADIB [ 0 ] , DllStructGetSize ( $TBITMAP ) , $TBITMAP ) Then
+			$IERROR = @error + 20
+			ExitLoop
+		EndIf
+		If $BDIB Then
+			$HBITMAP = _WINAPI_CREATEDIB ( DllStructGetData ( $TBITMAP , "bmWidth" ) , DllStructGetData ( $TBITMAP , "bmHeight" ) )
+			Local $HDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+			Local $HSV = _WINAPI_SELECTOBJECT ( $HDC , $HBITMAP )
+			_WINAPI_DRAWICONEX ( $HDC , 0 , 0 , $HTEMP )
+			_WINAPI_SELECTOBJECT ( $HDC , $HSV )
+			_WINAPI_DELETEDC ( $HDC )
+		Else
+			$HBITMAP = $ADIB [ 1 ]
+			$ADIB [ 1 ] = 0
+		EndIf
+	Until 1
+	For $I = 0 To 1
+		If $ADIB [ $I ] Then
+			_WINAPI_DELETEOBJECT ( $ADIB [ $I ] )
+		EndIf
+	Next
+	_WINAPI_DESTROYICON ( $HTEMP )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	If Not $HBITMAP Then Return SetError ( 12 , 0 , 0 )
+	If $BDELETE Then
+		_WINAPI_DESTROYICON ( $HICON )
+	EndIf
+	Return $HBITMAP
+EndFunc
+Func _WINAPI_CREATEBITMAPINDIRECT ( ByRef $TBITMAP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateBitmapIndirect" , "struct*" , $TBITMAP )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEBRUSHINDIRECT ( $ISTYLE , $IRGB , $IHATCH = 0 )
+	Local $TLOGBRUSH = DllStructCreate ( $TAGLOGBRUSH )
+	DllStructSetData ( $TLOGBRUSH , 1 , $ISTYLE )
+	DllStructSetData ( $TLOGBRUSH , 2 , __RGB ( $IRGB ) )
+	DllStructSetData ( $TLOGBRUSH , 3 , $IHATCH )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateBrushIndirect" , "struct*" , $TLOGBRUSH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATECOLORADJUSTMENT ( $IFLAGS = 0 , $IILLUMINANT = 0 , $IGAMMAR = 10000 , $IGAMMAG = 10000 , $IGAMMAB = 10000 , $IBLACK = 0 , $IWHITE = 10000 , $ICONTRAST = 0 , $IBRIGHTNESS = 0 , $ICOLORFULNESS = 0 , $ITINT = 0 )
+	Local $TCA = DllStructCreate ( $TAGCOLORADJUSTMENT )
+	DllStructSetData ( $TCA , 1 , DllStructGetSize ( $TCA ) )
+	DllStructSetData ( $TCA , 2 , $IFLAGS )
+	DllStructSetData ( $TCA , 3 , $IILLUMINANT )
+	DllStructSetData ( $TCA , 4 , $IGAMMAR )
+	DllStructSetData ( $TCA , 5 , $IGAMMAG )
+	DllStructSetData ( $TCA , 6 , $IGAMMAB )
+	DllStructSetData ( $TCA , 7 , $IBLACK )
+	DllStructSetData ( $TCA , 8 , $IWHITE )
+	DllStructSetData ( $TCA , 9 , $ICONTRAST )
+	DllStructSetData ( $TCA , 10 , $IBRIGHTNESS )
+	DllStructSetData ( $TCA , 11 , $ICOLORFULNESS )
+	DllStructSetData ( $TCA , 12 , $ITINT )
+	Return $TCA
+EndFunc
+Func _WINAPI_CREATECOMPATIBLEBITMAPEX ( $HDC , $IWIDTH , $IHEIGHT , $IRGB )
+	Local $HBRUSH = _WINAPI_CREATEBRUSHINDIRECT ( 0 , $IRGB )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleDC" , "handle" , $HDC )
+	Local $HDESTDC = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleBitmap" , "handle" , $HDC , "int" , $IWIDTH , "int" , $IHEIGHT )
+	Local $HBMP = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDESTDC , "handle" , $HBMP )
+	Local $HDESTSV = $ACALL [ 0 ]
+	Local $TRECT = _WINAPI_CREATERECTEX ( 0 , 0 , $IWIDTH , $IHEIGHT )
+	Local $IERROR = 0
+	$ACALL = DllCall ( "user32.dll" , "int" , "FillRect" , "handle" , $HDESTDC , "struct*" , $TRECT , "handle" , $HBRUSH )
+	If @error Or Not $ACALL [ 0 ] Then
+		$IERROR = @error + 10
+		_WINAPI_DELETEOBJECT ( $HBMP )
+	EndIf
+	_WINAPI_DELETEOBJECT ( $HBRUSH )
+	DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDESTDC , "handle" , $HDESTSV )
+	DllCall ( "gdi32.dll" , "bool" , "DeleteDC" , "handle" , $HDESTDC )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Return $HBMP
+EndFunc
+Func _WINAPI_CREATEDIBITMAP ( $HDC , ByRef $TBITMAPINFO , $IUSAGE , $PBITS = 0 )
+	Local $IINIT = 0
+	If $PBITS Then
+		$IINIT = 4
+	EndIf
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateDIBitmap" , "handle" , $HDC , "struct*" , $TBITMAPINFO , "dword" , $IINIT , "struct*" , $PBITS , "struct*" , $TBITMAPINFO , "uint" , $IUSAGE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEELLIPTICRGN ( $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateEllipticRgnIndirect" , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEENHMETAFILE ( $HDC = 0 , $TRECT = 0 , $BPIXELS = False , $SFILEPATH = "" , $SDESCRIPTION = "" )
+	If Not StringStripWS ( $SFILEPATH , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then $SFILEPATH = Null
+	Local $TDATA = 0 , $ADATA = StringSplit ( $SDESCRIPTION , "|" , $STR_NOCOUNT )
+	If UBound ( $ADATA ) < 2 Then
+		ReDim $ADATA [ 2 ]
+		$ADATA [ 1 ] = ""
+	EndIf
+	For $I = 0 To 1
+		$ADATA [ $I ] = StringStripWS ( $ADATA [ $I ] , $STR_STRIPLEADING + $STR_STRIPTRAILING )
+	Next
+	If ( $ADATA [ 0 ] ) Or ( $ADATA [ 1 ] ) Then
+		$TDATA = _WINAPI_ARRAYTOSTRUCT ( $ADATA )
+	EndIf
+	Local $IXP , $IYP , $IXM , $IYM , $HREF = 0
+	If $BPIXELS And ( IsDllStruct ( $TRECT ) ) Then
+		If Not $HDC Then
+			$HREF = _WINAPI_GETDC ( 0 )
+		EndIf
+		$IXP = _WINAPI_GETDEVICECAPS ( $HREF , 8 )
+		$IYP = _WINAPI_GETDEVICECAPS ( $HREF , 10 )
+		$IXM = _WINAPI_GETDEVICECAPS ( $HREF , 4 )
+		$IYM = _WINAPI_GETDEVICECAPS ( $HREF , 6 )
+		If $HREF Then
+			_WINAPI_RELEASEDC ( 0 , $HREF )
+		EndIf
+		For $I = 1 To 3 Step 2
+			DllStructSetData ( $TRECT , $I , Round ( DllStructGetData ( $TRECT , $I ) * $IXM / $IXP * 100 ) )
+		Next
+		For $I = 2 To 4 Step 2
+			DllStructSetData ( $TRECT , $I , Round ( DllStructGetData ( $TRECT , $I ) * $IYM / $IYP * 100 ) )
+		Next
+	EndIf
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateEnhMetaFileW" , "handle" , $HDC , "wstr" , $SFILEPATH , "struct*" , $TRECT , "struct*" , $TDATA )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEFONTEX ( $IHEIGHT , $IWIDTH = 0 , $IESCAPEMENT = 0 , $IORIENTATION = 0 , $IWEIGHT = 400 , $BITALIC = False , $BUNDERLINE = False , $BSTRIKEOUT = False , $ICHARSET = 1 , $IOUTPRECISION = 0 , $ICLIPPRECISION = 0 , $IQUALITY = 0 , $IPITCHANDFAMILY = 0 , $SFACENAME = "" , $ISTYLE = 0 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateFontW" , "int" , $IHEIGHT , "int" , $IWIDTH , "int" , $IESCAPEMENT , "int" , $IORIENTATION , "int" , $IWEIGHT , "dword" , $BITALIC , "dword" , $BUNDERLINE , "dword" , $BSTRIKEOUT , "dword" , $ICHARSET , "dword" , $IOUTPRECISION , "dword" , $ICLIPPRECISION , "dword" , $IQUALITY , "dword" , $IPITCHANDFAMILY , "wstr" , _WINAPI_GETFONTNAME ( $SFACENAME , $ISTYLE , $ICHARSET ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATENULLRGN ( )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateRectRgn" , "int" , 0 , "int" , 0 , "int" , 0 , "int" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEPEN ( $IPENSTYLE , $IWIDTH , $ICOLOR )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreatePen" , "int" , $IPENSTYLE , "int" , $IWIDTH , "INT" , $ICOLOR )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEPOLYGONRGN ( Const ByRef $APOINT , $ISTART = 0 , $IEND = + 4294967295 , $IMODE = 1 )
+	If __CHECKERRORARRAYBOUNDS ( $APOINT , $ISTART , $IEND , 2 , 2 ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TAGSTRUCT = ""
+	For $I = $ISTART To $IEND
+		$TAGSTRUCT &= "int[2];"
+	Next
+	Local $TDATA = DllStructCreate ( $TAGSTRUCT )
+	Local $ICOUNT = 1
+	For $I = $ISTART To $IEND
+		For $J = 0 To 1
+			DllStructSetData ( $TDATA , $ICOUNT , $APOINT [ $I ] [ $J ] , $J + 1 )
+		Next
+		$ICOUNT += 1
+	Next
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreatePolygonRgn" , "struct*" , $TDATA , "int" , $ICOUNT + 4294967295 , "int" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATERECTRGNINDIRECT ( $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateRectRgnIndirect" , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATESOLIDBITMAP ( $HWND , $ICOLOR , $IWIDTH , $IHEIGHT , $BRGB = 1 )
+	Local $HDC = _WINAPI_GETDC ( $HWND )
+	Local $HDESTDC = _WINAPI_CREATECOMPATIBLEDC ( $HDC )
+	Local $HBITMAP = _WINAPI_CREATECOMPATIBLEBITMAP ( $HDC , $IWIDTH , $IHEIGHT )
+	Local $HOLD = _WINAPI_SELECTOBJECT ( $HDESTDC , $HBITMAP )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , 1 , 0 )
+	DllStructSetData ( $TRECT , 2 , 0 )
+	DllStructSetData ( $TRECT , 3 , $IWIDTH )
+	DllStructSetData ( $TRECT , 4 , $IHEIGHT )
+	If $BRGB Then
+		$ICOLOR = BitOR ( BitAND ( $ICOLOR , 65280 ) , BitShift ( BitAND ( $ICOLOR , 255 ) , + 4294967280 ) , BitShift ( BitAND ( $ICOLOR , 16711680 ) , 16 ) )
+	EndIf
+	Local $HBRUSH = _WINAPI_CREATESOLIDBRUSH ( $ICOLOR )
+	If Not _WINAPI_FILLRECT ( $HDESTDC , $TRECT , $HBRUSH ) Then
+		_WINAPI_DELETEOBJECT ( $HBITMAP )
+		$HBITMAP = 0
+	EndIf
+	_WINAPI_DELETEOBJECT ( $HBRUSH )
+	_WINAPI_RELEASEDC ( $HWND , $HDC )
+	_WINAPI_SELECTOBJECT ( $HDESTDC , $HOLD )
+	_WINAPI_DELETEDC ( $HDESTDC )
+	If Not $HBITMAP Then Return SetError ( 1 , 0 , 0 )
+	Return $HBITMAP
+EndFunc
+Func _WINAPI_CREATETRANSFORM ( $NM11 = 1 , $NM12 = 0 , $NM21 = 0 , $NM22 = 1 , $NDX = 0 , $NDY = 0 )
+	Local $TXFORM = DllStructCreate ( $TAGXFORM )
+	DllStructSetData ( $TXFORM , 1 , $NM11 )
+	DllStructSetData ( $TXFORM , 2 , $NM12 )
+	DllStructSetData ( $TXFORM , 3 , $NM21 )
+	DllStructSetData ( $TXFORM , 4 , $NM22 )
+	DllStructSetData ( $TXFORM , 5 , $NDX )
+	DllStructSetData ( $TXFORM , 6 , $NDY )
+	Return $TXFORM
+EndFunc
+Func _WINAPI_DELETEENHMETAFILE ( $HEMF )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "DeleteEnhMetaFile" , "handle" , $HEMF )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DPTOLP ( $HDC , ByRef $TPOINT , $ICOUNT = 1 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "DPtoLP" , "handle" , $HDC , "struct*" , $TPOINT , "int" , $ICOUNT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAWANIMATEDRECTS ( $HWND , $TRECTFROM , $TRECTTO )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DrawAnimatedRects" , "hwnd" , $HWND , "int" , 3 , "struct*" , $TRECTFROM , "struct*" , $TRECTTO )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAWBITMAP ( $HDC , $IX , $IY , $HBITMAP , $IROP = 13369376 )
+	Local $TOBJ = DllStructCreate ( $TAGBITMAP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetObject" , "handle" , $HBITMAP , "int" , DllStructGetSize ( $TOBJ ) , "struct*" , $TOBJ )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	$ACALL = DllCall ( "user32.dll" , "handle" , "GetDC" , "hwnd" , 0 )
+	Local $_HDC = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleDC" , "handle" , $_HDC )
+	Local $HSRCDC = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HSRCDC , "handle" , $HBITMAP )
+	Local $HSRCSV = $ACALL [ 0 ]
+	Local $IERROR = 0
+	$ACALL = DllCall ( "gdi32.dll" , "int" , "BitBlt" , "hwnd" , $HDC , "int" , $IX , "int" , $IY , "int" , DllStructGetData ( $TOBJ , "bmWidth" ) , "int" , DllStructGetData ( $TOBJ , "bmHeight" ) , "hwnd" , $HSRCDC , "int" , 0 , "int" , 0 , "int" , $IROP )
+	If @error Or Not $ACALL [ 0 ] Then
+		$IERROR = @error + 1
+	EndIf
+	DllCall ( "user32.dll" , "int" , "ReleaseDC" , "hwnd" , 0 , "handle" , $_HDC )
+	DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HSRCDC , "handle" , $HSRCSV )
+	DllCall ( "gdi32.dll" , "bool" , "DeleteDC" , "handle" , $HSRCDC )
+	If $IERROR Then Return SetError ( 10 , 0 , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DRAWFOCUSRECT ( $HDC , $TRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DrawFocusRect" , "handle" , $HDC , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAWLINE ( $HDC , $IX1 , $IY1 , $IX2 , $IY2 )
+	_WINAPI_MOVETO ( $HDC , $IX1 , $IY1 )
+	If @error Then Return SetError ( @error , @extended , False )
+	_WINAPI_LINETO ( $HDC , $IX2 , $IY2 )
+	If @error Then Return SetError ( @error + 10 , @extended , False )
+	Return True
+EndFunc
+Func _WINAPI_DRAWSHADOWTEXT ( $HDC , $STEXT , $IRGBTEXT , $IRGBSHADOW , $IXOFFSET = 0 , $IYOFFSET = 0 , $TRECT = 0 , $IFLAGS = 0 )
+	Local $ACALL
+	If Not IsDllStruct ( $TRECT ) Then
+		$TRECT = DllStructCreate ( $TAGRECT )
+		$ACALL = DllCall ( "user32.dll" , "bool" , "GetClientRect" , "hwnd" , _WINAPI_WINDOWFROMDC ( $HDC ) , "struct*" , $TRECT )
+		If @error Then Return SetError ( @error + 10 , @extended , 0 )
+		If Not $ACALL [ 0 ] Then Return SetError ( 10 , 0 , 0 )
+	EndIf
+	$ACALL = DllCall ( "comctl32.dll" , "int" , "DrawShadowText" , "handle" , $HDC , "wstr" , $STEXT , "uint" , + 4294967295 , "struct*" , $TRECT , "dword" , $IFLAGS , "int" , __RGB ( $IRGBTEXT ) , "int" , __RGB ( $IRGBSHADOW ) , "int" , $IXOFFSET , "int" , $IYOFFSET )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DWMDEFWINDOWPROC ( $HWND , $IMSG , $WPARAM , $LPARAM )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "bool" , "DwmDefWindowProc" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM , "lresult*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 5 ]
+EndFunc
+Func _WINAPI_DWMENABLEBLURBEHINDWINDOW ( $HWND , $BENABLE = True , $BTRANSITION = False , $HRGN = 0 )
+	Local $TBLURBEHIND = DllStructCreate ( "dword;bool;handle;bool" )
+	Local $IFLAGS = 0
+	If $HRGN Then
+		$IFLAGS += 2
+		DllStructSetData ( $TBLURBEHIND , 3 , $HRGN )
+	EndIf
+	DllStructSetData ( $TBLURBEHIND , 1 , BitOR ( $IFLAGS , 5 ) )
+	DllStructSetData ( $TBLURBEHIND , 2 , $BENABLE )
+	DllStructSetData ( $TBLURBEHIND , 4 , $BTRANSITION )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmEnableBlurBehindWindow" , "hwnd" , $HWND , "struct*" , $TBLURBEHIND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMENABLECOMPOSITION ( $BENABLE )
+	If $BENABLE Then $BENABLE = 1
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmEnableComposition" , "uint" , $BENABLE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMEXTENDFRAMEINTOCLIENTAREA ( $HWND , $TMARGINS = 0 )
+	If Not IsDllStruct ( $TMARGINS ) Then
+		$TMARGINS = _WINAPI_CREATEMARGINS ( + 4294967295 , + 4294967295 , + 4294967295 , + 4294967295 )
+	EndIf
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmExtendFrameIntoClientArea" , "hwnd" , $HWND , "struct*" , $TMARGINS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMGETCOLORIZATIONCOLOR ( )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmGetColorizationColor" , "dword*" , 0 , "bool*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return SetExtended ( $ACALL [ 2 ] , $ACALL [ 1 ] )
+EndFunc
+Func _WINAPI_DWMGETCOLORIZATIONPARAMETERS ( )
+	Local $TDWMCP = DllStructCreate ( $TAGDWM_COLORIZATION_PARAMETERS )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "uint" , 127 , "struct*" , $TDWMCP )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $TDWMCP
+EndFunc
+Func _WINAPI_DWMGETWINDOWATTRIBUTE ( $HWND , $IATTRIBUTE )
+	Local $TAGSTRUCT
+	Switch $IATTRIBUTE
+	Case 5 , 9
+		$TAGSTRUCT = $TAGRECT
+	Case 1
+		$TAGSTRUCT = "uint"
+Case Else
+		Return SetError ( 11 , 0 , 0 )
+	EndSwitch
+	Local $TDATA = DllStructCreate ( $TAGSTRUCT )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmGetWindowAttribute" , "hwnd" , $HWND , "dword" , $IATTRIBUTE , "struct*" , $TDATA , "dword" , DllStructGetSize ( $TDATA ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Switch $IATTRIBUTE
+	Case 1
+		Return DllStructGetData ( $TDATA , 1 )
+Case Else
+		Return $TDATA
+	EndSwitch
+EndFunc
+Func _WINAPI_DWMINVALIDATEICONICBITMAPS ( $HWND )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmInvalidateIconicBitmaps" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMISCOMPOSITIONENABLED ( )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmIsCompositionEnabled" , "bool*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_DWMQUERYTHUMBNAILSOURCESIZE ( $HTHUMBNAIL )
+	Local $TSIZE = DllStructCreate ( $TAGSIZE )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmQueryThumbnailSourceSize" , "handle" , $HTHUMBNAIL , "struct*" , $TSIZE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $TSIZE
+EndFunc
+Func _WINAPI_DWMREGISTERTHUMBNAIL ( $HDESTINATION , $HSOURCE )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmRegisterThumbnail" , "hwnd" , $HDESTINATION , "hwnd" , $HSOURCE , "handle*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_DWMSETCOLORIZATIONPARAMETERS ( $TDWMCP )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "uint" , 131 , "struct*" , $TDWMCP , "uint" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMSETICONICLIVEPREVIEWBITMAP ( $HWND , $HBITMAP , $BFRAME = False , $TCLIENT = 0 )
+	Local $IFLAGS
+	If $BFRAME Then
+		$IFLAGS = 1
+	Else
+		$IFLAGS = 0
+	EndIf
+	Local $ACALL = DllCall ( "dwmapi.dll" , "uint" , "DwmSetIconicLivePreviewBitmap" , "hwnd" , $HWND , "handle" , $HBITMAP , "struct*" , $TCLIENT , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMSETICONICTHUMBNAIL ( $HWND , $HBITMAP , $BFRAME = False )
+	Local $IFLAGS
+	If $BFRAME Then
+		$IFLAGS = 1
+	Else
+		$IFLAGS = 0
+	EndIf
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmSetIconicThumbnail" , "hwnd" , $HWND , "handle" , $HBITMAP , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMSETWINDOWATTRIBUTE ( $HWND , $IATTRIBUTE , $IDATA )
+	Switch $IATTRIBUTE
+	Case 2 , 3 , 4 , 6 , 7 , 8 , 10 , 11 , 12
+Case Else
+		Return SetError ( 1 , 0 , 0 )
+	EndSwitch
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmSetWindowAttribute" , "hwnd" , $HWND , "dword" , $IATTRIBUTE , "dword*" , $IDATA , "dword" , 4 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMUNREGISTERTHUMBNAIL ( $HTHUMBNAIL )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmUnregisterThumbnail" , "handle" , $HTHUMBNAIL )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DWMUPDATETHUMBNAILPROPERTIES ( $HTHUMBNAIL , $BVISIBLE = True , $BCLIENTAREAONLY = False , $IOPACITY = 255 , $TRECTDEST = 0 , $TRECTSRC = 0 )
+	Local Const $TAGDWM_THUMBNAIL_PROPERTIES = "struct;dword dwFlags;int rcDestination[4];int rcSource[4];byte opacity;bool opacity;bool fSourceClientAreaOnly;endstruct"
+	Local $TTHUMBNAILPROPERTIES = DllStructCreate ( $TAGDWM_THUMBNAIL_PROPERTIES )
+	Local $TSIZE , $IFLAGS = 0
+	If Not IsDllStruct ( $TRECTDEST ) Then
+		$TSIZE = _WINAPI_DWMQUERYTHUMBNAILSOURCESIZE ( $HTHUMBNAIL )
+		If @error Then
+			Return SetError ( @error + 10 , @extended , 0 )
+		EndIf
+		$TRECTDEST = _WINAPI_CREATERECTEX ( 0 , 0 , DllStructGetData ( $TSIZE , 1 ) , DllStructGetData ( $TSIZE , 2 ) )
+	EndIf
+	For $I = 1 To 4
+		DllStructSetData ( $TTHUMBNAILPROPERTIES , 2 , DllStructGetData ( $TRECTDEST , $I ) , $I )
+	Next
+	If IsDllStruct ( $TRECTSRC ) Then
+		$IFLAGS += 2
+		For $I = 1 To 4
+			DllStructSetData ( $TTHUMBNAILPROPERTIES , 3 , DllStructGetData ( $TRECTSRC , $I ) , $I )
+		Next
+	EndIf
+	DllStructSetData ( $TTHUMBNAILPROPERTIES , 1 , BitOR ( $IFLAGS , 29 ) )
+	DllStructSetData ( $TTHUMBNAILPROPERTIES , 4 , $IOPACITY )
+	DllStructSetData ( $TTHUMBNAILPROPERTIES , 5 , $BVISIBLE )
+	DllStructSetData ( $TTHUMBNAILPROPERTIES , 6 , $BCLIENTAREAONLY )
+	Local $ACALL = DllCall ( "dwmapi.dll" , "long" , "DwmUpdateThumbnailProperties" , "handle" , $HTHUMBNAIL , "struct*" , $TTHUMBNAILPROPERTIES )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_ELLIPSE ( $HDC , $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "Ellipse" , "handle" , $HDC , "int" , DllStructGetData ( $TRECT , 1 ) , "int" , DllStructGetData ( $TRECT , 2 ) , "int" , DllStructGetData ( $TRECT , 3 ) , "int" , DllStructGetData ( $TRECT , 4 ) )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENDPAINT ( $HWND , ByRef $TPAINTSTRUCT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EndPaint" , "hwnd" , $HWND , "struct*" , $TPAINTSTRUCT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENDPATH ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "EndPath" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENUMDISPLAYMONITORS ( $HDC = 0 , $TRECT = 0 )
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumDisplayMonitorsProc" , "bool" , "handle;handle;ptr;lparam" )
+	Dim $__G_VENUM [ 101 ] [ 2 ] = [ [ 0 ] ]
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EnumDisplayMonitors" , "handle" , $HDC , "struct*" , $TRECT , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "lparam" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or Not $__G_VENUM [ 0 ] [ 0 ] Then
+		$__G_VENUM = @error + 10
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_ENUMDISPLAYSETTINGS ( $SDEVICE , $IMODE )
+	If Not StringStripWS ( $SDEVICE , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then $SDEVICE = Null
+	Local $TDEVMODE = DllStructCreate ( $TAGDEVMODE_DISPLAY )
+	DllStructSetData ( $TDEVMODE , "Size" , DllStructGetSize ( $TDEVMODE ) )
+	DllStructSetData ( $TDEVMODE , "DriverExtra" , 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EnumDisplaySettingsW" , "wstr" , $SDEVICE , "dword" , $IMODE , "struct*" , $TDEVMODE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 5 ]
+	$ARET [ 0 ] = DllStructGetData ( $TDEVMODE , "PelsWidth" )
+	$ARET [ 1 ] = DllStructGetData ( $TDEVMODE , "PelsHeight" )
+	$ARET [ 2 ] = DllStructGetData ( $TDEVMODE , "BitsPerPel" )
+	$ARET [ 3 ] = DllStructGetData ( $TDEVMODE , "DisplayFrequency" )
+	$ARET [ 4 ] = DllStructGetData ( $TDEVMODE , "DisplayFlags" )
+	Return $ARET
+EndFunc
+Func _WINAPI_ENUMFONTFAMILIES ( $HDC = 0 , $SFACENAME = "" , $ICHARSET = 1 , $IFONTTYPE = 7 , $SPATTERN = "" , $BEXCLUDE = False )
+	Local $TLOGFONT = DllStructCreate ( $TAGLOGFONT )
+	Local $TPATTERN = DllStructCreate ( "uint;uint;ptr;wchar[" & ( StringLen ( $SPATTERN ) + 1 ) & "]" )
+	DllStructSetData ( $TPATTERN , 1 , $IFONTTYPE )
+	If Not $SPATTERN Then
+		DllStructSetData ( $TPATTERN , 2 , 0 )
+		DllStructSetData ( $TPATTERN , 3 , 0 )
+	Else
+		DllStructSetData ( $TPATTERN , 2 , $BEXCLUDE )
+		DllStructSetData ( $TPATTERN , 3 , DllStructGetPtr ( $TPATTERN , 4 ) )
+		DllStructSetData ( $TPATTERN , 4 , $SPATTERN )
+	EndIf
+	DllStructSetData ( $TLOGFONT , 9 , $ICHARSET )
+	DllStructSetData ( $TLOGFONT , 13 , 0 )
+	DllStructSetData ( $TLOGFONT , 14 , StringLeft ( $SFACENAME , 31 ) )
+	Local $HCDC
+	If Not $HDC Then
+		$HCDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+	Else
+		$HCDC = $HDC
+	EndIf
+	Dim $__G_VENUM [ 101 ] [ 8 ] = [ [ 0 ] ]
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumFontFamiliesProc" , "int" , "ptr;ptr;dword;PTR" )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "EnumFontFamiliesExW" , "handle" , $HCDC , "struct*" , $TLOGFONT , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "struct*" , $TPATTERN , "dword" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or Not $__G_VENUM [ 0 ] [ 0 ] Then
+		$__G_VENUM = @error + 10
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If Not $HDC Then
+		_WINAPI_DELETEDC ( $HCDC )
+	EndIf
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_EQUALRECT ( $TRECT1 , $TRECT2 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EqualRect" , "struct*" , $TRECT1 , "struct*" , $TRECT2 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_EQUALRGN ( $HRGN1 , $HRGN2 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "EqualRgn" , "handle" , $HRGN1 , "handle" , $HRGN2 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_EXCLUDECLIPRECT ( $HDC , $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "ExcludeClipRect" , "handle" , $HDC , "int" , DllStructGetData ( $TRECT , 1 ) , "int" , DllStructGetData ( $TRECT , 2 ) , "int" , DllStructGetData ( $TRECT , 3 ) , "int" , DllStructGetData ( $TRECT , 4 ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_EXTCREATEPEN ( $IPENSTYLE , $IWIDTH , $IBRUSHSTYLE , $IRGB , $IHATCH = 0 , $AUSERSTYLE = 0 , $ISTART = 0 , $IEND = + 4294967295 )
+	Local $ICOUNT = 0 , $TSTYLE = 0
+	If BitAND ( $IPENSTYLE , 255 ) = 7 Then
+		If __CHECKERRORARRAYBOUNDS ( $AUSERSTYLE , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+		$TSTYLE = DllStructCreate ( "dword[" & ( $IEND - $ISTART + 1 ) & "]" )
+		For $I = $ISTART To $IEND
+			DllStructSetData ( $TSTYLE , 1 , $AUSERSTYLE [ $I ] , $ICOUNT + 1 )
+			$ICOUNT += 1
+		Next
+	EndIf
+	Local $TLOGBRUSH = DllStructCreate ( $TAGLOGBRUSH )
+	DllStructSetData ( $TLOGBRUSH , 1 , $IBRUSHSTYLE )
+	DllStructSetData ( $TLOGBRUSH , 2 , __RGB ( $IRGB ) )
+	DllStructSetData ( $TLOGBRUSH , 3 , $IHATCH )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "ExtCreatePen" , "dword" , $IPENSTYLE , "dword" , $IWIDTH , "struct*" , $TLOGBRUSH , "dword" , $ICOUNT , "struct*" , $TSTYLE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_EXTCREATEREGION ( $TRGNDATA , $TXFORM = 0 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "ExtCreateRegion" , "struct*" , $TXFORM , "dword" , DllStructGetSize ( $TRGNDATA ) , "struct*" , $TRGNDATA )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_EXTFLOODFILL ( $HDC , $IX , $IY , $IRGB , $ITYPE = 0 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "ExtFloodFill" , "handle" , $HDC , "int" , $IX , "int" , $IY , "dword" , __RGB ( $IRGB ) , "uint" , $ITYPE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_EXTSELECTCLIPRGN ( $HDC , $HRGN , $IMODE = 5 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "ExtSelectClipRgn" , "handle" , $HDC , "handle" , $HRGN , "int" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FILLPATH ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "FillPath" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FILLRGN ( $HDC , $HRGN , $HBRUSH )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "FillRgn" , "handle" , $HDC , "handle" , $HRGN , "handle" , $HBRUSH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FLATTENPATH ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "FlattenPath" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FRAMERGN ( $HDC , $HRGN , $HBRUSH , $IWIDTH , $IHEIGHT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "FrameRgn" , "handle" , $HDC , "handle" , $HRGN , "handle" , $HBRUSH , "int" , $IWIDTH , "int" , $IHEIGHT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GDICOMMENT ( $HDC , $PBUFFER , $ISIZE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GdiComment" , "handle" , $HDC , "uint" , $ISIZE , "struct*" , $PBUFFER )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETARCDIRECTION ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetArcDirection" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If ( $ACALL [ 0 ] < 1 ) Or ( $ACALL [ 0 ] > 2 ) Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETBITMAPBITS ( $HBITMAP , $ISIZE , $PBITS )
+	Local $ACALL = DllCall ( "gdi32.dll" , "long" , "GetBitmapBits" , "handle" , $HBITMAP , "long" , $ISIZE , "struct*" , $PBITS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETBITMAPDIMENSIONEX ( $HBITMAP )
+	Local $TSIZE = DllStructCreate ( $TAGSIZE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetBitmapDimensionEx" , "handle" , $HBITMAP , "struct*" , $TSIZE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TSIZE
+EndFunc
+Func _WINAPI_GETBKCOLOR ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "dword" , "GetBkColor" , "handle" , $HDC )
+	If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return __RGB ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_GETBOUNDSRECT ( $HDC , $IFLAGS = 0 )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "GetBoundsRect" , "handle" , $HDC , "struct*" , $TRECT , "uint" , $IFLAGS )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return SetExtended ( $ACALL [ 0 ] , $TRECT )
+EndFunc
+Func _WINAPI_GETBRUSHORG ( $HDC )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetBrushOrgEx" , "handle" , $HDC , "struct*" , $TPOINT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_GETBVALUE ( $IRGB )
+	Return BitShift ( BitAND ( __RGB ( $IRGB ) , 16711680 ) , 16 )
+EndFunc
+Func _WINAPI_GETCLIPBOX ( $HDC , ByRef $TRECT )
+	$TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetClipBox" , "handle" , $HDC , "struct*" , $TRECT )
+	If @error Or Not $ACALL [ 0 ] Then
+		$TRECT = 0
+		Return SetError ( @error , @extended , 0 )
+	EndIf
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCLIPRGN ( $HDC )
+	Local $HRGN = _WINAPI_CREATERECTRGN ( 0 , 0 , 0 , 0 )
+	Local $IERROR = 0
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetClipRgn" , "handle" , $HDC , "handle" , $HRGN )
+	If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then $IERROR = @error + 10
+	If $IERROR Or Not $ACALL [ 0 ] Then
+		_WINAPI_DELETEOBJECT ( $HRGN )
+		$HRGN = 0
+	EndIf
+	Return SetError ( $IERROR , 0 , $HRGN )
+EndFunc
+Func _WINAPI_GETCOLORADJUSTMENT ( $HDC )
+	Local $TADJUSTMENT = DllStructCreate ( $TAGCOLORADJUSTMENT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetColorAdjustment" , "handle" , $HDC , "struct*" , $TADJUSTMENT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TADJUSTMENT
+EndFunc
+Func _WINAPI_GETCURRENTPOSITION ( $HDC )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetCurrentPositionEx" , "handle" , $HDC , "struct*" , $TPOINT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_GETDEVICEGAMMARAMP ( $HDC , ByRef $ARAMP )
+	$ARAMP = 0
+	Local $TDATA = DllStructCreate ( "word[256];word[256];word[256]" )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetDeviceGammaRamp" , "handle" , $HDC , "struct*" , $TDATA )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Dim $ARAMP [ 256 ] [ 3 ]
+	For $I = 0 To 2
+		For $J = 0 To 255
+			$ARAMP [ $J ] [ $I ] = DllStructGetData ( $TDATA , $I + 1 , $J + 1 )
+		Next
+	Next
+	Return 1
+EndFunc
+Func _WINAPI_GETDIBCOLORTABLE ( $HBITMAP )
+	Local $HDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+	Local $HSV = _WINAPI_SELECTOBJECT ( $HDC , $HBITMAP )
+	Local $TPEAK = DllStructCreate ( "dword[256]" )
+	Local $IERROR = 0
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "GetDIBColorTable" , "handle" , $HDC , "uint" , 0 , "uint" , 256 , "struct*" , $TPEAK )
+	If @error Or Not $ACALL [ 0 ] Then $IERROR = @error + 10
+	_WINAPI_SELECTOBJECT ( $HDC , $HSV )
+	_WINAPI_DELETEDC ( $HDC )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Local $TDATA = DllStructCreate ( "dword[" & $ACALL [ 0 ] & "]" )
+	If @error Then Return SetError ( @error + 20 , @extended , 0 )
+	_WINAPI_MOVEMEMORY ( $TDATA , $ACALL [ 4 ] , 4 * $ACALL [ 0 ] )
+	Return SetExtended ( $ACALL [ 0 ] , $TDATA )
+EndFunc
+Func _WINAPI_GETDIBITS ( $HDC , $HBITMAP , $ISTARTSCAN , $ISCANLINES , $PBITS , $TBI , $IUSAGE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetDIBits" , "handle" , $HDC , "handle" , $HBITMAP , "uint" , $ISTARTSCAN , "uint" , $ISCANLINES , "struct*" , $PBITS , "struct*" , $TBI , "uint" , $IUSAGE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETENHMETAFILE ( $SFILEPATH )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "GetEnhMetaFileW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETENHMETAFILEBITS ( $HEMF , ByRef $PBUFFER )
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "GetEnhMetaFileBits" , "handle" , $HEMF , "uint" , 0 , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 50 , @extended , 0 )
+	$PBUFFER = __HEAPREALLOC ( $PBUFFER , $ACALL [ 0 ] , 1 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	$ACALL = DllCall ( "gdi32.dll" , "uint" , "GetEnhMetaFileBits" , "handle" , $HEMF , "uint" , $ACALL [ 0 ] , "ptr" , $PBUFFER )
+	If Not $ACALL [ 0 ] Then Return SetError ( 60 , 0 , 0 )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETENHMETAFILEDESCRIPTION ( $HEMF )
+	Local $TDATA = DllStructCreate ( "wchar[4096]" )
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "GetEnhMetaFileDescriptionW" , "handle" , $HEMF , "uint" , 4096 , "struct*" , $TDATA )
+	If @error Or ( $ACALL [ 0 ] = 4294967295 ) Then Return SetError ( @error + 20 , $ACALL [ 0 ] , 0 )
+	If Not $ACALL [ 0 ] Then Return 0
+	Local $ADATA = _WINAPI_STRUCTTOARRAY ( $TDATA )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $ARET [ 2 ]
+	For $I = 0 To 1
+		If $ADATA [ 0 ] > $I Then
+			$ARET [ $I ] = $ADATA [ $I + 1 ]
+		Else
+			$ARET [ $I ] = ""
+		EndIf
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETENHMETAFILEDIMENSION ( $HEMF )
+	Local $TENHMETAHEADER = _WINAPI_GETENHMETAFILEHEADER ( $HEMF )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $TSIZE = DllStructCreate ( $TAGSIZE )
+	DllStructSetData ( $TSIZE , 1 , Round ( ( DllStructGetData ( $TENHMETAHEADER , "rcFrame" , 3 ) - DllStructGetData ( $TENHMETAHEADER , "rcFrame" , 1 ) ) * DllStructGetData ( $TENHMETAHEADER , "Device" , 1 ) / DllStructGetData ( $TENHMETAHEADER , "Millimeters" , 1 ) / 100 ) )
+	DllStructSetData ( $TSIZE , 2 , Round ( ( DllStructGetData ( $TENHMETAHEADER , "rcFrame" , 4 ) - DllStructGetData ( $TENHMETAHEADER , "rcFrame" , 2 ) ) * DllStructGetData ( $TENHMETAHEADER , "Device" , 2 ) / DllStructGetData ( $TENHMETAHEADER , "Millimeters" , 2 ) / 100 ) )
+	Return $TSIZE
+EndFunc
+Func _WINAPI_GETENHMETAFILEHEADER ( $HEMF )
+	Local $TENHMETAHEADER = DllStructCreate ( $TAGENHMETAHEADER )
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "GetEnhMetaFileHeader" , "handle" , $HEMF , "uint" , DllStructGetSize ( $TENHMETAHEADER ) , "struct*" , $TENHMETAHEADER )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return SetExtended ( $ACALL [ 0 ] , $TENHMETAHEADER )
+EndFunc
+Func _WINAPI_GETFONTNAME ( $SFACENAME , $ISTYLE = 0 , $ICHARSET = 1 )
+	If Not $SFACENAME Then Return SetError ( 1 , 0 , "" )
+	Local $IFLAGS = 0
+	If BitAND ( $ISTYLE , 1 ) Then
+		$IFLAGS += 32
+	EndIf
+	If BitAND ( $ISTYLE , 2 ) Then
+		$IFLAGS += 1
+	EndIf
+	If Not $IFLAGS Then
+		$IFLAGS = 64
+	EndIf
+	Local $TLOGFONT = DllStructCreate ( $TAGLOGFONT )
+	DllStructSetData ( $TLOGFONT , 9 , $ICHARSET )
+	DllStructSetData ( $TLOGFONT , 13 , 0 )
+	DllStructSetData ( $TLOGFONT , 14 , StringLeft ( $SFACENAME , 31 ) )
+	Local $TFN = DllStructCreate ( "dword;wchar[64]" )
+	DllStructSetData ( $TFN , 1 , $IFLAGS )
+	DllStructSetData ( $TFN , 2 , "" )
+	Local $HDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumFontStylesProc" , "int" , "ptr;ptr;dword;lparam" )
+	Local $SRET = ""
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "EnumFontFamiliesExW" , "handle" , $HDC , "struct*" , $TLOGFONT , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "struct*" , $TFN , "dword" , 0 )
+	If Not @error And Not $ACALL [ 0 ] Then $SRET = DllStructGetData ( $TFN , 2 )
+	DllCallbackFree ( $HENUMPROC )
+	_WINAPI_DELETEDC ( $HDC )
+	If Not $SRET Then Return SetError ( 2 , 0 , "" )
+	Return $SRET
+EndFunc
+Func _WINAPI_GETFONTRESOURCEINFO ( $SFONT , $BFORCE = False , $IFLAG = Default )
+	If $IFLAG = Default Then
+		If $BFORCE Then
+			If Not _WINAPI_ADDFONTRESOURCEEX ( $SFONT , $FR_NOT_ENUM ) Then Return SetError ( @error + 20 , @extended , "" )
+		EndIf
+		Local $IERROR = 0
+		Local $ARET = DllCall ( "gdi32.dll" , "bool" , "GetFontResourceInfoW" , "wstr" , $SFONT , "dword*" , 4096 , "wstr" , "" , "dword" , 1 )
+		If @error Or Not $ARET [ 0 ] Then $IERROR = @error + 10
+		If $BFORCE Then
+			_WINAPI_REMOVEFONTRESOURCEEX ( $SFONT , $FR_NOT_ENUM )
+		EndIf
+		If $IERROR Then Return SetError ( $IERROR , 0 , "" )
+		Return $ARET [ 3 ]
+	Else
+		If Not FileExists ( $SFONT ) Then
+			$SFONT = RegRead ( "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" , "Fonts" ) & "\" & $SFONT
+			If Not FileExists ( $SFONT ) Then Return SetError ( 31 , 0 , "" )
+		EndIf
+		Local Const $HFILE = _WINAPI_CREATEFILE ( $SFONT , 2 , 2 , 2 )
+		If Not $HFILE Then Return SetError ( 32 , _WINAPI_GETLASTERROR ( ) , "" )
+		Local Const $IFILE = FileGetSize ( $SFONT )
+		Local Const $TBUFFER = DllStructCreate ( "byte[" & $IFILE + 1 & "]" )
+		Local Const $PFILE = DllStructGetPtr ( $TBUFFER )
+		Local $IREAD
+		_WINAPI_READFILE ( $HFILE , $PFILE , $IFILE , $IREAD )
+		_WINAPI_CLOSEHANDLE ( $HFILE )
+		Local $STTFNAME = _WINAPI_GETFONTMEMORYRESOURCEINFO ( $PFILE , $IFLAG )
+		If @error Then
+			If @error = 1 Then
+				$STTFNAME = _WINAPI_GETFONTRESOURCEINFO ( $SFONT , True )
+				Return SetError ( @error , @extended , $STTFNAME )
+			EndIf
+			Return SetError ( 33 , @error , "" )
+		EndIf
+		Return $STTFNAME
+	EndIf
+EndFunc
+Func _WINAPI_GETFONTMEMORYRESOURCEINFO ( $PMEMORY , $IFLAG = 1 )
+	Local Const $TAGTT_OFFSET_TABLE = "USHORT uMajorVersion;USHORT uMinorVersion;USHORT uNumOfTables;USHORT uSearchRange;USHORT uEntrySelector;USHORT uRangeShift"
+	Local Const $TAGTT_TABLE_DIRECTORY = "char szTag[4];ULONG uCheckSum;ULONG uOffset;ULONG uLength"
+	Local Const $TAGTT_NAME_TABLE_HEADER = "USHORT uFSelector;USHORT uNRCount;USHORT uStorageOffset"
+	Local Const $TAGTT_NAME_RECORD = "USHORT uPlatformID;USHORT uEncodingID;USHORT uLanguageID;USHORT uNameID;USHORT uStringLength;USHORT uStringOffset"
+	Local $TTTOFFSETTABLE = DllStructCreate ( $TAGTT_OFFSET_TABLE , $PMEMORY )
+	Local $INUMOFTABLES = _WINAPI_SWAPWORD ( DllStructGetData ( $TTTOFFSETTABLE , "uNumOfTables" ) )
+	If Not ( _WINAPI_SWAPWORD ( DllStructGetData ( $TTTOFFSETTABLE , "uMajorVersion" ) ) = 1 And _WINAPI_SWAPWORD ( DllStructGetData ( $TTTOFFSETTABLE , "uMinorVersion" ) ) = 0 ) Then Return SetError ( 1 , 0 , "" )
+	Local $ITBLDIRSIZE = DllStructGetSize ( DllStructCreate ( $TAGTT_TABLE_DIRECTORY ) )
+	Local $BFOUND = False , $IOFFSET , $TTBLDIR
+	For $I = 0 To $INUMOFTABLES + 4294967295
+		$TTBLDIR = DllStructCreate ( $TAGTT_TABLE_DIRECTORY , $PMEMORY + DllStructGetSize ( $TTTOFFSETTABLE ) + $I * $ITBLDIRSIZE )
+		If StringLeft ( DllStructGetData ( $TTBLDIR , "szTag" ) , 4 ) = "name" Then
+			$BFOUND = True
+			$IOFFSET = _WINAPI_SWAPDWORD ( DllStructGetData ( $TTBLDIR , "uOffset" ) )
+			ExitLoop
+		EndIf
+	Next
+	If Not $BFOUND Then Return SetError ( 2 , 0 , "" )
+	Local $TNTHEADER = DllStructCreate ( $TAGTT_NAME_TABLE_HEADER , $PMEMORY + $IOFFSET )
+	Local $INTHEADERSIZE = DllStructGetSize ( $TNTHEADER )
+	Local $INRCOUNT = _WINAPI_SWAPWORD ( DllStructGetData ( $TNTHEADER , "uNRCount" ) )
+	Local $ISTORAGEOFFSET = _WINAPI_SWAPWORD ( DllStructGetData ( $TNTHEADER , "uStorageOffset" ) )
+	Local $ITTRECORDSIZE = DllStructGetSize ( DllStructCreate ( $TAGTT_NAME_RECORD ) )
+	Local $TRESULT , $SRESULT , $ISTRINGLENGTH = 0 , $ISTRINGOFFSET , $IENCODINGID , $TTTRECORD
+	For $I = 0 To $INRCOUNT + 4294967295
+		$TTTRECORD = DllStructCreate ( $TAGTT_NAME_RECORD , $PMEMORY + $IOFFSET + $INTHEADERSIZE + $I * $ITTRECORDSIZE )
+		If @error Then ContinueLoop
+		If _WINAPI_SWAPWORD ( $TTTRECORD .uNameID ) = $IFLAG Then
+			$ISTRINGLENGTH = _WINAPI_SWAPWORD ( DllStructGetData ( $TTTRECORD , "uStringLength" ) )
+			$ISTRINGOFFSET = _WINAPI_SWAPWORD ( DllStructGetData ( $TTTRECORD , "uStringOffset" ) )
+			$IENCODINGID = _WINAPI_SWAPWORD ( DllStructGetData ( $TTTRECORD , "uEncodingID" ) )
+			Local $SWCHAR = "char"
+			If $IENCODINGID = 1 Then
+				$SWCHAR = "word"
+				$ISTRINGLENGTH /= 2
+			EndIf
+			If Not $ISTRINGLENGTH Then
+				$SRESULT = ""
+				ContinueLoop
+			EndIf
+			$TRESULT = DllStructCreate ( $SWCHAR & " szTTFName[" & $ISTRINGLENGTH & "]" , $PMEMORY + $IOFFSET + $ISTRINGOFFSET + $ISTORAGEOFFSET )
+			If $IENCODINGID = 1 Then
+				$SRESULT = ""
+				For $J = 1 To $ISTRINGLENGTH
+					$SRESULT &= ChrW ( _WINAPI_SWAPWORD ( DllStructGetData ( $TRESULT , 1 , $J ) ) )
+				Next
+			Else
+				$SRESULT = $TRESULT .szTTFName
+			EndIf
+			If StringLen ( $SRESULT ) > 0 Then ExitLoop
+		EndIf
+	Next
+	Return $SRESULT
+EndFunc
+Func _WINAPI_GETGLYPHOUTLINE ( $HDC , $SCHAR , $IFORMAT , ByRef $PBUFFER , $TMAT2 = 0 )
+	Local $TGM = DllStructCreate ( $TAGGLYPHMETRICS )
+	Local $ACALL , $ILENGTH = 0
+	If Not IsDllStruct ( $TMAT2 ) Then
+		$TMAT2 = DllStructCreate ( "short[8]" )
+		DllStructSetData ( $TMAT2 , 1 , 1 , 2 )
+		DllStructSetData ( $TMAT2 , 1 , 1 , 8 )
+	EndIf
+	If $IFORMAT Then
+		$ACALL = DllCall ( "gdi32.dll" , "dword" , "GetGlyphOutlineW" , "handle" , $HDC , "uint" , AscW ( $SCHAR ) , "uint" , $IFORMAT , "struct*" , $TGM , "dword" , 0 , "ptr" , 0 , "struct*" , $TMAT2 )
+		If @error Or ( $ACALL [ 0 ] = 4294967295 ) Then Return SetError ( @error + 10 , @extended , 0 )
+		$ILENGTH = $ACALL [ 0 ]
+		$PBUFFER = __HEAPREALLOC ( $PBUFFER , $ILENGTH , 1 )
+		If @error Then Return SetError ( @error + 20 , @extended , 0 )
+	EndIf
+	$ACALL = DllCall ( "gdi32.dll" , "dword" , "GetGlyphOutlineW" , "handle" , $HDC , "uint" , AscW ( $SCHAR ) , "uint" , $IFORMAT , "struct*" , $TGM , "dword" , $ILENGTH , "ptr" , $PBUFFER , "struct*" , $TMAT2 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] = 4294967295 Then Return SetError ( 10 , + 4294967295 , 0 )
+	Return SetExtended ( $ILENGTH , $TGM )
+EndFunc
+Func _WINAPI_GETGRAPHICSMODE ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetGraphicsMode" , "handle" , $HDC )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETGVALUE ( $IRGB )
+	Return BitShift ( BitAND ( __RGB ( $IRGB ) , 65280 ) , 8 )
+EndFunc
+Func _WINAPI_GETMAPMODE ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetMapMode" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETMONITORINFO ( $HMONITOR )
+	Local $TMIEX = DllStructCreate ( "dword;long[4];long[4];dword;wchar[32]" )
+	DllStructSetData ( $TMIEX , 1 , DllStructGetSize ( $TMIEX ) )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetMonitorInfoW" , "handle" , $HMONITOR , "struct*" , $TMIEX )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 4 ]
+	For $I = 0 To 1
+		$ARET [ $I ] = DllStructCreate ( $TAGRECT )
+		_WINAPI_MOVEMEMORY ( $ARET [ $I ] , DllStructGetPtr ( $TMIEX , $I + 2 ) , 16 )
+	Next
+	$ARET [ 3 ] = DllStructGetData ( $TMIEX , 5 )
+	Switch DllStructGetData ( $TMIEX , 4 )
+	Case 1
+		$ARET [ 2 ] = 1
+Case Else
+		$ARET [ 2 ] = 0
+	EndSwitch
+	Return $ARET
+EndFunc
+Func _WINAPI_GETOUTLINETEXTMETRICS ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "GetOutlineTextMetricsW" , "handle" , $HDC , "uint" , 0 , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TDATA = DllStructCreate ( "byte[" & $ACALL [ 0 ] & "]" )
+	Local $TOLTM = DllStructCreate ( $TAGOUTLINETEXTMETRIC , DllStructGetPtr ( $TDATA ) )
+	$ACALL = DllCall ( "gdi32.dll" , "uint" , "GetOutlineTextMetricsW" , "handle" , $HDC , "uint" , $ACALL [ 0 ] , "struct*" , $TDATA )
+	If Not $ACALL [ 0 ] Then Return SetError ( 20 , 0 , 0 )
+	Return $TOLTM
+EndFunc
+Func _WINAPI_GETPIXEL ( $HDC , $IX , $IY )
+	Local $ACALL = DllCall ( "gdi32.dll" , "dword" , "GetPixel" , "handle" , $HDC , "int" , $IX , "int" , $IY )
+	If @error Or ( $ACALL [ 0 ] = 4294967295 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return __RGB ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_GETPOLYFILLMODE ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetPolyFillMode" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETPOSFROMRECT ( $TRECT )
+	Local $ARET [ 4 ]
+	For $I = 0 To 3
+		$ARET [ $I ] = DllStructGetData ( $TRECT , $I + 1 )
+		If @error Then Return SetError ( @error , @extended , 0 )
+	Next
+	For $I = 2 To 3
+		$ARET [ $I ] -= $ARET [ $I + 4294967294 ]
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETREGIONDATA ( $HRGN , ByRef $TRGNDATA )
+	Local $ACALL = DllCall ( "gdi32.dll" , "dword" , "GetRegionData" , "handle" , $HRGN , "dword" , 0 , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then
+		$TRGNDATA = 0
+		Return SetError ( @error , @extended , False )
+	EndIf
+	$TRGNDATA = DllStructCreate ( $TAGRGNDATAHEADER )
+	Local $IRECTSIZE = $ACALL [ 0 ] - DllStructGetSize ( $TRGNDATA )
+	If $IRECTSIZE > 0 Then $TRGNDATA = DllStructCreate ( $TAGRGNDATAHEADER & ";byte[" & $IRECTSIZE & "]" )
+	$ACALL = DllCall ( "gdi32.dll" , "dword" , "GetRegionData" , "handle" , $HRGN , "dword" , $ACALL [ 0 ] , "struct*" , $TRGNDATA )
+	If Not $ACALL [ 0 ] Then $TRGNDATA = 0
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETRGNBOX ( $HRGN , ByRef $TRECT )
+	$TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetRgnBox" , "handle" , $HRGN , "struct*" , $TRECT )
+	If @error Or Not $ACALL [ 0 ] Then
+		$TRECT = 0
+		Return SetError ( @error , @extended , 0 )
+	EndIf
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETROP2 ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetROP2" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETRVALUE ( $IRGB )
+	Return BitAND ( __RGB ( $IRGB ) , 255 )
+EndFunc
+Func _WINAPI_GETSTRETCHBLTMODE ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetStretchBltMode" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETTABBEDTEXTEXTENT ( $HDC , $STEXT , $ATAB = 0 , $ISTART = 0 , $IEND = + 4294967295 )
+	Local $ITAB , $ICOUNT
+	If Not IsArray ( $ATAB ) Then
+		If $ATAB Then
+			$ITAB = $ATAB
+			Dim $ATAB [ 1 ] = [ $ITAB ]
+			$ISTART = 0
+			$IEND = 0
+			$ICOUNT = 1
+		Else
+			$ICOUNT = 0
+		EndIf
+	Else
+		$ICOUNT = 1
+	EndIf
+	Local $TTAB = 0
+	If $ICOUNT Then
+		If __CHECKERRORARRAYBOUNDS ( $ATAB , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+		$ICOUNT = $IEND - $ISTART + 1
+		$TTAB = DllStructCreate ( "uint[" & $ICOUNT & "]" )
+		$ITAB = 1
+		For $I = $ISTART To $IEND
+			DllStructSetData ( $TTAB , 1 , $ATAB [ $I ] , $ITAB )
+			$ITAB += 1
+		Next
+	EndIf
+	Local $ACALL = DllCall ( "user32.dll" , "dword" , "GetTabbedTextExtentW" , "handle" , $HDC , "wstr" , $STEXT , "int" , StringLen ( $STEXT ) , "int" , $ICOUNT , "struct*" , $TTAB )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Return _WINAPI_CREATESIZE ( _WINAPI_LOWORD ( $ACALL [ 0 ] ) , _WINAPI_HIWORD ( $ACALL [ 0 ] ) )
+EndFunc
+Func _WINAPI_GETTEXTALIGN ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "GetTextAlign" , "handle" , $HDC )
+	If @error Or ( $ACALL [ 0 ] = 4294967295 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETTEXTCHARACTEREXTRA ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetTextCharacterExtra" , "handle" , $HDC )
+	If @error Or ( $ACALL [ 0 ] = 134217728 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETTEXTFACE ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetTextFaceW" , "handle" , $HDC , "int" , 2048 , "wstr" , "" )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_GETUDFCOLORMODE ( )
+	Return Number ( $__G_IRGBMODE )
+EndFunc
+Func _WINAPI_GETUPDATERECT ( $HWND , $BERASE = True )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetUpdateRect" , "hwnd" , $HWND , "struct*" , $TRECT , "bool" , $BERASE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_GETUPDATERGN ( $HWND , $HRGN , $BERASE = True )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "GetUpdateRgn" , "hwnd" , $HWND , "handle" , $HRGN , "bool" , $BERASE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETWINDOWEXT ( $HDC )
+	Local $TSIZE = DllStructCreate ( $TAGSIZE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetWindowExtEx" , "handle" , $HDC , "struct*" , $TSIZE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TSIZE
+EndFunc
+Func _WINAPI_GETWINDOWORG ( $HDC )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetWindowOrgEx" , "handle" , $HDC , "struct*" , $TPOINT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_GETWINDOWRGNBOX ( $HWND , ByRef $TRECT )
+	$TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetWindowRgnBox" , "hwnd" , $HWND , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETWORLDTRANSFORM ( $HDC )
+	Local $TXFORM = DllStructCreate ( $TAGXFORM )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GetWorldTransform" , "handle" , $HDC , "struct*" , $TXFORM )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TXFORM
+EndFunc
+Func _WINAPI_GRADIENTFILL ( $HDC , Const ByRef $AVERTEX , $ISTART = 0 , $IEND = + 4294967295 , $BROTATE = False )
+	If __CHECKERRORARRAYBOUNDS ( $AVERTEX , $ISTART , $IEND , 2 ) Then Return SetError ( @error + 10 , @extended , 0 )
+	If UBound ( $AVERTEX , $UBOUND_COLUMNS ) < 3 Then Return SetError ( 13 , 0 , 0 )
+	Local $IPOINT = $IEND - $ISTART + 1
+	If $IPOINT > 3 Then
+		$IEND = $ISTART + 2
+		$IPOINT = 3
+	EndIf
+	Local $IMODE
+	Switch $IPOINT
+	Case 2
+		$IMODE = Number ( Not $BROTATE )
+	Case 3
+		$IMODE = 2
+Case Else
+		Return SetError ( 15 , 0 , 0 )
+	EndSwitch
+	Local $TAGSTRUCT = ""
+	For $I = $ISTART To $IEND
+		$TAGSTRUCT &= "ushort[8];"
+	Next
+	Local $TVERTEX = DllStructCreate ( $TAGSTRUCT )
+	Local $ICOUNT = 1
+	Local $TGRADIENT = DllStructCreate ( "ulong[" & $IPOINT & "]" )
+	For $I = $ISTART To $IEND
+		DllStructSetData ( $TGRADIENT , 1 , $ICOUNT + 4294967295 , $ICOUNT )
+		DllStructSetData ( $TVERTEX , $ICOUNT , _WINAPI_LOWORD ( $AVERTEX [ $I ] [ 0 ] ) , 1 )
+		DllStructSetData ( $TVERTEX , $ICOUNT , _WINAPI_HIWORD ( $AVERTEX [ $I ] [ 0 ] ) , 2 )
+		DllStructSetData ( $TVERTEX , $ICOUNT , _WINAPI_LOWORD ( $AVERTEX [ $I ] [ 1 ] ) , 3 )
+		DllStructSetData ( $TVERTEX , $ICOUNT , _WINAPI_HIWORD ( $AVERTEX [ $I ] [ 1 ] ) , 4 )
+		DllStructSetData ( $TVERTEX , $ICOUNT , BitShift ( _WINAPI_GETRVALUE ( $AVERTEX [ $I ] [ 2 ] ) , + 4294967288 ) , 5 )
+		DllStructSetData ( $TVERTEX , $ICOUNT , BitShift ( _WINAPI_GETGVALUE ( $AVERTEX [ $I ] [ 2 ] ) , + 4294967288 ) , 6 )
+		DllStructSetData ( $TVERTEX , $ICOUNT , BitShift ( _WINAPI_GETBVALUE ( $AVERTEX [ $I ] [ 2 ] ) , + 4294967288 ) , 7 )
+		DllStructSetData ( $TVERTEX , $ICOUNT , 0 , 8 )
+		$ICOUNT += 1
+	Next
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GdiGradientFill" , "handle" , $HDC , "struct*" , $TVERTEX , "ulong" , $IPOINT , "struct*" , $TGRADIENT , "ulong" , 1 , "ulong" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_INFLATERECT ( ByRef $TRECT , $IDX , $IDY )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "InflateRect" , "struct*" , $TRECT , "int" , $IDX , "int" , $IDY )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_INTERSECTCLIPRECT ( $HDC , $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "IntersectClipRect" , "handle" , $HDC , "int" , DllStructGetData ( $TRECT , 1 ) , "int" , DllStructGetData ( $TRECT , 2 ) , "int" , DllStructGetData ( $TRECT , 3 ) , "int" , DllStructGetData ( $TRECT , 4 ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_INTERSECTRECT ( $TRECT1 , $TRECT2 )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IntersectRect" , "struct*" , $TRECT , "struct*" , $TRECT1 , "struct*" , $TRECT2 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_INVALIDATERGN ( $HWND , $HRGN = 0 , $BERASE = True )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "InvalidateRgn" , "hwnd" , $HWND , "handle" , $HRGN , "bool" , $BERASE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_INVERTANDBITMAP ( $HBITMAP , $BDELETE = False )
+	Local $TBITMAP = DllStructCreate ( $TAGBITMAP )
+	If Not _WINAPI_GETOBJECT ( $HBITMAP , DllStructGetSize ( $TBITMAP ) , $TBITMAP ) Or ( DllStructGetData ( $TBITMAP , "bmBitsPixel" ) <> 1 ) Then
+		Return SetError ( @error + 10 , @extended , 0 )
+	EndIf
+	Local $HRESULT = _WINAPI_CREATEDIB ( DllStructGetData ( $TBITMAP , "bmWidth" ) , DllStructGetData ( $TBITMAP , "bmHeight" ) , 1 )
+	If Not $HRESULT Then Return SetError ( @error , @extended , 0 )
+	Local $HSRCDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+	Local $HSRCSV = _WINAPI_SELECTOBJECT ( $HSRCDC , $HBITMAP )
+	Local $HDSTDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+	Local $HDSTSV = _WINAPI_SELECTOBJECT ( $HDSTDC , $HRESULT )
+	_WINAPI_BITBLT ( $HDSTDC , 0 , 0 , DllStructGetData ( $TBITMAP , "bmWidth" ) , DllStructGetData ( $TBITMAP , "bmHeight" ) , $HSRCDC , 0 , 0 , 3342344 )
+	_WINAPI_SELECTOBJECT ( $HSRCDC , $HSRCSV )
+	_WINAPI_DELETEDC ( $HSRCDC )
+	_WINAPI_SELECTOBJECT ( $HDSTDC , $HDSTSV )
+	_WINAPI_DELETEDC ( $HDSTDC )
+	If $BDELETE Then
+		_WINAPI_DELETEOBJECT ( $HBITMAP )
+	EndIf
+	Return $HRESULT
+EndFunc
+Func _WINAPI_INVERTCOLOR ( $ICOLOR )
+	If $ICOLOR = + 4294967295 Then Return 0
+	Return 16777215 - BitAND ( $ICOLOR , 16777215 )
+EndFunc
+Func _WINAPI_INVERTRECT ( $HDC , ByRef $TRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "InvertRect" , "handle" , $HDC , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_INVERTRGN ( $HDC , $HRGN )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "InvertRgn" , "handle" , $HDC , "handle" , $HRGN )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISRECTEMPTY ( ByRef $TRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsRectEmpty" , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LINEDDA ( $IX1 , $IY1 , $IX2 , $IY2 , $PLINEPROC , $PDATA = 0 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "LineDDA" , "int" , $IX1 , "int" , $IY1 , "int" , $IX2 , "int" , $IY2 , "ptr" , $PLINEPROC , "lparam" , $PDATA )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LINETO ( $HDC , $IX , $IY )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "LineTo" , "handle" , $HDC , "int" , $IX , "int" , $IY )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOCKWINDOWUPDATE ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "LockWindowUpdate" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LPTODP ( $HDC , ByRef $TPOINT , $ICOUNT = 1 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "LPtoDP" , "handle" , $HDC , "struct*" , $TPOINT , "int" , $ICOUNT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MASKBLT ( $HDESTDC , $IXDEST , $IYDEST , $IWIDTH , $IHEIGHT , $HSRCDC , $IXSRC , $IYSRC , $HMASK , $IXMASK , $IYMASK , $IROP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "MaskBlt" , "handle" , $HDESTDC , "int" , $IXDEST , "int" , $IYDEST , "int" , $IWIDTH , "int" , $IHEIGHT , "hwnd" , $HSRCDC , "int" , $IXSRC , "int" , $IYSRC , "handle" , $HMASK , "int" , $IXMASK , "int" , $IYMASK , "dword" , $IROP )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MODIFYWORLDTRANSFORM ( $HDC , ByRef $TXFORM , $IMODE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "ModifyWorldTransform" , "handle" , $HDC , "struct*" , $TXFORM , "dword" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MONITORFROMPOINT ( ByRef $TPOINT , $IFLAG = 1 )
+	If DllStructGetSize ( $TPOINT ) <> 8 Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "MonitorFromPoint" , "struct" , $TPOINT , "dword" , $IFLAG )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MONITORFROMRECT ( ByRef $TRECT , $IFLAG = 1 )
+	Local $ACALL = DllCall ( "user32.dll" , "ptr" , "MonitorFromRect" , "struct*" , $TRECT , "dword" , $IFLAG )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MONITORFROMWINDOW ( $HWND , $IFLAG = 1 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "MonitorFromWindow" , "hwnd" , $HWND , "dword" , $IFLAG )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MOVETO ( $HDC , $IX , $IY )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "MoveToEx" , "handle" , $HDC , "int" , $IX , "int" , $IY , "ptr" , 0 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MOVETOEX ( $HDC , $IX , $IY )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "MoveToEx" , "handle" , $HDC , "int" , $IX , "int" , $IY , "struct*" , $TPOINT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_OFFSETCLIPRGN ( $HDC , $IXOFFSET , $IYOFFSET )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "OffsetClipRgn" , "handle" , $HDC , "int" , $IXOFFSET , "int" , $IYOFFSET )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OFFSETPOINTS ( ByRef $APOINT , $IXOFFSET , $IYOFFSET , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $APOINT , $ISTART , $IEND , 2 ) Then Return SetError ( @error + 10 , @extended , 0 )
+	If UBound ( $APOINT , $UBOUND_COLUMNS ) < 2 Then Return SetError ( 13 , 0 , 0 )
+	For $I = $ISTART To $IEND
+		$APOINT [ $I ] [ 0 ] += $IXOFFSET
+		$APOINT [ $I ] [ 1 ] += $IYOFFSET
+	Next
+	Return 1
+EndFunc
+Func _WINAPI_OFFSETRECT ( ByRef $TRECT , $IDX , $IDY )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "OffsetRect" , "struct*" , $TRECT , "int" , $IDX , "int" , $IDY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OFFSETRGN ( $HRGN , $IXOFFSET , $IYOFFSET )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "OffsetRgn" , "handle" , $HRGN , "int" , $IXOFFSET , "int" , $IYOFFSET )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OFFSETWINDOWORG ( $HDC , $IXOFFSET , $IYOFFSET )
+	$__G_VEXT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "OffsetWindowOrgEx" , "handle" , $HDC , "int" , $IXOFFSET , "int" , $IYOFFSET , "struct*" , $__G_VEXT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PAINTDESKTOP ( $HDC )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "PaintDesktop" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PAINTRGN ( $HDC , $HRGN )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PaintRgn" , "handle" , $HDC , "handle" , $HRGN )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATBLT ( $HDC , $IX , $IY , $IWIDTH , $IHEIGHT , $IROP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PatBlt" , "handle" , $HDC , "int" , $IX , "int" , $IY , "int" , $IWIDTH , "int" , $IHEIGHT , "dword" , $IROP )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHTOREGION ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "PathToRegion" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PLAYENHMETAFILE ( $HDC , $HEMF , ByRef $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PlayEnhMetaFile" , "handle" , $HDC , "handle" , $HEMF , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PLGBLT ( $HDESTDC , Const ByRef $APOINT , $HSRCDC , $IXSRC , $IYSRC , $IWIDTH , $IHEIGHT , $HMASK = 0 , $IXMASK = 0 , $IYMASK = 0 )
+	If ( UBound ( $APOINT ) < 3 ) Or ( UBound ( $APOINT , $UBOUND_COLUMNS ) < 2 ) Then Return SetError ( 12 , 0 , False )
+	Local $TPOINTS = DllStructCreate ( "long[2];long[2];long[2]" )
+	For $I = 0 To 2
+		For $J = 0 To 1
+			DllStructSetData ( $TPOINTS , $I + 1 , $APOINT [ $I ] [ $J ] , $J + 1 )
+		Next
+	Next
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PlgBlt" , "handle" , $HDESTDC , "struct*" , $TPOINTS , "handle" , $HSRCDC , "int" , $IXSRC , "int" , $IYSRC , "int" , $IWIDTH , "int" , $IHEIGHT , "handle" , $HMASK , "int" , $IXMASK , "int" , $IYMASK )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_POLYBEZIER ( $HDC , Const ByRef $APOINT , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $APOINT , $ISTART , $IEND , 2 , 2 ) Then Return SetError ( @error + 10 , @extended , False )
+	Local $IPOINT = 1 + 3 * Floor ( ( $IEND - $ISTART ) / 3 )
+	If $IPOINT < 1 Then Return SetError ( 15 , 0 , False )
+	$IEND = $ISTART + $IPOINT + 4294967295
+	Local $TAGSTRUCT = ""
+	For $I = $ISTART To $IEND
+		$TAGSTRUCT &= "long[2];"
+	Next
+	Local $TPOINT = DllStructCreate ( $TAGSTRUCT )
+	Local $ICOUNT = 0
+	For $I = $ISTART To $IEND
+		$ICOUNT += 1
+		For $J = 0 To 1
+			DllStructSetData ( $TPOINT , $ICOUNT , $APOINT [ $I ] [ $J ] , $J + 1 )
+		Next
+	Next
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PolyBezier" , "handle" , $HDC , "struct*" , $TPOINT , "dword" , $IPOINT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_POLYBEZIERTO ( $HDC , Const ByRef $APOINT , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $APOINT , $ISTART , $IEND , 2 , 2 ) Then Return SetError ( @error + 10 , @extended , False )
+	Local $IPOINT = 3 * Floor ( ( $IEND - $ISTART + 1 ) / 3 )
+	If $IPOINT < 3 Then Return SetError ( 15 , 0 , False )
+	$IEND = $ISTART + $IPOINT + 4294967295
+	Local $TAGSTRUCT = ""
+	For $I = $ISTART To $IEND
+		$TAGSTRUCT &= "long[2];"
+	Next
+	Local $TPOINT = DllStructCreate ( $TAGSTRUCT )
+	Local $ICOUNT = 0
+	For $I = $ISTART To $IEND
+		$ICOUNT += 1
+		For $J = 0 To 1
+			DllStructSetData ( $TPOINT , $ICOUNT , $APOINT [ $I ] [ $J ] , $J + 1 )
+		Next
+	Next
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PolyBezierTo" , "handle" , $HDC , "struct*" , $TPOINT , "dword" , $IPOINT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_POLYDRAW ( $HDC , Const ByRef $APOINT , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $APOINT , $ISTART , $IEND , 2 ) Then Return SetError ( @error + 10 , @extended , 0 )
+	If UBound ( $APOINT , $UBOUND_COLUMNS ) < 3 Then Return SetError ( 13 , 0 , False )
+	Local $IPOINT = $IEND - $ISTART + 1
+	Local $TAGSTRUCT = ""
+	For $I = $ISTART To $IEND
+		$TAGSTRUCT &= "long[2];"
+	Next
+	Local $TPOINT = DllStructCreate ( $TAGSTRUCT )
+	Local $TTYPES = DllStructCreate ( "byte[" & $IPOINT & "]" )
+	Local $ICOUNT = 0
+	For $I = $ISTART To $IEND
+		$ICOUNT += 1
+		For $J = 0 To 1
+			DllStructSetData ( $TPOINT , $ICOUNT , $APOINT [ $I ] [ $J ] , $J + 1 )
+		Next
+		DllStructSetData ( $TTYPES , 1 , $APOINT [ $I ] [ 2 ] , $ICOUNT )
+	Next
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PolyDraw" , "handle" , $HDC , "struct*" , $TPOINT , "struct*" , $TTYPES , "dword" , $IPOINT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_POLYGON ( $HDC , Const ByRef $APOINT , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $APOINT , $ISTART , $IEND , 2 , 2 ) Then Return SetError ( @error + 10 , @extended , False )
+	Local $TAGSTRUCT = ""
+	For $I = $ISTART To $IEND
+		$TAGSTRUCT &= "int[2];"
+	Next
+	Local $TDATA = DllStructCreate ( $TAGSTRUCT )
+	Local $ICOUNT = 1
+	For $I = $ISTART To $IEND
+		For $J = 0 To 1
+			DllStructSetData ( $TDATA , $ICOUNT , $APOINT [ $I ] [ $J ] , $J + 1 )
+		Next
+		$ICOUNT += 1
+	Next
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "Polygon" , "handle" , $HDC , "struct*" , $TDATA , "int" , $ICOUNT + 4294967295 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PTINRECTEX ( $IX , $IY , $ILEFT , $ITOP , $IRIGHT , $IBOTTOM )
+	Local $TRECT = _WINAPI_CREATERECT ( $ILEFT , $ITOP , $IRIGHT , $IBOTTOM )
+	Local $TPOINT = _WINAPI_CREATEPOINT ( $IX , $IY )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "PtInRect" , "struct*" , $TRECT , "struct" , $TPOINT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PTINREGION ( $HRGN , $IX , $IY )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PtInRegion" , "handle" , $HRGN , "int" , $IX , "int" , $IY )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PTVISIBLE ( $HDC , $IX , $IY )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "PtVisible" , "handle" , $HDC , "int" , $IX , "int" , $IY )
+	If @error Then Return SetError ( @error + 10 , @extended , 0 )
+	If $ACALL [ 0 ] = + 4294967295 Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_RADIALGRADIENTFILL ( $HDC , $IX , $IY , $IRADIUS , $IRGB1 , $IRGB2 , $FANGLESTART = 0 , $FANGLEEND = 360 , $FSTEP = 5 )
+	If Abs ( $FANGLESTART ) > 360 Then
+		$FANGLESTART = Mod ( $FANGLESTART , 360 )
+	EndIf
+	If Abs ( $FANGLEEND ) > 360 Then
+		$FANGLEEND = Mod ( $FANGLEEND , 360 )
+	EndIf
+	If ( $FANGLESTART < 0 ) Or ( $FANGLEEND < 0 ) Then
+		$FANGLESTART += 360
+		$FANGLEEND += 360
+	EndIf
+	If $FANGLESTART > $FANGLEEND Then
+		Local $FVAL = $FANGLESTART
+		$FANGLESTART = $FANGLEEND
+		$FANGLEEND = $FVAL
+	EndIf
+	If $FSTEP < 1 Then
+		$FSTEP = 1
+	EndIf
+	Local $FKI = ATan ( 1 ) / 45
+	Local $IXP = Round ( $IX + $IRADIUS * Cos ( $FKI * $FANGLESTART ) )
+	Local $IYP = Round ( $IY + $IRADIUS * Sin ( $FKI * $FANGLESTART ) )
+	Local $IXN , $IYN , $FAN = $FANGLESTART
+	Local $AVERTEX [ 3 ] [ 3 ]
+	While $FAN < $FANGLEEND
+		$FAN += $FSTEP
+		If $FAN > $FANGLEEND Then
+			$FAN = $FANGLEEND
+		EndIf
+		$IXN = Round ( $IX + $IRADIUS * Cos ( $FKI * $FAN ) )
+		$IYN = Round ( $IY + $IRADIUS * Sin ( $FKI * $FAN ) )
+		$AVERTEX [ 0 ] [ 0 ] = $IX
+		$AVERTEX [ 0 ] [ 1 ] = $IY
+		$AVERTEX [ 0 ] [ 2 ] = $IRGB1
+		$AVERTEX [ 1 ] [ 0 ] = $IXP
+		$AVERTEX [ 1 ] [ 1 ] = $IYP
+		$AVERTEX [ 1 ] [ 2 ] = $IRGB2
+		$AVERTEX [ 2 ] [ 0 ] = $IXN
+		$AVERTEX [ 2 ] [ 1 ] = $IYN
+		$AVERTEX [ 2 ] [ 2 ] = $IRGB2
+		If Not _WINAPI_GRADIENTFILL ( $HDC , $AVERTEX , 0 , 2 ) Then
+			Return SetError ( @error , @extended , 0 )
+		EndIf
+		$IXP = $IXN
+		$IYP = $IYN
+	WEnd
+	Return 1
+EndFunc
+Func _WINAPI_RECTANGLE ( $HDC , $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "Rectangle" , "handle" , $HDC , "int" , DllStructGetData ( $TRECT , 1 ) , "int" , DllStructGetData ( $TRECT , 2 ) , "int" , DllStructGetData ( $TRECT , 3 ) , "int" , DllStructGetData ( $TRECT , 4 ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_RECTINREGION ( $HRGN , $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "RectInRegion" , "handle" , $HRGN , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_RECTISEMPTY ( ByRef $TRECT )
+	Return ( DllStructGetData ( $TRECT , "Left" ) = 0 ) And ( DllStructGetData ( $TRECT , "Top" ) = 0 ) And ( DllStructGetData ( $TRECT , "Right" ) = 0 ) And ( DllStructGetData ( $TRECT , "Bottom" ) = 0 )
+EndFunc
+Func _WINAPI_RECTVISIBLE ( $HDC , $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "RectVisible" , "handle" , $HDC , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Switch $ACALL [ 0 ]
+	Case 0 , 1 , 2
+Case Else
+		Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	EndSwitch
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REMOVEFONTMEMRESOURCEEX ( $HFONT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "RemoveFontMemResourceEx" , "handle" , $HFONT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REMOVEFONTRESOURCEEX ( $SFONT , $IFLAG = 0 , $BNOTIFY = False )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "RemoveFontResourceExW" , "wstr" , $SFONT , "dword" , $IFLAG , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , False )
+	If $BNOTIFY Then
+		Local Const $WM_FONTCHANGE = 29
+		Local Const $HWND_BROADCAST = 65535
+		DllCall ( "user32.dll" , "none" , "SendMessage" , "hwnd" , $HWND_BROADCAST , "uint" , $WM_FONTCHANGE , "wparam" , 0 , "lparam" , 0 )
+	EndIf
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_RGB ( $IRED , $IGREEN , $IBLUE )
+	Return __RGB ( BitOR ( BitShift ( $IBLUE , + 4294967280 ) , BitShift ( $IGREEN , + 4294967288 ) , $IRED ) )
+EndFunc
+Func _WINAPI_ROTATEPOINTS ( ByRef $APOINT , $IXC , $IYC , $FANGLE , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $APOINT , $ISTART , $IEND , 2 ) Then Return SetError ( @error + 10 , @extended , 0 )
+	If UBound ( $APOINT , $UBOUND_COLUMNS ) < 2 Then Return SetError ( 13 , 0 , 0 )
+	Local $FCOS = Cos ( ATan ( 1 ) / 45 * $FANGLE )
+	Local $FSIN = Sin ( ATan ( 1 ) / 45 * $FANGLE )
+	Local $IXN , $IYN
+	For $I = $ISTART To $IEND
+		$IXN = $APOINT [ $I ] [ 0 ] - $IXC
+		$IYN = $APOINT [ $I ] [ 1 ] - $IYC
+		$APOINT [ $I ] [ 0 ] = $IXC + Round ( $IXN * $FCOS - $IYN * $FSIN )
+		$APOINT [ $I ] [ 1 ] = $IYC + Round ( $IXN * $FSIN + $IYN * $FCOS )
+	Next
+	Return 1
+EndFunc
+Func _WINAPI_ROUNDRECT ( $HDC , $TRECT , $IWIDTH , $IHEIGHT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "RoundRect" , "handle" , $HDC , "int" , DllStructGetData ( $TRECT , 1 ) , "int" , DllStructGetData ( $TRECT , 2 ) , "int" , DllStructGetData ( $TRECT , 3 ) , "int" , DllStructGetData ( $TRECT , 4 ) , "int" , $IWIDTH , "int" , $IHEIGHT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SAVEHBITMAPTOFILE ( $SFILEPATH , $HBITMAP , $IXPELSPERMETER = Default , $IYPELSPERMETER = Default )
+	Local $TBMP = DllStructCreate ( "align 1;ushort bfType;dword bfSize;ushort bfReserved1;ushort bfReserved2;dword bfOffset" )
+	Local $TDIB = DllStructCreate ( $TAGDIBSECTION )
+	Local $HDC , $HSV , $HSOURCE = 0
+	While $HBITMAP
+		If ( Not _WINAPI_GETOBJECT ( $HBITMAP , DllStructGetSize ( $TDIB ) , $TDIB ) ) Or ( DllStructGetData ( $TDIB , "biCompression" ) ) Then
+			$HBITMAP = 0
+		Else
+			Switch DllStructGetData ( $TDIB , "bmBitsPixel" )
+			Case 32
+				If Not _WINAPI_ISALPHABITMAP ( $HBITMAP ) Then
+					If Not $HSOURCE Then
+						$HSOURCE = _WINAPI_CREATEDIB ( DllStructGetData ( $TDIB , "bmWidth" ) , DllStructGetData ( $TDIB , "bmHeight" ) , 24 )
+						If Not $HSOURCE Then
+							$HBITMAP = 0
+						EndIf
+						$HDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+						$HSV = _WINAPI_SELECTOBJECT ( $HDC , $HSOURCE )
+						If _WINAPI_DRAWBITMAP ( $HDC , 0 , 0 , $HBITMAP ) Then
+							$HBITMAP = $HSOURCE
+						Else
+							$HBITMAP = 0
+						EndIf
+						_WINAPI_SELECTOBJECT ( $HDC , $HSV )
+						_WINAPI_DELETEDC ( $HDC )
+					Else
+						$HBITMAP = 0
+					EndIf
+					ContinueLoop
+				EndIf
+		Case Else
+			EndSwitch
+			If ( Not DllStructGetData ( $TDIB , "bmBits" ) ) Or ( Not DllStructGetData ( $TDIB , "biSizeImage" ) ) Then
+				If Not $HSOURCE Then
+					$HBITMAP = _WINAPI_COPYBITMAP ( $HBITMAP )
+					$HSOURCE = $HBITMAP
+				Else
+					$HBITMAP = 0
+				EndIf
+			Else
+				ExitLoop
+			EndIf
+		EndIf
+	WEnd
+	Local $HFILE = 0 , $IERROR = 0 , $IRESULT = 0
+	Do
+		If Not $HBITMAP Then
+			$IERROR = 1
+			ExitLoop
+		EndIf
+		Local $ADATA [ 4 ] [ 2 ]
+		$ADATA [ 0 ] [ 0 ] = DllStructGetPtr ( $TBMP )
+		$ADATA [ 0 ] [ 1 ] = DllStructGetSize ( $TBMP )
+		$ADATA [ 1 ] [ 0 ] = DllStructGetPtr ( $TDIB , "biSize" )
+		$ADATA [ 1 ] [ 1 ] = 40
+		$ADATA [ 2 ] [ 1 ] = DllStructGetData ( $TDIB , "biClrUsed" ) * 4
+		Local $TTABLE = 0
+		If $ADATA [ 2 ] [ 1 ] Then
+			$TTABLE = _WINAPI_GETDIBCOLORTABLE ( $HBITMAP )
+			If @error Or ( @extended <> $ADATA [ 2 ] [ 1 ] / 4 ) Then
+				$IERROR = @error + 10
+				ExitLoop
+			EndIf
+		EndIf
+		$ADATA [ 2 ] [ 0 ] = DllStructGetPtr ( $TTABLE )
+		$ADATA [ 3 ] [ 0 ] = DllStructGetData ( $TDIB , "bmBits" )
+		$ADATA [ 3 ] [ 1 ] = DllStructGetData ( $TDIB , "biSizeImage" )
+		DllStructSetData ( $TBMP , "bfType" , 19778 )
+		DllStructSetData ( $TBMP , "bfSize" , $ADATA [ 0 ] [ 1 ] + $ADATA [ 1 ] [ 1 ] + $ADATA [ 2 ] [ 1 ] + $ADATA [ 3 ] [ 1 ] )
+		DllStructSetData ( $TBMP , "bfReserved1" , 0 )
+		DllStructSetData ( $TBMP , "bfReserved2" , 0 )
+		DllStructSetData ( $TBMP , "bfOffset" , $ADATA [ 0 ] [ 1 ] + $ADATA [ 1 ] [ 1 ] + $ADATA [ 2 ] [ 1 ] )
+		$HDC = _WINAPI_GETDC ( 0 )
+		If $IXPELSPERMETER = Default Then
+			If Not DllStructGetData ( $TDIB , "biXPelsPerMeter" ) Then
+				DllStructSetData ( $TDIB , "biXPelsPerMeter" , _WINAPI_GETDEVICECAPS ( $HDC , 8 ) / _WINAPI_GETDEVICECAPS ( $HDC , 4 ) * 1000 )
+			EndIf
+		Else
+			DllStructSetData ( $TDIB , "biXPelsPerMeter" , $IXPELSPERMETER )
+		EndIf
+		If $IYPELSPERMETER = Default Then
+			If Not DllStructGetData ( $TDIB , "biYPelsPerMeter" ) Then
+				DllStructSetData ( $TDIB , "biYPelsPerMeter" , _WINAPI_GETDEVICECAPS ( $HDC , 10 ) / _WINAPI_GETDEVICECAPS ( $HDC , 6 ) * 1000 )
+			EndIf
+		Else
+			DllStructSetData ( $TDIB , "biYPelsPerMeter" , $IYPELSPERMETER )
+		EndIf
+		_WINAPI_RELEASEDC ( 0 , $HDC )
+		$HFILE = _WINAPI_CREATEFILE ( $SFILEPATH , 1 , 4 )
+		If @error Then
+			$IERROR = @error + 20
+			ExitLoop
+		EndIf
+		Local $IBYTES
+		For $I = 0 To 3
+			If $ADATA [ $I ] [ 1 ] Then
+				If Not _WINAPI_WRITEFILE ( $HFILE , $ADATA [ $I ] [ 0 ] , $ADATA [ $I ] [ 1 ] , $IBYTES ) Then
+					$IERROR = @error + 30
+					ExitLoop 2
+				EndIf
+			EndIf
+		Next
+		$IRESULT = 1
+	Until 1
+	If $HSOURCE Then
+		_WINAPI_DELETEOBJECT ( $HSOURCE )
+	EndIf
+	_WINAPI_CLOSEHANDLE ( $HFILE )
+	If Not $IRESULT Then
+		FileDelete ( $SFILEPATH )
+	EndIf
+	Return SetError ( $IERROR , 0 , $IRESULT )
+EndFunc
+Func _WINAPI_SAVEHICONTOFILE ( $SFILEPATH , Const ByRef $VICON , $BCOMPRESS = 0 , $ISTART = 0 , $IEND = + 4294967295 )
+	Local $AICON , $ATEMP , $ICOUNT = 1
+	If Not IsArray ( $VICON ) Then
+		Dim $AICON [ 1 ] = [ $VICON ]
+		Dim $ATEMP [ 1 ] = [ 0 ]
+	Else
+		If __CHECKERRORARRAYBOUNDS ( $VICON , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+		$ICOUNT = $IEND - $ISTART + 1
+		If $ICOUNT Then
+			Dim $AICON [ $ICOUNT ]
+			Dim $ATEMP [ $ICOUNT ]
+			For $I = 0 To $ICOUNT + 4294967295
+				$AICON [ $I ] = $VICON [ $ISTART + $I ]
+				$ATEMP [ $I ] = 0
+			Next
+		EndIf
+	EndIf
+	Local $HFILE = _WINAPI_CREATEFILE ( $SFILEPATH , 1 , 4 )
+	If @error Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $TICO = DllStructCreate ( "align 1;ushort Reserved;ushort Type;ushort Count;byte Data[" & ( 16 * $ICOUNT ) & "]" )
+	Local $ILENGTH = DllStructGetSize ( $TICO )
+	Local $TBI = DllStructCreate ( $TAGBITMAPINFOHEADER )
+	Local $TII = DllStructCreate ( $TAGICONINFO )
+	Local $TDIB = DllStructCreate ( $TAGDIBSECTION )
+	Local $IDIB = DllStructGetSize ( $TDIB )
+	Local $PDIB = DllStructGetPtr ( $TDIB )
+	Local $IOFFSET = $ILENGTH
+	DllStructSetData ( $TBI , "biSize" , 40 )
+	DllStructSetData ( $TBI , "biPlanes" , 1 )
+	DllStructSetData ( $TBI , "biXPelsPerMeter" , 0 )
+	DllStructSetData ( $TBI , "biYPelsPerMeter" , 0 )
+	DllStructSetData ( $TBI , "biClrUsed" , 0 )
+	DllStructSetData ( $TBI , "biClrImportant" , 0 )
+	DllStructSetData ( $TICO , "Reserved" , 0 )
+	DllStructSetData ( $TICO , "Type" , 1 )
+	DllStructSetData ( $TICO , "Count" , $ICOUNT )
+	Local $IRESULT = 0 , $IERROR = 0 , $IBYTES
+	Local $AINFO [ 8 ] , $ACALL , $PDATA = 0 , $IINDEX = 0
+	Local $ASIZE [ 2 ] , $TDATA = 0
+	Do
+		If Not _WINAPI_WRITEFILE ( $HFILE , $TICO , $ILENGTH , $IBYTES ) Then
+			$IERROR = @error + 30
+			ExitLoop
+		EndIf
+		While $ICOUNT > $IINDEX
+			$ACALL = DllCall ( "user32.dll" , "bool" , "GetIconInfo" , "handle" , $AICON [ $IINDEX ] , "struct*" , $TII )
+			If @error Or Not $ACALL [ 0 ] Then
+				$IERROR = @error + 40
+				ExitLoop 2
+			EndIf
+			For $I = 4 To 5
+				$AINFO [ $I ] = _WINAPI_COPYIMAGE ( DllStructGetData ( $TII , $I ) , 0 , 0 , 0 , 8200 )
+				If _WINAPI_GETOBJECT ( $AINFO [ $I ] , $IDIB , $PDIB ) Then
+					$AINFO [ $I + 4294967292 ] = DllStructGetData ( $TDIB , "biSizeImage" )
+					$AINFO [ $I + 4294967294 ] = DllStructGetData ( $TDIB , "bmBits" )
+				Else
+					$IERROR = @error + 50
+				EndIf
+			Next
+			$AINFO [ 6 ] = 40
+			$AINFO [ 7 ] = DllStructGetData ( $TDIB , "bmBitsPixel" )
+			Switch $AINFO [ 7 ]
+			Case 16 , 24
+			Case 32
+				If Not _WINAPI_ISALPHABITMAP ( $AINFO [ 5 ] ) Then
+					If Not $ATEMP [ $IINDEX ] Then
+						$AICON [ $IINDEX ] = _WINAPI_CREATE32BITHICON ( $AICON [ $IINDEX ] )
+						$ATEMP [ $IINDEX ] = $AICON [ $IINDEX ]
+						If Not @error Then
+							ContinueLoop
+						Else
+							ContinueCase
+						EndIf
+					EndIf
+				Else
+					If ( $AINFO [ 1 ] >= 256 * 256 * 4 ) And ( $BCOMPRESS ) Then
+						$IBYTES = _WINAPI_COMPRESSBITMAPBITS ( $AINFO [ 5 ] , $PDATA )
+						If Not @error Then
+							$AINFO [ 0 ] = 0
+							$AINFO [ 1 ] = $IBYTES
+							$AINFO [ 2 ] = 0
+							$AINFO [ 3 ] = $PDATA
+							$AINFO [ 6 ] = 0
+						EndIf
+					EndIf
+				EndIf
+		Case Else
+				$IERROR = 60
+			EndSwitch
+			If Not $IERROR Then
+				$TDATA = DllStructCreate ( "byte Width;byte Height;byte ColorCount;byte Reserved;ushort Planes;ushort BitCount;long Size;long Offset" , DllStructGetPtr ( $TICO ) + 6 + 16 * $IINDEX )
+				DllStructSetData ( $TDATA , "ColorCount" , 0 )
+				DllStructSetData ( $TDATA , "Reserved" , 0 )
+				DllStructSetData ( $TDATA , "Planes" , 1 )
+				DllStructSetData ( $TDATA , "BitCount" , $AINFO [ 7 ] )
+				DllStructSetData ( $TDATA , "Size" , $AINFO [ 0 ] + $AINFO [ 1 ] + $AINFO [ 6 ] )
+				DllStructSetData ( $TDATA , "Offset" , $IOFFSET )
+				For $I = 0 To 1
+					$ASIZE [ $I ] = DllStructGetData ( $TDIB , $I + 2 )
+					If $ASIZE [ $I ] < 256 Then
+						DllStructSetData ( $TDATA , $I + 1 , $ASIZE [ $I ] )
+					Else
+						DllStructSetData ( $TDATA , $I + 1 , 0 )
+					EndIf
+				Next
+				DllStructSetData ( $TBI , "biWidth" , $ASIZE [ 0 ] )
+				DllStructSetData ( $TBI , "biHeight" , 2 * $ASIZE [ 1 ] )
+				DllStructSetData ( $TBI , "biBitCount" , $AINFO [ 7 ] )
+				DllStructSetData ( $TBI , "biCompression" , 0 )
+				DllStructSetData ( $TBI , "biSizeImage" , $AINFO [ 0 ] + $AINFO [ 1 ] )
+				$IOFFSET += $AINFO [ 0 ] + $AINFO [ 1 ] + $AINFO [ 6 ]
+				Do
+					If $AINFO [ 6 ] Then
+						If Not _WINAPI_WRITEFILE ( $HFILE , $TBI , $AINFO [ 6 ] , $IBYTES ) Then
+							$IERROR = @error + 70
+							ExitLoop
+						EndIf
+						For $I = 1 To 0 Step + 4294967295
+							If Not _WINAPI_WRITEFILE ( $HFILE , $AINFO [ $I + 2 ] , $AINFO [ $I ] , $IBYTES ) Then
+								$IERROR = @error + 80
+								ExitLoop 2
+							EndIf
+						Next
+					Else
+						If Not _WINAPI_WRITEFILE ( $HFILE , $AINFO [ 3 ] , $AINFO [ 1 ] , $IBYTES ) Then
+							$IERROR = @error + 90
+							ExitLoop
+						EndIf
+					EndIf
+				Until 1
+			EndIf
+			For $I = 4 To 5
+				_WINAPI_DELETEOBJECT ( $AINFO [ $I ] )
+			Next
+			If $IERROR Then
+				ExitLoop 2
+			EndIf
+			$IINDEX += 1
+		WEnd
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "SetFilePointerEx" , "handle" , $HFILE , "int64" , 0 , "int64*" , 0 , "dword" , 0 )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 100
+			ExitLoop
+		EndIf
+		If Not _WINAPI_WRITEFILE ( $HFILE , $TICO , $ILENGTH , $IBYTES ) Then
+			$IERROR = @error + 110
+			ExitLoop
+		EndIf
+		$IRESULT = 1
+	Until 1
+	For $I = 0 To $ICOUNT + 4294967295
+		If $ATEMP [ $I ] Then
+			_WINAPI_DESTROYICON ( $ATEMP [ $I ] )
+		EndIf
+	Next
+	If $PDATA Then
+		__HEAPFREE ( $PDATA )
+	EndIf
+	_WINAPI_CLOSEHANDLE ( $HFILE )
+	If Not $IRESULT Then
+		FileDelete ( $SFILEPATH )
+	EndIf
+	Return SetError ( $IERROR , 0 , $IRESULT )
+EndFunc
+Func _WINAPI_SCALEWINDOWEXT ( $HDC , $IXNUM , $IXDENOM , $IYNUM , $IYDENOM )
+	$__G_VEXT = DllStructCreate ( $TAGSIZE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "ScaleWindowExtEx" , "handle" , $HDC , "int" , $IXNUM , "int" , $IXDENOM , "int" , $IYNUM , "int" , $IYDENOM , "struct*" , $__G_VEXT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SELECTCLIPPATH ( $HDC , $IMODE = 5 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SelectClipPath" , "handle" , $HDC , "int" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SELECTCLIPRGN ( $HDC , $HRGN )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SelectClipRgn" , "handle" , $HDC , "handle" , $HRGN )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETARCDIRECTION ( $HDC , $IDIRECTION )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetArcDirection" , "handle" , $HDC , "int" , $IDIRECTION )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETBITMAPBITS ( $HBITMAP , $ISIZE , $PBITS )
+	Local $ACALL = DllCall ( "gdi32.dll" , "long" , "SetBitmapBits" , "handle" , $HBITMAP , "dword" , $ISIZE , "struct*" , $PBITS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETBITMAPDIMENSIONEX ( $HBITMAP , $IWIDTH , $IHEIGHT )
+	$__G_VEXT = DllStructCreate ( $TAGSIZE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetBitmapDimensionEx" , "handle" , $HBITMAP , "int" , $IWIDTH , "int" , $IHEIGHT , "struct*" , $__G_VEXT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETBOUNDSRECT ( $HDC , $IFLAGS , $TRECT = 0 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "SetBoundsRect" , "handle" , $HDC , "struct*" , $TRECT , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETBRUSHORG ( $HDC , $IX , $IY )
+	$__G_VEXT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetBrushOrgEx" , "handle" , $HDC , "int" , $IX , "int" , $IY , "struct*" , $__G_VEXT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETCOLORADJUSTMENT ( $HDC , $TADJUSTMENT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetColorAdjustment" , "handle" , $HDC , "struct*" , $TADJUSTMENT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETDCBRUSHCOLOR ( $HDC , $IRGB )
+	Local $ACALL = DllCall ( "gdi32.dll" , "dword" , "SetDCBrushColor" , "handle" , $HDC , "dword" , __RGB ( $IRGB ) )
+	If @error Or ( $ACALL [ 0 ] = 4294967295 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return __RGB ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_SETDCPENCOLOR ( $HDC , $IRGB )
+	Local $ACALL = DllCall ( "gdi32.dll" , "dword" , "SetDCPenColor" , "handle" , $HDC , "dword" , __RGB ( $IRGB ) )
+	If @error Or ( $ACALL [ 0 ] = 4294967295 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return __RGB ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_SETDEVICEGAMMARAMP ( $HDC , Const ByRef $ARAMP )
+	If ( UBound ( $ARAMP , $UBOUND_DIMENSIONS ) <> 2 ) Or ( UBound ( $ARAMP , $UBOUND_ROWS ) <> 256 ) Or ( UBound ( $ARAMP , $UBOUND_COLUMNS ) <> 3 ) Then
+		Return SetError ( 12 , 0 , 0 )
+	EndIf
+	Local $TDATA = DllStructCreate ( "ushort[256];ushort[256];ushort[256]" )
+	For $I = 0 To 2
+		For $J = 0 To 255
+			DllStructSetData ( $TDATA , $I + 1 , $ARAMP [ $J ] [ $I ] , $J + 1 )
+		Next
+	Next
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetDeviceGammaRamp" , "handle" , $HDC , "struct*" , $TDATA )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETDIBCOLORTABLE ( $HBITMAP , $TCOLORTABLE , $ICOLORCOUNT )
+	If $ICOLORCOUNT > DllStructGetSize ( $TCOLORTABLE ) / 4 Then Return SetError ( 1 , 0 , 0 )
+	Local $HDC = _WINAPI_CREATECOMPATIBLEDC ( 0 )
+	Local $HSV = _WINAPI_SELECTOBJECT ( $HDC , $HBITMAP )
+	Local $IERROR = 0
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "SetDIBColorTable" , "handle" , $HDC , "uint" , 0 , "uint" , $ICOLORCOUNT , "struct*" , $TCOLORTABLE )
+	If @error Then $IERROR = @error
+	_WINAPI_SELECTOBJECT ( $HDC , $HSV )
+	_WINAPI_DELETEDC ( $HDC )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETDIBITS ( $HDC , $HBITMAP , $ISTARTSCAN , $ISCANLINES , $PBITS , $TBMI , $ICOLORUSE = 0 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetDIBits" , "handle" , $HDC , "handle" , $HBITMAP , "uint" , $ISTARTSCAN , "uint" , $ISCANLINES , "struct*" , $PBITS , "struct*" , $TBMI , "INT" , $ICOLORUSE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETDIBITSTODEVICE ( $HDC , $IXDEST , $IYDEST , $IWIDTH , $IHEIGHT , $IXSRC , $IYSRC , $ISTARTSCAN , $ISCANLINES , $TBITMAPINFO , $IUSAGE , $PBITS )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetDIBitsToDevice" , "handle" , $HDC , "int" , $IXDEST , "int" , $IYDEST , "dword" , $IWIDTH , "dword" , $IHEIGHT , "int" , $IXSRC , "int" , $IYSRC , "uint" , $ISTARTSCAN , "uint" , $ISCANLINES , "struct*" , $PBITS , "struct*" , $TBITMAPINFO , "uint" , $IUSAGE )
+	If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then Return SetError ( @error + 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETENHMETAFILEBITS ( $PDATA , $ILENGTH )
+	Local $ACALL = DllCall ( "gdi32.dll" , "handle" , "SetEnhMetaFileBits" , "uint" , $ILENGTH , "struct*" , $PDATA )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETGRAPHICSMODE ( $HDC , $IMODE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetGraphicsMode" , "handle" , $HDC , "int" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETMAPMODE ( $HDC , $IMODE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetMapMode" , "handle" , $HDC , "int" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETPIXEL ( $HDC , $IX , $IY , $IRGB )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetPixelV" , "handle" , $HDC , "int" , $IX , "int" , $IY , "dword" , __RGB ( $IRGB ) )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETPOLYFILLMODE ( $HDC , $IMODE = 1 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetPolyFillMode" , "handle" , $HDC , "int" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETRECTRGN ( $HRGN , $TRECT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetRectRgn" , "handle" , $HRGN , "int" , DllStructGetData ( $TRECT , 1 ) , "int" , DllStructGetData ( $TRECT , 2 ) , "int" , DllStructGetData ( $TRECT , 3 ) , "int" , DllStructGetData ( $TRECT , 4 ) )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETROP2 ( $HDC , $IMODE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetROP2" , "handle" , $HDC , "int" , $IMODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETSTRETCHBLTMODE ( $HDC , $IMODE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetStretchBltMode" , "handle" , $HDC , "int" , $IMODE )
+	If @error Or Not $ACALL [ 0 ] Or ( $ACALL [ 0 ] = 87 ) Then Return SetError ( @error + 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETTEXTALIGN ( $HDC , $IMODE = 0 )
+	Local $ACALL = DllCall ( "gdi32.dll" , "uint" , "SetTextAlign" , "handle" , $HDC , "uint" , $IMODE )
+	If @error Or ( $ACALL [ 0 ] = 4294967295 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETTEXTCHARACTEREXTRA ( $HDC , $ICHAREXTRA )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "SetTextCharacterExtra" , "handle" , $HDC , "int" , $ICHAREXTRA )
+	If @error Or ( $ACALL [ 0 ] = 2147483648 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETTEXTJUSTIFICATION ( $HDC , $IBREAKEXTRA , $IBREAKCOUNT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetTextJustification" , "handle" , $HDC , "int" , $IBREAKEXTRA , "int" , $IBREAKCOUNT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETUDFCOLORMODE ( $IMODE )
+	$__G_IRGBMODE = Not ( $IMODE = 0 )
+EndFunc
+Func _WINAPI_SETWINDOWEXT ( $HDC , $IXEXTENT , $IYEXTENT )
+	$__G_VEXT = DllStructCreate ( $TAGSIZE )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetWindowExtEx" , "handle" , $HDC , "int" , $IXEXTENT , "int" , $IYEXTENT , "struct*" , $__G_VEXT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINDOWORG ( $HDC , $IX , $IY )
+	$__G_VEXT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetWindowOrgEx" , "handle" , $HDC , "int" , $IX , "int" , $IY , "struct*" , $__G_VEXT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWORLDTRANSFORM ( $HDC , ByRef $TXFORM )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "SetWorldTransform" , "handle" , $HDC , "struct*" , $TXFORM )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_STRETCHBLT ( $HDESTDC , $IXDEST , $IYDEST , $IWIDTHDEST , $IHEIGHTDEST , $HSRCDC , $IXSRC , $IYSRC , $IWIDTHSRC , $IHEIGHTSRC , $IROP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "StretchBlt" , "handle" , $HDESTDC , "int" , $IXDEST , "int" , $IYDEST , "int" , $IWIDTHDEST , "int" , $IHEIGHTDEST , "hwnd" , $HSRCDC , "int" , $IXSRC , "int" , $IYSRC , "int" , $IWIDTHSRC , "int" , $IHEIGHTSRC , "dword" , $IROP )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_STRETCHDIBITS ( $HDESTDC , $IXDEST , $IYDEST , $IWIDTHDEST , $IHEIGHTDEST , $IXSRC , $IYSRC , $IWIDTHSRC , $IHEIGHTSRC , $TBITMAPINFO , $IUSAGE , $PBITS , $IROP )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "StretchDIBits" , "handle" , $HDESTDC , "int" , $IXDEST , "int" , $IYDEST , "int" , $IWIDTHDEST , "int" , $IHEIGHTDEST , "int" , $IXSRC , "int" , $IYSRC , "int" , $IWIDTHSRC , "int" , $IHEIGHTSRC , "struct*" , $PBITS , "struct*" , $TBITMAPINFO , "uint" , $IUSAGE , "dword" , $IROP )
+	If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then Return SetError ( @error + 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_STROKEANDFILLPATH ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "StrokeAndFillPath" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_STROKEPATH ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "StrokePath" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SUBTRACTRECT ( ByRef $TRECT1 , ByRef $TRECT2 )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SubtractRect" , "struct*" , $TRECT , "struct*" , $TRECT1 , "struct*" , $TRECT2 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_TABBEDTEXTOUT ( $HDC , $IX , $IY , $STEXT , $ATAB = 0 , $ISTART = 0 , $IEND = + 4294967295 , $IORIGIN = 0 )
+	Local $ITAB , $ICOUNT
+	If Not IsArray ( $ATAB ) Then
+		If $ATAB Then
+			$ITAB = $ATAB
+			Dim $ATAB [ 1 ] = [ $ITAB ]
+			$ISTART = 0
+			$IEND = 0
+			$ICOUNT = 1
+		Else
+			$ICOUNT = 0
+		EndIf
+	Else
+		$ICOUNT = 1
+	EndIf
+	Local $TTAB = 0
+	If $ICOUNT Then
+		If __CHECKERRORARRAYBOUNDS ( $ATAB , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+		$ICOUNT = $IEND - $ISTART + 1
+		$TTAB = DllStructCreate ( "uint[" & $ICOUNT & "]" )
+		$ITAB = 1
+		For $I = $ISTART To $IEND
+			DllStructSetData ( $TTAB , 1 , $ATAB [ $I ] , $ITAB )
+			$ITAB += 1
+		Next
+	EndIf
+	Local $ACALL = DllCall ( "user32.dll" , "long" , "TabbedTextOutW" , "handle" , $HDC , "int" , $IX , "int" , $IY , "wstr" , $STEXT , "int" , StringLen ( $STEXT ) , "int" , $ICOUNT , "struct*" , $TTAB , "int" , $IORIGIN )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	$__G_VEXT = _WINAPI_CREATESIZE ( _WINAPI_LOWORD ( $ACALL [ 0 ] ) , _WINAPI_HIWORD ( $ACALL [ 0 ] ) )
+	Return 1
+EndFunc
+Func _WINAPI_TEXTOUT ( $HDC , $IX , $IY , $STEXT )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "TextOutW" , "handle" , $HDC , "int" , $IX , "int" , $IY , "wstr" , $STEXT , "int" , StringLen ( $STEXT ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_TRANSPARENTBLT ( $HDESTDC , $IXDEST , $IYDEST , $IWIDTHDEST , $IHEIGHTDEST , $HSRCDC , $IXSRC , $IYSRC , $IWIDTHSRC , $IHEIGHTSRC , $IRGB )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "GdiTransparentBlt" , "handle" , $HDESTDC , "int" , $IXDEST , "int" , $IYDEST , "int" , $IWIDTHDEST , "int" , $IHEIGHTDEST , "hwnd" , $HSRCDC , "int" , $IXSRC , "int" , $IYSRC , "int" , $IWIDTHSRC , "int" , $IHEIGHTSRC , "dword" , __RGB ( $IRGB ) )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UNIONRECT ( ByRef $TRECT1 , ByRef $TRECT2 )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UnionRect" , "struct*" , $TRECT , "struct*" , $TRECT1 , "struct*" , $TRECT2 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , 0 , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_VALIDATERECT ( $HWND , $TRECT = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ValidateRect" , "hwnd" , $HWND , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_VALIDATERGN ( $HWND , $HRGN = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ValidateRgn" , "hwnd" , $HWND , "handle" , $HRGN )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_WIDENPATH ( $HDC )
+	Local $ACALL = DllCall ( "gdi32.dll" , "bool" , "WidenPath" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_WINDOWFROMDC ( $HDC )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "WindowFromDC" , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+Func __ENUMDISPLAYMONITORSPROC ( $HMONITOR , $HDC , $PRECT , $LPARAM )
+	#forceref $hDC, $lParam
+	__INC ( $__G_VENUM )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 0 ] = $HMONITOR
+	If Not $PRECT Then
+		$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 1 ] = 0
+	Else
+		$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 1 ] = DllStructCreate ( $TAGRECT )
+		If Not _WINAPI_MOVEMEMORY ( DllStructGetPtr ( $__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 1 ] ) , $PRECT , 16 ) Then Return 0
+	EndIf
+	Return 1
+EndFunc
+Func __ENUMFONTFAMILIESPROC ( $PELFEX , $PNTMEX , $IFONTTYPE , $PPATTERN )
+	Local $TELFEX = DllStructCreate ( $TAGLOGFONT & ";wchar FullName[64];wchar Style[32];wchar Script[32]" , $PELFEX )
+	Local $TNTMEX = DllStructCreate ( $TAGNEWTEXTMETRICEX , $PNTMEX )
+	Local $TPATTERN = DllStructCreate ( "uint;uint;ptr" , $PPATTERN )
+	If $IFONTTYPE And Not BitAND ( $IFONTTYPE , DllStructGetData ( $TPATTERN , 1 ) ) Then
+		Return 1
+	EndIf
+	If DllStructGetData ( $TPATTERN , 3 ) Then
+		Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathMatchSpecW" , "ptr" , DllStructGetPtr ( $TELFEX , 14 ) , "ptr" , DllStructGetData ( $TPATTERN , 3 ) )
+		If Not @error Then
+			If DllStructGetData ( $TPATTERN , 2 ) Then
+				If $ACALL [ 0 ] Then
+					Return 1
+				Else
+				EndIf
+			Else
+				If $ACALL [ 0 ] Then
+				Else
+					Return 1
+				EndIf
+			EndIf
+		EndIf
+	EndIf
+	__INC ( $__G_VENUM )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 0 ] = DllStructGetData ( $TELFEX , 14 )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 1 ] = DllStructGetData ( $TELFEX , 16 )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 2 ] = DllStructGetData ( $TELFEX , 15 )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 3 ] = DllStructGetData ( $TELFEX , 17 )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 4 ] = $IFONTTYPE
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 5 ] = DllStructGetData ( $TNTMEX , 19 )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 6 ] = DllStructGetData ( $TNTMEX , 20 )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 7 ] = DllStructGetData ( $TNTMEX , 21 )
+	Return 1
+EndFunc
+Func __ENUMFONTSTYLESPROC ( $PELFEX , $PNTMEX , $IFONTTYPE , $PFN )
+	#forceref $iFontType
+	Local $TELFEX = DllStructCreate ( $TAGLOGFONT & ";wchar FullName[64];wchar Style[32];wchar Script[32]" , $PELFEX )
+	Local $TNTMEX = DllStructCreate ( $TAGNEWTEXTMETRICEX , $PNTMEX )
+	Local $TFN = DllStructCreate ( "dword;wchar[64]" , $PFN )
+	If BitAND ( DllStructGetData ( $TNTMEX , "ntmFlags" ) , 97 ) = DllStructGetData ( $TFN , 1 ) Then
+		DllStructSetData ( $TFN , 2 , DllStructGetData ( $TELFEX , "FullName" ) )
+		Return 0
+	Else
+		Return 1
+	EndIf
+EndFunc
+#EndRegion Internal Functions
+Global Const $LINGUISTIC_IGNORECASE = 16
+Global Const $LINGUISTIC_IGNOREDIACRITIC = 32
+Global Const $NORM_IGNORECASE = 1
+Global Const $NORM_IGNOREKANATYPE = 65536
+Global Const $NORM_IGNORENONSPACE = 2
+Global Const $NORM_IGNORESYMBOLS = 4
+Global Const $NORM_IGNOREWIDTH = 131072
+Global Const $NORM_LINGUISTIC_CASING = 134217728
+Global Const $SORT_DIGITSASNUMBERS = 8
+Global Const $SORT_STRINGSORT = 4096
+Global Const $CSTR_LESS_THAN = 1
+Global Const $CSTR_EQUAL = 2
+Global Const $CSTR_GREATER_THAN = 3
+Global Const $MUI_LANGUAGE_ID = 4
+Global Const $MUI_LANGUAGE_NAME = 8
+Global Const $DATE_AUTOLAYOUT = 64
+Global Const $DATE_LONGDATE = 2
+Global Const $DATE_LTRREADING = 16
+Global Const $DATE_SHORTDATE = 1
+Global Const $DATE_RTLREADING = 32
+Global Const $DATE_USE_ALT_CALENDAR = 4
+Global Const $DATE_YEARMONTH = 8
+Global Const $GEO_NATION = 1
+Global Const $GEO_LATITUDE = 2
+Global Const $GEO_LONGITUDE = 3
+Global Const $GEO_ISO2 = 4
+Global Const $GEO_ISO3 = 5
+Global Const $GEO_RFC1766 = 6
+Global Const $GEO_LCID = 7
+Global Const $GEO_FRIENDLYNAME = 8
+Global Const $GEO_OFFICIALNAME = 9
+Global Const $GEO_TIMEZONES = 10
+Global Const $GEO_OFFICIALLANGUAGES = 11
+Global Const $GEO_ISO_UN_NUMBER = 12
+Global Const $GEO_PARENT = 13
+Global Const $LOCALE_ILANGUAGE = 1
+Global Const $LOCALE_SLANGUAGE = 2
+Global Const $LOCALE_SENGLANGUAGE = 4097
+Global Const $LOCALE_SABBREVLANGNAME = 3
+Global Const $LOCALE_SNATIVELANGNAME = 4
+Global Const $LOCALE_ICOUNTRY = 5
+Global Const $LOCALE_SCOUNTRY = 6
+Global Const $LOCALE_SENGCOUNTRY = 4098
+Global Const $LOCALE_SABBREVCTRYNAME = 7
+Global Const $LOCALE_SNATIVECTRYNAME = 8
+Global Const $LOCALE_IDEFAULTLANGUAGE = 9
+Global Const $LOCALE_IDEFAULTCOUNTRY = 10
+Global Const $LOCALE_IDEFAULTCODEPAGE = 11
+Global Const $LOCALE_IDEFAULTANSICODEPAGE = 4100
+Global Const $LOCALE_IDEFAULTMACCODEPAGE = 4113
+Global Const $LOCALE_SLIST = 12
+Global Const $LOCALE_IMEASURE = 13
+Global Const $LOCALE_SDECIMAL = 14
+Global Const $LOCALE_STHOUSAND = 15
+Global Const $LOCALE_SGROUPING = 16
+Global Const $LOCALE_IDIGITS = 17
+Global Const $LOCALE_ILZERO = 18
+Global Const $LOCALE_INEGNUMBER = 4112
+Global Const $LOCALE_SNATIVEDIGITS = 19
+Global Const $LOCALE_SCURRENCY = 20
+Global Const $LOCALE_SINTLSYMBOL = 21
+Global Const $LOCALE_SMONDECIMALSEP = 22
+Global Const $LOCALE_SMONTHOUSANDSEP = 23
+Global Const $LOCALE_SMONGROUPING = 24
+Global Const $LOCALE_ICURRDIGITS = 25
+Global Const $LOCALE_IINTLCURRDIGITS = 26
+Global Const $LOCALE_ICURRENCY = 27
+Global Const $LOCALE_INEGCURR = 28
+Global Const $LOCALE_SDATE = 29
+Global Const $LOCALE_STIME = 30
+Global Const $LOCALE_SSHORTDATE = 31
+Global Const $LOCALE_SLONGDATE = 32
+Global Const $LOCALE_STIMEFORMAT = 4099
+Global Const $LOCALE_IDATE = 33
+Global Const $LOCALE_ILDATE = 34
+Global Const $LOCALE_ITIME = 35
+Global Const $LOCALE_ITIMEMARKPOSN = 4101
+Global Const $LOCALE_ICENTURY = 36
+Global Const $LOCALE_ITLZERO = 37
+Global Const $LOCALE_IDAYLZERO = 38
+Global Const $LOCALE_IMONLZERO = 39
+Global Const $LOCALE_S1159 = 40
+Global Const $LOCALE_S2359 = 41
+Global Const $LOCALE_ICALENDARTYPE = 4105
+Global Const $LOCALE_IOPTIONALCALENDAR = 4107
+Global Const $LOCALE_IFIRSTDAYOFWEEK = 4108
+Global Const $LOCALE_IFIRSTWEEKOFYEAR = 4109
+Global Const $LOCALE_SDAYNAME1 = 42
+Global Const $LOCALE_SDAYNAME2 = 43
+Global Const $LOCALE_SDAYNAME3 = 44
+Global Const $LOCALE_SDAYNAME4 = 45
+Global Const $LOCALE_SDAYNAME5 = 46
+Global Const $LOCALE_SDAYNAME6 = 47
+Global Const $LOCALE_SDAYNAME7 = 48
+Global Const $LOCALE_SABBREVDAYNAME1 = 49
+Global Const $LOCALE_SABBREVDAYNAME2 = 50
+Global Const $LOCALE_SABBREVDAYNAME3 = 51
+Global Const $LOCALE_SABBREVDAYNAME4 = 52
+Global Const $LOCALE_SABBREVDAYNAME5 = 53
+Global Const $LOCALE_SABBREVDAYNAME6 = 54
+Global Const $LOCALE_SABBREVDAYNAME7 = 55
+Global Const $LOCALE_SMONTHNAME1 = 56
+Global Const $LOCALE_SMONTHNAME2 = 57
+Global Const $LOCALE_SMONTHNAME3 = 58
+Global Const $LOCALE_SMONTHNAME4 = 59
+Global Const $LOCALE_SMONTHNAME5 = 60
+Global Const $LOCALE_SMONTHNAME6 = 61
+Global Const $LOCALE_SMONTHNAME7 = 62
+Global Const $LOCALE_SMONTHNAME8 = 63
+Global Const $LOCALE_SMONTHNAME9 = 64
+Global Const $LOCALE_SMONTHNAME10 = 65
+Global Const $LOCALE_SMONTHNAME11 = 66
+Global Const $LOCALE_SMONTHNAME12 = 67
+Global Const $LOCALE_SMONTHNAME13 = 4110
+Global Const $LOCALE_SABBREVMONTHNAME1 = 68
+Global Const $LOCALE_SABBREVMONTHNAME2 = 69
+Global Const $LOCALE_SABBREVMONTHNAME3 = 70
+Global Const $LOCALE_SABBREVMONTHNAME4 = 71
+Global Const $LOCALE_SABBREVMONTHNAME5 = 72
+Global Const $LOCALE_SABBREVMONTHNAME6 = 73
+Global Const $LOCALE_SABBREVMONTHNAME7 = 74
+Global Const $LOCALE_SABBREVMONTHNAME8 = 75
+Global Const $LOCALE_SABBREVMONTHNAME9 = 76
+Global Const $LOCALE_SABBREVMONTHNAME10 = 77
+Global Const $LOCALE_SABBREVMONTHNAME11 = 78
+Global Const $LOCALE_SABBREVMONTHNAME12 = 79
+Global Const $LOCALE_SABBREVMONTHNAME13 = 4111
+Global Const $LOCALE_SPOSITIVESIGN = 80
+Global Const $LOCALE_SNEGATIVESIGN = 81
+Global Const $LOCALE_IPOSSIGNPOSN = 82
+Global Const $LOCALE_INEGSIGNPOSN = 83
+Global Const $LOCALE_IPOSSYMPRECEDES = 84
+Global Const $LOCALE_IPOSSEPBYSPACE = 85
+Global Const $LOCALE_INEGSYMPRECEDES = 86
+Global Const $LOCALE_INEGSEPBYSPACE = 87
+Global Const $LOCALE_FONTSIGNATURE = 88
+Global Const $LOCALE_SISO639LANGNAME = 89
+Global Const $LOCALE_SISO3166CTRYNAME = 90
+Global Const $LOCALE_IDEFAULTEBCDICCODEPAGE = 4114
+Global Const $LOCALE_IPAPERSIZE = 4106
+Global Const $LOCALE_SENGCURRNAME = 4103
+Global Const $LOCALE_SNATIVECURRNAME = 4104
+Global Const $LOCALE_SYEARMONTH = 4102
+Global Const $LOCALE_SSORTNAME = 4115
+Global Const $LOCALE_IDIGITSUBSTITUTION = 4116
+Global Const $LOCALE_CUSTOM_DEFAULT = 3072
+Global Const $LOCALE_CUSTOM_UI_DEFAULT = 5120
+Global Const $LOCALE_CUSTOM_UNSPECIFIED = 4096
+Global Const $LOCALE_INVARIANT = 127
+Global Const $LOCALE_SYSTEM_DEFAULT = 2048
+Global Const $LOCALE_USER_DEFAULT = 1024
+Global Const $TIME_FORCE24HOURFORMAT = 8
+Global Const $TIME_NOMINUTESORSECONDS = 1
+Global Const $TIME_NOSECONDS = 2
+Global Const $TIME_NOTIMEMARKER = 4
+Global Const $LCID_INSTALLED = 1
+Global Const $LCID_SUPPORTED = 2
+Global Const $RT_ACCELERATOR = 9
+Global Const $RT_ANICURSOR = 21
+Global Const $RT_ANIICON = 22
+Global Const $RT_BITMAP = 2
+Global Const $RT_CURSOR = 1
+Global Const $RT_DIALOG = 5
+Global Const $RT_DLGINCLUDE = 17
+Global Const $RT_FONT = 8
+Global Const $RT_FONTDIR = 7
+Global Const $RT_GROUP_CURSOR = 12
+Global Const $RT_GROUP_ICON = 14
+Global Const $RT_HTML = 23
+Global Const $RT_ICON = 3
+Global Const $RT_MANIFEST = 24
+Global Const $RT_MENU = 4
+Global Const $RT_MESSAGETABLE = 11
+Global Const $RT_PLUGPLAY = 19
+Global Const $RT_RCDATA = 10
+Global Const $RT_STRING = 6
+Global Const $RT_VERSION = 16
+Global Const $RT_VXD = 20
+Global Const $FILE_VER_GET_LOCALISED = 1
+Global Const $FILE_VER_GET_NEUTRAL = 2
+Global Const $FILE_VER_GET_PREFETCHED = 4
+Global Const $OBM_TRTYPE = 32732
+Global Const $OBM_LFARROWI = 32734
+Global Const $OBM_RGARROWI = 32735
+Global Const $OBM_DNARROWI = 32736
+Global Const $OBM_UPARROWI = 32737
+Global Const $OBM_COMBO = 32738
+Global Const $OBM_MNARROW = 32739
+Global Const $OBM_LFARROWD = 32740
+Global Const $OBM_RGARROWD = 32741
+Global Const $OBM_DNARROWD = 32742
+Global Const $OBM_UPARROWD = 32743
+Global Const $OBM_RESTORED = 32744
+Global Const $OBM_ZOOMD = 32745
+Global Const $OBM_REDUCED = 32746
+Global Const $OBM_RESTORE = 32747
+Global Const $OBM_ZOOM = 32748
+Global Const $OBM_REDUCE = 32749
+Global Const $OBM_LFARROW = 32750
+Global Const $OBM_RGARROW = 32751
+Global Const $OBM_DNARROW = 32752
+Global Const $OBM_UPARROW = 32753
+Global Const $OBM_CLOSE = 32754
+Global Const $OBM_OLD_RESTORE = 32755
+Global Const $OBM_OLD_ZOOM = 32756
+Global Const $OBM_OLD_REDUCE = 32757
+Global Const $OBM_BTNCORNERS = 32758
+Global Const $OBM_CHECKBOXES = 32759
+Global Const $OBM_CHECK = 32760
+Global Const $OBM_BTSIZE = 32761
+Global Const $OBM_OLD_LFARROW = 32762
+Global Const $OBM_OLD_RGARROW = 32763
+Global Const $OBM_OLD_DNARROW = 32764
+Global Const $OBM_OLD_UPARROW = 32765
+Global Const $OBM_SIZE = 32766
+Global Const $OBM_OLD_CLOSE = 32767
+Global Const $OIC_SAMPLE = 32512
+Global Const $OIC_HAND = 32513
+Global Const $OIC_QUES = 32514
+Global Const $OIC_BANG = 32515
+Global Const $OIC_NOTE = 32516
+Global Const $OIC_WINLOGO = 32517
+Global Const $OIC_WARNING = $OIC_BANG
+Global Const $OIC_ERROR = $OIC_HAND
+Global Const $OIC_INFORMATION = $OIC_NOTE
+Global Const $DONT_RESOLVE_DLL_REFERENCES = 1
+Global Const $LOAD_LIBRARY_AS_DATAFILE = 2
+Global Const $LOAD_WITH_ALTERED_SEARCH_PATH = 8
+Global Const $LOAD_IGNORE_CODE_AUTHZ_LEVEL = 16
+Global Const $LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE = 64
+Global Const $LOAD_LIBRARY_AS_IMAGE_RESOURCE = 32
+Global Const $LOAD_LIBRARY_SEARCH_APPLICATION_DIR = 512
+Global Const $LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = 4096
+Global Const $LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR = 256
+Global Const $LOAD_LIBRARY_SEARCH_SYSTEM32 = 2048
+Global Const $LOAD_LIBRARY_SEARCH_USER_DIRS = 1024
+Global Const $OCR_NORMAL = 32512
+Global Const $OCR_IBEAM = 32513
+Global Const $OCR_WAIT = 32514
+Global Const $OCR_CROSS = 32515
+Global Const $OCR_UP = 32516
+Global Const $OCR_SIZE = 32640
+Global Const $OCR_ICON = 32641
+Global Const $OCR_SIZENWSE = 32642
+Global Const $OCR_SIZENESW = 32643
+Global Const $OCR_SIZEWE = 32644
+Global Const $OCR_SIZENS = 32645
+Global Const $OCR_SIZEALL = 32646
+Global Const $OCR_ICOCUR = 32647
+Global Const $OCR_NO = 32648
+Global Const $OCR_HAND = 32649
+Global Const $OCR_APPSTARTING = 32650
+Global Const $OCR_HELP = 32651
+Global Const $VS_FF_DEBUG = 1
+Global Const $VS_FF_INFOINFERRED = 16
+Global Const $VS_FF_PATCHED = 4
+Global Const $VS_FF_PRERELEASE = 2
+Global Const $VS_FF_PRIVATEBUILD = 8
+Global Const $VS_FF_SPECIALBUILD = 32
+Global Const $VOS_DOS = 65536
+Global Const $VOS_NT = 262144
+Global Const $VOS__WINDOWS16 = 1
+Global Const $VOS__WINDOWS32 = 4
+Global Const $VOS_OS216 = 131072
+Global Const $VOS_OS232 = 196608
+Global Const $VOS__PM16 = 2
+Global Const $VOS__PM32 = 3
+Global Const $VOS_UNKNOWN = 0
+Global Const $VOS_DOS_WINDOWS16 = 65537
+Global Const $VOS_DOS_WINDOWS32 = 65540
+Global Const $VOS_NT_WINDOWS32 = 262148
+Global Const $VOS_OS216_PM16 = 131074
+Global Const $VOS_OS232_PM32 = 196611
+Global Const $VFT_APP = 1
+Global Const $VFT_DLL = 2
+Global Const $VFT_DRV = 3
+Global Const $VFT_FONT = 4
+Global Const $VFT_STATIC_LIB = 7
+Global Const $VFT_UNKNOWN = 0
+Global Const $VFT_VXD = 5
+Global Const $VFT2_DRV_COMM = 10
+Global Const $VFT2_DRV_DISPLAY = 4
+Global Const $VFT2_DRV_INSTALLABLE = 8
+Global Const $VFT2_DRV_KEYBOARD = 2
+Global Const $VFT2_DRV_LANGUAGE = 3
+Global Const $VFT2_DRV_MOUSE = 5
+Global Const $VFT2_DRV_NETWORK = 6
+Global Const $VFT2_DRV_PRINTER = 1
+Global Const $VFT2_DRV_SOUND = 9
+Global Const $VFT2_DRV_SYSTEM = 7
+Global Const $VFT2_DRV_VERSIONED_PRINTER = 12
+Global Const $VFT2_UNKNOWN = 0
+Global Const $VFT2_FONT_RASTER = 1
+Global Const $VFT2_FONT_TRUETYPE = 3
+Global Const $VFT2_FONT_VECTOR = 2
+#Region Global Variables and Constants
+Global $__G_VVAL
+Global Const $TAGVS_FIXEDFILEINFO = "dword Signature;dword StrucVersion;dword FileVersionMS;dword FileVersionLS;dword ProductVersionMS;dword ProductVersionLS;dword FileFlagsMask;dword FileFlags;dword FileOS;dword FileType;dword FileSubtype;dword FileDateMS;dword FileDateLS"
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_BEGINUPDATERESOURCE ( $SFILEPATH , $BDELETE = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "BeginUpdateResourceW" , "wstr" , $SFILEPATH , "bool" , $BDELETE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CLIPCURSOR ( $TRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ClipCursor" , "struct*" , $TRECT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_COPYCURSOR ( $HCURSOR )
+	Return _WINAPI_COPYICON ( $HCURSOR )
+EndFunc
+Func _WINAPI_CREATECARET ( $HWND , $HBITMAP , $IWIDTH = 0 , $IHEIGHT = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "CreateCaret" , "hwnd" , $HWND , "handle" , $HBITMAP , "int" , $IWIDTH , "int" , $IHEIGHT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DESTROYCARET ( )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DestroyCaret" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DESTROYCURSOR ( $HCURSOR )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DestroyCursor" , "handle" , $HCURSOR )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENDUPDATERESOURCE ( $HUPDATE , $BDISCARD = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "EndUpdateResourceW" , "handle" , $HUPDATE , "bool" , $BDISCARD )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENUMRESOURCELANGUAGES ( $HMODULE , $STYPE , $SNAME )
+	Local $ILIBRARY = 0 , $STYPEOFTYPE = "int" , $STYPEOFNAME = "int"
+	If IsString ( $HMODULE ) Then
+		If StringStripWS ( $HMODULE , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then
+			$HMODULE = _WINAPI_LOADLIBRARYEX ( $HMODULE , BitOR ( $DONT_RESOLVE_DLL_REFERENCES , $LOAD_LIBRARY_AS_DATAFILE ) )
+			If Not $HMODULE Then Return SetError ( 1 , 0 , 0 )
+			$ILIBRARY = 1
+		Else
+			$HMODULE = 0
+		EndIf
+	EndIf
+	If IsString ( $STYPE ) Then
+		$STYPEOFTYPE = "wstr"
+	EndIf
+	If IsString ( $SNAME ) Then
+		$STYPEOFNAME = "wstr"
+	EndIf
+	Dim $__G_VENUM [ 101 ] = [ 0 ]
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumResLanguagesProc" , "bool" , "handle;ptr;ptr;word;long_ptr" )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "EnumResourceLanguagesW" , "handle" , $HMODULE , $STYPEOFTYPE , $STYPE , $STYPEOFNAME , $SNAME , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "long_ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or Not $__G_VENUM [ 0 ] Then
+		$__G_VENUM = @error + 10
+	EndIf
+	If $ILIBRARY Then
+		_WINAPI_FREELIBRARY ( $HMODULE )
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_ENUMRESOURCENAMES ( $HMODULE , $STYPE )
+	Local $ACALL , $HENUMPROC , $ILIBRARY = 0 , $STYPEOFTYPE = "int"
+	If IsString ( $HMODULE ) Then
+		If StringStripWS ( $HMODULE , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then
+			$HMODULE = _WINAPI_LOADLIBRARYEX ( $HMODULE , BitOR ( $DONT_RESOLVE_DLL_REFERENCES , $LOAD_LIBRARY_AS_DATAFILE ) )
+			If Not $HMODULE Then Return SetError ( 1 , 0 , 0 )
+			$ILIBRARY = 1
+		Else
+			$HMODULE = 0
+		EndIf
+	EndIf
+	If IsString ( $STYPE ) Then
+		$STYPEOFTYPE = "wstr"
+	EndIf
+	Dim $__G_VENUM [ 101 ] = [ 0 ]
+	$HENUMPROC = DllCallbackRegister ( "__EnumResNamesProc" , "bool" , "handle;ptr;ptr;long_ptr" )
+	$ACALL = DllCall ( "kernel32.dll" , "bool" , "EnumResourceNamesW" , "handle" , $HMODULE , $STYPEOFTYPE , $STYPE , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "long_ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or ( Not $__G_VENUM [ 0 ] ) Then
+		$__G_VENUM = @error + 10
+	EndIf
+	If $ILIBRARY Then
+		_WINAPI_FREELIBRARY ( $HMODULE )
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_ENUMRESOURCETYPES ( $HMODULE )
+	Local $ILIBRARY = 0
+	If IsString ( $HMODULE ) Then
+		If StringStripWS ( $HMODULE , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then
+			$HMODULE = _WINAPI_LOADLIBRARYEX ( $HMODULE , BitOR ( $DONT_RESOLVE_DLL_REFERENCES , $LOAD_LIBRARY_AS_DATAFILE ) )
+			If Not $HMODULE Then Return SetError ( 1 , 0 , 0 )
+			$ILIBRARY = 1
+		Else
+			$HMODULE = 0
+		EndIf
+	EndIf
+	Dim $__G_VENUM [ 101 ] = [ 0 ]
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumResTypesProc" , "bool" , "handle;ptr;long_ptr" )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "EnumResourceTypesW" , "handle" , $HMODULE , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "long_ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or ( Not $__G_VENUM [ 0 ] ) Then
+		$__G_VENUM = @error + 10
+	EndIf
+	If $ILIBRARY Then
+		_WINAPI_FREELIBRARY ( $HMODULE )
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_FINDRESOURCE ( $HINSTANCE , $STYPE , $SNAME )
+	Local $STYPEOFTYPE = "int" , $STYPEOFNAME = "int"
+	If IsString ( $STYPE ) Then
+		$STYPEOFTYPE = "wstr"
+	EndIf
+	If IsString ( $SNAME ) Then
+		$STYPEOFNAME = "wstr"
+	EndIf
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "FindResourceW" , "handle" , $HINSTANCE , $STYPEOFNAME , $SNAME , $STYPEOFTYPE , $STYPE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FINDRESOURCEEX ( $HINSTANCE , $STYPE , $SNAME , $ILANGUAGE )
+	Local $STYPEOFTYPE = "int" , $STYPEOFNAME = "int"
+	If IsString ( $STYPE ) Then
+		$STYPEOFTYPE = "wstr"
+	EndIf
+	If IsString ( $SNAME ) Then
+		$STYPEOFNAME = "wstr"
+	EndIf
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "FindResourceExW" , "handle" , $HINSTANCE , $STYPEOFTYPE , $STYPE , $STYPEOFNAME , $SNAME , "ushort" , $ILANGUAGE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FREERESOURCE ( $HDATA )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "FreeResource" , "handle" , $HDATA )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCARETBLINKTIME ( )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "GetCaretBlinkTime" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCARETPOS ( )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetCaretPos" , "struct*" , $TPOINT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If Not $ACALL [ 0 ] Then Return SetError ( 10 , _WINAPI_GETLASTERROR ( ) , 0 )
+	Local $ARET [ 2 ]
+	For $I = 0 To 1
+		$ARET [ $I ] = DllStructGetData ( $TPOINT , $I + 1 )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETCLIPCURSOR ( )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetClipCursor" , "struct*" , $TRECT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_GETCURSOR ( )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetCursor" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETFILEVERSIONINFO ( $SFILEPATH , ByRef $PBUFFER , $IFLAGS = 0 )
+	Local $ACALL
+	If _WINAPI_GETVERSION ( ) >= 6.0 Then
+		$ACALL = DllCall ( "version.dll" , "dword" , "GetFileVersionInfoSizeExW" , "dword" , BitAND ( $IFLAGS , 3 ) , "wstr" , $SFILEPATH , "ptr" , 0 )
+	Else
+		$ACALL = DllCall ( "version.dll" , "dword" , "GetFileVersionInfoSizeW" , "wstr" , $SFILEPATH , "ptr" , 0 )
+	EndIf
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	$PBUFFER = __HEAPREALLOC ( $PBUFFER , $ACALL [ 0 ] , 1 )
+	If @error Then Return SetError ( @error + 100 , @extended , 0 )
+	Local $INBBYTE = $ACALL [ 0 ]
+	If _WINAPI_GETVERSION ( ) >= 6.0 Then
+		$ACALL = DllCall ( "version.dll" , "bool" , "GetFileVersionInfoExW" , "dword" , BitAND ( $IFLAGS , 7 ) , "wstr" , $SFILEPATH , "dword" , 0 , "dword" , $INBBYTE , "ptr" , $PBUFFER )
+	Else
+		$ACALL = DllCall ( "version.dll" , "bool" , "GetFileVersionInfoW" , "wstr" , $SFILEPATH , "dword" , 0 , "dword" , $INBBYTE , "ptr" , $PBUFFER )
+	EndIf
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $INBBYTE
+EndFunc
+Func _WINAPI_HIDECARET ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "HideCaret" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOADBITMAP ( $HINSTANCE , $SBITMAP )
+	Local $SBITMAPTYPE = "int"
+	If IsString ( $SBITMAP ) Then $SBITMAPTYPE = "wstr"
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "LoadBitmapW" , "handle" , $HINSTANCE , $SBITMAPTYPE , $SBITMAP )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOADCURSOR ( $HINSTANCE , $SNAME )
+	Local $STYPEOFNAME = "int"
+	If IsString ( $SNAME ) Then
+		$STYPEOFNAME = "wstr"
+	EndIf
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "LoadCursorW" , "handle" , $HINSTANCE , $STYPEOFNAME , $SNAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOADCURSORFROMFILE ( $SFILEPATH )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "LoadCursorFromFileW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOADINDIRECTSTRING ( $SSTRIN )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "uint" , "SHLoadIndirectString" , "wstr" , $SSTRIN , "wstr" , "" , "uint" , 4096 , "ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_LOADSTRING ( $HINSTANCE , $ISTRINGID )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "LoadStringW" , "handle" , $HINSTANCE , "uint" , $ISTRINGID , "wstr" , "" , "int" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return SetExtended ( $ACALL [ 0 ] , $ACALL [ 3 ] )
+EndFunc
+Func _WINAPI_LOADLIBRARYEX ( $SFILENAME , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "LoadLibraryExW" , "wstr" , $SFILENAME , "ptr" , 0 , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOADRESOURCE ( $HINSTANCE , $HRESOURCE )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "LoadResource" , "handle" , $HINSTANCE , "handle" , $HRESOURCE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOADSTRINGEX ( $HMODULE , $IID , $ILANGUAGE = $LOCALE_USER_DEFAULT )
+	Local $ILIBRARY = 0
+	If IsString ( $HMODULE ) Then
+		If StringStripWS ( $HMODULE , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then
+			$HMODULE = _WINAPI_LOADLIBRARYEX ( $HMODULE , BitOR ( $DONT_RESOLVE_DLL_REFERENCES , $LOAD_LIBRARY_AS_DATAFILE ) )
+			If Not $HMODULE Then Return SetError ( @error + 20 , @extended , "" )
+			$ILIBRARY = 1
+		Else
+			$HMODULE = 0
+		EndIf
+	EndIf
+	Local $SRESULT = ""
+	Local $PDATA = __RESLOAD ( $HMODULE , 6 , Floor ( $IID / 16 ) + 1 , $ILANGUAGE )
+	If Not @error Then
+		Local $IOFFSET = 0
+		For $I = 0 To Mod ( $IID , 16 ) + 4294967295
+			$IOFFSET += 2 * ( DllStructGetData ( DllStructCreate ( "ushort" , $PDATA + $IOFFSET ) , 1 ) + 1 )
+		Next
+		$SRESULT = DllStructGetData ( DllStructCreate ( "ushort;wchar[" & DllStructGetData ( DllStructCreate ( "ushort" , $PDATA + $IOFFSET ) , 1 ) & "]" , $PDATA + $IOFFSET ) , 2 )
+		If @error Then $SRESULT = ""
+	Else
+		Return SetError ( 10 , 0 , "" )
+	EndIf
+	If $ILIBRARY Then
+		_WINAPI_FREELIBRARY ( $HMODULE )
+	EndIf
+	Return SetError ( Number ( Not $SRESULT ) , 0 , $SRESULT )
+EndFunc
+Func _WINAPI_LOCKRESOURCE ( $HDATA )
+	Local $ACALL = DllCall ( "kernel32.dll" , "ptr" , "LockResource" , "handle" , $HDATA )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETCARETBLINKTIME ( $IDURATION )
+	Local $IPREV = _WINAPI_GETCARETBLINKTIME ( )
+	If Not $IPREV Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetCaretBlinkTime" , "uint" , $IDURATION )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $IPREV
+EndFunc
+Func _WINAPI_SETCARETPOS ( $IX , $IY )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "SetCaretPos" , "int" , $IX , "int" , $IY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETCURSOR ( $HCURSOR )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "SetCursor" , "handle" , $HCURSOR )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETSYSTEMCURSOR ( $HCURSOR , $IID , $BCOPY = False )
+	If $BCOPY Then
+		$HCURSOR = _WINAPI_COPYCURSOR ( $HCURSOR )
+	EndIf
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetSystemCursor" , "handle" , $HCURSOR , "dword" , $IID )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SHOWCARET ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ShowCaret" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SHOWCURSOR ( $BSHOW )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "ShowCursor" , "bool" , $BSHOW )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SIZEOFRESOURCE ( $HINSTANCE , $HRESOURCE )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "SizeofResource" , "handle" , $HINSTANCE , "handle" , $HRESOURCE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UPDATERESOURCE ( $HUPDATE , $STYPE , $SNAME , $ILANGUAGE , $PDATA , $ISIZE )
+	Local $STYPEOFTYPE = "int" , $STYPEOFNAME = "int"
+	If IsString ( $STYPE ) Then
+		$STYPEOFTYPE = "wstr"
+	EndIf
+	If IsString ( $SNAME ) Then
+		$STYPEOFNAME = "wstr"
+	EndIf
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "UpdateResourceW" , "handle" , $HUPDATE , $STYPEOFTYPE , $STYPE , $STYPEOFNAME , $SNAME , "word" , $ILANGUAGE , "ptr" , $PDATA , "dword" , $ISIZE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_VERQUERYROOT ( $PDATA )
+	Local $ACALL = DllCall ( "version.dll" , "bool" , "VerQueryValueW" , "ptr" , $PDATA , "wstr" , "\" , "ptr*" , 0 , "uint*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or Not $ACALL [ 4 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TVFFI = DllStructCreate ( $TAGVS_FIXEDFILEINFO )
+	If Not _WINAPI_MOVEMEMORY ( $TVFFI , $ACALL [ 3 ] , $ACALL [ 4 ] ) Then Return SetError ( @error + 20 , @extended , 0 )
+	Return $TVFFI
+EndFunc
+Func _WINAPI_VERQUERYVALUE ( $PDATA , $SVALUES = "" )
+	$SVALUES = StringRegExpReplace ( $SVALUES , "\A[\s\|]*|[\s\|]*\Z" , "" )
+	If Not $SVALUES Then
+		$SVALUES = "Comments|CompanyName|FileDescription|FileVersion|InternalName|LegalCopyright|LegalTrademarks|OriginalFilename|ProductName|ProductVersion|PrivateBuild|SpecialBuild"
+	EndIf
+	$SVALUES = StringSplit ( $SVALUES , "|" , $STR_NOCOUNT )
+	Local $ACALL = DllCall ( "version.dll" , "bool" , "VerQueryValueW" , "ptr" , $PDATA , "wstr" , "\VarFileInfo\Translation" , "ptr*" , 0 , "uint*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or Not $ACALL [ 4 ] Then Return SetError ( @error + 10 , 0 , 0 )
+	Local $ILENGTH = Floor ( $ACALL [ 4 ] / 4 )
+	Local $TLANG = DllStructCreate ( "dword[" & $ILENGTH & "]" , $ACALL [ 3 ] )
+	If @error Then Return SetError ( @error + 20 , 0 , 0 )
+	Local $SCP , $AINFO [ 101 ] [ UBound ( $SVALUES ) + 1 ] = [ [ 0 ] ]
+	For $I = 1 To $ILENGTH
+		__INC ( $AINFO )
+		$AINFO [ $AINFO [ 0 ] [ 0 ] ] [ 0 ] = _WINAPI_LOWORD ( DllStructGetData ( $TLANG , 1 , $I ) )
+		$SCP = Hex ( _WINAPI_MAKELONG ( _WINAPI_HIWORD ( DllStructGetData ( $TLANG , 1 , $I ) ) , _WINAPI_LOWORD ( DllStructGetData ( $TLANG , 1 , $I ) ) ) , 8 )
+		For $J = 0 To UBound ( $SVALUES ) + 4294967295
+			$ACALL = DllCall ( "version.dll" , "bool" , "VerQueryValueW" , "ptr" , $PDATA , "wstr" , "\StringFileInfo\" & $SCP & "\" & $SVALUES [ $J ] , "ptr*" , 0 , "uint*" , 0 )
+			If Not @error And $ACALL [ 0 ] And $ACALL [ 4 ] Then
+				$AINFO [ $AINFO [ 0 ] [ 0 ] ] [ $J + 1 ] = DllStructGetData ( DllStructCreate ( "wchar[" & $ACALL [ 4 ] & "]" , $ACALL [ 3 ] ) , 1 )
+			Else
+				$AINFO [ $AINFO [ 0 ] [ 0 ] ] [ $J + 1 ] = ""
+			EndIf
+		Next
+	Next
+	__INC ( $AINFO , + 4294967295 )
+	Return $AINFO
+EndFunc
+Func _WINAPI_VERQUERYVALUEEX ( $HMODULE , $SVALUES = "" , $ILANGUAGE = 1024 )
+	$__G_VVAL = StringRegExpReplace ( $SVALUES , "\A[\s\|]*|[\s\|]*\Z" , "" )
+	If Not $__G_VVAL Then
+		$__G_VVAL = "Comments|CompanyName|FileDescription|FileVersion|InternalName|LegalCopyright|LegalTrademarks|OriginalFilename|ProductName|ProductVersion|PrivateBuild|SpecialBuild"
+	EndIf
+	$__G_VVAL = StringSplit ( $__G_VVAL , "|" )
+	If Not IsArray ( $__G_VVAL ) Then Return SetError ( 1 , 0 , 0 )
+	Local $ILIBRARY = 0
+	If IsString ( $HMODULE ) Then
+		If StringStripWS ( $HMODULE , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then
+			$HMODULE = _WINAPI_LOADLIBRARYEX ( $HMODULE , BitOR ( $DONT_RESOLVE_DLL_REFERENCES , $LOAD_LIBRARY_AS_DATAFILE ) )
+			If Not $HMODULE Then
+				Return SetError ( @error + 10 , @extended , 0 )
+			EndIf
+			$ILIBRARY = 1
+		Else
+			$HMODULE = 0
+		EndIf
+	EndIf
+	Dim $__G_VENUM [ 101 ] [ $__G_VVAL [ 0 ] + 1 ] = [ [ 0 ] ]
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumVerValuesProc" , "bool" , "ptr;ptr;ptr;word;long_ptr" )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "EnumResourceLanguagesW" , "handle" , $HMODULE , "int" , 16 , "int" , 1 , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "long_ptr" , $ILANGUAGE )
+	Do
+		If @error Then
+			$__G_VENUM = @error + 20
+		Else
+			If Not $ACALL [ 0 ] Then
+				Switch _WINAPI_GETLASTERROR ( )
+				Case 0 , 15106
+					ExitLoop
+			Case Else
+					$__G_VENUM = 20
+				EndSwitch
+			Else
+				ExitLoop
+			EndIf
+		EndIf
+	Until 1
+	If $ILIBRARY Then
+		_WINAPI_FREELIBRARY ( $HMODULE )
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If Not $__G_VENUM [ 0 ] [ 0 ] Then $__G_VENUM = 230
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+Func __ENUMRESLANGUAGESPROC ( $HMODULE , $ITYPE , $INAME , $ILANGUAGE , $LPARAM )
+	#forceref $hModule, $iType, $iName, $lParam
+	__INC ( $__G_VENUM )
+	$__G_VENUM [ $__G_VENUM [ 0 ] ] = $ILANGUAGE
+	Return 1
+EndFunc
+Func __ENUMRESNAMESPROC ( $HMODULE , $ITYPE , $INAME , $LPARAM )
+	#forceref $hModule, $iType, $lParam
+	Local $ILENGTH = _WINAPI_STRLEN ( $INAME )
+	__INC ( $__G_VENUM )
+	If $ILENGTH Then
+		$__G_VENUM [ $__G_VENUM [ 0 ] ] = DllStructGetData ( DllStructCreate ( "wchar[" & ( $ILENGTH + 1 ) & "]" , $INAME ) , 1 )
+	Else
+		$__G_VENUM [ $__G_VENUM [ 0 ] ] = Number ( $INAME )
+	EndIf
+	Return 1
+EndFunc
+Func __ENUMRESTYPESPROC ( $HMODULE , $ITYPE , $LPARAM )
+	#forceref $hModule, $lParam
+	Local $ILENGTH = _WINAPI_STRLEN ( $ITYPE )
+	__INC ( $__G_VENUM )
+	If $ILENGTH Then
+		$__G_VENUM [ $__G_VENUM [ 0 ] ] = DllStructGetData ( DllStructCreate ( "wchar[" & ( $ILENGTH + 1 ) & "]" , $ITYPE ) , 1 )
+	Else
+		$__G_VENUM [ $__G_VENUM [ 0 ] ] = Number ( $ITYPE )
+	EndIf
+	Return 1
+EndFunc
+Func __ENUMVERVALUESPROC ( $HMODULE , $ITYPE , $INAME , $ILANGUAGE , $IDEFAULT )
+	Local $ACALL , $IENUM = 1 , $IERROR = 0
+	Switch $IDEFAULT
+	Case + 4294967295
+	Case 1024
+		$ILANGUAGE = 1024
+		$IENUM = 0
+Case Else
+		If $ILANGUAGE <> $IDEFAULT Then
+			Return 1
+		EndIf
+		$IENUM = 0
+	EndSwitch
+	Do
+		Local $PDATA = __RESLOAD ( $HMODULE , $ITYPE , $INAME , $ILANGUAGE )
+		If @error Then
+			$IERROR = @error + 10
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "version.dll" , "bool" , "VerQueryValueW" , "ptr" , $PDATA , "wstr" , "\VarFileInfo\Translation" , "ptr*" , 0 , "uint*" , 0 )
+		If @error Or Not $ACALL [ 0 ] Or Not $ACALL [ 4 ] Then
+			$IERROR = @error + 20
+			ExitLoop
+		EndIf
+		Local $TDATA = DllStructCreate ( "ushort;ushort" , $ACALL [ 3 ] )
+		If @error Then
+			$IERROR = @error + 30
+			ExitLoop
+		EndIf
+	Until 1
+	If Not $IERROR Then
+		__INC ( $__G_VENUM )
+		$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 0 ] = DllStructGetData ( $TDATA , 1 )
+		Local $SCP = Hex ( _WINAPI_MAKELONG ( DllStructGetData ( $TDATA , 2 ) , DllStructGetData ( $TDATA , 1 ) ) , 8 )
+		For $I = 1 To $__G_VVAL [ 0 ]
+			$ACALL = DllCall ( "version.dll" , "bool" , "VerQueryValueW" , "ptr" , $PDATA , "wstr" , "\StringFileInfo\" & $SCP & "\" & $__G_VVAL [ $I ] , "ptr*" , 0 , "uint*" , 0 )
+			If Not @error And $ACALL [ 0 ] And $ACALL [ 4 ] Then
+				$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ $I ] = DllStructGetData ( DllStructCreate ( "wchar[" & $ACALL [ 4 ] & "]" , $ACALL [ 3 ] ) , 1 )
+			Else
+				$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ $I ] = ""
+			EndIf
+		Next
+	Else
+		$__G_VENUM = @error + 40
+	EndIf
+	If $__G_VENUM Then Return SetError ( $IERROR , 0 , 0 )
+	Return $IENUM
+EndFunc
+Func __RESLOAD ( $HINSTANCE , $STYPE , $SNAME , $ILANGUAGE )
+	Local $HINFO = _WINAPI_FINDRESOURCEEX ( $HINSTANCE , $STYPE , $SNAME , $ILANGUAGE )
+	If Not $HINFO Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ISIZE = _WINAPI_SIZEOFRESOURCE ( $HINSTANCE , $HINFO )
+	If Not $ISIZE Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $HDATA = _WINAPI_LOADRESOURCE ( $HINSTANCE , $HINFO )
+	If Not $HDATA Then Return SetError ( @error + 30 , @extended , 0 )
+	Local $PDATA = _WINAPI_LOCKRESOURCE ( $HDATA )
+	If Not $PDATA Then Return SetError ( @error + 40 , @extended , 0 )
+	Return SetExtended ( $ISIZE , $PDATA )
+EndFunc
+#EndRegion Internal Functions
+Global Const $__LISTVIEWCONSTANT_SORTINFOSIZE = 11
+Global $__G_ALISTVIEWSORTINFO [ 1 ] [ $__LISTVIEWCONSTANT_SORTINFOSIZE ]
+Global $__G_TLISTVIEWBUFFER , $__G_TLISTVIEWBUFFERANSI
+Global $__G_TLISTVIEWITEM = DllStructCreate ( $TAGLVITEM )
+Global Const $__LISTVIEWCONSTANT_CLASSNAME = "SysListView32"
+Global Const $__LISTVIEWCONSTANT_WM_SETREDRAW = 11
+Global Const $__LISTVIEWCONSTANT_WM_SETFONT = 48
+Global Const $__LISTVIEWCONSTANT_DEFAULT_GUI_FONT = 17
+Global Const $__LISTVIEWCONSTANT_ILD_TRANSPARENT = 1
+Global Const $__LISTVIEWCONSTANT_ILD_BLEND25 = 2
+Global Const $__LISTVIEWCONSTANT_ILD_BLEND50 = 4
+Global Const $__LISTVIEWCONSTANT_ILD_MASK = 16
+Global Const $__LISTVIEWCONSTANT_VK_DOWN = 40
+Global Const $__LISTVIEWCONSTANT_VK_END = 35
+Global Const $__LISTVIEWCONSTANT_VK_HOME = 36
+Global Const $__LISTVIEWCONSTANT_VK_LEFT = 37
+Global Const $__LISTVIEWCONSTANT_VK_NEXT = 34
+Global Const $__LISTVIEWCONSTANT_VK_PRIOR = 33
+Global Const $__LISTVIEWCONSTANT_VK_RIGHT = 39
+Global Const $__LISTVIEWCONSTANT_VK_UP = 38
+Global Const $TAGLVBKIMAGE = "ulong Flags;hwnd hBmp;ptr Image;uint ImageMax;int XOffPercent;int YOffPercent"
+Global Const $TAGLVCOLUMN = "uint Mask;int Fmt;int CX;ptr Text;int TextMax;int SubItem;int Image;int Order;int cxMin;int cxDefault;int cxIdeal"
+Global Const $TAGLVGROUP = "uint Size;uint Mask;ptr Header;int HeaderMax;ptr Footer;int FooterMax;int GroupID;uint StateMask;uint State;uint Align;" & "ptr  pszSubtitle;uint cchSubtitle;ptr pszTask;uint cchTask;ptr pszDescriptionTop;uint cchDescriptionTop;ptr pszDescriptionBottom;" & "uint cchDescriptionBottom;int iTitleImage;int iExtendedImage;int iFirstItem;uint cItems;ptr pszSubsetTitle;uint cchSubsetTitle"
+Global Const $TAGLVINSERTMARK = "uint Size;dword Flags;int Item;dword Reserved"
+Global Const $TAGLVSETINFOTIP = "uint Size;dword Flags;ptr Text;int Item;int SubItem"
+Func _GUICTRLLISTVIEW_ADDARRAY ( $HWND , ByRef $AITEMS )
+	Local $TBUFFER , $IMSG , $IMSGSET
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_INSERTITEMW
+		$IMSGSET = $LVM_SETITEMW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_INSERTITEMA
+		$IMSGSET = $LVM_SETITEMA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_TEXT )
+	Local $ILASTITEM = _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND )
+	_GUICTRLLISTVIEW_BEGINUPDATE ( $HWND )
+	Local $PSENDMSG = __GUICTRL_SENDMSG_INIT ( $HWND , $IMSG , 0 , $TITEM , $TBUFFER , False , 6 )
+	For $II = 0 To UBound ( $AITEMS ) + 4294967295
+		DllStructSetData ( $TITEM , "Item" , $II + $ILASTITEM )
+		DllStructSetData ( $TITEM , "SubItem" , 0 )
+		DllStructSetData ( $TBUFFER , 1 , $AITEMS [ $II ] [ 0 ] )
+		$PSENDMSG ( $HWND , $IMSG , 0 , $TITEM , $TBUFFER , False , 6 )
+		For $IJ = 1 To UBound ( $AITEMS , $UBOUND_COLUMNS ) + 4294967295
+			DllStructSetData ( $TITEM , "SubItem" , $IJ )
+			DllStructSetData ( $TBUFFER , 1 , $AITEMS [ $II ] [ $IJ ] )
+			$PSENDMSG ( $HWND , $IMSGSET , 0 , $TITEM , $TBUFFER , False , 6 )
+		Next
+	Next
+	_GUICTRLLISTVIEW_ENDUPDATE ( $HWND )
+EndFunc
+Func _GUICTRLLISTVIEW_ADDCOLUMN ( $HWND , $STEXT , $IWIDTH = 50 , $IALIGN = + 4294967295 , $IIMAGE = + 4294967295 , $BONRIGHT = False )
+	Return _GUICTRLLISTVIEW_INSERTCOLUMN ( $HWND , _GUICTRLLISTVIEW_GETCOLUMNCOUNT ( $HWND ) , $STEXT , $IWIDTH , $IALIGN , $IIMAGE , $BONRIGHT )
+EndFunc
+Func _GUICTRLLISTVIEW_ADDITEM ( $HWND , $STEXT , $IIMAGE = + 4294967295 , $IPARAM = 0 )
+	Return _GUICTRLLISTVIEW_INSERTITEM ( $HWND , $STEXT , + 4294967295 , $IIMAGE , $IPARAM )
+EndFunc
+Func _GUICTRLLISTVIEW_ADDSUBITEM ( $HWND , $IINDEX , $STEXT , $ISUBITEM , $IIMAGE = + 4294967295 )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_SETITEMW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_SETITEMA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	Local $IMASK = $LVIF_TEXT
+	If $IIMAGE <> + 4294967295 Then $IMASK = BitOR ( $IMASK , $LVIF_IMAGE )
+	DllStructSetData ( $TBUFFER , 1 , $STEXT )
+	DllStructSetData ( $TITEM , "Mask" , $IMASK )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , $ISUBITEM )
+	DllStructSetData ( $TITEM , "Image" , $IIMAGE )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TITEM , $TBUFFER , False , 6 , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_APPROXIMATEVIEWHEIGHT ( $HWND , $ICOUNT = + 4294967295 , $ICX = + 4294967295 , $ICY = + 4294967295 )
+	If IsHWnd ( $HWND ) Then
+		Return BitShift ( ( _SENDMESSAGE ( $HWND , $LVM_APPROXIMATEVIEWRECT , $ICOUNT , _WINAPI_MAKELONG ( $ICX , $ICY ) ) ) , 16 )
+	Else
+		Return BitShift ( ( GUICtrlSendMsg ( $HWND , $LVM_APPROXIMATEVIEWRECT , $ICOUNT , _WINAPI_MAKELONG ( $ICX , $ICY ) ) ) , 16 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_APPROXIMATEVIEWRECT ( $HWND , $ICOUNT = + 4294967295 , $ICX = + 4294967295 , $ICY = + 4294967295 )
+	Local $IVIEW
+	If IsHWnd ( $HWND ) Then
+		$IVIEW = _SENDMESSAGE ( $HWND , $LVM_APPROXIMATEVIEWRECT , $ICOUNT , _WINAPI_MAKELONG ( $ICX , $ICY ) )
+	Else
+		$IVIEW = GUICtrlSendMsg ( $HWND , $LVM_APPROXIMATEVIEWRECT , $ICOUNT , _WINAPI_MAKELONG ( $ICX , $ICY ) )
+	EndIf
+	Local $AVIEW [ 2 ]
+	$AVIEW [ 0 ] = BitAND ( $IVIEW , 65535 )
+	$AVIEW [ 1 ] = BitShift ( $IVIEW , 16 )
+	Return $AVIEW
+EndFunc
+Func _GUICTRLLISTVIEW_APPROXIMATEVIEWWIDTH ( $HWND , $ICOUNT = + 4294967295 , $ICX = + 4294967295 , $ICY = + 4294967295 )
+	If IsHWnd ( $HWND ) Then
+		Return BitAND ( ( _SENDMESSAGE ( $HWND , $LVM_APPROXIMATEVIEWRECT , $ICOUNT , _WINAPI_MAKELONG ( $ICX , $ICY ) ) ) , 65535 )
+	Else
+		Return BitAND ( ( GUICtrlSendMsg ( $HWND , $LVM_APPROXIMATEVIEWRECT , $ICOUNT , _WINAPI_MAKELONG ( $ICX , $ICY ) ) ) , 65535 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_ARRANGE ( $HWND , $IARRANGE = 0 )
+	Local $AARRANGE [ 4 ] = [ $LVA_DEFAULT , $LVA_ALIGNLEFT , $LVA_ALIGNTOP , $LVA_SNAPTOGRID ]
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_ARRANGE , $AARRANGE [ $IARRANGE ] ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_ARRANGE , $AARRANGE [ $IARRANGE ] , 0 ) <> 0
+	EndIf
+EndFunc
+Func __GUICTRLLISTVIEW_ARRAYDELETE ( ByRef $AVARRAY , $IELEMENT )
+	If Not IsArray ( $AVARRAY ) Then Return SetError ( 1 , 0 , "" )
+	Local $IUPPER = UBound ( $AVARRAY )
+	If $IUPPER = 1 Then
+		SetError ( 2 )
+		Return ""
+	EndIf
+	Local $AVNEWARRAY [ $IUPPER + 4294967295 ] [ $__LISTVIEWCONSTANT_SORTINFOSIZE ]
+	$AVNEWARRAY [ 0 ] [ 0 ] = $AVARRAY [ 0 ] [ 0 ]
+	If $IELEMENT < 0 Then
+		$IELEMENT = 0
+	EndIf
+	If $IELEMENT > ( $IUPPER + 4294967295 ) Then
+		$IELEMENT = ( $IUPPER + 4294967295 )
+	EndIf
+	If $IELEMENT > 0 Then
+		For $ICNTR = 0 To $IELEMENT + 4294967295
+			For $X = 1 To $__LISTVIEWCONSTANT_SORTINFOSIZE + 4294967295
+				$AVNEWARRAY [ $ICNTR ] [ $X ] = $AVARRAY [ $ICNTR ] [ $X ]
+			Next
+		Next
+	EndIf
+	If $IELEMENT < ( $IUPPER + 4294967295 ) Then
+		For $ICNTR = ( $IELEMENT + 1 ) To ( $IUPPER + 4294967295 )
+			For $X = 1 To $__LISTVIEWCONSTANT_SORTINFOSIZE + 4294967295
+				$AVNEWARRAY [ $ICNTR + 4294967295 ] [ $X ] = $AVARRAY [ $ICNTR ] [ $X ]
+			Next
+		Next
+	EndIf
+	$AVARRAY = $AVNEWARRAY
+	SetError ( 0 )
+	Return 1
+EndFunc
+Func _GUICTRLLISTVIEW_BEGINUPDATE ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $__LISTVIEWCONSTANT_WM_SETREDRAW , False ) = 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $__LISTVIEWCONSTANT_WM_SETREDRAW , False , 0 ) = 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_CANCELEDITLABEL ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		_SENDMESSAGE ( $HWND , $LVM_CANCELEDITLABEL )
+	Else
+		GUICtrlSendMsg ( $HWND , $LVM_CANCELEDITLABEL , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_CLICKITEM ( $HWND , $IINDEX , $SBUTTON = "left" , $BMOVE = False , $ICLICKS = 1 , $ISPEED = 1 )
+	_GUICTRLLISTVIEW_ENSUREVISIBLE ( $HWND , $IINDEX , False )
+	Local $TRECT = _GUICTRLLISTVIEW_GETITEMRECTEX ( $HWND , $IINDEX , $LVIR_LABEL )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TPOINT = _WINAPI_POINTFROMRECT ( $TRECT , True )
+	$TPOINT = _WINAPI_CLIENTTOSCREEN ( $HWND , $TPOINT )
+	Local $IX , $IY
+	_WINAPI_GETXYFROMPOINT ( $TPOINT , $IX , $IY )
+	Local $IXPLUS = DllStructGetData ( $TRECT , "Left" ) < 0 ? DllStructGetData ( $TRECT , "Left" ) * + 4294967295 : 0
+	Local $IMODE = Opt ( "MouseCoordMode" , 1 )
+	If Not $BMOVE Then
+		Local $APOS = MouseGetPos ( )
+		_WINAPI_SHOWCURSOR ( False )
+		MouseClick ( $SBUTTON , $IX + $IXPLUS , $IY , $ICLICKS , $ISPEED )
+		MouseMove ( $APOS [ 0 ] , $APOS [ 1 ] , 0 )
+		_WINAPI_SHOWCURSOR ( True )
+	Else
+		MouseClick ( $SBUTTON , $IX + $IXPLUS , $IY , $ICLICKS , $ISPEED )
+	EndIf
+	Opt ( "MouseCoordMode" , $IMODE )
+EndFunc
+Func _GUICTRLLISTVIEW_COPYITEMS ( $HWND_SOURCE , $HWND_DESTINATION , $BDELFLAG = False )
+	Local $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND_SOURCE ) Then
+		$IMSG = $LVM_GETITEMW
+	Else
+		$IMSG = $LVM_GETITEMA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	Local $A_INDICES , $IINDEX
+	Local $ICOLS = _GUICTRLLISTVIEW_GETCOLUMNCOUNT ( $HWND_SOURCE )
+	Local $IITEMS = _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND_SOURCE )
+	_GUICTRLLISTVIEW_BEGINUPDATE ( $HWND_SOURCE )
+	_GUICTRLLISTVIEW_BEGINUPDATE ( $HWND_DESTINATION )
+	If BitAND ( _GUICTRLLISTVIEW_GETEXTENDEDLISTVIEWSTYLE ( $HWND_SOURCE ) , $LVS_EX_CHECKBOXES ) == $LVS_EX_CHECKBOXES Then
+		For $I = 0 To $IITEMS + 4294967295
+			If ( _GUICTRLLISTVIEW_GETITEMCHECKED ( $HWND_SOURCE , $I ) ) Then
+				If IsArray ( $A_INDICES ) Then
+					ReDim $A_INDICES [ UBound ( $A_INDICES ) + 1 ]
+				Else
+					Local $A_INDICES [ 2 ]
+				EndIf
+				$A_INDICES [ 0 ] = $A_INDICES [ 0 ] + 1
+				$A_INDICES [ UBound ( $A_INDICES ) + 4294967295 ] = $I
+			EndIf
+		Next
+		If ( IsArray ( $A_INDICES ) ) Then
+			For $I = 1 To $A_INDICES [ 0 ]
+				DllStructSetData ( $TITEM , "Mask" , BitOR ( $LVIF_GROUPID , $LVIF_IMAGE , $LVIF_INDENT , $LVIF_PARAM , $LVIF_STATE ) )
+				DllStructSetData ( $TITEM , "Item" , $A_INDICES [ $I ] )
+				DllStructSetData ( $TITEM , "SubItem" , 0 )
+				DllStructSetData ( $TITEM , "StateMask" , + 4294967295 )
+				__GUICTRL_SENDMSG ( $HWND_SOURCE , $IMSG , 0 , $TITEM , 0 , True , + 4294967295 )
+				$IINDEX = _GUICTRLLISTVIEW_ADDITEM ( $HWND_DESTINATION , _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND_SOURCE , $A_INDICES [ $I ] , 0 ) , DllStructGetData ( $TITEM , "Image" ) )
+				_GUICTRLLISTVIEW_SETITEMCHECKED ( $HWND_DESTINATION , $IINDEX )
+				For $X = 1 To $ICOLS + 4294967295
+					DllStructSetData ( $TITEM , "Item" , $A_INDICES [ $I ] )
+					DllStructSetData ( $TITEM , "SubItem" , $X )
+					__GUICTRL_SENDMSG ( $HWND_SOURCE , $IMSG , 0 , $TITEM , 0 , True , + 4294967295 )
+					_GUICTRLLISTVIEW_ADDSUBITEM ( $HWND_DESTINATION , $IINDEX , _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND_SOURCE , $A_INDICES [ $I ] , $X ) , $X , DllStructGetData ( $TITEM , "Image" ) )
+				Next
+			Next
+			If $BDELFLAG Then
+				For $I = $A_INDICES [ 0 ] To 1 Step + 4294967295
+					_GUICTRLLISTVIEW_DELETEITEM ( $HWND_SOURCE , $A_INDICES [ $I ] )
+				Next
+			EndIf
+		EndIf
+	EndIf
+	If ( _GUICTRLLISTVIEW_GETSELECTEDCOUNT ( $HWND_SOURCE ) ) Then
+		$A_INDICES = _GUICTRLLISTVIEW_GETSELECTEDINDICES ( $HWND_SOURCE , 1 )
+		For $I = 1 To $A_INDICES [ 0 ]
+			DllStructSetData ( $TITEM , "Mask" , BitOR ( $LVIF_GROUPID , $LVIF_IMAGE , $LVIF_INDENT , $LVIF_PARAM , $LVIF_STATE ) )
+			DllStructSetData ( $TITEM , "Item" , $A_INDICES [ $I ] )
+			DllStructSetData ( $TITEM , "SubItem" , 0 )
+			DllStructSetData ( $TITEM , "StateMask" , + 4294967295 )
+			__GUICTRL_SENDMSG ( $HWND_SOURCE , $IMSG , 0 , $TITEM , 0 , True , + 4294967295 )
+			$IINDEX = _GUICTRLLISTVIEW_ADDITEM ( $HWND_DESTINATION , _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND_SOURCE , $A_INDICES [ $I ] , 0 ) , DllStructGetData ( $TITEM , "Image" ) )
+			For $X = 1 To $ICOLS + 4294967295
+				DllStructSetData ( $TITEM , "Item" , $A_INDICES [ $I ] )
+				DllStructSetData ( $TITEM , "SubItem" , $X )
+				__GUICTRL_SENDMSG ( $HWND_SOURCE , $IMSG , 0 , $TITEM , 0 , True , + 4294967295 )
+				_GUICTRLLISTVIEW_ADDSUBITEM ( $HWND_DESTINATION , $IINDEX , _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND_SOURCE , $A_INDICES [ $I ] , $X ) , $X , DllStructGetData ( $TITEM , "Image" ) )
+			Next
+		Next
+		_GUICTRLLISTVIEW_SETITEMSELECTED ( $HWND_SOURCE , + 4294967295 , False )
+		If $BDELFLAG Then
+			For $I = $A_INDICES [ 0 ] To 1 Step + 4294967295
+				_GUICTRLLISTVIEW_DELETEITEM ( $HWND_SOURCE , $A_INDICES [ $I ] )
+			Next
+		EndIf
+	EndIf
+	_GUICTRLLISTVIEW_ENDUPDATE ( $HWND_SOURCE )
+	_GUICTRLLISTVIEW_ENDUPDATE ( $HWND_DESTINATION )
+EndFunc
+Func _GUICTRLLISTVIEW_CREATE ( $HWND , $SHEADERTEXT , $IX , $IY , $IWIDTH = 150 , $IHEIGHT = 150 , $ISTYLE = 13 , $IEXSTYLE = 0 , $BCOINIT = False )
+	If Not IsHWnd ( $HWND ) Then Return SetError ( 1 , 0 , 0 )
+	If Not IsString ( $SHEADERTEXT ) Then Return SetError ( 2 , 0 , 0 )
+	If $IWIDTH = + 4294967295 Then $IWIDTH = 150
+	If $IHEIGHT = + 4294967295 Then $IHEIGHT = 150
+	If $ISTYLE = + 4294967295 Then $ISTYLE = $LVS_DEFAULT
+	If $IEXSTYLE = + 4294967295 Then $IEXSTYLE = 0
+	Local Const $S_OK = 0
+	Local Const $S_FALSE = 1
+	Local Const $RPC_E_CHANGED_MODE = 2147549446
+	Local Const $E_INVALIDARG = 2147942487
+	Local Const $E_OUTOFMEMORY = 2147942414
+	Local Const $E_UNEXPECTED = 2147549183
+	Local $SSEPARATORCHAR = Opt ( "GUIDataSeparatorChar" )
+	Local Const $COINIT_APARTMENTTHREADED = 2
+	Local $ISTR_LEN = StringLen ( $SHEADERTEXT )
+	If $ISTR_LEN Then $SHEADERTEXT = StringSplit ( $SHEADERTEXT , $SSEPARATORCHAR )
+	$ISTYLE = BitOR ( $__UDFGUICONSTANT_WS_CHILD , $__UDFGUICONSTANT_WS_VISIBLE , $ISTYLE )
+	If $BCOINIT Then
+		Local $ACALL = DllCall ( "ole32.dll" , "long" , "CoInitializeEx" , "ptr" , 0 , "dword" , $COINIT_APARTMENTTHREADED )
+		If @error Then Return SetError ( @error , @extended , 0 )
+		Switch $ACALL [ 0 ]
+		Case $S_OK
+		Case $S_FALSE
+		Case $RPC_E_CHANGED_MODE
+		Case $E_INVALIDARG
+		Case $E_OUTOFMEMORY
+		Case $E_UNEXPECTED
+		EndSwitch
+	EndIf
+	Local $NCTRLID = __UDF_GETNEXTGLOBALID ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $HLIST = _WINAPI_CREATEWINDOWEX ( $IEXSTYLE , $__LISTVIEWCONSTANT_CLASSNAME , "" , $ISTYLE , $IX , $IY , $IWIDTH , $IHEIGHT , $HWND , $NCTRLID )
+	_SENDMESSAGE ( $HLIST , $__LISTVIEWCONSTANT_WM_SETFONT , _WINAPI_GETSTOCKOBJECT ( $__LISTVIEWCONSTANT_DEFAULT_GUI_FONT ) , True )
+	If $ISTR_LEN Then
+		For $X = 1 To $SHEADERTEXT [ 0 ]
+			_GUICTRLLISTVIEW_INSERTCOLUMN ( $HLIST , $X + 4294967295 , $SHEADERTEXT [ $X ] , 75 )
+		Next
+	EndIf
+	Return $HLIST
+EndFunc
+Func _GUICTRLLISTVIEW_CREATEDRAGIMAGE ( $HWND , $IINDEX )
+	Local $ADRAG [ 3 ]
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	$ADRAG [ 0 ] = Ptr ( __GUICTRL_SENDMSG ( $HWND , $LVM_CREATEDRAGIMAGE , $IINDEX , $TPOINT , 0 , True , + 4294967295 ) )
+	$ADRAG [ 1 ] = DllStructGetData ( $TPOINT , "X" )
+	$ADRAG [ 2 ] = DllStructGetData ( $TPOINT , "Y" )
+	Return $ADRAG
+EndFunc
+Func _GUICTRLLISTVIEW_CREATESOLIDBITMAP ( $HWND , $ICOLOR , $IWIDTH , $IHEIGHT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _WINAPI_CREATESOLIDBITMAP ( $HWND , $ICOLOR , $IWIDTH , $IHEIGHT )
+EndFunc
+Func _GUICTRLLISTVIEW_DELETEALLITEMS ( $HWND )
+	If _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND ) = 0 Then Return True
+	Local $VCID = 0
+	If IsHWnd ( $HWND ) Then
+		$VCID = _WINAPI_GETDLGCTRLID ( $HWND )
+	Else
+		$VCID = $HWND
+		$HWND = GUICtrlGetHandle ( $HWND )
+	EndIf
+	If $VCID < $_UDF_STARTID Then
+		Local $IPARAM = 0
+		For $IINDEX = _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND ) + 4294967295 To 0 Step + 4294967295
+			$IPARAM = _GUICTRLLISTVIEW_GETITEMPARAM ( $HWND , $IINDEX )
+			If GUICtrlGetState ( $IPARAM ) > 0 And GUICtrlGetHandle ( $IPARAM ) = 0 Then
+				GUICtrlDelete ( $IPARAM )
+			EndIf
+		Next
+		If _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND ) = 0 Then Return True
+	EndIf
+	Return _SENDMESSAGE ( $HWND , $LVM_DELETEALLITEMS ) <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_DELETECOLUMN ( $HWND , $ICOL )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_DELETECOLUMN , $ICOL ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_DELETECOLUMN , $ICOL , 0 ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_DELETEITEM ( $HWND , $IINDEX )
+	Local $VCID = 0
+	If IsHWnd ( $HWND ) Then
+		$VCID = _WINAPI_GETDLGCTRLID ( $HWND )
+	Else
+		$VCID = $HWND
+		$HWND = GUICtrlGetHandle ( $HWND )
+	EndIf
+	If $VCID < $_UDF_STARTID Then
+		Local $IPARAM = _GUICTRLLISTVIEW_GETITEMPARAM ( $HWND , $IINDEX )
+		If GUICtrlGetState ( $IPARAM ) > 0 And GUICtrlGetHandle ( $IPARAM ) = 0 Then
+			If GUICtrlDelete ( $IPARAM ) Then
+				Return True
+			EndIf
+		EndIf
+	EndIf
+	Return _SENDMESSAGE ( $HWND , $LVM_DELETEITEM , $IINDEX ) <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_DELETEITEMSSELECTED ( $HWND )
+	Local $IITEMCOUNT = _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND )
+	If _GUICTRLLISTVIEW_GETSELECTEDCOUNT ( $HWND ) = $IITEMCOUNT Then
+		Return _GUICTRLLISTVIEW_DELETEALLITEMS ( $HWND )
+	Else
+		Local $ASELECTED = _GUICTRLLISTVIEW_GETSELECTEDINDICES ( $HWND , True )
+		If Not IsArray ( $ASELECTED ) Then Return SetError ( $LV_ERR , $LV_ERR , 0 )
+		_GUICTRLLISTVIEW_SETITEMSELECTED ( $HWND , + 4294967295 , False )
+		Local $VCID = 0 , $INATIVE_DELETE , $IUDF_DELETE
+		If IsHWnd ( $HWND ) Then
+			$VCID = _WINAPI_GETDLGCTRLID ( $HWND )
+		Else
+			$VCID = $HWND
+			$HWND = GUICtrlGetHandle ( $HWND )
+		EndIf
+		For $IINDEX = $ASELECTED [ 0 ] To 1 Step + 4294967295
+			If $VCID < $_UDF_STARTID Then
+				Local $IPARAM = _GUICTRLLISTVIEW_GETITEMPARAM ( $HWND , $ASELECTED [ $IINDEX ] )
+				If GUICtrlGetState ( $IPARAM ) > 0 And GUICtrlGetHandle ( $IPARAM ) = 0 Then
+					$INATIVE_DELETE = GUICtrlDelete ( $IPARAM )
+					If $INATIVE_DELETE Then ContinueLoop
+				EndIf
+			EndIf
+			$IUDF_DELETE = _SENDMESSAGE ( $HWND , $LVM_DELETEITEM , $ASELECTED [ $IINDEX ] )
+			If $INATIVE_DELETE + $IUDF_DELETE = 0 Then
+				ExitLoop
+			EndIf
+		Next
+		Return Not $IINDEX
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_DESTROY ( ByRef $HWND )
+	If Not _WINAPI_ISCLASSNAME ( $HWND , $__LISTVIEWCONSTANT_CLASSNAME ) Then Return SetError ( 2 , 2 , False )
+	Local $IDESTROYED = 0
+	If IsHWnd ( $HWND ) Then
+		If _WINAPI_INPROCESS ( $HWND , $__G_HGUICTRL_LASTWND ) Then
+			Local $NCTRLID = _WINAPI_GETDLGCTRLID ( $HWND )
+			Local $HPARENT = _WINAPI_GETPARENT ( $HWND )
+			$IDESTROYED = _WINAPI_DESTROYWINDOW ( $HWND )
+			Local $IRET = __UDF_FREEGLOBALID ( $HPARENT , $NCTRLID )
+			If Not $IRET Then
+			EndIf
+		Else
+			Return SetError ( 1 , 1 , False )
+		EndIf
+	Else
+		$IDESTROYED = GUICtrlDelete ( $HWND )
+	EndIf
+	If $IDESTROYED Then $HWND = 0
+	Return $IDESTROYED <> 0
+EndFunc
+Func __GUICTRLLISTVIEW_DRAW ( $HWND , $IINDEX , $HDC , $IX , $IY , $ISTYLE = 0 )
+	Local $IFLAGS = 0
+	If BitAND ( $ISTYLE , 1 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $__LISTVIEWCONSTANT_ILD_TRANSPARENT )
+	If BitAND ( $ISTYLE , 2 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $__LISTVIEWCONSTANT_ILD_BLEND25 )
+	If BitAND ( $ISTYLE , 4 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $__LISTVIEWCONSTANT_ILD_BLEND50 )
+	If BitAND ( $ISTYLE , 8 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $__LISTVIEWCONSTANT_ILD_MASK )
+	Local $ACALL = DllCall ( "comctl32.dll" , "bool" , "ImageList_Draw" , "handle" , $HWND , "int" , $IINDEX , "handle" , $HDC , "int" , $IX , "int" , $IY , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _GUICTRLLISTVIEW_DRAWDRAGIMAGE ( ByRef $HWND , ByRef $ADRAG )
+	Local $HDC = _WINAPI_GETWINDOWDC ( $HWND )
+	Local $TPOINT = _WINAPI_GETMOUSEPOS ( True , $HWND )
+	_WINAPI_INVALIDATERECT ( $HWND )
+	__GUICTRLLISTVIEW_DRAW ( $ADRAG [ 0 ] , 0 , $HDC , DllStructGetData ( $TPOINT , "X" ) , DllStructGetData ( $TPOINT , "Y" ) )
+	_WINAPI_RELEASEDC ( $HWND , $HDC )
+EndFunc
+Func _GUICTRLLISTVIEW_EDITLABEL ( $HWND , $IINDEX )
+	Local $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $LVM_EDITLABELW
+	Else
+		$IMSG = $LVM_EDITLABEL
+	EndIf
+	Local $ACALL
+	If IsHWnd ( $HWND ) Then
+		$ACALL = DllCall ( "user32.dll" , "hwnd" , "SetFocus" , "hwnd" , $HWND )
+		If @error Then Return SetError ( @error , @extended , 0 )
+		If $ACALL [ 0 ] = 0 Then Return 0
+		Return _SENDMESSAGE ( $HWND , $IMSG , $IINDEX , 0 , 0 , "wparam" , "lparam" , "hwnd" )
+	Else
+		$ACALL = DllCall ( "user32.dll" , "hwnd" , "SetFocus" , "hwnd" , GUICtrlGetHandle ( $HWND ) )
+		If @error Then Return SetError ( @error , @extended , 0 )
+		If $ACALL [ 0 ] = 0 Then Return 0
+		Return Ptr ( GUICtrlSendMsg ( $HWND , $IMSG , $IINDEX , 0 ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_ENABLEGROUPVIEW ( $HWND , $BENABLE = True )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_ENABLEGROUPVIEW , $BENABLE )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_ENABLEGROUPVIEW , $BENABLE , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_ENDUPDATE ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $__LISTVIEWCONSTANT_WM_SETREDRAW , True ) = 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $__LISTVIEWCONSTANT_WM_SETREDRAW , True , 0 ) = 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_ENSUREVISIBLE ( $HWND , $IINDEX , $BPARTIALOK = False )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_ENSUREVISIBLE , $IINDEX , $BPARTIALOK )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_ENSUREVISIBLE , $IINDEX , $BPARTIALOK )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_FINDINTEXT ( $HWND , $STEXT , $ISTART = + 4294967295 , $BWRAPOK = True , $BREVERSE = False )
+	Local $ICOUNT = _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND )
+	Local $ICOLUMNS = _GUICTRLLISTVIEW_GETCOLUMNCOUNT ( $HWND )
+	If $ICOLUMNS = 0 Then $ICOLUMNS = 1
+	If $BREVERSE And $ISTART = + 4294967295 Then Return + 4294967295
+	Local $SLIST
+	If $BREVERSE Then
+		For $II = $ISTART + 4294967295 To 0 Step + 4294967295
+			For $IJ = 0 To $ICOLUMNS + 4294967295
+				$SLIST = _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND , $II , $IJ )
+				If StringInStr ( $SLIST , $STEXT ) Then Return $II
+			Next
+		Next
+	Else
+		For $II = $ISTART + 1 To $ICOUNT + 4294967295
+			For $IJ = 0 To $ICOLUMNS + 4294967295
+				$SLIST = _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND , $II , $IJ )
+				If StringInStr ( $SLIST , $STEXT ) Then Return $II
+			Next
+		Next
+	EndIf
+	If ( ( $ISTART = + 4294967295 ) Or Not $BWRAPOK ) And Not $BREVERSE Then Return + 4294967295
+	If $BREVERSE And $BWRAPOK Then
+		For $II = $ICOUNT + 4294967295 To $ISTART + 1 Step + 4294967295
+			For $IJ = 0 To $ICOLUMNS + 4294967295
+				$SLIST = _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND , $II , $IJ )
+				If StringInStr ( $SLIST , $STEXT ) Then Return $II
+			Next
+		Next
+	Else
+		For $II = 0 To $ISTART + 4294967295
+			For $IJ = 0 To $ICOLUMNS + 4294967295
+				$SLIST = _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND , $II , $IJ )
+				If StringInStr ( $SLIST , $STEXT ) Then Return $II
+			Next
+		Next
+	EndIf
+	Return + 4294967295
+EndFunc
+Func _GUICTRLLISTVIEW_FINDITEM ( $HWND , $ISTART , ByRef $TFINDINFO , $STEXT = "" )
+	Local $IBUFFER = StringLen ( $STEXT ) + 1
+	Local $TBUFFER = DllStructCreate ( "char Text[" & $IBUFFER & "]" )
+	DllStructSetData ( $TBUFFER , 1 , $STEXT )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_FINDITEM , $ISTART , $TFINDINFO , $TBUFFER , False , 2 , False , + 4294967295 )
+	Return $IRET
+EndFunc
+Func _GUICTRLLISTVIEW_FINDNEAREST ( $HWND , $IX , $IY , $IDIR = 0 , $ISTART = + 4294967295 , $BWRAPOK = True )
+	Local $ADIR [ 8 ] = [ $__LISTVIEWCONSTANT_VK_LEFT , $__LISTVIEWCONSTANT_VK_RIGHT , $__LISTVIEWCONSTANT_VK_UP , $__LISTVIEWCONSTANT_VK_DOWN , $__LISTVIEWCONSTANT_VK_HOME , $__LISTVIEWCONSTANT_VK_END , $__LISTVIEWCONSTANT_VK_PRIOR , $__LISTVIEWCONSTANT_VK_NEXT ]
+	Local $TFINDINFO = DllStructCreate ( $TAGLVFINDINFO )
+	Local $IFLAGS = $LVFI_NEARESTXY
+	If $BWRAPOK Then $IFLAGS = BitOR ( $IFLAGS , $LVFI_WRAP )
+	DllStructSetData ( $TFINDINFO , "Flags" , $IFLAGS )
+	DllStructSetData ( $TFINDINFO , "X" , $IX )
+	DllStructSetData ( $TFINDINFO , "Y" , $IY )
+	DllStructSetData ( $TFINDINFO , "Direction" , $ADIR [ $IDIR ] )
+	Return _GUICTRLLISTVIEW_FINDITEM ( $HWND , $ISTART , $TFINDINFO )
+EndFunc
+Func _GUICTRLLISTVIEW_FINDPARAM ( $HWND , $IPARAM , $ISTART = + 4294967295 )
+	Local $TFINDINFO = DllStructCreate ( $TAGLVFINDINFO )
+	DllStructSetData ( $TFINDINFO , "Flags" , $LVFI_PARAM )
+	DllStructSetData ( $TFINDINFO , "Param" , $IPARAM )
+	Return _GUICTRLLISTVIEW_FINDITEM ( $HWND , $ISTART , $TFINDINFO )
+EndFunc
+Func _GUICTRLLISTVIEW_FINDTEXT ( $HWND , $STEXT , $ISTART = + 4294967295 , $BPARTIALOK = True , $BWRAPOK = True )
+	Local $TFINDINFO = DllStructCreate ( $TAGLVFINDINFO )
+	Local $IFLAGS = $LVFI_STRING
+	If $BPARTIALOK Then $IFLAGS = BitOR ( $IFLAGS , $LVFI_PARTIAL )
+	If $BWRAPOK Then $IFLAGS = BitOR ( $IFLAGS , $LVFI_WRAP )
+	DllStructSetData ( $TFINDINFO , "Flags" , $IFLAGS )
+	Return _GUICTRLLISTVIEW_FINDITEM ( $HWND , $ISTART , $TFINDINFO , $STEXT )
+EndFunc
+Func _GUICTRLLISTVIEW_GETBKCOLOR ( $HWND )
+	Local $I_COLOR
+	If IsHWnd ( $HWND ) Then
+		$I_COLOR = _SENDMESSAGE ( $HWND , $LVM_GETBKCOLOR )
+	Else
+		$I_COLOR = GUICtrlSendMsg ( $HWND , $LVM_GETBKCOLOR , 0 , 0 )
+	EndIf
+	Return __GUICTRLLISTVIEW_REVERSECOLORORDER ( $I_COLOR )
+EndFunc
+Func _GUICTRLLISTVIEW_GETBKIMAGE ( $HWND )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_GETBKIMAGEW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_GETBKIMAGEA
+	EndIf
+	Local $TIMAGE = DllStructCreate ( $TAGLVBKIMAGE )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TIMAGE , $TBUFFER , True , 3 , True )
+	Local $AIMAGE [ 4 ]
+	Switch BitAND ( DllStructGetData ( $TIMAGE , "Flags" ) , $LVBKIF_SOURCE_MASK )
+	Case $LVBKIF_SOURCE_HBITMAP
+		$AIMAGE [ 0 ] = 1
+	Case $LVBKIF_SOURCE_URL
+		$AIMAGE [ 0 ] = 2
+	EndSwitch
+	$AIMAGE [ 1 ] = DllStructGetData ( $TBUFFER , 1 )
+	$AIMAGE [ 2 ] = DllStructGetData ( $TIMAGE , "XOffPercent" )
+	$AIMAGE [ 3 ] = DllStructGetData ( $TIMAGE , "YOffPercent" )
+	Return SetError ( $IRET <> 0 , 0 , $AIMAGE )
+EndFunc
+Func _GUICTRLLISTVIEW_GETCALLBACKMASK ( $HWND )
+	Local $IFLAGS = 0
+	Local $IMASK = _SENDMESSAGE ( $HWND , $LVM_GETCALLBACKMASK )
+	If BitAND ( $IMASK , $LVIS_CUT ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 1 )
+	If BitAND ( $IMASK , $LVIS_DROPHILITED ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 2 )
+	If BitAND ( $IMASK , $LVIS_FOCUSED ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 4 )
+	If BitAND ( $IMASK , $LVIS_SELECTED ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 8 )
+	If BitAND ( $IMASK , $LVIS_OVERLAYMASK ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 16 )
+	If BitAND ( $IMASK , $LVIS_STATEIMAGEMASK ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , 32 )
+	Return $IFLAGS
+EndFunc
+Func _GUICTRLLISTVIEW_GETCOLUMN ( $HWND , $IINDEX )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_GETCOLUMNW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_GETCOLUMNA
+	EndIf
+	Local $TCOLUMN = DllStructCreate ( $TAGLVCOLUMN )
+	DllStructSetData ( $TCOLUMN , "Mask" , $LVCF_ALLDATA )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TCOLUMN , $TBUFFER , True , 4 , True )
+	Local $ACOLUMN [ 9 ]
+	Switch BitAND ( DllStructGetData ( $TCOLUMN , "Fmt" ) , $LVCFMT_JUSTIFYMASK )
+	Case $LVCFMT_RIGHT
+		$ACOLUMN [ 0 ] = 1
+	Case $LVCFMT_CENTER
+		$ACOLUMN [ 0 ] = 2
+Case Else
+		$ACOLUMN [ 0 ] = 0
+	EndSwitch
+	$ACOLUMN [ 1 ] = BitAND ( DllStructGetData ( $TCOLUMN , "Fmt" ) , $LVCFMT_IMAGE ) <> 0
+	$ACOLUMN [ 2 ] = BitAND ( DllStructGetData ( $TCOLUMN , "Fmt" ) , $LVCFMT_BITMAP_ON_RIGHT ) <> 0
+	$ACOLUMN [ 3 ] = BitAND ( DllStructGetData ( $TCOLUMN , "Fmt" ) , $LVCFMT_COL_HAS_IMAGES ) <> 0
+	$ACOLUMN [ 4 ] = DllStructGetData ( $TCOLUMN , "CX" )
+	$ACOLUMN [ 5 ] = DllStructGetData ( $TBUFFER , 1 )
+	$ACOLUMN [ 6 ] = DllStructGetData ( $TCOLUMN , "SubItem" )
+	$ACOLUMN [ 7 ] = DllStructGetData ( $TCOLUMN , "Image" )
+	$ACOLUMN [ 8 ] = DllStructGetData ( $TCOLUMN , "Order" )
+	Return SetError ( $IRET = 0 , 0 , $ACOLUMN )
+EndFunc
+Func _GUICTRLLISTVIEW_GETCOLUMNCOUNT ( $HWND )
+	Return _SENDMESSAGE ( _GUICTRLLISTVIEW_GETHEADER ( $HWND ) , 4608 )
+EndFunc
+Func _GUICTRLLISTVIEW_GETCOLUMNORDER ( $HWND )
+	Local $A_COLS = _GUICTRLLISTVIEW_GETCOLUMNORDERARRAY ( $HWND ) , $S_COLS = ""
+	Local $SSEPARATORCHAR = Opt ( "GUIDataSeparatorChar" )
+	For $I = 1 To $A_COLS [ 0 ]
+		$S_COLS &= $A_COLS [ $I ] & $SSEPARATORCHAR
+	Next
+	$S_COLS = StringTrimRight ( $S_COLS , 1 )
+	Return $S_COLS
+EndFunc
+Func _GUICTRLLISTVIEW_GETCOLUMNORDERARRAY ( $HWND )
+	Local $ICOLUMNS = _GUICTRLLISTVIEW_GETCOLUMNCOUNT ( $HWND )
+	Local $TCOLUMNS = DllStructCreate ( "int[" & $ICOLUMNS & "]" )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_GETCOLUMNORDERARRAY , $ICOLUMNS , $TCOLUMNS , 0 , True , + 4294967295 )
+	Local $ABUFFER [ $ICOLUMNS + 1 ]
+	$ABUFFER [ 0 ] = $ICOLUMNS
+	For $II = 1 To $ICOLUMNS
+		$ABUFFER [ $II ] = DllStructGetData ( $TCOLUMNS , 1 , $II )
+	Next
+	Return $ABUFFER
+EndFunc
+Func _GUICTRLLISTVIEW_GETCOLUMNWIDTH ( $HWND , $ICOL )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETCOLUMNWIDTH , $ICOL )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETCOLUMNWIDTH , $ICOL , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETCOUNTERPAGE ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETCOUNTPERPAGE )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETCOUNTPERPAGE , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETEDITCONTROL ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return HWnd ( _SENDMESSAGE ( $HWND , $LVM_GETEDITCONTROL ) )
+	Else
+		Return HWnd ( GUICtrlSendMsg ( $HWND , $LVM_GETEDITCONTROL , 0 , 0 ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETEMPTYTEXT ( $HWND )
+	Local $TTEXT = DllStructCreate ( "wchar[4096]" )
+	Local $ITEXT = DllStructGetSize ( $TTEXT )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_GETEMPTYTEXT , $ITEXT , $TTEXT , 0 , True , + 4294967295 )
+	Return $IRET ? DllStructGetData ( $TTEXT , 1 ) : ""
+EndFunc
+Func _GUICTRLLISTVIEW_GETEXTENDEDLISTVIEWSTYLE ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETEXTENDEDLISTVIEWSTYLE )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETEXTENDEDLISTVIEWSTYLE , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETFOCUSEDGROUP ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETFOCUSEDGROUP )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETFOCUSEDGROUP , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETGROUPCOUNT ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETGROUPCOUNT )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETGROUPCOUNT , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETGROUPINFO ( $HWND , $IGROUPID )
+	Local $TGROUP = __GUICTRLLISTVIEW_GETGROUPINFOEX ( $HWND , $IGROUPID , BitOR ( $LVGF_HEADER , $LVGF_ALIGN ) )
+	Local $IERR = @error
+	Local $AGROUP [ 2 ]
+	$AGROUP [ 0 ] = _WINAPI_GETSTRING ( DllStructGetData ( $TGROUP , "Header" ) )
+	Select
+	Case BitAND ( DllStructGetData ( $TGROUP , "Align" ) , $LVGA_HEADER_CENTER ) <> 0
+		$AGROUP [ 1 ] = 1
+	Case BitAND ( DllStructGetData ( $TGROUP , "Align" ) , $LVGA_HEADER_RIGHT ) <> 0
+		$AGROUP [ 1 ] = 2
+Case Else
+		$AGROUP [ 1 ] = 0
+	EndSelect
+	Return SetError ( $IERR , 0 , $AGROUP )
+EndFunc
+Func __GUICTRLLISTVIEW_GETGROUPINFOEX ( $HWND , $IGROUPID , $IMASK )
+	Local $TGROUP = DllStructCreate ( $TAGLVGROUP )
+	Local $IGROUP = DllStructGetSize ( $TGROUP )
+	DllStructSetData ( $TGROUP , "Size" , $IGROUP )
+	DllStructSetData ( $TGROUP , "Mask" , $IMASK )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_GETGROUPINFO , $IGROUPID , $TGROUP , 0 , True , + 4294967295 )
+	Return SetError ( $IRET <> $IGROUPID , 0 , $TGROUP )
+EndFunc
+Func _GUICTRLLISTVIEW_GETGROUPINFOBYINDEX ( $HWND , $IINDEX )
+	Local $TGROUP = DllStructCreate ( $TAGLVGROUP )
+	Local $IGROUP = DllStructGetSize ( $TGROUP )
+	DllStructSetData ( $TGROUP , "Size" , $IGROUP )
+	DllStructSetData ( $TGROUP , "Mask" , BitOR ( $LVGF_HEADER , $LVGF_ALIGN , $LVGF_GROUPID ) )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_GETGROUPINFOBYINDEX , $IINDEX , $TGROUP , 0 , True , + 4294967295 )
+	Local $AGROUP [ 3 ]
+	$AGROUP [ 0 ] = _WINAPI_GETSTRING ( DllStructGetData ( $TGROUP , "Header" ) )
+	Select
+	Case BitAND ( DllStructGetData ( $TGROUP , "Align" ) , $LVGA_HEADER_CENTER ) <> 0
+		$AGROUP [ 1 ] = 1
+	Case BitAND ( DllStructGetData ( $TGROUP , "Align" ) , $LVGA_HEADER_RIGHT ) <> 0
+		$AGROUP [ 1 ] = 2
+Case Else
+		$AGROUP [ 1 ] = 0
+	EndSelect
+	$AGROUP [ 2 ] = DllStructGetData ( $TGROUP , "GroupID" )
+	Return SetError ( $IRET = 0 , 0 , $AGROUP )
+EndFunc
+Func _GUICTRLLISTVIEW_GETGROUPRECT ( $HWND , $IGROUPID , $IGET = $LVGGR_GROUP )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , "Top" , $IGET )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_GETGROUPRECT , $IGROUPID , $TRECT , 0 , True , + 4294967295 )
+	Local $ARECT [ 4 ]
+	For $X = 0 To 3
+		$ARECT [ $X ] = DllStructGetData ( $TRECT , $X + 1 )
+	Next
+	Return SetError ( $IRET = 0 , 0 , $ARECT )
+EndFunc
+Func _GUICTRLLISTVIEW_GETGROUPSTATE ( $HWND , $IGROUPID , $IMASK )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETGROUPSTATE , $IGROUPID , $IMASK )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETGROUPSTATE , $IGROUPID , $IMASK )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETGROUPVIEWENABLED ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_ISGROUPVIEWENABLED ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_ISGROUPVIEWENABLED , 0 , 0 ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETHEADER ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return HWnd ( _SENDMESSAGE ( $HWND , $LVM_GETHEADER ) )
+	Else
+		Return HWnd ( GUICtrlSendMsg ( $HWND , $LVM_GETHEADER , 0 , 0 ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETHOTCURSOR ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETHOTCURSOR , 0 , 0 , 0 , "wparam" , "lparam" , "handle" )
+	Else
+		Return Ptr ( GUICtrlSendMsg ( $HWND , $LVM_GETHOTCURSOR , 0 , 0 ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETHOTITEM ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETHOTITEM )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETHOTITEM , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETHOVERTIME ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETHOVERTIME )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETHOVERTIME , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETIMAGELIST ( $HWND , $IIMAGELIST )
+	Local $AIMAGELIST [ 3 ] = [ $LVSIL_NORMAL , $LVSIL_SMALL , $LVSIL_STATE ]
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETIMAGELIST , $AIMAGELIST [ $IIMAGELIST ] , 0 , 0 , "wparam" , "lparam" , "handle" )
+	Else
+		Return Ptr ( GUICtrlSendMsg ( $HWND , $LVM_GETIMAGELIST , $AIMAGELIST [ $IIMAGELIST ] , 0 ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETINSERTMARK ( $HWND )
+	Local $TMARK = DllStructCreate ( $TAGLVINSERTMARK )
+	Local $IMARK = DllStructGetSize ( $TMARK )
+	DllStructSetData ( $TMARK , "Size" , $IMARK )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_GETINSERTMARK , 0 , $TMARK , 0 , True , + 4294967295 )
+	Local $AMARK [ 2 ]
+	$AMARK [ 0 ] = DllStructGetData ( $TMARK , "Flags" ) = $LVIM_AFTER
+	$AMARK [ 1 ] = DllStructGetData ( $TMARK , "Item" )
+	Return SetError ( $IRET = 0 , 0 , $AMARK )
+EndFunc
+Func _GUICTRLLISTVIEW_GETINSERTMARKCOLOR ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETINSERTMARKCOLOR , $LVSIL_STATE )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETINSERTMARKCOLOR , $LVSIL_STATE , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETINSERTMARKRECT ( $HWND )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ARECT [ 5 ]
+	$ARECT [ 0 ] = __GUICTRL_SENDMSG ( $HWND , $LVM_GETINSERTMARKRECT , 0 , $TRECT , 0 , True , + 4294967295 )
+	$ARECT [ 1 ] = DllStructGetData ( $TRECT , "Left" )
+	$ARECT [ 2 ] = DllStructGetData ( $TRECT , "Top" )
+	$ARECT [ 3 ] = DllStructGetData ( $TRECT , "Right" )
+	$ARECT [ 4 ] = DllStructGetData ( $TRECT , "Bottom" )
+	Return $ARECT
+EndFunc
+Func _GUICTRLLISTVIEW_GETISEARCHSTRING ( $HWND )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_GETISEARCHSTRINGW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_GETISEARCHSTRINGA
+	EndIf
+	Local $IBUFFER
+	If IsHWnd ( $HWND ) Then
+		$IBUFFER = _SENDMESSAGE ( $HWND , $IMSG ) + 1
+	Else
+		$IBUFFER = GUICtrlSendMsg ( $HWND , $IMSG , 0 , 0 ) + 1
+	EndIf
+	If $IBUFFER = 1 Then Return ""
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TBUFFER , 0 , True , + 4294967295 )
+	Return DllStructGetData ( $TBUFFER , 1 )
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEM ( $HWND , $IINDEX , $ISUBITEM = 0 )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , BitOR ( $LVIF_GROUPID , $LVIF_IMAGE , $LVIF_INDENT , $LVIF_PARAM , $LVIF_STATE ) )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , $ISUBITEM )
+	DllStructSetData ( $TITEM , "StateMask" , + 4294967295 )
+	_GUICTRLLISTVIEW_GETITEMEX ( $HWND , $TITEM )
+	Local $ISTATE = DllStructGetData ( $TITEM , "State" )
+	Local $AITEM [ 8 ]
+	If BitAND ( $ISTATE , $LVIS_CUT ) <> 0 Then $AITEM [ 0 ] = BitOR ( $AITEM [ 0 ] , 1 )
+	If BitAND ( $ISTATE , $LVIS_DROPHILITED ) <> 0 Then $AITEM [ 0 ] = BitOR ( $AITEM [ 0 ] , 2 )
+	If BitAND ( $ISTATE , $LVIS_FOCUSED ) <> 0 Then $AITEM [ 0 ] = BitOR ( $AITEM [ 0 ] , 4 )
+	If BitAND ( $ISTATE , $LVIS_SELECTED ) <> 0 Then $AITEM [ 0 ] = BitOR ( $AITEM [ 0 ] , 8 )
+	$AITEM [ 1 ] = __GUICTRLLISTVIEW_OVERLAYIMAGEMASKTOINDEX ( $ISTATE )
+	$AITEM [ 2 ] = __GUICTRLLISTVIEW_STATEIMAGEMASKTOINDEX ( $ISTATE )
+	$AITEM [ 3 ] = _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND , $IINDEX , $ISUBITEM )
+	$AITEM [ 4 ] = DllStructGetData ( $TITEM , "Image" )
+	$AITEM [ 5 ] = DllStructGetData ( $TITEM , "Param" )
+	$AITEM [ 6 ] = DllStructGetData ( $TITEM , "Indent" )
+	$AITEM [ 7 ] = DllStructGetData ( $TITEM , "GroupID" )
+	Return $AITEM
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMCHECKED ( $HWND , $IINDEX )
+	Local $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $LVM_GETITEMW
+	Else
+		$IMSG = $LVM_GETITEMA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_STATE )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	DllStructSetData ( $TITEM , "StateMask" , 65535 )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TITEM , 0 , True , + 4294967295 )
+	If Not $IRET Then Return SetError ( $LV_ERR , $LV_ERR , False )
+	Return BitAND ( DllStructGetData ( $TITEM , "State" ) , 8192 ) <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETITEMCOUNT )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETITEMCOUNT , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMCUT ( $HWND , $IINDEX )
+	Return _GUICTRLLISTVIEW_GETITEMSTATE ( $HWND , $IINDEX , $LVIS_CUT ) <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMDROPHILITED ( $HWND , $IINDEX )
+	Return _GUICTRLLISTVIEW_GETITEMSTATE ( $HWND , $IINDEX , $LVIS_DROPHILITED ) <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMEX ( $HWND , ByRef $TITEM )
+	Local $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $LVM_GETITEMW
+	Else
+		$IMSG = $LVM_GETITEMA
+	EndIf
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TITEM , 0 , True , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMFOCUSED ( $HWND , $IINDEX )
+	Return _GUICTRLLISTVIEW_GETITEMSTATE ( $HWND , $IINDEX , $LVIS_FOCUSED ) <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMGROUPID ( $HWND , $IINDEX )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_GROUPID )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	_GUICTRLLISTVIEW_GETITEMEX ( $HWND , $TITEM )
+	Return DllStructGetData ( $TITEM , "GroupID" )
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMIMAGE ( $HWND , $IINDEX , $ISUBITEM = 0 )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_IMAGE )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , $ISUBITEM )
+	_GUICTRLLISTVIEW_GETITEMEX ( $HWND , $TITEM )
+	Return DllStructGetData ( $TITEM , "Image" )
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMINDENT ( $HWND , $IINDEX )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_INDENT )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	_GUICTRLLISTVIEW_GETITEMEX ( $HWND , $TITEM )
+	Return DllStructGetData ( $TITEM , "Indent" )
+EndFunc
+Func __GUICTRLLISTVIEW_GETITEMOVERLAYIMAGE ( $HWND , $IINDEX )
+	Return BitShift ( _GUICTRLLISTVIEW_GETITEMSTATE ( $HWND , $IINDEX , $LVIS_OVERLAYMASK ) , 8 )
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMPARAM ( $HWND , $IINDEX )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_PARAM )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	_GUICTRLLISTVIEW_GETITEMEX ( $HWND , $TITEM )
+	Return DllStructGetData ( $TITEM , "Param" )
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMPOSITION ( $HWND , $IINDEX )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_GETITEMPOSITION , $IINDEX , $TPOINT , 0 , True , + 4294967295 )
+	Local $APOINT [ 2 ]
+	If Not $IRET Then Return $APOINT
+	$APOINT [ 0 ] = DllStructGetData ( $TPOINT , "X" )
+	$APOINT [ 1 ] = DllStructGetData ( $TPOINT , "Y" )
+	Return $APOINT
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMPOSITIONX ( $HWND , $IINDEX )
+	Local $APOINT = _GUICTRLLISTVIEW_GETITEMPOSITION ( $HWND , $IINDEX )
+	Return $APOINT [ 0 ]
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMPOSITIONY ( $HWND , $IINDEX )
+	Local $APOINT = _GUICTRLLISTVIEW_GETITEMPOSITION ( $HWND , $IINDEX )
+	Return $APOINT [ 1 ]
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMRECT ( $HWND , $IINDEX , $IPART = 3 )
+	Local $TRECT = _GUICTRLLISTVIEW_GETITEMRECTEX ( $HWND , $IINDEX , $IPART )
+	Local $ARECT [ 4 ]
+	$ARECT [ 0 ] = DllStructGetData ( $TRECT , "Left" )
+	$ARECT [ 1 ] = DllStructGetData ( $TRECT , "Top" )
+	$ARECT [ 2 ] = DllStructGetData ( $TRECT , "Right" )
+	$ARECT [ 3 ] = DllStructGetData ( $TRECT , "Bottom" )
+	Return $ARECT
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMRECTEX ( $HWND , $IINDEX , $IPART = 3 )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , "Left" , $IPART )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_GETITEMRECT , $IINDEX , $TRECT , 0 , True , + 4294967295 )
+	Return $TRECT
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMSELECTED ( $HWND , $IINDEX )
+	Return _GUICTRLLISTVIEW_GETITEMSTATE ( $HWND , $IINDEX , $LVIS_SELECTED ) <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMSPACING ( $HWND , $BSMALL = False )
+	Local $ISPACE
+	If IsHWnd ( $HWND ) Then
+		$ISPACE = _SENDMESSAGE ( $HWND , $LVM_GETITEMSPACING , $BSMALL )
+	Else
+		$ISPACE = GUICtrlSendMsg ( $HWND , $LVM_GETITEMSPACING , $BSMALL , 0 )
+	EndIf
+	Local $ASPACE [ 2 ]
+	$ASPACE [ 0 ] = BitAND ( $ISPACE , 65535 )
+	$ASPACE [ 1 ] = BitShift ( $ISPACE , 16 )
+	Return $ASPACE
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMSPACINGX ( $HWND , $BSMALL = False )
+	If IsHWnd ( $HWND ) Then
+		Return BitAND ( _SENDMESSAGE ( $HWND , $LVM_GETITEMSPACING , $BSMALL , 0 ) , 65535 )
+	Else
+		Return BitAND ( GUICtrlSendMsg ( $HWND , $LVM_GETITEMSPACING , $BSMALL , 0 ) , 65535 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMSPACINGY ( $HWND , $BSMALL = False )
+	If IsHWnd ( $HWND ) Then
+		Return BitShift ( _SENDMESSAGE ( $HWND , $LVM_GETITEMSPACING , $BSMALL , 0 ) , 16 )
+	Else
+		Return BitShift ( GUICtrlSendMsg ( $HWND , $LVM_GETITEMSPACING , $BSMALL , 0 ) , 16 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMSTATE ( $HWND , $IINDEX , $IMASK )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETITEMSTATE , $IINDEX , $IMASK )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETITEMSTATE , $IINDEX , $IMASK )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMSTATEIMAGE ( $HWND , $IINDEX )
+	Return BitShift ( _GUICTRLLISTVIEW_GETITEMSTATE ( $HWND , $IINDEX , $LVIS_STATEIMAGEMASK ) , 12 )
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND , $IINDEX , $ISUBITEM = 0 )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_GETITEMTEXTW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_GETITEMTEXTA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TBUFFER , 1 , "" )
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_TEXT )
+	DllStructSetData ( $TITEM , "SubItem" , $ISUBITEM )
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TITEM , $TBUFFER , False , 6 , True )
+	Return DllStructGetData ( $TBUFFER , 1 )
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMTEXTARRAY ( $HWND , $IITEM = + 4294967295 )
+	Local $SITEMS = _GUICTRLLISTVIEW_GETITEMTEXTSTRING ( $HWND , $IITEM )
+	If $SITEMS = "" Then
+		Local $AITEMS [ 1 ] = [ 0 ]
+		Return SetError ( $LV_ERR , $LV_ERR , $AITEMS )
+	EndIf
+	Return StringSplit ( $SITEMS , Opt ( "GUIDataSeparatorChar" ) )
+EndFunc
+Func _GUICTRLLISTVIEW_GETITEMTEXTSTRING ( $HWND , $IITEM = + 4294967295 )
+	Local $SROW = "" , $SSEPARATORCHAR = Opt ( "GUIDataSeparatorChar" ) , $ISELECTED
+	If $IITEM = + 4294967295 Then
+		$ISELECTED = _GUICTRLLISTVIEW_GETNEXTITEM ( $HWND )
+	Else
+		$ISELECTED = $IITEM
+	EndIf
+	If $ISELECTED < 0 Or $ISELECTED > _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND ) + 4294967295 Then Return SetError ( 1 , 0 , 0 )
+	For $X = 0 To _GUICTRLLISTVIEW_GETCOLUMNCOUNT ( $HWND ) + 4294967295
+		$SROW &= _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND , $ISELECTED , $X ) & $SSEPARATORCHAR
+	Next
+	Return StringTrimRight ( $SROW , 1 )
+EndFunc
+Func _GUICTRLLISTVIEW_GETNEXTITEM ( $HWND , $ISTART = + 4294967295 , $ISEARCH = 0 , $ISTATE = 8 )
+	Local $ASEARCH [ 5 ] = [ $LVNI_ALL , $LVNI_ABOVE , $LVNI_BELOW , $LVNI_TOLEFT , $LVNI_TORIGHT ]
+	Local $IFLAGS = $ASEARCH [ $ISEARCH ]
+	If BitAND ( $ISTATE , 1 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVNI_CUT )
+	If BitAND ( $ISTATE , 2 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVNI_DROPHILITED )
+	If BitAND ( $ISTATE , 4 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVNI_FOCUSED )
+	If BitAND ( $ISTATE , 8 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVNI_SELECTED )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETNEXTITEM , $ISTART , $IFLAGS )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETNEXTITEM , $ISTART , $IFLAGS )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETNUMBEROFWORKAREAS ( $HWND )
+	Local $TDATA = DllStructCreate ( "int Data" )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_GETNUMBEROFWORKAREAS , 0 , $TDATA , 0 , True , + 4294967295 )
+	Return DllStructGetData ( $TDATA , "Data" )
+EndFunc
+Func _GUICTRLLISTVIEW_GETORIGIN ( $HWND )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_GETORIGIN , 0 , $TPOINT , 0 , True , + 4294967295 )
+	Local $AORIGIN [ 2 ]
+	$AORIGIN [ 0 ] = DllStructGetData ( $TPOINT , "X" )
+	$AORIGIN [ 1 ] = DllStructGetData ( $TPOINT , "Y" )
+	Return SetError ( @error , $IRET = 1 , $AORIGIN )
+EndFunc
+Func _GUICTRLLISTVIEW_GETORIGINX ( $HWND )
+	Local $AORIGIN = _GUICTRLLISTVIEW_GETORIGIN ( $HWND )
+	Return $AORIGIN [ 0 ]
+EndFunc
+Func _GUICTRLLISTVIEW_GETORIGINY ( $HWND )
+	Local $AORIGIN = _GUICTRLLISTVIEW_GETORIGIN ( $HWND )
+	Return $AORIGIN [ 1 ]
+EndFunc
+Func _GUICTRLLISTVIEW_GETOUTLINECOLOR ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETOUTLINECOLOR )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETOUTLINECOLOR , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETSELECTEDCOLUMN ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETSELECTEDCOLUMN )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETSELECTEDCOLUMN , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETSELECTEDCOUNT ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETSELECTEDCOUNT )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETSELECTEDCOUNT , 0 , 0 )
+	EndIf
+EndFunc
+Func __GUICTRLLISTVIEW_GETCHECKEDINDICES ( $HWND )
+	Local $ICOUNT = _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND )
+	Local $ASELECTED [ $ICOUNT + 1 ] = [ 0 ]
+	For $I = 0 To $ICOUNT + 4294967295
+		If _GUICTRLLISTVIEW_GETITEMCHECKED ( $HWND , $I ) Then
+			$ASELECTED [ 0 ] += 1
+			$ASELECTED [ $ASELECTED [ 0 ] ] = $I
+		EndIf
+	Next
+	ReDim $ASELECTED [ $ASELECTED [ 0 ] + 1 ]
+	Return $ASELECTED
+EndFunc
+Func _GUICTRLLISTVIEW_GETSELECTEDINDICES ( $HWND , $BARRAY = False )
+	Local $SINDICES , $AINDICES [ 1 ] = [ 0 ]
+	Local $ISELECTEDCOUNT = _GUICTRLLISTVIEW_GETSELECTEDCOUNT ( $HWND )
+	If $ISELECTEDCOUNT Then
+		Local $ISELECTED , $ISTART = + 4294967295
+		For $I = 1 To $ISELECTEDCOUNT
+			If IsHWnd ( $HWND ) Then
+				$ISELECTED = _SENDMESSAGE ( $HWND , $LVM_GETNEXTITEM , $ISTART , $LVNI_SELECTED )
+			Else
+				$ISELECTED = GUICtrlSendMsg ( $HWND , $LVM_GETNEXTITEM , $ISTART , $LVNI_SELECTED )
+			EndIf
+			If ( Not $BARRAY ) Then
+				If StringLen ( $SINDICES ) Then
+					$SINDICES &= "|" & $ISELECTED
+				Else
+					$SINDICES = $ISELECTED
+				EndIf
+			Else
+				ReDim $AINDICES [ UBound ( $AINDICES ) + 1 ]
+				$AINDICES [ 0 ] = UBound ( $AINDICES ) + 4294967295
+				$AINDICES [ UBound ( $AINDICES ) + 4294967295 ] = $ISELECTED
+			EndIf
+			$ISTART = $ISELECTED
+		Next
+	EndIf
+	If ( Not $BARRAY ) Then
+		Return String ( $SINDICES )
+	Else
+		Return $AINDICES
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETSELECTIONMARK ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETSELECTIONMARK )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETSELECTIONMARK , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETSTRINGWIDTH ( $HWND , $SSTRING )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_GETSTRINGWIDTHW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_GETSTRINGWIDTHA
+	EndIf
+	DllStructSetData ( $TBUFFER , 1 , $SSTRING )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TBUFFER , 0 , True , + 4294967295 )
+	Return $IRET
+EndFunc
+Func _GUICTRLLISTVIEW_GETSUBITEMRECT ( $HWND , $IINDEX , $ISUBITEM , $IPART = 0 )
+	Local $APART [ 2 ] = [ $LVIR_BOUNDS , $LVIR_ICON ]
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , "Top" , $ISUBITEM )
+	DllStructSetData ( $TRECT , "Left" , $APART [ $IPART ] )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_GETSUBITEMRECT , $IINDEX , $TRECT , 0 , True , + 4294967295 )
+	Local $ARECT [ 4 ]
+	$ARECT [ 0 ] = DllStructGetData ( $TRECT , "Left" )
+	$ARECT [ 1 ] = DllStructGetData ( $TRECT , "Top" )
+	$ARECT [ 2 ] = DllStructGetData ( $TRECT , "Right" )
+	$ARECT [ 3 ] = DllStructGetData ( $TRECT , "Bottom" )
+	Return $ARECT
+EndFunc
+Func _GUICTRLLISTVIEW_GETTEXTBKCOLOR ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETTEXTBKCOLOR )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETTEXTBKCOLOR , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETTEXTCOLOR ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETTEXTCOLOR )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETTEXTCOLOR , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETTOOLTIPS ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return HWnd ( _SENDMESSAGE ( $HWND , $LVM_GETTOOLTIPS ) )
+	Else
+		Return HWnd ( GUICtrlSendMsg ( $HWND , $LVM_GETTOOLTIPS , 0 , 0 ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETTOPINDEX ( $HWND )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETTOPINDEX )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETTOPINDEX , 0 , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND )
+	If Not IsDllStruct ( $__G_TLISTVIEWBUFFER ) Then
+		$__G_TLISTVIEWBUFFER = DllStructCreate ( "wchar Text[4096]" )
+		$__G_TLISTVIEWBUFFERANSI = DllStructCreate ( "char Text[4096]" , DllStructGetPtr ( $__G_TLISTVIEWBUFFER ) )
+	EndIf
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_GETUNICODEFORMAT ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_GETUNICODEFORMAT , 0 , 0 ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_GETVIEW ( $HWND )
+	Local $IVIEW
+	If IsHWnd ( $HWND ) Then
+		$IVIEW = _SENDMESSAGE ( $HWND , $LVM_GETVIEW )
+	Else
+		$IVIEW = GUICtrlSendMsg ( $HWND , $LVM_GETVIEW , 0 , 0 )
+	EndIf
+	Switch $IVIEW
+	Case $LV_VIEW_ICON
+		Return Int ( $LV_VIEW_ICON )
+	Case $LV_VIEW_DETAILS
+		Return Int ( $LV_VIEW_DETAILS )
+	Case $LV_VIEW_LIST
+		Return Int ( $LV_VIEW_LIST )
+	Case $LV_VIEW_SMALLICON
+		Return Int ( $LV_VIEW_SMALLICON )
+	Case $LV_VIEW_TILE
+		Return Int ( $LV_VIEW_TILE )
+Case Else
+		Return + 4294967295
+	EndSwitch
+EndFunc
+Func _GUICTRLLISTVIEW_GETVIEWDETAILS ( $HWND )
+	Return _GUICTRLLISTVIEW_GETVIEW ( $HWND ) = $LV_VIEW_DETAILS
+EndFunc
+Func _GUICTRLLISTVIEW_GETVIEWLARGE ( $HWND )
+	Return _GUICTRLLISTVIEW_GETVIEW ( $HWND ) = $LV_VIEW_ICON
+EndFunc
+Func _GUICTRLLISTVIEW_GETVIEWLIST ( $HWND )
+	Return _GUICTRLLISTVIEW_GETVIEW ( $HWND ) = $LV_VIEW_LIST
+EndFunc
+Func _GUICTRLLISTVIEW_GETVIEWSMALL ( $HWND )
+	Return _GUICTRLLISTVIEW_GETVIEW ( $HWND ) = $LV_VIEW_SMALLICON
+EndFunc
+Func _GUICTRLLISTVIEW_GETVIEWTILE ( $HWND )
+	Return _GUICTRLLISTVIEW_GETVIEW ( $HWND ) = $LV_VIEW_TILE
+EndFunc
+Func _GUICTRLLISTVIEW_GETVIEWRECT ( $HWND )
+	Local $ARECT [ 4 ] = [ 0 , 0 , 0 , 0 ]
+	Local $IVIEW = _GUICTRLLISTVIEW_GETVIEW ( $HWND )
+	If ( $IVIEW < 0 ) And ( $IVIEW > 4 ) Then Return $ARECT
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_GETVIEWRECT , 0 , $TRECT , 0 , True , + 4294967295 )
+	$ARECT [ 0 ] = DllStructGetData ( $TRECT , "Left" )
+	$ARECT [ 1 ] = DllStructGetData ( $TRECT , "Top" )
+	$ARECT [ 2 ] = DllStructGetData ( $TRECT , "Right" )
+	$ARECT [ 3 ] = DllStructGetData ( $TRECT , "Bottom" )
+	Return $ARECT
+EndFunc
+Func _GUICTRLLISTVIEW_HIDECOLUMN ( $HWND , $ICOL )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETCOLUMNWIDTH , $ICOL ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETCOLUMNWIDTH , $ICOL , 0 ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_HITTEST ( $HWND , $IX = + 4294967295 , $IY = + 4294967295 )
+	Local $IMODE = Opt ( "MouseCoordMode" , 1 )
+	Local $APOS = MouseGetPos ( )
+	Opt ( "MouseCoordMode" , $IMODE )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	DllStructSetData ( $TPOINT , "X" , $APOS [ 0 ] )
+	DllStructSetData ( $TPOINT , "Y" , $APOS [ 1 ] )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ScreenToClient" , "hwnd" , $HWND , "struct*" , $TPOINT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] = 0 Then Return 0
+	If $IX = + 4294967295 Then $IX = DllStructGetData ( $TPOINT , "X" )
+	If $IY = + 4294967295 Then $IY = DllStructGetData ( $TPOINT , "Y" )
+	Local $TTEST = DllStructCreate ( $TAGLVHITTESTINFO )
+	DllStructSetData ( $TTEST , "X" , $IX )
+	DllStructSetData ( $TTEST , "Y" , $IY )
+	Local $ATEST [ 10 ]
+	$ATEST [ 0 ] = __GUICTRL_SENDMSG ( $HWND , $LVM_HITTEST , 0 , $TTEST , 0 , True , + 4294967295 )
+	Local $IFLAGS = DllStructGetData ( $TTEST , "Flags" )
+	$ATEST [ 1 ] = BitAND ( $IFLAGS , $LVHT_NOWHERE ) <> 0
+	$ATEST [ 2 ] = BitAND ( $IFLAGS , $LVHT_ONITEMICON ) <> 0
+	$ATEST [ 3 ] = BitAND ( $IFLAGS , $LVHT_ONITEMLABEL ) <> 0
+	$ATEST [ 4 ] = BitAND ( $IFLAGS , $LVHT_ONITEMSTATEICON ) <> 0
+	$ATEST [ 5 ] = BitAND ( $IFLAGS , $LVHT_ONITEM ) <> 0
+	$ATEST [ 6 ] = BitAND ( $IFLAGS , $LVHT_ABOVE ) <> 0
+	$ATEST [ 7 ] = BitAND ( $IFLAGS , $LVHT_BELOW ) <> 0
+	$ATEST [ 8 ] = BitAND ( $IFLAGS , $LVHT_TOLEFT ) <> 0
+	$ATEST [ 9 ] = BitAND ( $IFLAGS , $LVHT_TORIGHT ) <> 0
+	Return $ATEST
+EndFunc
+Func __GUICTRLLISTVIEW_INDEXTOOVERLAYIMAGEMASK ( $IINDEX )
+	Return BitShift ( $IINDEX , + 4294967288 )
+EndFunc
+Func __GUICTRLLISTVIEW_INDEXTOSTATEIMAGEMASK ( $IINDEX )
+	Return BitShift ( $IINDEX , + 4294967284 )
+EndFunc
+Func _GUICTRLLISTVIEW_INSERTCOLUMN ( $HWND , $IINDEX , $STEXT , $IWIDTH = 50 , $IALIGN = + 4294967295 , $IIMAGE = + 4294967295 , $BONRIGHT = False )
+	Local $AALIGN [ 3 ] = [ $LVCFMT_LEFT , $LVCFMT_RIGHT , $LVCFMT_CENTER ]
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_INSERTCOLUMNW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_INSERTCOLUMNA
+	EndIf
+	Local $TCOLUMN = DllStructCreate ( $TAGLVCOLUMN )
+	Local $IMASK = BitOR ( $LVCF_FMT , $LVCF_WIDTH , $LVCF_TEXT )
+	If $IALIGN < 0 Or $IALIGN > 2 Then $IALIGN = 0
+	Local $IFMT = $AALIGN [ $IALIGN ]
+	If $IIMAGE <> + 4294967295 Then
+		$IMASK = BitOR ( $IMASK , $LVCF_IMAGE )
+		$IFMT = BitOR ( $IFMT , $LVCFMT_COL_HAS_IMAGES , $LVCFMT_IMAGE )
+	EndIf
+	If $BONRIGHT Then $IFMT = BitOR ( $IFMT , $LVCFMT_BITMAP_ON_RIGHT )
+	DllStructSetData ( $TBUFFER , 1 , $STEXT )
+	DllStructSetData ( $TCOLUMN , "Mask" , $IMASK )
+	DllStructSetData ( $TCOLUMN , "Fmt" , $IFMT )
+	DllStructSetData ( $TCOLUMN , "CX" , $IWIDTH )
+	DllStructSetData ( $TCOLUMN , "Image" , $IIMAGE )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TCOLUMN , $TBUFFER , False , 4 )
+	If $IALIGN > 0 Then _GUICTRLLISTVIEW_SETCOLUMN ( $HWND , $IRET , $STEXT , $IWIDTH , $IALIGN , $IIMAGE , $BONRIGHT )
+	Return $IRET
+EndFunc
+Func _GUICTRLLISTVIEW_INSERTGROUP ( $HWND , $IINDEX , $IGROUPID , $SHEADER , $IALIGN = 0 )
+	Local $AALIGN [ 3 ] = [ $LVGA_HEADER_LEFT , $LVGA_HEADER_CENTER , $LVGA_HEADER_RIGHT ]
+	If $IALIGN < 0 Or $IALIGN > 2 Then $IALIGN = 0
+	Local $THEADER = _WINAPI_MULTIBYTETOWIDECHAR ( $SHEADER )
+	Local $TGROUP = DllStructCreate ( $TAGLVGROUP )
+	Local $IMASK = BitOR ( $LVGF_HEADER , $LVGF_ALIGN , $LVGF_GROUPID )
+	DllStructSetData ( $TGROUP , "Size" , DllStructGetSize ( $TGROUP ) )
+	DllStructSetData ( $TGROUP , "Mask" , $IMASK )
+	DllStructSetData ( $TGROUP , "GroupID" , $IGROUPID )
+	DllStructSetData ( $TGROUP , "Align" , $AALIGN [ $IALIGN ] )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_INSERTGROUP , $IINDEX , $TGROUP , $THEADER , False , 3 )
+	Return $IRET
+EndFunc
+Func _GUICTRLLISTVIEW_INSERTITEM ( $HWND , $STEXT , $IINDEX = + 4294967295 , $IIMAGE = + 4294967295 , $IPARAM = 0 )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_INSERTITEMW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_INSERTITEMA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	If $IINDEX = + 4294967295 Then $IINDEX = 999999999
+	DllStructSetData ( $TBUFFER , 1 , $STEXT )
+	Local $IMASK = BitOR ( $LVIF_TEXT , $LVIF_PARAM )
+	If $IIMAGE >= 0 Then $IMASK = BitOR ( $IMASK , $LVIF_IMAGE )
+	DllStructSetData ( $TITEM , "Mask" , $IMASK )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	DllStructSetData ( $TITEM , "Image" , $IIMAGE )
+	DllStructSetData ( $TITEM , "Param" , $IPARAM )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TITEM , $TBUFFER , False , 6 )
+	Return $IRET
+EndFunc
+Func _GUICTRLLISTVIEW_INSERTMARKHITTEST ( $HWND , $IX = + 4294967295 , $IY = + 4294967295 )
+	Local $IMODE = Opt ( "MouseCoordMode" , 1 )
+	Local $APOS = MouseGetPos ( )
+	Opt ( "MouseCoordMode" , $IMODE )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	DllStructSetData ( $TPOINT , "X" , $APOS [ 0 ] )
+	DllStructSetData ( $TPOINT , "Y" , $APOS [ 1 ] )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ScreenToClient" , "hwnd" , $HWND , "struct*" , $TPOINT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] = 0 Then Return 0
+	If $IX = + 4294967295 Then $IX = DllStructGetData ( $TPOINT , "X" )
+	If $IY = + 4294967295 Then $IY = DllStructGetData ( $TPOINT , "Y" )
+	Local $TMARK = DllStructCreate ( $TAGLVINSERTMARK )
+	DllStructSetData ( $TPOINT , "X" , $IX )
+	DllStructSetData ( $TPOINT , "Y" , $IY )
+	DllStructSetData ( $TMARK , "Size" , DllStructGetSize ( $TMARK ) )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_INSERTMARKHITTEST , DllStructGetPtr ( $TPOINT ) , $TMARK , $TPOINT , True , + 4294967295 , False , 0 )
+	Local $ATEST [ 2 ]
+	$ATEST [ 0 ] = DllStructGetData ( $TMARK , "Flags" ) = $LVIM_AFTER
+	$ATEST [ 1 ] = DllStructGetData ( $TMARK , "Item" )
+	Return $ATEST
+EndFunc
+Func _GUICTRLLISTVIEW_ISITEMVISIBLE ( $HWND , $IINDEX )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_ISITEMVISIBLE , $IINDEX ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_ISITEMVISIBLE , $IINDEX , 0 ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_JUSTIFYCOLUMN ( $HWND , $IINDEX , $IALIGN = + 4294967295 )
+	Local $AALIGN [ 3 ] = [ $LVCFMT_LEFT , $LVCFMT_RIGHT , $LVCFMT_CENTER ]
+	Local $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $LVM_SETCOLUMNW
+	Else
+		$IMSG = $LVM_SETCOLUMNA
+	EndIf
+	Local $TCOLUMN = DllStructCreate ( $TAGLVCOLUMN )
+	If $IALIGN < 0 Or $IALIGN > 2 Then $IALIGN = 0
+	Local $IMASK = $LVCF_FMT
+	Local $IFMT = $AALIGN [ $IALIGN ]
+	DllStructSetData ( $TCOLUMN , "Mask" , $IMASK )
+	DllStructSetData ( $TCOLUMN , "Fmt" , $IFMT )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TCOLUMN , 0 , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_MAPIDTOINDEX ( $HWND , $IID )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_MAPIDTOINDEX , $IID )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_MAPIDTOINDEX , $IID , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_MAPINDEXTOID ( $HWND , $IINDEX )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_MAPINDEXTOID , $IINDEX )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_MAPINDEXTOID , $IINDEX , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_MOVEGROUP ( $HWND , $IGROUPID , $IINDEX = + 4294967295 )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_MOVEGROUP , $IGROUPID , $IINDEX )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_MOVEGROUP , $IGROUPID , $IINDEX )
+	EndIf
+EndFunc
+Func __GUICTRLLISTVIEW_OVERLAYIMAGEMASKTOINDEX ( $IMASK )
+	Return BitShift ( BitAND ( $LVIS_OVERLAYMASK , $IMASK ) , 8 )
+EndFunc
+Func _GUICTRLLISTVIEW_REDRAWITEMS ( $HWND , $IFIRST , $ILAST )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_REDRAWITEMS , $IFIRST , $ILAST ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_REDRAWITEMS , $IFIRST , $ILAST ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_REGISTERSORTCALLBACK ( $HWND , $VCOMPARETYPE = 1 , $BARROWS = True , $SPRIVATECALLBACK = "__GUICtrlListView_Sort" )
+	#Au3Stripper_Ignore_Funcs=$sPrivateCallBack
+	If IsBool ( $VCOMPARETYPE ) Then $VCOMPARETYPE = ( $VCOMPARETYPE ) ? 1 : 0
+	Local $HHEADER = _GUICTRLLISTVIEW_GETHEADER ( $HWND )
+	ReDim $__G_ALISTVIEWSORTINFO [ UBound ( $__G_ALISTVIEWSORTINFO ) + 1 ] [ $__LISTVIEWCONSTANT_SORTINFOSIZE ]
+	$__G_ALISTVIEWSORTINFO [ 0 ] [ 0 ] = UBound ( $__G_ALISTVIEWSORTINFO ) + 4294967295
+	Local $IINDEX = $__G_ALISTVIEWSORTINFO [ 0 ] [ 0 ]
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 0 ] = _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 1 ] = $HWND
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 2 ] = DllCallbackRegister ( $SPRIVATECALLBACK , "int" , "int;int;hwnd" )
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 3 ] = + 4294967295
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 4 ] = + 4294967295
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 5 ] = 1
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 6 ] = + 4294967295
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 7 ] = 0
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 8 ] = $VCOMPARETYPE
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 9 ] = $BARROWS
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 10 ] = $HHEADER
+	Return $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 2 ] <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_REMOVEALLGROUPS ( $HWND )
+	_GUICTRLLISTVIEW_BEGINUPDATE ( $HWND )
+	Local $IGROUPID
+	For $X = _GUICTRLLISTVIEW_GETGROUPCOUNT ( $HWND ) + 4294967295 To 0 Step + 4294967295
+		$IGROUPID = _GUICTRLLISTVIEW_GETGROUPINFOBYINDEX ( $HWND , $X ) [ 2 ]
+		_GUICTRLLISTVIEW_REMOVEGROUP ( $HWND , $IGROUPID )
+	Next
+	_GUICTRLLISTVIEW_ENDUPDATE ( $HWND )
+EndFunc
+Func _GUICTRLLISTVIEW_REMOVEGROUP ( $HWND , $IGROUPID )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_REMOVEGROUP , $IGROUPID )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_REMOVEGROUP , $IGROUPID , 0 )
+	EndIf
+EndFunc
+Func __GUICTRLLISTVIEW_REVERSECOLORORDER ( $ICOLOR )
+	Local $SH = Hex ( String ( $ICOLOR ) , 6 )
+	Return "0x" & StringMid ( $SH , 5 , 2 ) & StringMid ( $SH , 3 , 2 ) & StringMid ( $SH , 1 , 2 )
+EndFunc
+Func _GUICTRLLISTVIEW_SCROLL ( $HWND , $IDX , $IDY )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SCROLL , $IDX , $IDY ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SCROLL , $IDX , $IDY ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETBKCOLOR ( $HWND , $ICOLOR )
+	Local $IRET
+	If IsHWnd ( $HWND ) Then
+		$IRET = _SENDMESSAGE ( $HWND , $LVM_SETBKCOLOR , 0 , $ICOLOR )
+	Else
+		$IRET = GUICtrlSendMsg ( $HWND , $LVM_SETBKCOLOR , 0 , $ICOLOR )
+	EndIf
+	_WINAPI_INVALIDATERECT ( $HWND )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETBKHBITMAP ( $HWND , $HBITMAP , $ISTYLE = 0 , $IXOFFSET = 0 , $IYOFFSET = 0 , $BDELETEBITMAP = False )
+	Local $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $LVM_SETBKIMAGEW
+	Else
+		$IMSG = $LVM_SETBKIMAGEA
+	EndIf
+	Local $IFLAGS = BitOR ( $LVBKIF_STYLE_TILE , $LVBKIF_FLAG_TILEOFFSET )
+	If $IXOFFSET = Default Then $IXOFFSET = 0
+	If $IYOFFSET = Default Then $IYOFFSET = 0
+	If IsPtr ( $HBITMAP ) Then
+		If ( Not $ISTYLE ) Or ( $ISTYLE = Default ) Then
+			$IFLAGS = $LVBKIF_STYLE_NORMAL
+		Else
+			$IXOFFSET *= + 4294967295
+			$IYOFFSET *= + 4294967295
+		EndIf
+		$IFLAGS = BitOR ( $IFLAGS , $LVBKIF_SOURCE_HBITMAP )
+	Else
+		$IFLAGS = $LVBKIF_SOURCE_NONE
+	EndIf
+	Local $TLVBKIMAGE = DllStructCreate ( $TAGLVBKIMAGE )
+	Local $PLVBKIMAGE = DllStructGetPtr ( $TLVBKIMAGE )
+	DllStructSetData ( $TLVBKIMAGE , "Flags" , $IFLAGS )
+	DllStructSetData ( $TLVBKIMAGE , "hBmp" , $HBITMAP )
+	DllStructSetData ( $TLVBKIMAGE , "XOffPercent" , $IXOFFSET )
+	DllStructSetData ( $TLVBKIMAGE , "YOffPercent" , $IYOFFSET )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $PLVBKIMAGE )
+	If $BDELETEBITMAP And $IRET Then DllCall ( "gdi32.dll" , "bool" , "DeleteObject" , "handle" , $HBITMAP )
+	If $IFLAGS = $LVBKIF_SOURCE_NONE Then Return True
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETBKIMAGE ( $HWND , $SURL = "" , $ISTYLE = 0 , $IXOFFSET = 0 , $IYOFFSET = 0 )
+	Local $ASTYLE [ 2 ] = [ $LVBKIF_STYLE_NORMAL , $LVBKIF_STYLE_TILE ]
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_SETBKIMAGEW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_SETBKIMAGEA
+	EndIf
+	Local $TIMAGE = DllStructCreate ( $TAGLVBKIMAGE )
+	Local $IFLAGS = 0
+	If $SURL <> "" Then $IFLAGS = $LVBKIF_SOURCE_URL
+	$IFLAGS = BitOR ( $IFLAGS , $ASTYLE [ $ISTYLE ] )
+	DllStructSetData ( $TBUFFER , 1 , $SURL )
+	DllStructSetData ( $TIMAGE , "Flags" , $IFLAGS )
+	DllStructSetData ( $TIMAGE , "XOffPercent" , $IXOFFSET )
+	DllStructSetData ( $TIMAGE , "YOffPercent" , $IYOFFSET )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TIMAGE , $TBUFFER , False , 3 , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETCALLBACKMASK ( $HWND , $IMASK )
+	Local $IFLAGS = 0
+	If BitAND ( $IMASK , 1 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVIS_CUT )
+	If BitAND ( $IMASK , 2 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVIS_DROPHILITED )
+	If BitAND ( $IMASK , 4 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVIS_FOCUSED )
+	If BitAND ( $IMASK , 8 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVIS_SELECTED )
+	If BitAND ( $IMASK , 16 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVIS_OVERLAYMASK )
+	If BitAND ( $IMASK , 32 ) <> 0 Then $IFLAGS = BitOR ( $IFLAGS , $LVIS_STATEIMAGEMASK )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETCALLBACKMASK , $IFLAGS ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETCALLBACKMASK , $IFLAGS , 0 ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETCOLUMN ( $HWND , $IINDEX , $STEXT , $IWIDTH = + 4294967295 , $IALIGN = + 4294967295 , $IIMAGE = + 4294967295 , $BONRIGHT = False )
+	Local $AALIGN [ 3 ] = [ $LVCFMT_LEFT , $LVCFMT_RIGHT , $LVCFMT_CENTER ]
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_SETCOLUMNW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_SETCOLUMNA
+	EndIf
+	Local $TCOLUMN = DllStructCreate ( $TAGLVCOLUMN )
+	Local $IMASK = $LVCF_TEXT
+	If $IALIGN < 0 Or $IALIGN > 2 Then $IALIGN = 0
+	$IMASK = BitOR ( $IMASK , $LVCF_FMT )
+	Local $IFMT = $AALIGN [ $IALIGN ]
+	If $IWIDTH <> + 4294967295 Then $IMASK = BitOR ( $IMASK , $LVCF_WIDTH )
+	If $IIMAGE <> + 4294967295 Then
+		$IMASK = BitOR ( $IMASK , $LVCF_IMAGE )
+		$IFMT = BitOR ( $IFMT , $LVCFMT_COL_HAS_IMAGES , $LVCFMT_IMAGE )
+	Else
+		$IIMAGE = 0
+	EndIf
+	If $BONRIGHT Then $IFMT = BitOR ( $IFMT , $LVCFMT_BITMAP_ON_RIGHT )
+	DllStructSetData ( $TBUFFER , 1 , $STEXT )
+	DllStructSetData ( $TCOLUMN , "Mask" , $IMASK )
+	DllStructSetData ( $TCOLUMN , "Fmt" , $IFMT )
+	DllStructSetData ( $TCOLUMN , "CX" , $IWIDTH )
+	DllStructSetData ( $TCOLUMN , "Image" , $IIMAGE )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , $IINDEX , $TCOLUMN , $TBUFFER , False , 4 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETCOLUMNORDER ( $HWND , $SORDER )
+	Local $SSEPARATORCHAR = Opt ( "GUIDataSeparatorChar" )
+	Return _GUICTRLLISTVIEW_SETCOLUMNORDERARRAY ( $HWND , StringSplit ( $SORDER , $SSEPARATORCHAR ) )
+EndFunc
+Func _GUICTRLLISTVIEW_SETCOLUMNORDERARRAY ( $HWND , $AORDER )
+	Local $TORDERS = DllStructCreate ( "int[" & $AORDER [ 0 ] & "]" )
+	For $II = 1 To $AORDER [ 0 ]
+		DllStructSetData ( $TORDERS , 1 , $AORDER [ $II ] , $II )
+	Next
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_SETCOLUMNORDERARRAY , $AORDER [ 0 ] , $TORDERS , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETCOLUMNWIDTH ( $HWND , $ICOL , $IWIDTH )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETCOLUMNWIDTH , $ICOL , $IWIDTH )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETCOLUMNWIDTH , $ICOL , $IWIDTH )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETEXTENDEDLISTVIEWSTYLE ( $HWND , $IEXSTYLE , $IEXMASK = 0 )
+	Local $IRET
+	If IsHWnd ( $HWND ) Then
+		$IRET = _SENDMESSAGE ( $HWND , $LVM_SETEXTENDEDLISTVIEWSTYLE , $IEXMASK , $IEXSTYLE )
+	Else
+		$IRET = GUICtrlSendMsg ( $HWND , $LVM_SETEXTENDEDLISTVIEWSTYLE , $IEXMASK , $IEXSTYLE )
+	EndIf
+	_WINAPI_INVALIDATERECT ( $HWND )
+	Return $IRET
+EndFunc
+Func _GUICTRLLISTVIEW_SETGROUPINFO ( $HWND , $IGROUPID , $SHEADER , $IALIGN = 0 , $ISTATE = $LVGS_NORMAL )
+	Local $TGROUP = 0
+	If BitAND ( $ISTATE , $LVGS_SELECTED ) Then
+		$TGROUP = __GUICTRLLISTVIEW_GETGROUPINFOEX ( $HWND , $IGROUPID , BitOR ( $LVGF_GROUPID , $LVGF_ITEMS ) )
+		If @error Or DllStructGetData ( $TGROUP , "cItems" ) = 0 Then Return False
+	EndIf
+	Local $AALIGN [ 3 ] = [ $LVGA_HEADER_LEFT , $LVGA_HEADER_CENTER , $LVGA_HEADER_RIGHT ]
+	If $IALIGN < 0 Or $IALIGN > 2 Then $IALIGN = 0
+	Local $THEADER = _WINAPI_MULTIBYTETOWIDECHAR ( $SHEADER )
+	$TGROUP = DllStructCreate ( $TAGLVGROUP )
+	Local $IMASK = BitOR ( $LVGF_HEADER , $LVGF_ALIGN , $LVGF_STATE )
+	DllStructSetData ( $TGROUP , "Size" , DllStructGetSize ( $TGROUP ) )
+	DllStructSetData ( $TGROUP , "Mask" , $IMASK )
+	DllStructSetData ( $TGROUP , "Align" , $AALIGN [ $IALIGN ] )
+	DllStructSetData ( $TGROUP , "State" , $ISTATE )
+	DllStructSetData ( $TGROUP , "StateMask" , $ISTATE )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_SETGROUPINFO , $IGROUPID , $TGROUP , $THEADER , False , 3 )
+	DllStructSetData ( $TGROUP , "Mask" , $LVGF_GROUPID )
+	DllStructSetData ( $TGROUP , "GroupID" , $IGROUPID )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_SETGROUPINFO , 0 , $TGROUP , 0 , False , + 4294967295 )
+	_WINAPI_INVALIDATERECT ( $HWND )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETHOTCURSOR ( $HWND , $HCURSOR )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETHOTCURSOR , 0 , $HCURSOR , 0 , "wparam" , "handle" , "handle" )
+	Else
+		Return Ptr ( GUICtrlSendMsg ( $HWND , $LVM_SETHOTCURSOR , 0 , $HCURSOR ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETHOTITEM ( $HWND , $IINDEX )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETHOTITEM , $IINDEX )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETHOTITEM , $IINDEX , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETHOVERTIME ( $HWND , $ITIME )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETHOVERTIME , 0 , $ITIME )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETHOVERTIME , 0 , $ITIME )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETICONSPACING ( $HWND , $ICX , $ICY )
+	Local $IRET , $APADDING [ 2 ]
+	If IsHWnd ( $HWND ) Then
+		$IRET = _SENDMESSAGE ( $HWND , $LVM_SETICONSPACING , 0 , _WINAPI_MAKELONG ( $ICX , $ICY ) )
+	Else
+		$IRET = GUICtrlSendMsg ( $HWND , $LVM_SETICONSPACING , 0 , _WINAPI_MAKELONG ( $ICX , $ICY ) )
+	EndIf
+	_WINAPI_INVALIDATERECT ( $HWND )
+	$APADDING [ 0 ] = BitAND ( $IRET , 65535 )
+	$APADDING [ 1 ] = BitShift ( $IRET , 16 )
+	Return $APADDING
+EndFunc
+Func _GUICTRLLISTVIEW_SETIMAGELIST ( $HWND , $HHANDLE , $ITYPE = 0 )
+	$ITYPE = Int ( $ITYPE )
+	If $ITYPE < 0 Or $ITYPE > 2 Then
+		$ITYPE = 0
+	EndIf
+	Local $ATYPE [ 3 ] = [ $LVSIL_NORMAL , $LVSIL_SMALL , $LVSIL_STATE ]
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETIMAGELIST , $ATYPE [ $ITYPE ] , $HHANDLE , 0 , "wparam" , "handle" , "handle" )
+	Else
+		Return Ptr ( GUICtrlSendMsg ( $HWND , $LVM_SETIMAGELIST , $ATYPE [ $ITYPE ] , $HHANDLE ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETINFOTIP ( $HWND , $IINDEX , $STEXT , $ISUBITEM = 0 )
+	Local $TBUFFER = _WINAPI_MULTIBYTETOWIDECHAR ( $STEXT )
+	Local $TINFO = DllStructCreate ( $TAGLVSETINFOTIP )
+	DllStructSetData ( $TINFO , "Size" , DllStructGetSize ( $TINFO ) )
+	DllStructSetData ( $TINFO , "Item" , $IINDEX )
+	DllStructSetData ( $TINFO , "SubItem" , $ISUBITEM )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_SETINFOTIP , 0 , $TINFO , $TBUFFER , False , 3 , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETINSERTMARK ( $HWND , $IINDEX , $BAFTER = False )
+	Local $TMARK = DllStructCreate ( $TAGLVINSERTMARK )
+	DllStructSetData ( $TMARK , "Size" , DllStructGetSize ( $TMARK ) )
+	If $BAFTER Then DllStructSetData ( $TMARK , "Flags" , $LVIM_AFTER )
+	DllStructSetData ( $TMARK , "Item" , $IINDEX )
+	DllStructSetData ( $TMARK , "Reserved" , 0 )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_SETINSERTMARK , 0 , $TMARK , 0 , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETINSERTMARKCOLOR ( $HWND , $ICOLOR )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETINSERTMARKCOLOR , 0 , $ICOLOR )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETINSERTMARKCOLOR , 0 , $ICOLOR )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEM ( $HWND , $STEXT , $IINDEX = 0 , $ISUBITEM = 0 , $IIMAGE = + 4294967295 , $IPARAM = + 4294967295 , $IINDENT = + 4294967295 )
+	Local $PBUFFER , $IBUFFER
+	If $STEXT <> + 4294967295 Then
+		Local $TBUFFER
+		If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+			$TBUFFER = $__G_TLISTVIEWBUFFER
+		Else
+			$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		EndIf
+		$PBUFFER = DllStructGetPtr ( $TBUFFER )
+		$IBUFFER = DllStructGetSize ( $TBUFFER )
+		DllStructSetData ( $TBUFFER , "Text" , $STEXT )
+	Else
+		$PBUFFER = + 4294967295
+		$IBUFFER = 0
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	Local $IMASK = $LVIF_TEXT
+	If $IIMAGE <> + 4294967295 Then $IMASK = BitOR ( $IMASK , $LVIF_IMAGE )
+	If $IPARAM <> + 4294967295 Then $IMASK = BitOR ( $IMASK , $LVIF_PARAM )
+	If $IINDENT <> + 4294967295 Then $IMASK = BitOR ( $IMASK , $LVIF_INDENT )
+	DllStructSetData ( $TITEM , "Mask" , $IMASK )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , $ISUBITEM )
+	DllStructSetData ( $TITEM , "Text" , $PBUFFER )
+	DllStructSetData ( $TITEM , "TextMax" , $IBUFFER )
+	DllStructSetData ( $TITEM , "Image" , $IIMAGE )
+	DllStructSetData ( $TITEM , "Param" , $IPARAM )
+	DllStructSetData ( $TITEM , "Indent" , $IINDENT )
+	Return _GUICTRLLISTVIEW_SETITEMEX ( $HWND , $TITEM )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMCHECKED ( $HWND , $IINDEX , $BCHECK = True )
+	Local $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$IMSG = $LVM_SETITEMW
+	Else
+		$IMSG = $LVM_SETITEMA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	If ( $BCHECK ) Then
+		DllStructSetData ( $TITEM , "State" , 8192 )
+	Else
+		DllStructSetData ( $TITEM , "State" , 4096 )
+	EndIf
+	DllStructSetData ( $TITEM , "StateMask" , 61440 )
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_STATE )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	Local $IINDEXMAX = $IINDEX
+	If $IINDEX = + 4294967295 Then
+		$IINDEX = 0
+		$IINDEXMAX = _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND ) + 4294967295
+	EndIf
+	Local $IRET
+	For $X = $IINDEX To $IINDEXMAX
+		DllStructSetData ( $TITEM , "Item" , $X )
+		$IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TITEM , 0 , False , + 4294967295 )
+		If $IRET = 0 Then ExitLoop
+	Next
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMCOUNT ( $HWND , $IITEMS )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETITEMCOUNT , $IITEMS , BitOR ( $LVSICF_NOINVALIDATEALL , $LVSICF_NOSCROLL ) ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETITEMCOUNT , $IITEMS , BitOR ( $LVSICF_NOINVALIDATEALL , $LVSICF_NOSCROLL ) ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMCUT ( $HWND , $IINDEX , $BENABLED = True )
+	Local $ISTATE = 0
+	If $BENABLED Then $ISTATE = $LVIS_CUT
+	Return _GUICTRLLISTVIEW_SETITEMSTATE ( $HWND , $IINDEX , $ISTATE , $LVIS_CUT )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMDROPHILITED ( $HWND , $IINDEX , $BENABLED = True )
+	Local $ISTATE = 0
+	If $BENABLED Then $ISTATE = $LVIS_DROPHILITED
+	Return _GUICTRLLISTVIEW_SETITEMSTATE ( $HWND , $IINDEX , $ISTATE , $LVIS_DROPHILITED )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMEX ( $HWND , ByRef $TITEM , $INESTED = 0 )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_SETITEMW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_SETITEMA
+	EndIf
+	Local $IBUFFER = 0
+	If $INESTED Then
+		$TBUFFER = 0
+		DllStructSetData ( $TITEM , "Text" , 0 )
+	Else
+		If DllStructGetData ( $TITEM , "Text" ) <> + 4294967295 Then
+			$IBUFFER = DllStructGetSize ( $TBUFFER )
+		Else
+		EndIf
+	EndIf
+	DllStructSetData ( $TITEM , "TextMax" , $IBUFFER )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TITEM , $TBUFFER , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMFOCUSED ( $HWND , $IINDEX , $BENABLED = True )
+	Local $ISTATE = 0
+	If $BENABLED Then $ISTATE = $LVIS_FOCUSED
+	Return _GUICTRLLISTVIEW_SETITEMSTATE ( $HWND , $IINDEX , $ISTATE , $LVIS_FOCUSED )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMGROUPID ( $HWND , $IINDEX , $IGROUPID )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_GROUPID )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	DllStructSetData ( $TITEM , "GroupID" , $IGROUPID )
+	Return _GUICTRLLISTVIEW_SETITEMEX ( $HWND , $TITEM , 1 )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMIMAGE ( $HWND , $IINDEX , $IIMAGE , $ISUBITEM = 0 )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_IMAGE )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , $ISUBITEM )
+	DllStructSetData ( $TITEM , "Image" , $IIMAGE )
+	Return _GUICTRLLISTVIEW_SETITEMEX ( $HWND , $TITEM , 1 )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMINDENT ( $HWND , $IINDEX , $IINDENT )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_INDENT )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	DllStructSetData ( $TITEM , "Indent" , $IINDENT )
+	Local $IRET = _GUICTRLLISTVIEW_SETITEMEX ( $HWND , $TITEM , 1 )
+	_WINAPI_INVALIDATERECT ( $HWND )
+	Return $IRET
+EndFunc
+Func __GUICTRLLISTVIEW_SETITEMOVERLAYIMAGE ( $HWND , $IINDEX , $IIMAGE )
+	Return _GUICTRLLISTVIEW_SETITEMSTATE ( $HWND , $IINDEX , __GUICTRLLISTVIEW_INDEXTOOVERLAYIMAGEMASK ( $IIMAGE ) , $LVIS_OVERLAYMASK )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMPARAM ( $HWND , $IINDEX , $IPARAM )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_PARAM )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	DllStructSetData ( $TITEM , "Param" , $IPARAM )
+	Return _GUICTRLLISTVIEW_SETITEMEX ( $HWND , $TITEM , 1 )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMPOSITION ( $HWND , $IINDEX , $ICX , $ICY )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETITEMPOSITION , $IINDEX , _WINAPI_MAKELONG ( $ICX , $ICY ) ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETITEMPOSITION , $IINDEX , _WINAPI_MAKELONG ( $ICX , $ICY ) ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMPOSITION32 ( $HWND , $IINDEX , $ICX , $ICY )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	DllStructSetData ( $TPOINT , "X" , $ICX )
+	DllStructSetData ( $TPOINT , "Y" , $ICY )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_SETITEMPOSITION32 , $IINDEX , $TPOINT , 0 , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMSELECTED ( $HWND , $IINDEX , $BSELECTED = True , $BFOCUSED = False )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	Local $ISELECTED = 0 , $IFOCUSED = 0
+	If ( $BSELECTED = True ) Then $ISELECTED = $LVIS_SELECTED
+	If ( $BFOCUSED = True And $IINDEX <> + 4294967295 ) Then $IFOCUSED = $LVIS_FOCUSED
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_STATE )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	DllStructSetData ( $TITEM , "State" , BitOR ( $ISELECTED , $IFOCUSED ) )
+	DllStructSetData ( $TITEM , "StateMask" , BitOR ( $LVIS_SELECTED , $IFOCUSED ) )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $LVM_SETITEMSTATE , $IINDEX , $TITEM , 0 , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMSTATE ( $HWND , $IINDEX , $ISTATE , $ISTATEMASK )
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_STATE )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , 0 )
+	DllStructSetData ( $TITEM , "State" , $ISTATE )
+	DllStructSetData ( $TITEM , "StateMask" , $ISTATEMASK )
+	Return _GUICTRLLISTVIEW_SETITEMEX ( $HWND , $TITEM , 1 ) <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMSTATEIMAGE ( $HWND , $IINDEX , $IIMAGE )
+	Return _GUICTRLLISTVIEW_SETITEMSTATE ( $HWND , $IINDEX , BitShift ( $IIMAGE , + 4294967284 ) , $LVIS_STATEIMAGEMASK )
+EndFunc
+Func _GUICTRLLISTVIEW_SETITEMTEXT ( $HWND , $IINDEX , $STEXT , $ISUBITEM = 0 )
+	Local $IRET
+	If $ISUBITEM = + 4294967295 Then
+		Local $SSEPARATORCHAR = Opt ( "GUIDataSeparatorChar" )
+		Local $I_COLS = _GUICTRLLISTVIEW_GETCOLUMNCOUNT ( $HWND )
+		Local $A_TEXT = StringSplit ( $STEXT , $SSEPARATORCHAR )
+		If $I_COLS > $A_TEXT [ 0 ] Then $I_COLS = $A_TEXT [ 0 ]
+		For $I = 1 To $I_COLS
+			$IRET = _GUICTRLLISTVIEW_SETITEMTEXT ( $HWND , $IINDEX , $A_TEXT [ $I ] , $I + 4294967295 )
+			If Not $IRET Then ExitLoop
+		Next
+		Return $IRET
+	EndIf
+	Local $TBUFFER , $IMSG
+	If _GUICTRLLISTVIEW_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_SETITEMW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_SETITEMA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	DllStructSetData ( $TBUFFER , 1 , $STEXT )
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_TEXT )
+	DllStructSetData ( $TITEM , "Item" , $IINDEX )
+	DllStructSetData ( $TITEM , "SubItem" , $ISUBITEM )
+	$IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , 0 , $TITEM , $TBUFFER , False , 6 , False , + 4294967295 )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETOUTLINECOLOR ( $HWND , $ICOLOR )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETOUTLINECOLOR , 0 , $ICOLOR )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETOUTLINECOLOR , 0 , $ICOLOR )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETSELECTEDCOLUMN ( $HWND , $ICOL )
+	If IsHWnd ( $HWND ) Then
+		_SENDMESSAGE ( $HWND , $LVM_SETSELECTEDCOLUMN , $ICOL )
+	Else
+		GUICtrlSendMsg ( $HWND , $LVM_SETSELECTEDCOLUMN , $ICOL , 0 )
+	EndIf
+	_WINAPI_INVALIDATERECT ( $HWND )
+EndFunc
+Func _GUICTRLLISTVIEW_SETSELECTIONMARK ( $HWND , $IINDEX )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETSELECTIONMARK , 0 , $IINDEX )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETSELECTIONMARK , 0 , $IINDEX )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETTEXTBKCOLOR ( $HWND , $ICOLOR )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETTEXTBKCOLOR , 0 , $ICOLOR ) <> 0
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETTEXTBKCOLOR , 0 , $ICOLOR ) <> 0
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETTEXTCOLOR ( $HWND , $ICOLOR )
+	Local $IRET
+	If IsHWnd ( $HWND ) Then
+		$IRET = _SENDMESSAGE ( $HWND , $LVM_SETTEXTCOLOR , 0 , $ICOLOR )
+	Else
+		$IRET = GUICtrlSendMsg ( $HWND , $LVM_SETTEXTCOLOR , 0 , $ICOLOR )
+	EndIf
+	_WINAPI_INVALIDATERECT ( $HWND )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLLISTVIEW_SETTOOLTIPS ( $HWND , $HTOOLTIP )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETTOOLTIPS , 0 , $HTOOLTIP , 0 , "wparam" , "hwnd" , "hwnd" )
+	Else
+		Return HWnd ( GUICtrlSendMsg ( $HWND , $LVM_SETTOOLTIPS , 0 , $HTOOLTIP ) )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETUNICODEFORMAT ( $HWND , $BUNICODE )
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETUNICODEFORMAT , $BUNICODE )
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETUNICODEFORMAT , $BUNICODE , 0 )
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETVIEW ( $HWND , $IVIEW )
+	Local $AVIEW [ 5 ] = [ $LV_VIEW_ICON , $LV_VIEW_DETAILS , $LV_VIEW_LIST , $LV_VIEW_SMALLICON , $LV_VIEW_TILE ]
+	If ( $IVIEW < 0 ) Or ( $IVIEW > 4 ) Then Return False
+	If IsHWnd ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $LVM_SETVIEW , $AVIEW [ $IVIEW ] ) <> + 4294967295
+	Else
+		Return GUICtrlSendMsg ( $HWND , $LVM_SETVIEW , $AVIEW [ $IVIEW ] , 0 ) <> + 4294967295
+	EndIf
+EndFunc
+Func _GUICTRLLISTVIEW_SETWORKAREAS ( $HWND , $ILEFT , $ITOP , $IRIGHT , $IBOTTOM )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , "Left" , $ILEFT )
+	DllStructSetData ( $TRECT , "Top" , $ITOP )
+	DllStructSetData ( $TRECT , "Right" , $IRIGHT )
+	DllStructSetData ( $TRECT , "Bottom" , $IBOTTOM )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_SETWORKAREAS , 1 , $TRECT , 0 , False , + 4294967295 )
+EndFunc
+Func _GUICTRLLISTVIEW_SIMPLESORT ( $HWND , ByRef $VSORTSENSE , $ICOL , $BTOGGLESENSE = True )
+	Local $IITEMCOUNT = _GUICTRLLISTVIEW_GETITEMCOUNT ( $HWND )
+	If $IITEMCOUNT Then
+		Local $IDESCENDING = 0
+		If UBound ( $VSORTSENSE ) Then
+			$IDESCENDING = $VSORTSENSE [ $ICOL ]
+		Else
+			$IDESCENDING = $VSORTSENSE
+		EndIf
+		Local $VSEPARATORCHAR = Opt ( "GUIDataSeparatorChar" )
+		Local $ICOLUMNCOUNT = _GUICTRLLISTVIEW_GETCOLUMNCOUNT ( $HWND )
+		Local Enum $IINDEXVALUE = $ICOLUMNCOUNT , $IITEMPARAM
+		Local $ALISTVIEWITEMS [ $IITEMCOUNT ] [ $ICOLUMNCOUNT + 2 ]
+		Local $SSELECTEDITEMS = _GUICTRLLISTVIEW_GETSELECTEDINDICES ( $HWND )
+		Local $ASELECTEDITEMS [ 1 ] = [ 0 ]
+		If Not $SSELECTEDITEMS = "" Then $ASELECTEDITEMS = StringSplit ( $SSELECTEDITEMS , $VSEPARATORCHAR )
+		Local $ACHECKEDITEMS = __GUICTRLLISTVIEW_GETCHECKEDINDICES ( $HWND )
+		Local $SITEMTEXT , $IFOCUSED = + 4294967295
+		For $I = 0 To $IITEMCOUNT + 4294967295
+			If $IFOCUSED = + 4294967295 Then
+				If _GUICTRLLISTVIEW_GETITEMFOCUSED ( $HWND , $I ) Then $IFOCUSED = $I
+			EndIf
+			_GUICTRLLISTVIEW_SETITEMSELECTED ( $HWND , $I , False )
+			_GUICTRLLISTVIEW_SETITEMCHECKED ( $HWND , $I , False )
+			For $J = 0 To $ICOLUMNCOUNT + 4294967295
+				$SITEMTEXT = StringStripWS ( _GUICTRLLISTVIEW_GETITEMTEXT ( $HWND , $I , $J ) , $STR_STRIPTRAILING )
+				If ( StringIsFloat ( $SITEMTEXT ) Or StringIsInt ( $SITEMTEXT ) ) Then
+					$ALISTVIEWITEMS [ $I ] [ $J ] = Number ( $SITEMTEXT )
+				Else
+					$ALISTVIEWITEMS [ $I ] [ $J ] = $SITEMTEXT
+				EndIf
+			Next
+			$ALISTVIEWITEMS [ $I ] [ $IINDEXVALUE ] = $I
+			$ALISTVIEWITEMS [ $I ] [ $IITEMPARAM ] = _GUICTRLLISTVIEW_GETITEMPARAM ( $HWND , $I )
+		Next
+		_ARRAYSORT ( $ALISTVIEWITEMS , $IDESCENDING , 0 , 0 , $ICOL )
+		For $I = 0 To $IITEMCOUNT + 4294967295
+			For $J = 0 To $ICOLUMNCOUNT + 4294967295
+				_GUICTRLLISTVIEW_SETITEMTEXT ( $HWND , $I , $ALISTVIEWITEMS [ $I ] [ $J ] , $J )
+			Next
+			_GUICTRLLISTVIEW_SETITEMPARAM ( $HWND , $I , $ALISTVIEWITEMS [ $I ] [ $IITEMPARAM ] )
+			For $J = 1 To $ASELECTEDITEMS [ 0 ]
+				If $ALISTVIEWITEMS [ $I ] [ $IINDEXVALUE ] = $ASELECTEDITEMS [ $J ] Then
+					If $ALISTVIEWITEMS [ $I ] [ $IINDEXVALUE ] = $IFOCUSED Then
+						_GUICTRLLISTVIEW_SETITEMSELECTED ( $HWND , $I , True , True )
+					Else
+						_GUICTRLLISTVIEW_SETITEMSELECTED ( $HWND , $I , True )
+					EndIf
+					ExitLoop
+				EndIf
+			Next
+			For $J = 1 To $ACHECKEDITEMS [ 0 ]
+				If $ALISTVIEWITEMS [ $I ] [ $IINDEXVALUE ] = $ACHECKEDITEMS [ $J ] Then
+					_GUICTRLLISTVIEW_SETITEMCHECKED ( $HWND , $I , True )
+					ExitLoop
+				EndIf
+			Next
+		Next
+		If $BTOGGLESENSE Then
+			If UBound ( $VSORTSENSE ) Then
+				$VSORTSENSE [ $ICOL ] = Not $IDESCENDING
+			Else
+				$VSORTSENSE = Not $IDESCENDING
+			EndIf
+		EndIf
+	EndIf
+EndFunc
+#Au3Stripper_Ignore_Funcs=__GUICtrlListView_Sort
+Func __GUICTRLLISTVIEW_SORT ( $NITEM1 , $NITEM2 , $HWND )
+	Local $IINDEX , $SVAL1 , $SVAL2 , $NRESULT
+	Local $TBUFFER , $IMSG
+	If $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 0 ] Then
+		$TBUFFER = $__G_TLISTVIEWBUFFER
+		$IMSG = $LVM_GETITEMTEXTW
+	Else
+		$TBUFFER = $__G_TLISTVIEWBUFFERANSI
+		$IMSG = $LVM_GETITEMTEXTA
+	EndIf
+	Local $TITEM = $__G_TLISTVIEWITEM
+	For $X = 1 To $__G_ALISTVIEWSORTINFO [ 0 ] [ 0 ]
+		If $HWND = $__G_ALISTVIEWSORTINFO [ $X ] [ 1 ] Then
+			$IINDEX = $X
+			ExitLoop
+		EndIf
+	Next
+	If $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 3 ] = $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 4 ] Then
+		If Not $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 7 ] Then
+			$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 5 ] *= + 4294967295
+			$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 7 ] = 1
+		EndIf
+	Else
+		$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 7 ] = 1
+	EndIf
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 6 ] = $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 3 ]
+	DllStructSetData ( $TITEM , "Mask" , $LVIF_TEXT )
+	DllStructSetData ( $TITEM , "SubItem" , $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 3 ] )
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , $NITEM1 , $TITEM , $TBUFFER , False , 6 , True )
+	$SVAL1 = DllStructGetData ( $TBUFFER , 1 )
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , $NITEM2 , $TITEM , $TBUFFER , False , 6 , True )
+	$SVAL2 = DllStructGetData ( $TBUFFER , 1 )
+	If $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 8 ] = 1 Then
+		If ( StringIsFloat ( $SVAL1 ) Or StringIsInt ( $SVAL1 ) ) Then $SVAL1 = Number ( $SVAL1 )
+		If ( StringIsFloat ( $SVAL2 ) Or StringIsInt ( $SVAL2 ) ) Then $SVAL2 = Number ( $SVAL2 )
+	EndIf
+	If $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 8 ] < 2 Then
+		$NRESULT = 0
+		If $SVAL1 < $SVAL2 Then
+			$NRESULT = + 4294967295
+		ElseIf $SVAL1 > $SVAL2 Then
+			$NRESULT = 1
+		EndIf
+	Else
+		$NRESULT = DllCall ( "shlwapi.dll" , "int" , "StrCmpLogicalW" , "wstr" , $SVAL1 , "wstr" , $SVAL2 ) [ 0 ]
+	EndIf
+	$NRESULT = $NRESULT * $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 5 ]
+	Return $NRESULT
+EndFunc
+Func _GUICTRLLISTVIEW_SORTITEMS ( $HWND , $ICOL )
+	Local $IRET , $IINDEX , $PFUNCTION , $HHEADER , $IFORMAT
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	For $X = 1 To $__G_ALISTVIEWSORTINFO [ 0 ] [ 0 ]
+		If $HWND = $__G_ALISTVIEWSORTINFO [ $X ] [ 1 ] Then
+			$IINDEX = $X
+			ExitLoop
+		EndIf
+	Next
+	$PFUNCTION = DllCallbackGetPtr ( $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 2 ] )
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 3 ] = $ICOL
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 7 ] = 0
+	$__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 4 ] = $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 6 ]
+	$IRET = _SENDMESSAGE ( $HWND , $LVM_SORTITEMSEX , $HWND , $PFUNCTION , 0 , "hwnd" , "ptr" )
+	If $IRET <> 0 Then
+		If $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 9 ] Then
+			$HHEADER = $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 10 ]
+			For $X = 0 To _GUICTRLHEADER_GETITEMCOUNT ( $HHEADER ) + 4294967295
+				$IFORMAT = _GUICTRLHEADER_GETITEMFORMAT ( $HHEADER , $X )
+				If BitAND ( $IFORMAT , $HDF_SORTDOWN ) Then
+					_GUICTRLHEADER_SETITEMFORMAT ( $HHEADER , $X , BitXOR ( $IFORMAT , $HDF_SORTDOWN ) )
+				ElseIf BitAND ( $IFORMAT , $HDF_SORTUP ) Then
+					_GUICTRLHEADER_SETITEMFORMAT ( $HHEADER , $X , BitXOR ( $IFORMAT , $HDF_SORTUP ) )
+				EndIf
+			Next
+			$IFORMAT = _GUICTRLHEADER_GETITEMFORMAT ( $HHEADER , $ICOL )
+			If $__G_ALISTVIEWSORTINFO [ $IINDEX ] [ 5 ] = 1 Then
+				_GUICTRLHEADER_SETITEMFORMAT ( $HHEADER , $ICOL , BitOR ( $IFORMAT , $HDF_SORTUP ) )
+			Else
+				_GUICTRLHEADER_SETITEMFORMAT ( $HHEADER , $ICOL , BitOR ( $IFORMAT , $HDF_SORTDOWN ) )
+			EndIf
+		EndIf
+	EndIf
+	Return $IRET <> 0
+EndFunc
+Func __GUICTRLLISTVIEW_STATEIMAGEMASKTOINDEX ( $IMASK )
+	Return BitShift ( BitAND ( $IMASK , $LVIS_STATEIMAGEMASK ) , 12 )
+EndFunc
+Func _GUICTRLLISTVIEW_SUBITEMHITTEST ( $HWND , $IX = + 4294967295 , $IY = + 4294967295 )
+	If $IX = + 4294967295 Then $IX = _WINAPI_GETMOUSEPOSX ( True , $HWND )
+	If $IY = + 4294967295 Then $IY = _WINAPI_GETMOUSEPOSY ( True , $HWND )
+	Local $TTEST = DllStructCreate ( $TAGLVHITTESTINFO )
+	DllStructSetData ( $TTEST , "X" , $IX )
+	DllStructSetData ( $TTEST , "Y" , $IY )
+	__GUICTRL_SENDMSG ( $HWND , $LVM_SUBITEMHITTEST , 0 , $TTEST , 0 , True , + 4294967295 )
+	Local $IFLAGS = DllStructGetData ( $TTEST , "Flags" )
+	Local $ATEST [ 11 ]
+	$ATEST [ 0 ] = DllStructGetData ( $TTEST , "Item" )
+	$ATEST [ 1 ] = DllStructGetData ( $TTEST , "SubItem" )
+	$ATEST [ 2 ] = BitAND ( $IFLAGS , $LVHT_NOWHERE ) <> 0
+	$ATEST [ 3 ] = BitAND ( $IFLAGS , $LVHT_ONITEMICON ) <> 0
+	$ATEST [ 4 ] = BitAND ( $IFLAGS , $LVHT_ONITEMLABEL ) <> 0
+	$ATEST [ 5 ] = BitAND ( $IFLAGS , $LVHT_ONITEMSTATEICON ) <> 0
+	$ATEST [ 6 ] = BitAND ( $IFLAGS , $LVHT_ONITEM ) <> 0
+	$ATEST [ 7 ] = BitAND ( $IFLAGS , $LVHT_ABOVE ) <> 0
+	$ATEST [ 8 ] = BitAND ( $IFLAGS , $LVHT_BELOW ) <> 0
+	$ATEST [ 9 ] = BitAND ( $IFLAGS , $LVHT_TOLEFT ) <> 0
+	$ATEST [ 10 ] = BitAND ( $IFLAGS , $LVHT_TORIGHT ) <> 0
+	Return $ATEST
+EndFunc
+Func _GUICTRLLISTVIEW_UNREGISTERSORTCALLBACK ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	For $X = 1 To $__G_ALISTVIEWSORTINFO [ 0 ] [ 0 ]
+		If $HWND = $__G_ALISTVIEWSORTINFO [ $X ] [ 1 ] Then
+			DllCallbackFree ( $__G_ALISTVIEWSORTINFO [ $X ] [ 2 ] )
+			__GUICTRLLISTVIEW_ARRAYDELETE ( $__G_ALISTVIEWSORTINFO , $X )
+			$__G_ALISTVIEWSORTINFO [ 0 ] [ 0 ] -= 1
+			ExitLoop
+		EndIf
+	Next
+EndFunc
+Global Const $BS_GROUPBOX = 7
+Global Const $BS_BOTTOM = 2048
+Global Const $BS_CENTER = 768
+Global Const $BS_DEFPUSHBUTTON = 1
+Global Const $BS_LEFT = 256
+Global Const $BS_MULTILINE = 8192
+Global Const $BS_PUSHBOX = 10
+Global Const $BS_PUSHLIKE = 4096
+Global Const $BS_RIGHT = 512
+Global Const $BS_RIGHTBUTTON = 32
+Global Const $BS_TOP = 1024
+Global Const $BS_VCENTER = 3072
+Global Const $BS_FLAT = 32768
+Global Const $BS_ICON = 64
+Global Const $BS_BITMAP = 128
+Global Const $BS_NOTIFY = 16384
+Global Const $BS_SPLITBUTTON = 12
+Global Const $BS_DEFSPLITBUTTON = 13
+Global Const $BS_COMMANDLINK = 14
+Global Const $BS_DEFCOMMANDLINK = 15
+Global Const $BCSIF_GLYPH = 1
+Global Const $BCSIF_IMAGE = 2
+Global Const $BCSIF_STYLE = 4
+Global Const $BCSIF_SIZE = 8
+Global Const $BCSS_NOSPLIT = 1
+Global Const $BCSS_STRETCH = 2
+Global Const $BCSS_ALIGNLEFT = 4
+Global Const $BCSS_IMAGE = 8
+Global Const $BUTTON_IMAGELIST_ALIGN_LEFT = 0
+Global Const $BUTTON_IMAGELIST_ALIGN_RIGHT = 1
+Global Const $BUTTON_IMAGELIST_ALIGN_TOP = 2
+Global Const $BUTTON_IMAGELIST_ALIGN_BOTTOM = 3
+Global Const $BUTTON_IMAGELIST_ALIGN_CENTER = 4
+Global Const $BS_3STATE = 5
+Global Const $BS_AUTO3STATE = 6
+Global Const $BS_AUTOCHECKBOX = 3
+Global Const $BS_CHECKBOX = 2
+Global Const $BS_RADIOBUTTON = 4
+Global Const $BS_AUTORADIOBUTTON = 9
+Global Const $BS_OWNERDRAW = 11
+Global Const $GUI_SS_DEFAULT_BUTTON = 0
+Global Const $GUI_SS_DEFAULT_CHECKBOX = 0
+Global Const $GUI_SS_DEFAULT_GROUP = 0
+Global Const $GUI_SS_DEFAULT_RADIO = 0
+Global Const $BCM_FIRST = 5632
+Global Const $BCM_GETIDEALSIZE = ( $BCM_FIRST + 1 )
+Global Const $BCM_GETIMAGELIST = ( $BCM_FIRST + 3 )
+Global Const $BCM_GETNOTE = ( $BCM_FIRST + 10 )
+Global Const $BCM_GETNOTELENGTH = ( $BCM_FIRST + 11 )
+Global Const $BCM_GETSPLITINFO = ( $BCM_FIRST + 8 )
+Global Const $BCM_GETTEXTMARGIN = ( $BCM_FIRST + 5 )
+Global Const $BCM_SETDROPDOWNSTATE = ( $BCM_FIRST + 6 )
+Global Const $BCM_SETIMAGELIST = ( $BCM_FIRST + 2 )
+Global Const $BCM_SETNOTE = ( $BCM_FIRST + 9 )
+Global Const $BCM_SETSHIELD = ( $BCM_FIRST + 12 )
+Global Const $BCM_SETSPLITINFO = ( $BCM_FIRST + 7 )
+Global Const $BCM_SETTEXTMARGIN = ( $BCM_FIRST + 4 )
+Global Const $BM_CLICK = 245
+Global Const $BM_GETCHECK = 240
+Global Const $BM_GETIMAGE = 246
+Global Const $BM_GETSTATE = 242
+Global Const $BM_SETCHECK = 241
+Global Const $BM_SETDONTCLICK = 248
+Global Const $BM_SETIMAGE = 247
+Global Const $BM_SETSTATE = 243
+Global Const $BM_SETSTYLE = 244
+Global Const $BCN_FIRST = + 4294966046
+Global Const $BCN_DROPDOWN = ( $BCN_FIRST + 2 )
+Global Const $BCN_HOTITEMCHANGE = ( $BCN_FIRST + 1 )
+Global Const $BN_CLICKED = 0
+Global Const $BN_PAINT = 1
+Global Const $BN_HILITE = 2
+Global Const $BN_UNHILITE = 3
+Global Const $BN_DISABLE = 4
+Global Const $BN_DOUBLECLICKED = 5
+Global Const $BN_SETFOCUS = 6
+Global Const $BN_KILLFOCUS = 7
+Global Const $BN_PUSHED = $BN_HILITE
+Global Const $BN_UNPUSHED = $BN_UNHILITE
+Global Const $BN_DBLCLK = $BN_DOUBLECLICKED
+Global Const $BST_CHECKED = 1
+Global Const $BST_INDETERMINATE = 2
+Global Const $BST_UNCHECKED = 0
+Global Const $BST_FOCUS = 8
+Global Const $BST_PUSHED = 4
+Global Const $BST_DONTCLICK = 128
+Global Const $ES_LEFT = 0
+Global Const $ES_CENTER = 1
+Global Const $ES_RIGHT = 2
+Global Const $ES_MULTILINE = 4
+Global Const $ES_UPPERCASE = 8
+Global Const $ES_LOWERCASE = 16
+Global Const $ES_PASSWORD = 32
+Global Const $ES_AUTOVSCROLL = 64
+Global Const $ES_AUTOHSCROLL = 128
+Global Const $ES_NOHIDESEL = 256
+Global Const $ES_OEMCONVERT = 1024
+Global Const $ES_READONLY = 2048
+Global Const $ES_WANTRETURN = 4096
+Global Const $ES_NUMBER = 8192
+Global Const $EC_ERR = + 4294967295
+Global Const $ECM_FIRST = 5376
+Global Const $EM_CANUNDO = 198
+Global Const $EM_CHARFROMPOS = 215
+Global Const $EM_EMPTYUNDOBUFFER = 205
+Global Const $EM_FMTLINES = 200
+Global Const $EM_GETCUEBANNER = ( $ECM_FIRST + 2 )
+Global Const $EM_GETFIRSTVISIBLELINE = 206
+Global Const $EM_GETHANDLE = 189
+Global Const $EM_GETIMESTATUS = 217
+Global Const $EM_GETLIMITTEXT = 213
+Global Const $EM_GETLINE = 196
+Global Const $EM_GETLINECOUNT = 186
+Global Const $EM_GETMARGINS = 212
+Global Const $EM_GETMODIFY = 184
+Global Const $EM_GETPASSWORDCHAR = 210
+Global Const $EM_GETRECT = 178
+Global Const $EM_GETSEL = 176
+Global Const $EM_GETTHUMB = 190
+Global Const $EM_GETWORDBREAKPROC = 209
+Global Const $EM_HIDEBALLOONTIP = ( $ECM_FIRST + 4 )
+Global Const $EM_LIMITTEXT = 197
+Global Const $EM_LINEFROMCHAR = 201
+Global Const $EM_LINEINDEX = 187
+Global Const $EM_LINELENGTH = 193
+Global Const $EM_LINESCROLL = 182
+Global Const $EM_POSFROMCHAR = 214
+Global Const $EM_REPLACESEL = 194
+Global Const $EM_SCROLL = 181
+Global Const $EM_SCROLLCARET = 183
+Global Const $EM_SETCUEBANNER = ( $ECM_FIRST + 1 )
+Global Const $EM_SETHANDLE = 188
+Global Const $EM_SETIMESTATUS = 216
+Global Const $EM_SETLIMITTEXT = $EM_LIMITTEXT
+Global Const $EM_SETMARGINS = 211
+Global Const $EM_SETMODIFY = 185
+Global Const $EM_SETPASSWORDCHAR = 204
+Global Const $EM_SETREADONLY = 207
+Global Const $EM_SETRECT = 179
+Global Const $EM_SETRECTNP = 180
+Global Const $EM_SETSEL = 177
+Global Const $EM_SETTABSTOPS = 203
+Global Const $EM_SETWORDBREAKPROC = 208
+Global Const $EM_SHOWBALLOONTIP = ( $ECM_FIRST + 3 )
+Global Const $EM_UNDO = 199
+Global Const $EC_LEFTMARGIN = 1
+Global Const $EC_RIGHTMARGIN = 2
+Global Const $EC_USEFONTINFO = 65535
+Global Const $EMSIS_COMPOSITIONSTRING = 1
+Global Const $EIMES_GETCOMPSTRATONCE = 1
+Global Const $EIMES_CANCELCOMPSTRINFOCUS = 2
+Global Const $EIMES_COMPLETECOMPSTRKILLFOCUS = 4
+Global Const $EN_ALIGN_LTR_EC = 1792
+Global Const $EN_ALIGN_RTL_EC = 1793
+Global Const $EN_CHANGE = 768
+Global Const $EN_ERRSPACE = 1280
+Global Const $EN_HSCROLL = 1537
+Global Const $EN_KILLFOCUS = 512
+Global Const $EN_MAXTEXT = 1281
+Global Const $EN_SETFOCUS = 256
+Global Const $EN_UPDATE = 1024
+Global Const $EN_VSCROLL = 1538
+Global Const $GUI_SS_DEFAULT_EDIT = 3150016
+Global Const $GUI_SS_DEFAULT_INPUT = 128
+Global Const $SBARS_SIZEGRIP = 256
+Global Const $SBT_TOOLTIPS = 2048
+Global Const $SBARS_TOOLTIPS = 2048
+Global Const $SBT_SUNKEN = 0
+Global Const $SBT_NOBORDERS = 256
+Global Const $SBT_POPOUT = 512
+Global Const $SBT_RTLREADING = 1024
+Global Const $SBT_NOTABPARSING = 2048
+Global Const $SBT_OWNERDRAW = 4096
+Global Const $__STATUSBARCONSTANT_WM_USER = 1024
+Global Const $SB_GETBORDERS = ( $__STATUSBARCONSTANT_WM_USER + 7 )
+Global Const $SB_GETICON = ( $__STATUSBARCONSTANT_WM_USER + 20 )
+Global Const $SB_GETPARTS = ( $__STATUSBARCONSTANT_WM_USER + 6 )
+Global Const $SB_GETRECT = ( $__STATUSBARCONSTANT_WM_USER + 10 )
+Global Const $SB_GETTEXTA = ( $__STATUSBARCONSTANT_WM_USER + 2 )
+Global Const $SB_GETTEXTW = ( $__STATUSBARCONSTANT_WM_USER + 13 )
+Global Const $SB_GETTEXT = $SB_GETTEXTA
+Global Const $SB_GETTEXTLENGTHA = ( $__STATUSBARCONSTANT_WM_USER + 3 )
+Global Const $SB_GETTEXTLENGTHW = ( $__STATUSBARCONSTANT_WM_USER + 12 )
+Global Const $SB_GETTEXTLENGTH = $SB_GETTEXTLENGTHA
+Global Const $SB_GETTIPTEXTA = ( $__STATUSBARCONSTANT_WM_USER + 18 )
+Global Const $SB_GETTIPTEXTW = ( $__STATUSBARCONSTANT_WM_USER + 19 )
+Global Const $SB_GETUNICODEFORMAT = 8192 + 6
+Global Const $SB_ISSIMPLE = ( $__STATUSBARCONSTANT_WM_USER + 14 )
+Global Const $SB_SETBKCOLOR = 8192 + 1
+Global Const $SB_SETICON = ( $__STATUSBARCONSTANT_WM_USER + 15 )
+Global Const $SB_SETMINHEIGHT = ( $__STATUSBARCONSTANT_WM_USER + 8 )
+Global Const $SB_SETPARTS = ( $__STATUSBARCONSTANT_WM_USER + 4 )
+Global Const $SB_SETTEXTA = ( $__STATUSBARCONSTANT_WM_USER + 1 )
+Global Const $SB_SETTEXTW = ( $__STATUSBARCONSTANT_WM_USER + 11 )
+Global Const $SB_SETTEXT = $SB_SETTEXTA
+Global Const $SB_SETTIPTEXTA = ( $__STATUSBARCONSTANT_WM_USER + 16 )
+Global Const $SB_SETTIPTEXTW = ( $__STATUSBARCONSTANT_WM_USER + 17 )
+Global Const $SB_SETUNICODEFORMAT = 8192 + 5
+Global Const $SB_SIMPLE = ( $__STATUSBARCONSTANT_WM_USER + 9 )
+Global Const $SB_SIMPLEID = 255
+Global Const $SBN_FIRST = + 4294966416
+Global Const $SBN_SIMPLEMODECHANGE = $SBN_FIRST + 0
+Global $__G_TSBBUFFER , $__G_TSBBUFFERANSI
+Global Const $__STATUSBARCONSTANT_CLASSNAME = "msctls_statusbar32"
+Global Const $__STATUSBARCONSTANT_WM_SIZE = 5
+Global Const $__STATUSBARCONSTANT_CLR_DEFAULT = 4278190080
+Global Const $TAGBORDERS = "int BX;int BY;int RX"
+Func _GUICTRLSTATUSBAR_CREATE ( $HWND , $VPARTEDGE = + 4294967295 , $VPARTTEXT = "" , $ISTYLES = + 4294967295 , $IEXSTYLES = 0 )
+	If Not IsHWnd ( $HWND ) Then Return SetError ( 1 , 0 , 0 )
+	Local $ISTYLE = BitOR ( $__UDFGUICONSTANT_WS_CHILD , $__UDFGUICONSTANT_WS_VISIBLE )
+	If $ISTYLES = + 4294967295 Then $ISTYLES = 0
+	If $IEXSTYLES = + 4294967295 Then $IEXSTYLES = 0
+	Local $APARTWIDTH [ 1 ] , $APARTTEXT [ 1 ]
+	If @NumParams > 1 Then
+		If IsArray ( $VPARTEDGE ) Then
+			$APARTWIDTH = $VPARTEDGE
+		Else
+			$APARTWIDTH [ 0 ] = $VPARTEDGE
+		EndIf
+		If @NumParams = 2 Then
+			ReDim $APARTTEXT [ UBound ( $APARTWIDTH ) ]
+		Else
+			If IsArray ( $VPARTTEXT ) Then
+				$APARTTEXT = $VPARTTEXT
+			Else
+				$APARTTEXT [ 0 ] = $VPARTTEXT
+			EndIf
+			If UBound ( $APARTWIDTH ) <> UBound ( $APARTTEXT ) Then
+				Local $ILAST
+				If UBound ( $APARTWIDTH ) > UBound ( $APARTTEXT ) Then
+					$ILAST = UBound ( $APARTTEXT )
+					ReDim $APARTTEXT [ UBound ( $APARTWIDTH ) ]
+				Else
+					$ILAST = UBound ( $APARTWIDTH )
+					ReDim $APARTWIDTH [ UBound ( $APARTTEXT ) ]
+					For $X = $ILAST To UBound ( $APARTWIDTH ) + 4294967295
+						$APARTWIDTH [ $X ] = $APARTWIDTH [ $X + 4294967295 ] + 75
+					Next
+					$APARTWIDTH [ UBound ( $APARTTEXT ) + 4294967295 ] = + 4294967295
+				EndIf
+			EndIf
+		EndIf
+		If Not IsHWnd ( $HWND ) Then $HWND = HWnd ( $HWND )
+		If @NumParams > 3 Then $ISTYLE = BitOR ( $ISTYLE , $ISTYLES )
+	EndIf
+	Local $NCTRLID = __UDF_GETNEXTGLOBALID ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $HWNDSBAR = _WINAPI_CREATEWINDOWEX ( $IEXSTYLES , $__STATUSBARCONSTANT_CLASSNAME , "" , $ISTYLE , 0 , 0 , 0 , 0 , $HWND , $NCTRLID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If @NumParams > 1 Then
+		_GUICTRLSTATUSBAR_SETPARTS ( $HWNDSBAR , UBound ( $APARTWIDTH ) , $APARTWIDTH )
+		For $X = 0 To UBound ( $APARTTEXT ) + 4294967295
+			_GUICTRLSTATUSBAR_SETTEXT ( $HWNDSBAR , $APARTTEXT [ $X ] , $X )
+		Next
+	EndIf
+	Return $HWNDSBAR
+EndFunc
+Func _GUICTRLSTATUSBAR_DESTROY ( ByRef $HWND )
+	If Not _WINAPI_ISCLASSNAME ( $HWND , $__STATUSBARCONSTANT_CLASSNAME ) Then Return SetError ( 2 , 2 , False )
+	Local $IDESTROYED = 0
+	If IsHWnd ( $HWND ) Then
+		If _WINAPI_INPROCESS ( $HWND , $__G_HGUICTRL_LASTWND ) Then
+			Local $NCTRLID = _WINAPI_GETDLGCTRLID ( $HWND )
+			Local $HPARENT = _WINAPI_GETPARENT ( $HWND )
+			$IDESTROYED = _WINAPI_DESTROYWINDOW ( $HWND )
+			Local $IRET = __UDF_FREEGLOBALID ( $HPARENT , $NCTRLID )
+			If Not $IRET Then
+			EndIf
+		Else
+			Return SetError ( 1 , 1 , False )
+		EndIf
+	EndIf
+	If $IDESTROYED Then $HWND = 0
+	Return $IDESTROYED <> 0
+EndFunc
+Func _GUICTRLSTATUSBAR_EMBEDCONTROL ( $HWND , $IPART , $HCONTROL , $IFIT = 4 )
+	Local $ARECT = _GUICTRLSTATUSBAR_GETRECT ( $HWND , $IPART )
+	Local $IBARX = $ARECT [ 0 ]
+	Local $IBARY = $ARECT [ 1 ]
+	Local $IBARW = $ARECT [ 2 ] - $IBARX
+	Local $IBARH = $ARECT [ 3 ] - $IBARY
+	Local $ICONX = $IBARX
+	Local $ICONY = $IBARY
+	Local $ICONW = _WINAPI_GETWINDOWWIDTH ( $HCONTROL )
+	Local $ICONH = _WINAPI_GETWINDOWHEIGHT ( $HCONTROL )
+	If $ICONW > $IBARW Then $ICONW = $IBARW
+	If $ICONH > $IBARH Then $ICONH = $IBARH
+	Local $IPADX = ( $IBARW - $ICONW ) / 2
+	Local $IPADY = ( $IBARH - $ICONH ) / 2
+	If $IPADX < 0 Then $IPADX = 0
+	If $IPADY < 0 Then $IPADY = 0
+	If BitAND ( $IFIT , 1 ) = 1 Then $ICONX = $IBARX + $IPADX
+	If BitAND ( $IFIT , 2 ) = 2 Then $ICONY = $IBARY + $IPADY
+	If BitAND ( $IFIT , 4 ) = 4 Then
+		$IPADX = _GUICTRLSTATUSBAR_GETBORDERSRECT ( $HWND )
+		$IPADY = _GUICTRLSTATUSBAR_GETBORDERSVERT ( $HWND )
+		$ICONX = $IBARX
+		If _GUICTRLSTATUSBAR_ISSIMPLE ( $HWND ) Then $ICONX += $IPADX
+		$ICONY = $IBARY + $IPADY
+		$ICONW = $IBARW - ( $IPADX * 2 )
+		$ICONH = $IBARH - ( $IPADY * 2 )
+	EndIf
+	_WINAPI_SETPARENT ( $HCONTROL , $HWND )
+	_WINAPI_MOVEWINDOW ( $HCONTROL , $ICONX , $ICONY , $ICONW , $ICONH )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETBORDERS ( $HWND )
+	Local $TBORDERS = DllStructCreate ( $TAGBORDERS )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $SB_GETBORDERS , 0 , $TBORDERS , 0 , True )
+	Local $ABORDERS [ 3 ]
+	If $IRET = 0 Then Return SetError ( + 4294967295 , + 4294967295 , $ABORDERS )
+	$ABORDERS [ 0 ] = DllStructGetData ( $TBORDERS , "BX" )
+	$ABORDERS [ 1 ] = DllStructGetData ( $TBORDERS , "BY" )
+	$ABORDERS [ 2 ] = DllStructGetData ( $TBORDERS , "RX" )
+	Return $ABORDERS
+EndFunc
+Func _GUICTRLSTATUSBAR_GETBORDERSHORZ ( $HWND )
+	Local $ABORDERS = _GUICTRLSTATUSBAR_GETBORDERS ( $HWND )
+	Return SetError ( @error , @extended , $ABORDERS [ 0 ] )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETBORDERSRECT ( $HWND )
+	Local $ABORDERS = _GUICTRLSTATUSBAR_GETBORDERS ( $HWND )
+	Return SetError ( @error , @extended , $ABORDERS [ 2 ] )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETBORDERSVERT ( $HWND )
+	Local $ABORDERS = _GUICTRLSTATUSBAR_GETBORDERS ( $HWND )
+	Return SetError ( @error , @extended , $ABORDERS [ 1 ] )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETCOUNT ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $SB_GETPARTS )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETHEIGHT ( $HWND )
+	Local $TRECT = _GUICTRLSTATUSBAR_GETRECTEX ( $HWND , 0 )
+	Return DllStructGetData ( $TRECT , "Bottom" ) - DllStructGetData ( $TRECT , "Top" ) - ( _GUICTRLSTATUSBAR_GETBORDERSVERT ( $HWND ) * 2 )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETICON ( $HWND , $IINDEX = 0 )
+	Return _SENDMESSAGE ( $HWND , $SB_GETICON , $IINDEX , 0 , 0 , "wparam" , "lparam" , "handle" )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETPARTS ( $HWND )
+	Local $ICOUNT = _GUICTRLSTATUSBAR_GETCOUNT ( $HWND )
+	Local $TPARTS = DllStructCreate ( "int[" & $ICOUNT & "]" )
+	Local $APARTS [ $ICOUNT + 1 ]
+	$APARTS [ 0 ] = __GUICTRL_SENDMSG ( $HWND , $SB_GETPARTS , $ICOUNT , $TPARTS , 0 , True )
+	For $II = 1 To $ICOUNT
+		$APARTS [ $II ] = DllStructGetData ( $TPARTS , 1 , $II )
+	Next
+	Return $APARTS
+EndFunc
+Func _GUICTRLSTATUSBAR_GETRECT ( $HWND , $IPART )
+	Local $TRECT = _GUICTRLSTATUSBAR_GETRECTEX ( $HWND , $IPART )
+	If @error Then Return SetError ( @error , 0 , 0 )
+	Local $ARECT [ 4 ]
+	$ARECT [ 0 ] = DllStructGetData ( $TRECT , "Left" )
+	$ARECT [ 1 ] = DllStructGetData ( $TRECT , "Top" )
+	$ARECT [ 2 ] = DllStructGetData ( $TRECT , "Right" )
+	$ARECT [ 3 ] = DllStructGetData ( $TRECT , "Bottom" )
+	Return $ARECT
+EndFunc
+Func _GUICTRLSTATUSBAR_GETRECTEX ( $HWND , $IPART )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $SB_GETRECT , $IPART , $TRECT , 0 , True )
+	Return SetError ( $IRET = 0 , 0 , $TRECT )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETTEXT ( $HWND , $IPART )
+	Local $IBUFFER = _GUICTRLSTATUSBAR_GETTEXTLENGTH ( $HWND , $IPART ) + 1
+	If $IBUFFER = 1 Then Return SetError ( 1 , 0 , "" )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLSTATUSBAR_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TSBBUFFER
+		$IMSG = $SB_GETTEXTW
+	Else
+		$TBUFFER = $__G_TSBBUFFERANSI
+		$IMSG = $SB_GETTEXT
+	EndIf
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , $IPART , $TBUFFER , 0 , True )
+	Return DllStructGetData ( $TBUFFER , "Text" )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETTEXTFLAGS ( $HWND , $IPART )
+	If _GUICTRLSTATUSBAR_GETUNICODEFORMAT ( $HWND ) Then
+		Return _SENDMESSAGE ( $HWND , $SB_GETTEXTLENGTHW , $IPART )
+	Else
+		Return _SENDMESSAGE ( $HWND , $SB_GETTEXTLENGTH , $IPART )
+	EndIf
+EndFunc
+Func _GUICTRLSTATUSBAR_GETTEXTLENGTH ( $HWND , $IPART )
+	Return _WINAPI_LOWORD ( _GUICTRLSTATUSBAR_GETTEXTFLAGS ( $HWND , $IPART ) )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETTEXTLENGTHEX ( $HWND , $IPART )
+	Return _WINAPI_HIWORD ( _GUICTRLSTATUSBAR_GETTEXTFLAGS ( $HWND , $IPART ) )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETTIPTEXT ( $HWND , $IPART )
+	Local $TBUFFER , $IMSG
+	If _GUICTRLSTATUSBAR_GETUNICODEFORMAT ( $HWND ) Then
+		$TBUFFER = $__G_TSBBUFFER
+		$IMSG = $SB_GETTIPTEXTW
+	Else
+		$TBUFFER = $__G_TSBBUFFERANSI
+		$IMSG = $SB_GETTIPTEXTA
+	EndIf
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , _WINAPI_MAKELONG ( $IPART , 4096 ) , $TBUFFER , 0 , True )
+	Return DllStructGetData ( $TBUFFER , "Text" )
+EndFunc
+Func _GUICTRLSTATUSBAR_GETUNICODEFORMAT ( $HWND )
+	If Not IsDllStruct ( $__G_TSBBUFFER ) Then
+		$__G_TSBBUFFER = DllStructCreate ( "wchar Text[4096]" )
+		$__G_TSBBUFFERANSI = DllStructCreate ( "char Text[4096]" , DllStructGetPtr ( $__G_TSBBUFFER ) )
+	EndIf
+	Return _SENDMESSAGE ( $HWND , $SB_GETUNICODEFORMAT ) <> 0
+EndFunc
+Func _GUICTRLSTATUSBAR_GETWIDTH ( $HWND , $IPART )
+	Local $TRECT = _GUICTRLSTATUSBAR_GETRECTEX ( $HWND , $IPART )
+	Return DllStructGetData ( $TRECT , "Right" ) - DllStructGetData ( $TRECT , "Left" ) - ( _GUICTRLSTATUSBAR_GETBORDERSHORZ ( $HWND ) * 2 )
+EndFunc
+Func _GUICTRLSTATUSBAR_ISSIMPLE ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $SB_ISSIMPLE ) <> 0
+EndFunc
+Func _GUICTRLSTATUSBAR_RESIZE ( $HWND )
+	_SENDMESSAGE ( $HWND , $__STATUSBARCONSTANT_WM_SIZE )
+EndFunc
+Func _GUICTRLSTATUSBAR_SETBKCOLOR ( $HWND , $ICOLOR )
+	$ICOLOR = _SENDMESSAGE ( $HWND , $SB_SETBKCOLOR , 0 , $ICOLOR )
+EndFunc
+Func _GUICTRLSTATUSBAR_SETICON ( $HWND , $IPART , $HICON = + 4294967295 , $SICONFILE = "" )
+	If $HICON = + 4294967295 Then Return _SENDMESSAGE ( $HWND , $SB_SETICON , $IPART , $HICON , 0 , "wparam" , "handle" ) <> 0
+	If StringLen ( $SICONFILE ) <= 0 Then Return _SENDMESSAGE ( $HWND , $SB_SETICON , $IPART , $HICON ) <> 0
+	Local $TICON = DllStructCreate ( "handle" )
+	Local $VRESULT = DllCall ( "shell32.dll" , "uint" , "ExtractIconExW" , "wstr" , $SICONFILE , "int" , $HICON , "ptr" , 0 , "struct*" , $TICON , "uint" , 1 )
+	If @error Then Return SetError ( @error , @extended , False )
+	$VRESULT = $VRESULT [ 0 ]
+	If $VRESULT > 0 Then $VRESULT = _SENDMESSAGE ( $HWND , $SB_SETICON , $IPART , DllStructGetData ( $TICON , 1 ) , 0 , "wparam" , "handle" )
+	DllCall ( "user32.dll" , "bool" , "DestroyIcon" , "handle" , DllStructGetData ( $TICON , 1 ) )
+	Return $VRESULT
+EndFunc
+Func _GUICTRLSTATUSBAR_SETMINHEIGHT ( $HWND , $IMINHEIGHT )
+	_SENDMESSAGE ( $HWND , $SB_SETMINHEIGHT , $IMINHEIGHT )
+	_GUICTRLSTATUSBAR_RESIZE ( $HWND )
+EndFunc
+Func _GUICTRLSTATUSBAR_SETPARTS ( $HWND , $VPARTEDGE = + 4294967295 , $VPARTWIDTH = 25 )
+	If IsArray ( $VPARTEDGE ) And IsArray ( $VPARTWIDTH ) Then Return False
+	Local $TPARTS , $IPARTS
+	If IsArray ( $VPARTEDGE ) Then
+		$VPARTEDGE [ UBound ( $VPARTEDGE ) + 4294967295 ] = + 4294967295
+		$IPARTS = UBound ( $VPARTEDGE )
+		$TPARTS = DllStructCreate ( "int[" & $IPARTS & "]" )
+		For $X = 0 To $IPARTS + 4294967294
+			DllStructSetData ( $TPARTS , 1 , $VPARTEDGE [ $X ] , $X + 1 )
+		Next
+		DllStructSetData ( $TPARTS , 1 , + 4294967295 , $IPARTS )
+	Else
+		If $VPARTEDGE < + 4294967295 Then Return False
+		If IsArray ( $VPARTWIDTH ) Then
+			$IPARTS = UBound ( $VPARTWIDTH )
+			$TPARTS = DllStructCreate ( "int[" & $IPARTS & "]" )
+			Local $IPARTRIGHTEDGE = 0
+			For $X = 0 To $IPARTS + 4294967294
+				$IPARTRIGHTEDGE += $VPARTWIDTH [ $X ]
+				If $VPARTWIDTH [ $X ] <= 0 Then Return False
+				DllStructSetData ( $TPARTS , 1 , $IPARTRIGHTEDGE , $X + 1 )
+			Next
+			DllStructSetData ( $TPARTS , 1 , + 4294967295 , $IPARTS )
+		ElseIf $VPARTEDGE > 1 Then
+			$IPARTS = $VPARTEDGE
+			$TPARTS = DllStructCreate ( "int[" & $IPARTS & "]" )
+			For $X = 1 To $IPARTS + 4294967295
+				DllStructSetData ( $TPARTS , 1 , $VPARTWIDTH * $X , $X )
+			Next
+			DllStructSetData ( $TPARTS , 1 , + 4294967295 , $IPARTS )
+		Else
+			$IPARTS = 1
+			$TPARTS = DllStructCreate ( "int" )
+			DllStructSetData ( $TPARTS , 1 , + 4294967295 )
+		EndIf
+	EndIf
+	__GUICTRL_SENDMSG ( $HWND , $SB_SETPARTS , $IPARTS , $TPARTS )
+	_GUICTRLSTATUSBAR_RESIZE ( $HWND )
+	Return True
+EndFunc
+Func _GUICTRLSTATUSBAR_SETSIMPLE ( $HWND , $BSIMPLE = True )
+	_SENDMESSAGE ( $HWND , $SB_SIMPLE , $BSIMPLE )
+EndFunc
+Func _GUICTRLSTATUSBAR_SETTEXT ( $HWND , $STEXT = "" , $IPART = 0 , $IUFLAG = 0 )
+	Local $IBUFFER = StringLen ( $STEXT ) + 1
+	Local $TTEXT , $IMSG
+	If _GUICTRLSTATUSBAR_GETUNICODEFORMAT ( $HWND ) Then
+		$TTEXT = DllStructCreate ( "wchar Text[" & $IBUFFER & "]" )
+		$IMSG = $SB_SETTEXTW
+	Else
+		$TTEXT = DllStructCreate ( "char Text[" & $IBUFFER & "]" )
+		$IMSG = $SB_SETTEXT
+	EndIf
+	DllStructSetData ( $TTEXT , "Text" , $STEXT )
+	If _GUICTRLSTATUSBAR_ISSIMPLE ( $HWND ) Then $IPART = $SB_SIMPLEID
+	Local $IRET = __GUICTRL_SENDMSG ( $HWND , $IMSG , BitOR ( $IPART , $IUFLAG ) , $TTEXT )
+	Return $IRET <> 0
+EndFunc
+Func _GUICTRLSTATUSBAR_SETTIPTEXT ( $HWND , $IPART , $STEXT )
+	Local $IBUFFER = StringLen ( $STEXT ) + 1
+	Local $TTEXT , $IMSG
+	If _GUICTRLSTATUSBAR_GETUNICODEFORMAT ( $HWND ) Then
+		$TTEXT = DllStructCreate ( "wchar TipText[" & $IBUFFER & "]" )
+		$IMSG = $SB_SETTIPTEXTW
+	Else
+		$TTEXT = DllStructCreate ( "char TipText[" & $IBUFFER & "]" )
+		$IMSG = $SB_SETTIPTEXTA
+	EndIf
+	DllStructSetData ( $TTEXT , "TipText" , $STEXT )
+	__GUICTRL_SENDMSG ( $HWND , $IMSG , $IPART , $TTEXT )
+EndFunc
+Func _GUICTRLSTATUSBAR_SETUNICODEFORMAT ( $HWND , $BUNICODE = True )
+	Return _SENDMESSAGE ( $HWND , $SB_SETUNICODEFORMAT , $BUNICODE )
+EndFunc
+Func _GUICTRLSTATUSBAR_SHOWHIDE ( $HWND , $ISTATE )
+	If $ISTATE <> @SW_HIDE And $ISTATE <> @SW_SHOW Then Return SetError ( 1 , 1 , False )
+	Return _WINAPI_SHOWWINDOW ( $HWND , $ISTATE )
+EndFunc
+Global Const $TTF_IDISHWND = 1
+Global Const $TTF_CENTERTIP = 2
+Global Const $TTF_RTLREADING = 4
+Global Const $TTF_SUBCLASS = 16
+Global Const $TTF_TRACK = 32
+Global Const $TTF_ABSOLUTE = 128
+Global Const $TTF_TRANSPARENT = 256
+Global Const $TTF_PARSELINKS = 4096
+Global Const $TTF_DI_SETITEM = 32768
+Global Const $__TOOLTIPCONSTANTS_WM_USER = 1024
+Global Const $TTM_ACTIVATE = $__TOOLTIPCONSTANTS_WM_USER + 1
+Global Const $TTM_SETDELAYTIME = $__TOOLTIPCONSTANTS_WM_USER + 3
+Global Const $TTM_ADDTOOL = $__TOOLTIPCONSTANTS_WM_USER + 4
+Global Const $TTM_DELTOOL = $__TOOLTIPCONSTANTS_WM_USER + 5
+Global Const $TTM_NEWTOOLRECT = $__TOOLTIPCONSTANTS_WM_USER + 6
+Global Const $TTM_GETTOOLINFO = $__TOOLTIPCONSTANTS_WM_USER + 8
+Global Const $TTM_SETTOOLINFO = $__TOOLTIPCONSTANTS_WM_USER + 9
+Global Const $TTM_HITTEST = $__TOOLTIPCONSTANTS_WM_USER + 10
+Global Const $TTM_GETTEXT = $__TOOLTIPCONSTANTS_WM_USER + 11
+Global Const $TTM_UPDATETIPTEXT = $__TOOLTIPCONSTANTS_WM_USER + 12
+Global Const $TTM_GETTOOLCOUNT = $__TOOLTIPCONSTANTS_WM_USER + 13
+Global Const $TTM_ENUMTOOLS = $__TOOLTIPCONSTANTS_WM_USER + 14
+Global Const $TTM_GETCURRENTTOOL = $__TOOLTIPCONSTANTS_WM_USER + 15
+Global Const $TTM_WINDOWFROMPOINT = $__TOOLTIPCONSTANTS_WM_USER + 16
+Global Const $TTM_TRACKACTIVATE = $__TOOLTIPCONSTANTS_WM_USER + 17
+Global Const $TTM_TRACKPOSITION = $__TOOLTIPCONSTANTS_WM_USER + 18
+Global Const $TTM_SETTIPBKCOLOR = $__TOOLTIPCONSTANTS_WM_USER + 19
+Global Const $TTM_SETTIPTEXTCOLOR = $__TOOLTIPCONSTANTS_WM_USER + 20
+Global Const $TTM_GETDELAYTIME = $__TOOLTIPCONSTANTS_WM_USER + 21
+Global Const $TTM_GETTIPBKCOLOR = $__TOOLTIPCONSTANTS_WM_USER + 22
+Global Const $TTM_GETTIPTEXTCOLOR = $__TOOLTIPCONSTANTS_WM_USER + 23
+Global Const $TTM_SETMAXTIPWIDTH = $__TOOLTIPCONSTANTS_WM_USER + 24
+Global Const $TTM_GETMAXTIPWIDTH = $__TOOLTIPCONSTANTS_WM_USER + 25
+Global Const $TTM_SETMARGIN = $__TOOLTIPCONSTANTS_WM_USER + 26
+Global Const $TTM_GETMARGIN = $__TOOLTIPCONSTANTS_WM_USER + 27
+Global Const $TTM_POP = $__TOOLTIPCONSTANTS_WM_USER + 28
+Global Const $TTM_UPDATE = $__TOOLTIPCONSTANTS_WM_USER + 29
+Global Const $TTM_GETBUBBLESIZE = $__TOOLTIPCONSTANTS_WM_USER + 30
+Global Const $TTM_ADJUSTRECT = $__TOOLTIPCONSTANTS_WM_USER + 31
+Global Const $TTM_SETTITLE = $__TOOLTIPCONSTANTS_WM_USER + 32
+Global Const $TTM_SETTITLEW = $__TOOLTIPCONSTANTS_WM_USER + 33
+Global Const $TTM_POPUP = $__TOOLTIPCONSTANTS_WM_USER + 34
+Global Const $TTM_GETTITLE = $__TOOLTIPCONSTANTS_WM_USER + 35
+Global Const $TTM_ADDTOOLW = $__TOOLTIPCONSTANTS_WM_USER + 50
+Global Const $TTM_DELTOOLW = $__TOOLTIPCONSTANTS_WM_USER + 51
+Global Const $TTM_NEWTOOLRECTW = $__TOOLTIPCONSTANTS_WM_USER + 52
+Global Const $TTM_GETTOOLINFOW = $__TOOLTIPCONSTANTS_WM_USER + 53
+Global Const $TTM_SETTOOLINFOW = $__TOOLTIPCONSTANTS_WM_USER + 54
+Global Const $TTM_HITTESTW = $__TOOLTIPCONSTANTS_WM_USER + 55
+Global Const $TTM_GETTEXTW = $__TOOLTIPCONSTANTS_WM_USER + 56
+Global Const $TTM_UPDATETIPTEXTW = $__TOOLTIPCONSTANTS_WM_USER + 57
+Global Const $TTM_ENUMTOOLSW = $__TOOLTIPCONSTANTS_WM_USER + 58
+Global Const $TTM_GETCURRENTTOOLW = $__TOOLTIPCONSTANTS_WM_USER + 59
+Global Const $TTM_SETWINDOWTHEME = 8192 + 11
+Global Const $TTN_FIRST = + 4294966776
+Global Const $TTN_GETDISPINFO = $TTN_FIRST + 0
+Global Const $TTN_SHOW = $TTN_FIRST + 4294967295
+Global Const $TTN_POP = $TTN_FIRST + 4294967294
+Global Const $TTN_LINKCLICK = $TTN_FIRST + 4294967293
+Global Const $TTN_GETDISPINFOW = $TTN_FIRST + 4294967286
+Global Const $TTS_ALWAYSTIP = 1
+Global Const $TTS_NOPREFIX = 2
+Global Const $TTS_NOANIMATE = 16
+Global Const $TTS_NOFADE = 32
+Global Const $TTS_BALLOON = 64
+Global Const $TTS_CLOSE = 128
+Global Const $TTS_USEVISUALSTYLE = 256
+Global Const $TTDT_AUTOMATIC = 0
+Global Const $TTDT_RESHOW = 1
+Global Const $TTDT_AUTOPOP = 2
+Global Const $TTDT_INITIAL = 3
+Global Enum $TTI_NONE , $TTI_INFO , $TTI_WARNING , $TTI_ERROR , $TTI_INFO_LARGE , $TTI_WARNING_LARGE , $TTI_ERROR_LARGE
+Global Const $__EDITCONSTANT_CLASSNAME = "Edit"
+Global Const $__EDITCONSTANT_GUI_CHECKED = 1
+Global Const $__EDITCONSTANT_GUI_HIDE = 32
+Global Const $__EDITCONSTANT_GUI_EVENT_CLOSE = + 4294967293
+Global Const $__EDITCONSTANT_GUI_ENABLE = 64
+Global Const $__EDITCONSTANT_GUI_DISABLE = 128
+Global Const $__EDITCONSTANT_SS_CENTER = 1
+Global Const $__EDITCONSTANT_WM_SETREDRAW = 11
+Global Const $__EDITCONSTANT_WS_CAPTION = 12582912
+Global Const $__EDITCONSTANT_WS_POPUP = 2147483648
+Global Const $__EDITCONSTANT_WS_SYSMENU = 524288
+Global Const $__EDITCONSTANT_WS_MINIMIZEBOX = 131072
+Global Const $__EDITCONSTANT_DEFAULT_GUI_FONT = 17
+Global Const $__EDITCONSTANT_WM_SETFONT = 48
+Global Const $__EDITCONSTANT_WM_GETTEXTLENGTH = 14
+Global Const $__EDITCONSTANT_WM_GETTEXT = 13
+Global Const $__EDITCONSTANT_WM_SETTEXT = 12
+Global Const $__EDITCONSTANT_SB_LINEUP = 0
+Global Const $__EDITCONSTANT_SB_LINEDOWN = 1
+Global Const $__EDITCONSTANT_SB_PAGEDOWN = 3
+Global Const $__EDITCONSTANT_SB_PAGEUP = 2
+Global Const $__EDITCONSTANT_SB_SCROLLCARET = 4
+Global Const $__TAGEDITBALLOONTIP = "dword Size;ptr Title;ptr Text;int Icon"
+Func _GUICTRLEDIT_APPENDTEXT ( $HWND , $STEXT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ILENGTH = _GUICTRLEDIT_GETTEXTLEN ( $HWND )
+	_GUICTRLEDIT_SETSEL ( $HWND , $ILENGTH , $ILENGTH )
+	_SENDMESSAGE ( $HWND , $EM_REPLACESEL , True , $STEXT , 0 , "wparam" , "wstr" )
+EndFunc
+Func _GUICTRLEDIT_BEGINUPDATE ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $__EDITCONSTANT_WM_SETREDRAW , False ) = 0
+EndFunc
+Func _GUICTRLEDIT_CANUNDO ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_CANUNDO ) <> 0
+EndFunc
+Func _GUICTRLEDIT_CHARFROMPOS ( $HWND , $IX , $IY )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ARET [ 2 ]
+	Local $IRET = _SENDMESSAGE ( $HWND , $EM_CHARFROMPOS , 0 , _WINAPI_MAKELONG ( $IX , $IY ) )
+	$ARET [ 0 ] = _WINAPI_LOWORD ( $IRET )
+	$ARET [ 1 ] = _WINAPI_HIWORD ( $IRET )
+	Return $ARET
+EndFunc
+Func _GUICTRLEDIT_CREATE ( $HWND , $STEXT , $IX , $IY , $IWIDTH = 150 , $IHEIGHT = 150 , $ISTYLE = 3150020 , $IEXSTYLE = 512 )
+	If Not IsHWnd ( $HWND ) Then Return SetError ( 1 , 0 , 0 )
+	If Not IsString ( $STEXT ) Then Return SetError ( 2 , 0 , 0 )
+	If $IWIDTH = + 4294967295 Then $IWIDTH = 150
+	If $IHEIGHT = + 4294967295 Then $IHEIGHT = 150
+	If $ISTYLE = + 4294967295 Then $ISTYLE = 3150020
+	If $IEXSTYLE = + 4294967295 Then $IEXSTYLE = 512
+	If BitAND ( $ISTYLE , $ES_READONLY ) = $ES_READONLY Then
+		$ISTYLE = BitOR ( $__UDFGUICONSTANT_WS_CHILD , $__UDFGUICONSTANT_WS_VISIBLE , $ISTYLE )
+	Else
+		$ISTYLE = BitOR ( $__UDFGUICONSTANT_WS_CHILD , $__UDFGUICONSTANT_WS_VISIBLE , $__UDFGUICONSTANT_WS_TABSTOP , $ISTYLE )
+	EndIf
+	Local $NCTRLID = __UDF_GETNEXTGLOBALID ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $HEDIT = _WINAPI_CREATEWINDOWEX ( $IEXSTYLE , $__EDITCONSTANT_CLASSNAME , "" , $ISTYLE , $IX , $IY , $IWIDTH , $IHEIGHT , $HWND , $NCTRLID )
+	_SENDMESSAGE ( $HEDIT , $__EDITCONSTANT_WM_SETFONT , _WINAPI_GETSTOCKOBJECT ( $__EDITCONSTANT_DEFAULT_GUI_FONT ) , True )
+	_GUICTRLEDIT_SETTEXT ( $HEDIT , $STEXT )
+	_GUICTRLEDIT_SETLIMITTEXT ( $HEDIT , 0 )
+	Return $HEDIT
+EndFunc
+Func _GUICTRLEDIT_DESTROY ( ByRef $HWND )
+	If Not _WINAPI_ISCLASSNAME ( $HWND , $__EDITCONSTANT_CLASSNAME ) Then Return SetError ( 2 , 2 , False )
+	Local $IDESTROYED = 0
+	If IsHWnd ( $HWND ) Then
+		If _WINAPI_INPROCESS ( $HWND , $__G_HGUICTRL_LASTWND ) Then
+			Local $NCTRLID = _WINAPI_GETDLGCTRLID ( $HWND )
+			Local $HPARENT = _WINAPI_GETPARENT ( $HWND )
+			$IDESTROYED = _WINAPI_DESTROYWINDOW ( $HWND )
+			Local $IRET = __UDF_FREEGLOBALID ( $HPARENT , $NCTRLID )
+			If Not $IRET Then
+			EndIf
+		Else
+			Return SetError ( 1 , 1 , False )
+		EndIf
+	Else
+		$IDESTROYED = GUICtrlDelete ( $HWND )
+	EndIf
+	If $IDESTROYED Then $HWND = 0
+	Return $IDESTROYED <> 0
+EndFunc
+Func _GUICTRLEDIT_EMPTYUNDOBUFFER ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_EMPTYUNDOBUFFER )
+EndFunc
+Func _GUICTRLEDIT_ENDUPDATE ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $__EDITCONSTANT_WM_SETREDRAW , True ) = 0
+EndFunc
+Func _GUICTRLEDIT_FMTLINES ( $HWND , $BSOFTBREAK = False )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_FMTLINES , $BSOFTBREAK )
+EndFunc
+Func _GUICTRLEDIT_FIND ( $HWND , $BREPLACE = False )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $IPOS = 0 , $ICASE , $IOCCURANCE = 0 , $IREPLACEMENTS = 0
+	Local $APARTSRIGHTEDGE [ 3 ] = [ 125 , 225 , + 4294967295 ]
+	Local $IOLDMODE = Opt ( "GUIOnEventMode" , 0 )
+	Local $ASEL = _GUICTRLEDIT_GETSEL ( $HWND )
+	Local $STEXT = _GUICTRLEDIT_GETTEXT ( $HWND )
+	Local $HGUISEARCH = GUICreate ( "Find" , 349 , 177 , + 4294967295 , + 4294967295 , BitOR ( $__UDFGUICONSTANT_WS_CHILD , $__EDITCONSTANT_WS_MINIMIZEBOX , $__EDITCONSTANT_WS_CAPTION , $__EDITCONSTANT_WS_POPUP , $__EDITCONSTANT_WS_SYSMENU ) )
+	Local $IDSTATUSBAR1 = _GUICTRLSTATUSBAR_CREATE ( $HGUISEARCH , $APARTSRIGHTEDGE )
+	_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "Find: " )
+	GUISetIcon ( @SystemDir & "\shell32.dll" , 22 , $HGUISEARCH )
+	GUICtrlCreateLabel ( "Find what:" , 9 , 10 , 53 , 16 , $__EDITCONSTANT_SS_CENTER )
+	Local $IDINPUTSEARCH = GUICtrlCreateInput ( "" , 80 , 8 , 257 , 21 )
+	Local $IDLBLREPLACE = GUICtrlCreateLabel ( "Replace with:" , 9 , 42 , 69 , 17 , $__EDITCONSTANT_SS_CENTER )
+	Local $IDINPUTREPLACE = GUICtrlCreateInput ( "" , 80 , 40 , 257 , 21 )
+	Local $IDCHKWHOLEONLY = GUICtrlCreateCheckbox ( "Match whole word only" , 9 , 72 , 145 , 17 )
+	Local $IDCHKMATCHCASE = GUICtrlCreateCheckbox ( "Match case" , 9 , 96 , 145 , 17 )
+	Local $IDBTNFINDNEXT = GUICtrlCreateButton ( "Find Next" , 168 , 72 , 161 , 21 , 0 )
+	Local $IDBTNREPLACE = GUICtrlCreateButton ( "Replace" , 168 , 96 , 161 , 21 , 0 )
+	Local $IDBTNCLOSE = GUICtrlCreateButton ( "Close" , 104 , 130 , 161 , 21 , 0 )
+	If ( IsArray ( $ASEL ) And $ASEL <> $EC_ERR ) Then
+		GUICtrlSetData ( $IDINPUTSEARCH , StringMid ( $STEXT , $ASEL [ 0 ] + 1 , $ASEL [ 1 ] - $ASEL [ 0 ] ) )
+		If $ASEL [ 0 ] <> $ASEL [ 1 ] Then
+			$IPOS = $ASEL [ 0 ]
+			If BitAND ( GUICtrlRead ( $IDCHKMATCHCASE ) , $__EDITCONSTANT_GUI_CHECKED ) = $__EDITCONSTANT_GUI_CHECKED Then $ICASE = 1
+			$IOCCURANCE = 1
+			Local $ITPOSE
+			While 1
+				$ITPOSE = StringInStr ( $STEXT , GUICtrlRead ( $IDINPUTSEARCH ) , $ICASE , $IOCCURANCE )
+				If Not $ITPOSE Then
+					$IOCCURANCE = 0
+					ExitLoop
+				ElseIf $ITPOSE = $IPOS + 1 Then
+					ExitLoop
+				EndIf
+				$IOCCURANCE += 1
+			WEnd
+		EndIf
+		_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "Find: " & GUICtrlRead ( $IDINPUTSEARCH ) )
+	EndIf
+	If $BREPLACE = False Then
+		GUICtrlSetState ( $IDLBLREPLACE , $__EDITCONSTANT_GUI_HIDE )
+		GUICtrlSetState ( $IDINPUTREPLACE , $__EDITCONSTANT_GUI_HIDE )
+		GUICtrlSetState ( $IDBTNREPLACE , $__EDITCONSTANT_GUI_HIDE )
+	Else
+		_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "Replacements: " & $IREPLACEMENTS , 1 )
+		_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "With: " , 2 )
+	EndIf
+	GUISetState ( @SW_SHOW )
+	Local $IMSGFIND
+	While 1
+		$IMSGFIND = GUIGetMsg ( )
+		Select
+		Case $IMSGFIND = $__EDITCONSTANT_GUI_EVENT_CLOSE Or $IMSGFIND = $IDBTNCLOSE
+			ExitLoop
+		Case $IMSGFIND = $IDBTNFINDNEXT
+			GUICtrlSetState ( $IDBTNFINDNEXT , $__EDITCONSTANT_GUI_DISABLE )
+			GUICtrlSetCursor ( $IDBTNFINDNEXT , 15 )
+			Sleep ( 100 )
+			_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "Find: " & GUICtrlRead ( $IDINPUTSEARCH ) )
+			If $BREPLACE = True Then
+				_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "Find: " & GUICtrlRead ( $IDINPUTSEARCH ) )
+				_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "With: " & GUICtrlRead ( $IDINPUTREPLACE ) , 2 )
+			EndIf
+			__GUICTRLEDIT_FINDTEXT ( $HWND , $IDINPUTSEARCH , $IDCHKMATCHCASE , $IDCHKWHOLEONLY , $IPOS , $IOCCURANCE , $IREPLACEMENTS )
+			Sleep ( 100 )
+			GUICtrlSetState ( $IDBTNFINDNEXT , $__EDITCONSTANT_GUI_ENABLE )
+			GUICtrlSetCursor ( $IDBTNFINDNEXT , 2 )
+		Case $IMSGFIND = $IDBTNREPLACE
+			GUICtrlSetState ( $IDBTNREPLACE , $__EDITCONSTANT_GUI_DISABLE )
+			GUICtrlSetCursor ( $IDBTNREPLACE , 15 )
+			Sleep ( 100 )
+			_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "Find: " & GUICtrlRead ( $IDINPUTSEARCH ) )
+			_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "With: " & GUICtrlRead ( $IDINPUTREPLACE ) , 2 )
+			If $IPOS Then
+				_GUICTRLEDIT_REPLACESEL ( $HWND , GUICtrlRead ( $IDINPUTREPLACE ) )
+				$IREPLACEMENTS += 1
+				$IOCCURANCE -= 1
+				_GUICTRLSTATUSBAR_SETTEXT ( $IDSTATUSBAR1 , "Replacements: " & $IREPLACEMENTS , 1 )
+			EndIf
+			__GUICTRLEDIT_FINDTEXT ( $HWND , $IDINPUTSEARCH , $IDCHKMATCHCASE , $IDCHKWHOLEONLY , $IPOS , $IOCCURANCE , $IREPLACEMENTS )
+			Sleep ( 100 )
+			GUICtrlSetState ( $IDBTNREPLACE , $__EDITCONSTANT_GUI_ENABLE )
+			GUICtrlSetCursor ( $IDBTNREPLACE , 2 )
+		EndSelect
+	WEnd
+	GUIDelete ( $HGUISEARCH )
+	Opt ( "GUIOnEventMode" , $IOLDMODE )
+EndFunc
+Func _GUICTRLEDIT_GETCUEBANNER ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TTEXT = DllStructCreate ( "wchar[4096]" )
+	If _SENDMESSAGE ( $HWND , $EM_GETCUEBANNER , $TTEXT , 4096 , 0 , "struct*" ) <> 1 Then Return SetError ( + 4294967295 , 0 , "" )
+	Return DllStructGetData ( $TTEXT , 1 )
+EndFunc
+Func __GUICTRLEDIT_FINDTEXT ( $HWND , $IDINPUTSEARCH , $IDCHKMATCHCASE , $IDCHKWHOLEONLY , ByRef $IPOS , ByRef $IOCCURANCE , ByRef $IREPLACEMENTS )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ICASE = 0 , $IWHOLE = 0
+	Local $BEXACT = False
+	Local $SFIND = GUICtrlRead ( $IDINPUTSEARCH )
+	Local $STEXT = _GUICTRLEDIT_GETTEXT ( $HWND )
+	If BitAND ( GUICtrlRead ( $IDCHKMATCHCASE ) , $__EDITCONSTANT_GUI_CHECKED ) = $__EDITCONSTANT_GUI_CHECKED Then $ICASE = 1
+	If BitAND ( GUICtrlRead ( $IDCHKWHOLEONLY ) , $__EDITCONSTANT_GUI_CHECKED ) = $__EDITCONSTANT_GUI_CHECKED Then $IWHOLE = 1
+	If $SFIND <> "" Then
+		$IOCCURANCE += 1
+		$IPOS = StringInStr ( $STEXT , $SFIND , $ICASE , $IOCCURANCE )
+		If $IWHOLE And $IPOS Then
+			Local $S_COMPARE2 = StringMid ( $STEXT , $IPOS + StringLen ( $SFIND ) , 1 )
+			If $IPOS = 1 Then
+				If ( $IPOS + StringLen ( $SFIND ) ) + 4294967295 = StringLen ( $STEXT ) Or ( $S_COMPARE2 = " " Or $S_COMPARE2 = @LF Or $S_COMPARE2 = @CR Or $S_COMPARE2 = @CRLF Or $S_COMPARE2 = @TAB ) Then $BEXACT = True
+			Else
+				Local $S_COMPARE1 = StringMid ( $STEXT , $IPOS + 4294967295 , 1 )
+				If ( $IPOS + StringLen ( $SFIND ) ) + 4294967295 = StringLen ( $STEXT ) Then
+					If ( $S_COMPARE1 = " " Or $S_COMPARE1 = @LF Or $S_COMPARE1 = @CR Or $S_COMPARE1 = @CRLF Or $S_COMPARE1 = @TAB ) Then $BEXACT = True
+				Else
+					If ( $S_COMPARE1 = " " Or $S_COMPARE1 = @LF Or $S_COMPARE1 = @CR Or $S_COMPARE1 = @CRLF Or $S_COMPARE1 = @TAB ) And ( $S_COMPARE2 = " " Or $S_COMPARE2 = @LF Or $S_COMPARE2 = @CR Or $S_COMPARE2 = @CRLF Or $S_COMPARE2 = @TAB ) Then $BEXACT = True
+				EndIf
+			EndIf
+			If $BEXACT = False Then
+				__GUICTRLEDIT_FINDTEXT ( $HWND , $IDINPUTSEARCH , $IDCHKMATCHCASE , $IDCHKWHOLEONLY , $IPOS , $IOCCURANCE , $IREPLACEMENTS )
+			Else
+				_GUICTRLEDIT_SETSEL ( $HWND , $IPOS + 4294967295 , ( $IPOS + StringLen ( $SFIND ) ) + 4294967295 )
+				_GUICTRLEDIT_SCROLL ( $HWND , $__EDITCONSTANT_SB_SCROLLCARET )
+			EndIf
+		ElseIf $IWHOLE And Not $IPOS Then
+			$IOCCURANCE = 0
+			MsgBox ( $MB_SYSTEMMODAL , "Find" , "Reached End of document, Can not find the string '" & $SFIND & "'" )
+		ElseIf Not $IWHOLE Then
+			If Not $IPOS Then
+				$IOCCURANCE = 1
+				_GUICTRLEDIT_SETSEL ( $HWND , + 4294967295 , 0 )
+				_GUICTRLEDIT_SCROLL ( $HWND , $__EDITCONSTANT_SB_SCROLLCARET )
+				$IPOS = StringInStr ( $STEXT , $SFIND , $ICASE , $IOCCURANCE )
+				If Not $IPOS Then
+					$IOCCURANCE = 0
+					MsgBox ( $MB_SYSTEMMODAL , "Find" , "Reached End of document, Can not find the string  '" & $SFIND & "'" )
+				Else
+					_GUICTRLEDIT_SETSEL ( $HWND , $IPOS + 4294967295 , ( $IPOS + StringLen ( $SFIND ) ) + 4294967295 )
+					_GUICTRLEDIT_SCROLL ( $HWND , $__EDITCONSTANT_SB_SCROLLCARET )
+				EndIf
+			Else
+				_GUICTRLEDIT_SETSEL ( $HWND , $IPOS + 4294967295 , ( $IPOS + StringLen ( $SFIND ) ) + 4294967295 )
+				_GUICTRLEDIT_SCROLL ( $HWND , $__EDITCONSTANT_SB_SCROLLCARET )
+			EndIf
+		EndIf
+	EndIf
+EndFunc
+Func _GUICTRLEDIT_GETFIRSTVISIBLELINE ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_GETFIRSTVISIBLELINE )
+EndFunc
+Func _GUICTRLEDIT_GETHANDLE ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return Ptr ( _SENDMESSAGE ( $HWND , $EM_GETHANDLE ) )
+EndFunc
+Func _GUICTRLEDIT_GETIMESTATUS ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_GETIMESTATUS , $EMSIS_COMPOSITIONSTRING )
+EndFunc
+Func _GUICTRLEDIT_GETLIMITTEXT ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_GETLIMITTEXT )
+EndFunc
+Func _GUICTRLEDIT_GETLINE ( $HWND , $ILINE )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ILENGTH = _GUICTRLEDIT_LINELENGTH ( $HWND , $ILINE )
+	If $ILENGTH = 0 Then Return ""
+	Local $TBUFFER = DllStructCreate ( "short Len;wchar Text[" & $ILENGTH & "]" )
+	DllStructSetData ( $TBUFFER , "Len" , $ILENGTH + 1 )
+	Local $IRET = _SENDMESSAGE ( $HWND , $EM_GETLINE , $ILINE , $TBUFFER , 0 , "wparam" , "struct*" )
+	If $IRET = 0 Then Return SetError ( $EC_ERR , $EC_ERR , "" )
+	Local $TTEXT = DllStructCreate ( "wchar Text[" & $ILENGTH & "]" , DllStructGetPtr ( $TBUFFER ) )
+	Return DllStructGetData ( $TTEXT , "Text" )
+EndFunc
+Func _GUICTRLEDIT_GETLINECOUNT ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_GETLINECOUNT )
+EndFunc
+Func _GUICTRLEDIT_GETMARGINS ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $AMARGINS [ 2 ]
+	Local $IMARGINS = _SENDMESSAGE ( $HWND , $EM_GETMARGINS )
+	$AMARGINS [ 0 ] = _WINAPI_LOWORD ( $IMARGINS )
+	$AMARGINS [ 1 ] = _WINAPI_HIWORD ( $IMARGINS )
+	Return $AMARGINS
+EndFunc
+Func _GUICTRLEDIT_GETMODIFY ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_GETMODIFY ) <> 0
+EndFunc
+Func _GUICTRLEDIT_GETPASSWORDCHAR ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_GETPASSWORDCHAR )
+EndFunc
+Func _GUICTRLEDIT_GETRECT ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ARECT [ 4 ]
+	Local $TRECT = _GUICTRLEDIT_GETRECTEX ( $HWND )
+	$ARECT [ 0 ] = DllStructGetData ( $TRECT , "Left" )
+	$ARECT [ 1 ] = DllStructGetData ( $TRECT , "Top" )
+	$ARECT [ 2 ] = DllStructGetData ( $TRECT , "Right" )
+	$ARECT [ 3 ] = DllStructGetData ( $TRECT , "Bottom" )
+	Return $ARECT
+EndFunc
+Func _GUICTRLEDIT_GETRECTEX ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	_SENDMESSAGE ( $HWND , $EM_GETRECT , 0 , $TRECT , 0 , "wparam" , "struct*" )
+	Return $TRECT
+EndFunc
+Func _GUICTRLEDIT_GETSEL ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ASEL [ 2 ]
+	Local $TSTART = DllStructCreate ( "uint Start" )
+	Local $TEND = DllStructCreate ( "uint End" )
+	_SENDMESSAGE ( $HWND , $EM_GETSEL , $TSTART , $TEND , 0 , "struct*" , "struct*" )
+	$ASEL [ 0 ] = DllStructGetData ( $TSTART , "Start" )
+	$ASEL [ 1 ] = DllStructGetData ( $TEND , "End" )
+	Return $ASEL
+EndFunc
+Func _GUICTRLEDIT_GETTEXT ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ITEXTLEN = _GUICTRLEDIT_GETTEXTLEN ( $HWND ) + 1
+	Local $TTEXT = DllStructCreate ( "wchar Text[" & $ITEXTLEN & "]" )
+	_SENDMESSAGE ( $HWND , $__EDITCONSTANT_WM_GETTEXT , $ITEXTLEN , $TTEXT , 0 , "wparam" , "struct*" )
+	Return DllStructGetData ( $TTEXT , "Text" )
+EndFunc
+Func _GUICTRLEDIT_GETTEXTLEN ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $__EDITCONSTANT_WM_GETTEXTLENGTH )
+EndFunc
+Func _GUICTRLEDIT_GETTHUMB ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_GETTHUMB )
+EndFunc
+Func _GUICTRLEDIT_GETWORDBREAKPROC ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_GETWORDBREAKPROC )
+EndFunc
+Func _GUICTRLEDIT_HIDEBALLOONTIP ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_HIDEBALLOONTIP ) <> 0
+EndFunc
+Func _GUICTRLEDIT_INSERTTEXT ( $HWND , $STEXT , $IINDEX = + 4294967295 )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If $IINDEX = + 4294967295 Then
+		_GUICTRLEDIT_APPENDTEXT ( $HWND , $STEXT )
+	Else
+		_GUICTRLEDIT_SETSEL ( $HWND , $IINDEX , $IINDEX )
+		_SENDMESSAGE ( $HWND , $EM_REPLACESEL , True , $STEXT , 0 , "wparam" , "wstr" )
+	EndIf
+EndFunc
+Func _GUICTRLEDIT_LINEFROMCHAR ( $HWND , $IINDEX = + 4294967295 )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_LINEFROMCHAR , $IINDEX )
+EndFunc
+Func _GUICTRLEDIT_LINEINDEX ( $HWND , $IINDEX = + 4294967295 )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_LINEINDEX , $IINDEX )
+EndFunc
+Func _GUICTRLEDIT_LINELENGTH ( $HWND , $IINDEX = + 4294967295 )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ICHARINDEX = _GUICTRLEDIT_LINEINDEX ( $HWND , $IINDEX )
+	Return _SENDMESSAGE ( $HWND , $EM_LINELENGTH , $ICHARINDEX )
+EndFunc
+Func _GUICTRLEDIT_LINESCROLL ( $HWND , $IHORIZ , $IVERT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_LINESCROLL , $IHORIZ , $IVERT ) <> 0
+EndFunc
+Func _GUICTRLEDIT_POSFROMCHAR ( $HWND , $IINDEX )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ACOORD [ 2 ]
+	Local $IRET = _SENDMESSAGE ( $HWND , $EM_POSFROMCHAR , $IINDEX )
+	$ACOORD [ 0 ] = _WINAPI_LOWORD ( $IRET )
+	$ACOORD [ 1 ] = _WINAPI_HIWORD ( $IRET )
+	Return $ACOORD
+EndFunc
+Func _GUICTRLEDIT_REPLACESEL ( $HWND , $STEXT , $BUNDO = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_REPLACESEL , $BUNDO , $STEXT , 0 , "wparam" , "wstr" )
+EndFunc
+Func _GUICTRLEDIT_SCROLL ( $HWND , $IDIRECTION )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If BitAND ( $IDIRECTION , $__EDITCONSTANT_SB_LINEDOWN ) <> $__EDITCONSTANT_SB_LINEDOWN And BitAND ( $IDIRECTION , $__EDITCONSTANT_SB_LINEUP ) <> $__EDITCONSTANT_SB_LINEUP And BitAND ( $IDIRECTION , $__EDITCONSTANT_SB_PAGEDOWN ) <> $__EDITCONSTANT_SB_PAGEDOWN And BitAND ( $IDIRECTION , $__EDITCONSTANT_SB_PAGEUP ) <> $__EDITCONSTANT_SB_PAGEUP And BitAND ( $IDIRECTION , $__EDITCONSTANT_SB_SCROLLCARET ) <> $__EDITCONSTANT_SB_SCROLLCARET Then Return 0
+	If $IDIRECTION == $__EDITCONSTANT_SB_SCROLLCARET Then
+		Return _SENDMESSAGE ( $HWND , $EM_SCROLLCARET )
+	Else
+		Return _SENDMESSAGE ( $HWND , $EM_SCROLL , $IDIRECTION )
+	EndIf
+EndFunc
+Func _GUICTRLEDIT_SETCUEBANNER ( $HWND , $STEXT , $BONFOCUS = False )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TTEXT = _WINAPI_MULTIBYTETOWIDECHAR ( $STEXT )
+	Return _SENDMESSAGE ( $HWND , $EM_SETCUEBANNER , $BONFOCUS , $TTEXT , 0 , "wparam" , "struct*" ) = 1
+EndFunc
+Func _GUICTRLEDIT_SETHANDLE ( $HWND , $HMEMORY )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_SETHANDLE , $HMEMORY , 0 , 0 , "handle" )
+EndFunc
+Func _GUICTRLEDIT_SETIMESTATUS ( $HWND , $ICOMPOSITION )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_SETIMESTATUS , $EMSIS_COMPOSITIONSTRING , $ICOMPOSITION )
+EndFunc
+Func _GUICTRLEDIT_SETLIMITTEXT ( $HWND , $ILIMIT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_SETLIMITTEXT , $ILIMIT )
+EndFunc
+Func _GUICTRLEDIT_SETMARGINS ( $HWND , $IMARGIN = 1 , $ILEFT = 65535 , $IRIGHT = 65535 )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_SETMARGINS , $IMARGIN , _WINAPI_MAKELONG ( $ILEFT , $IRIGHT ) )
+EndFunc
+Func _GUICTRLEDIT_SETMODIFY ( $HWND , $BMODIFIED )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_SETMODIFY , $BMODIFIED )
+EndFunc
+Func _GUICTRLEDIT_SETPADDING ( $HWND , $ICX , $ICY )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_GETRECT , 0 , $TRECT , 0 , "wparam" , "struct*" )
+	$TRECT .left += $ICX
+	$TRECT .right -= $ICX
+	$TRECT .top += $ICY
+	$TRECT .bottom -= $ICY
+	Return _SENDMESSAGE ( $HWND , $EM_SETRECT , 0 , $TRECT , 0 , "wparam" , "struct*" )
+EndFunc
+Func _GUICTRLEDIT_SETPASSWORDCHAR ( $HWND , $SDISPLAYCHAR = "0" )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	$SDISPLAYCHAR = StringLeft ( $SDISPLAYCHAR , 1 )
+	If Asc ( $SDISPLAYCHAR ) = 48 Then
+		_SENDMESSAGE ( $HWND , $EM_SETPASSWORDCHAR )
+	Else
+		_SENDMESSAGE ( $HWND , $EM_SETPASSWORDCHAR , Asc ( $SDISPLAYCHAR ) )
+	EndIf
+EndFunc
+Func _GUICTRLEDIT_SETREADONLY ( $HWND , $BREADONLY )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_SETREADONLY , $BREADONLY ) <> 0
+EndFunc
+Func _GUICTRLEDIT_SETRECT ( $HWND , $ARECT )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , "Left" , $ARECT [ 0 ] )
+	DllStructSetData ( $TRECT , "Top" , $ARECT [ 1 ] )
+	DllStructSetData ( $TRECT , "Right" , $ARECT [ 2 ] )
+	DllStructSetData ( $TRECT , "Bottom" , $ARECT [ 3 ] )
+	_GUICTRLEDIT_SETRECTEX ( $HWND , $TRECT )
+EndFunc
+Func _GUICTRLEDIT_SETRECTEX ( $HWND , $TRECT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_SETRECT , 0 , $TRECT , 0 , "wparam" , "struct*" )
+EndFunc
+Func _GUICTRLEDIT_SETRECTNP ( $HWND , $ARECT )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , "Left" , $ARECT [ 0 ] )
+	DllStructSetData ( $TRECT , "Top" , $ARECT [ 1 ] )
+	DllStructSetData ( $TRECT , "Right" , $ARECT [ 2 ] )
+	DllStructSetData ( $TRECT , "Bottom" , $ARECT [ 3 ] )
+	_GUICTRLEDIT_SETRECTNPEX ( $HWND , $TRECT )
+EndFunc
+Func _GUICTRLEDIT_SETRECTNPEX ( $HWND , $TRECT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_SETRECTNP , 0 , $TRECT , 0 , "wparam" , "struct*" )
+EndFunc
+Func _GUICTRLEDIT_SETSEL ( $HWND , $ISTART , $IEND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_SETSEL , $ISTART , $IEND )
+EndFunc
+Func _GUICTRLEDIT_SETTABSTOPS ( $HWND , $ATABSTOPS )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If Not IsArray ( $ATABSTOPS ) Then Return SetError ( + 4294967295 , + 4294967295 , False )
+	Local $STABSTOPS = ""
+	Local $INUMTABSTOPS = UBound ( $ATABSTOPS )
+	For $X = 0 To $INUMTABSTOPS + 4294967295
+		$STABSTOPS &= "int;"
+	Next
+	$STABSTOPS = StringTrimRight ( $STABSTOPS , 1 )
+	Local $TTABSTOPS = DllStructCreate ( $STABSTOPS )
+	For $X = 0 To $INUMTABSTOPS + 4294967295
+		DllStructSetData ( $TTABSTOPS , $X + 1 , $ATABSTOPS [ $X ] )
+	Next
+	Local $IRET = _SENDMESSAGE ( $HWND , $EM_SETTABSTOPS , $INUMTABSTOPS , $TTABSTOPS , 0 , "wparam" , "struct*" ) <> 0
+	_WINAPI_INVALIDATERECT ( $HWND )
+	Return $IRET
+EndFunc
+Func _GUICTRLEDIT_SETTEXT ( $HWND , $STEXT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $__EDITCONSTANT_WM_SETTEXT , 0 , $STEXT , 0 , "wparam" , "wstr" )
+EndFunc
+Func _GUICTRLEDIT_SETWORDBREAKPROC ( $HWND , $IADDRESSFUNC )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $EM_SETWORDBREAKPROC , 0 , $IADDRESSFUNC )
+EndFunc
+Func _GUICTRLEDIT_SHOWBALLOONTIP ( $HWND , $STITLE , $STEXT , $IICON )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TBUFFER = DllStructCreate ( "wchar Title[" & StringLen ( $STITLE ) + 1 & "];wchar Text[" & StringLen ( $STEXT ) + 1 & "]" )
+	DllStructSetData ( $TBUFFER , "Title" , $STITLE )
+	DllStructSetData ( $TBUFFER , "Text" , $STEXT )
+	Local $TTT = DllStructCreate ( $__TAGEDITBALLOONTIP )
+	DllStructSetData ( $TTT , "Size" , DllStructGetSize ( $TTT ) )
+	DllStructSetData ( $TTT , "Title" , DllStructGetPtr ( $TBUFFER , "Title" ) )
+	DllStructSetData ( $TTT , "Text" , DllStructGetPtr ( $TBUFFER , "Text" ) )
+	DllStructSetData ( $TTT , "Icon" , $IICON )
+	Return _SENDMESSAGE ( $HWND , $EM_SHOWBALLOONTIP , 0 , $TTT , 0 , "wparam" , "struct*" ) <> 0
+EndFunc
+Func _GUICTRLEDIT_UNDO ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $EM_UNDO ) <> 0
+EndFunc
+Global $__G_HBUTTONLASTWND
+Global Const $TAGBUTTON_IMAGELIST = "ptr ImageList;" & $TAGRECT & ";uint Align"
+Global Const $TAGBUTTON_SPLITINFO = "uint mask;handle himlGlyph;uint uSplitStyle;" & $TAGSIZE
+Global Const $__BUTTONCONSTANT_CLASSNAME = "Button"
+Global Const $__BUTTONCONSTANT_GWL_STYLE = 4294967280
+Global Const $__BUTTONCONSTANT_WM_SETFONT = 48
+Global Const $__BUTTONCONSTANT_DEFAULT_GUI_FONT = 17
+Func _GUICTRLBUTTON_CLICK ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $BM_CLICK )
+EndFunc
+Func _GUICTRLBUTTON_CREATE ( $HWND , $STEXT , $IX , $IY , $IWIDTH , $IHEIGHT , $ISTYLE = + 4294967295 , $IEXSTYLE = + 4294967295 )
+	If Not IsHWnd ( $HWND ) Then
+		Return SetError ( 1 , 0 , 0 )
+	EndIf
+	If Not IsString ( $STEXT ) Then
+		Return SetError ( 2 , 0 , 0 )
+	EndIf
+	Local $IFORCEDSTYLE = BitOR ( $__UDFGUICONSTANT_WS_TABSTOP , $__UDFGUICONSTANT_WS_VISIBLE , $__UDFGUICONSTANT_WS_CHILD , $BS_NOTIFY )
+	If $ISTYLE = + 4294967295 Then
+		$ISTYLE = $IFORCEDSTYLE
+	Else
+		$ISTYLE = BitOR ( $ISTYLE , $IFORCEDSTYLE )
+	EndIf
+	If $IEXSTYLE = + 4294967295 Then $IEXSTYLE = 0
+	Local $NCTRLID = __UDF_GETNEXTGLOBALID ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $HBUTTON = _WINAPI_CREATEWINDOWEX ( $IEXSTYLE , $__BUTTONCONSTANT_CLASSNAME , $STEXT , $ISTYLE , $IX , $IY , $IWIDTH , $IHEIGHT , $HWND , $NCTRLID )
+	_SENDMESSAGE ( $HBUTTON , $__BUTTONCONSTANT_WM_SETFONT , _WINAPI_GETSTOCKOBJECT ( $__BUTTONCONSTANT_DEFAULT_GUI_FONT ) , True )
+	Return $HBUTTON
+EndFunc
+Func _GUICTRLBUTTON_DESTROY ( ByRef $HWND )
+	If Not _WINAPI_ISCLASSNAME ( $HWND , $__BUTTONCONSTANT_CLASSNAME ) Then Return SetError ( 2 , 2 , False )
+	Local $IDESTROYED = 0
+	If IsHWnd ( $HWND ) Then
+		If _WINAPI_INPROCESS ( $HWND , $__G_HBUTTONLASTWND ) Then
+			Local $NCTRLID = _WINAPI_GETDLGCTRLID ( $HWND )
+			Local $HPARENT = _WINAPI_GETPARENT ( $HWND )
+			$IDESTROYED = _WINAPI_DESTROYWINDOW ( $HWND )
+			Local $IRET = __UDF_FREEGLOBALID ( $HPARENT , $NCTRLID )
+			If Not $IRET Then
+			EndIf
+		Else
+			Return SetError ( 1 , 1 , False )
+		EndIf
+	Else
+		$IDESTROYED = GUICtrlDelete ( $HWND )
+	EndIf
+	If $IDESTROYED Then $HWND = 0
+	Return $IDESTROYED <> 0
+EndFunc
+Func _GUICTRLBUTTON_ENABLE ( $HWND , $BENABLE = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If _WINAPI_ISCLASSNAME ( $HWND , $__BUTTONCONSTANT_CLASSNAME ) Then Return _WINAPI_ENABLEWINDOW ( $HWND , $BENABLE ) = $BENABLE
+EndFunc
+Func _GUICTRLBUTTON_GETCHECK ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $BM_GETCHECK )
+EndFunc
+Func _GUICTRLBUTTON_GETFOCUS ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If _WINAPI_ISCLASSNAME ( $HWND , $__BUTTONCONSTANT_CLASSNAME ) Then Return _WINAPI_GETFOCUS ( ) = $HWND
+EndFunc
+Func _GUICTRLBUTTON_GETIDEALSIZE ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TSIZE = DllStructCreate ( $TAGSIZE ) , $ASIZE [ 2 ]
+	Local $IRET = _SENDMESSAGE ( $HWND , $BCM_GETIDEALSIZE , 0 , $TSIZE , 0 , "wparam" , "struct*" )
+	If Not $IRET Then Return SetError ( + 4294967295 , + 4294967295 , $ASIZE )
+	$ASIZE [ 0 ] = DllStructGetData ( $TSIZE , "X" )
+	$ASIZE [ 1 ] = DllStructGetData ( $TSIZE , "Y" )
+	Return $ASIZE
+EndFunc
+Func _GUICTRLBUTTON_GETIMAGE ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $IRET = _SENDMESSAGE ( $HWND , $BM_GETIMAGE , 0 , 0 , 0 , "wparam" , "lparam" , "hwnd" )
+	If $IRET <> 0 Then Return $IRET
+	$IRET = _SENDMESSAGE ( $HWND , $BM_GETIMAGE , 1 , 0 , 0 , "wparam" , "lparam" , "hwnd" )
+	If $IRET = 0 Then Return 0
+	Return $IRET
+EndFunc
+Func _GUICTRLBUTTON_GETIMAGELIST ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TBUTTON_IMAGELIST = DllStructCreate ( $TAGBUTTON_IMAGELIST ) , $AIMAGELIST [ 6 ]
+	If Not _SENDMESSAGE ( $HWND , $BCM_GETIMAGELIST , 0 , $TBUTTON_IMAGELIST , 0 , "wparam" , "struct*" ) Then Return SetError ( + 4294967295 , + 4294967295 , $AIMAGELIST )
+	$AIMAGELIST [ 0 ] = DllStructGetData ( $TBUTTON_IMAGELIST , "ImageList" )
+	$AIMAGELIST [ 1 ] = DllStructGetData ( $TBUTTON_IMAGELIST , "Left" )
+	$AIMAGELIST [ 2 ] = DllStructGetData ( $TBUTTON_IMAGELIST , "Right" )
+	$AIMAGELIST [ 3 ] = DllStructGetData ( $TBUTTON_IMAGELIST , "Top" )
+	$AIMAGELIST [ 4 ] = DllStructGetData ( $TBUTTON_IMAGELIST , "Bottom" )
+	$AIMAGELIST [ 5 ] = DllStructGetData ( $TBUTTON_IMAGELIST , "Align" )
+	Return $AIMAGELIST
+EndFunc
+Func _GUICTRLBUTTON_GETNOTE ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $ILEN = _GUICTRLBUTTON_GETNOTELENGTH ( $HWND ) + 1
+	Local $TNOTE = DllStructCreate ( "wchar Note[" & $ILEN & "]" )
+	Local $TLEN = DllStructCreate ( "dword" )
+	DllStructSetData ( $TLEN , 1 , $ILEN )
+	If Not _SENDMESSAGE ( $HWND , $BCM_GETNOTE , $TLEN , $TNOTE , 0 , "struct*" , "struct*" ) Then Return SetError ( + 4294967295 , 0 , "" )
+	Return DllStructGetData ( $TNOTE , 1 )
+EndFunc
+Func _GUICTRLBUTTON_GETNOTELENGTH ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $BCM_GETNOTELENGTH )
+EndFunc
+Func _GUICTRLBUTTON_GETSPLITINFO ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TSPLITINFO = DllStructCreate ( $TAGBUTTON_SPLITINFO ) , $AINFO [ 4 ]
+	DllStructSetData ( $TSPLITINFO , "mask" , BitOR ( $BCSIF_GLYPH , $BCSIF_IMAGE , $BCSIF_SIZE , $BCSIF_STYLE ) )
+	If Not _SENDMESSAGE ( $HWND , $BCM_GETSPLITINFO , 0 , $TSPLITINFO , 0 , "wparam" , "struct*" ) Then Return SetError ( + 4294967295 , 0 , $AINFO )
+	$AINFO [ 0 ] = DllStructGetData ( $TSPLITINFO , "himlGlyph" )
+	$AINFO [ 1 ] = DllStructGetData ( $TSPLITINFO , "uSplitStyle" )
+	$AINFO [ 2 ] = DllStructGetData ( $TSPLITINFO , "X" )
+	$AINFO [ 3 ] = DllStructGetData ( $TSPLITINFO , "Y" )
+	Return $AINFO
+EndFunc
+Func _GUICTRLBUTTON_GETSTATE ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $BM_GETSTATE )
+EndFunc
+Func _GUICTRLBUTTON_GETTEXT ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If _WINAPI_ISCLASSNAME ( $HWND , $__BUTTONCONSTANT_CLASSNAME ) Then Return _WINAPI_GETWINDOWTEXT ( $HWND )
+	Return ""
+EndFunc
+Func _GUICTRLBUTTON_GETTEXTMARGIN ( $HWND )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TRECT = DllStructCreate ( $TAGRECT ) , $ARECT [ 4 ]
+	If Not _SENDMESSAGE ( $HWND , $BCM_GETTEXTMARGIN , 0 , $TRECT , 0 , "wparam" , "struct*" ) Then Return SetError ( + 4294967295 , + 4294967295 , $ARECT )
+	$ARECT [ 0 ] = DllStructGetData ( $TRECT , "Left" )
+	$ARECT [ 1 ] = DllStructGetData ( $TRECT , "Top" )
+	$ARECT [ 2 ] = DllStructGetData ( $TRECT , "Right" )
+	$ARECT [ 3 ] = DllStructGetData ( $TRECT , "Bottom" )
+	Return $ARECT
+EndFunc
+Func _GUICTRLBUTTON_SETCHECK ( $HWND , $ISTATE = $BST_CHECKED )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $BM_SETCHECK , $ISTATE )
+EndFunc
+Func _GUICTRLBUTTON_SETDONTCLICK ( $HWND , $BSTATE = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $BM_SETDONTCLICK , $BSTATE )
+EndFunc
+Func _GUICTRLBUTTON_SETDROPDOWNSTATE ( $HWND , $BSTATE = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $BCM_SETDROPDOWNSTATE , $BSTATE ) <> 0
+EndFunc
+Func _GUICTRLBUTTON_SETFOCUS ( $HWND , $BFOCUS = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If _WINAPI_ISCLASSNAME ( $HWND , $__BUTTONCONSTANT_CLASSNAME ) Then
+		If $BFOCUS Then
+			Return _WINAPI_SETFOCUS ( $HWND ) <> 0
+		Else
+			Return _WINAPI_SETFOCUS ( _WINAPI_GETPARENT ( $HWND ) ) <> 0
+		EndIf
+	EndIf
+EndFunc
+Func _GUICTRLBUTTON_SETIMAGE ( $HWND , $SIMAGEFILE , $IICONID = + 4294967295 , $BLARGE = False )
+	Local $HIMAGE , $HPREVIMAGE
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If StringUpper ( StringMid ( $SIMAGEFILE , StringLen ( $SIMAGEFILE ) + 4294967294 ) ) = "BMP" Then
+		If BitAND ( _WINAPI_GETWINDOWLONG ( $HWND , $__BUTTONCONSTANT_GWL_STYLE ) , $BS_BITMAP ) = $BS_BITMAP Then
+			$HIMAGE = _WINAPI_LOADIMAGE ( 0 , $SIMAGEFILE , 0 , 0 , 0 , BitOR ( $LR_LOADFROMFILE , $LR_CREATEDIBSECTION ) )
+			If Not $HIMAGE Then Return SetError ( + 4294967295 , + 4294967295 , False )
+			$HPREVIMAGE = _SENDMESSAGE ( $HWND , $BM_SETIMAGE , 0 , $HIMAGE )
+			If $HPREVIMAGE Then
+				If Not _WINAPI_DELETEOBJECT ( $HPREVIMAGE ) Then _WINAPI_DESTROYICON ( $HPREVIMAGE )
+			EndIf
+			_WINAPI_UPDATEWINDOW ( $HWND )
+			Return True
+		EndIf
+	Else
+		If $IICONID = + 4294967295 Then
+			$HIMAGE = _WINAPI_LOADIMAGE ( 0 , $SIMAGEFILE , 1 , 0 , 0 , BitOR ( $LR_LOADFROMFILE , $LR_CREATEDIBSECTION ) )
+			If Not $HIMAGE Then Return SetError ( + 4294967295 , + 4294967295 , False )
+			$HPREVIMAGE = _SENDMESSAGE ( $HWND , $BM_SETIMAGE , 1 , $HIMAGE )
+			If $HPREVIMAGE Then
+				If Not _WINAPI_DELETEOBJECT ( $HPREVIMAGE ) Then _WINAPI_DESTROYICON ( $HPREVIMAGE )
+			EndIf
+			_WINAPI_UPDATEWINDOW ( $HWND )
+			Return True
+		Else
+			Local $TICON = DllStructCreate ( "handle Handle" )
+			Local $IRET
+			If $BLARGE Then
+				$IRET = _WINAPI_EXTRACTICONEX ( $SIMAGEFILE , $IICONID , $TICON , 0 , 1 )
+			Else
+				$IRET = _WINAPI_EXTRACTICONEX ( $SIMAGEFILE , $IICONID , 0 , $TICON , 1 )
+			EndIf
+			If Not $IRET Then Return SetError ( + 4294967295 , + 4294967295 , False )
+			$HPREVIMAGE = _SENDMESSAGE ( $HWND , $BM_SETIMAGE , 1 , DllStructGetData ( $TICON , "Handle" ) )
+			If $HPREVIMAGE Then
+				If Not _WINAPI_DELETEOBJECT ( $HPREVIMAGE ) Then _WINAPI_DESTROYICON ( $HPREVIMAGE )
+			EndIf
+			_WINAPI_UPDATEWINDOW ( $HWND )
+			Return True
+		EndIf
+	EndIf
+	Return False
+EndFunc
+Func _GUICTRLBUTTON_SETIMAGELIST ( $HWND , $HIMAGE , $IALIGN = 0 , $ILEFT = 1 , $ITOP = 1 , $IRIGHT = 1 , $IBOTTOM = 1 )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If $IALIGN < 0 Or $IALIGN > 4 Then $IALIGN = 0
+	Local $TBUTTON_IMAGELIST = DllStructCreate ( $TAGBUTTON_IMAGELIST )
+	DllStructSetData ( $TBUTTON_IMAGELIST , "ImageList" , $HIMAGE )
+	DllStructSetData ( $TBUTTON_IMAGELIST , "Left" , $ILEFT )
+	DllStructSetData ( $TBUTTON_IMAGELIST , "Top" , $ITOP )
+	DllStructSetData ( $TBUTTON_IMAGELIST , "Right" , $IRIGHT )
+	DllStructSetData ( $TBUTTON_IMAGELIST , "Bottom" , $IBOTTOM )
+	DllStructSetData ( $TBUTTON_IMAGELIST , "Align" , $IALIGN )
+	Local $BENABLED = _GUICTRLBUTTON_ENABLE ( $HWND , False )
+	Local $IRET = _SENDMESSAGE ( $HWND , $BCM_SETIMAGELIST , 0 , $TBUTTON_IMAGELIST , 0 , "wparam" , "struct*" ) <> 0
+	_GUICTRLBUTTON_ENABLE ( $HWND )
+	If Not $BENABLED Then _GUICTRLBUTTON_ENABLE ( $HWND , False )
+	Return $IRET
+EndFunc
+Func _GUICTRLBUTTON_SETNOTE ( $HWND , $SNOTE )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TNOTE = _WINAPI_MULTIBYTETOWIDECHAR ( $SNOTE )
+	Return _SENDMESSAGE ( $HWND , $BCM_SETNOTE , 0 , $TNOTE , 0 , "wparam" , "struct*" ) <> 0
+EndFunc
+Func _GUICTRLBUTTON_SETSHIELD ( $HWND , $BREQUIRED = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Return _SENDMESSAGE ( $HWND , $BCM_SETSHIELD , 0 , $BREQUIRED ) = 1
+EndFunc
+Func _GUICTRLBUTTON_SETSIZE ( $HWND , $IWIDTH , $IHEIGHT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If Not _WINAPI_ISCLASSNAME ( $HWND , $__BUTTONCONSTANT_CLASSNAME ) Then Return SetError ( + 4294967295 , + 4294967295 , False )
+	Local $HPARENT = _WINAPI_GETPARENT ( $HWND )
+	If Not $HPARENT Then Return SetError ( + 4294967295 , + 4294967295 , False )
+	Local $APOS = WinGetPos ( $HWND )
+	If Not IsArray ( $APOS ) Then Return SetError ( + 4294967295 , + 4294967295 , False )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	DllStructSetData ( $TPOINT , "X" , $APOS [ 0 ] )
+	DllStructSetData ( $TPOINT , "Y" , $APOS [ 1 ] )
+	If Not _WINAPI_SCREENTOCLIENT ( $HPARENT , $TPOINT ) Then Return SetError ( + 4294967295 , + 4294967295 , False )
+	Local $IRET = WinMove ( $HWND , "" , DllStructGetData ( $TPOINT , "X" ) , DllStructGetData ( $TPOINT , "Y" ) , $IWIDTH , $IHEIGHT )
+	Return SetError ( $IRET + 4294967295 , $IRET + 4294967295 , $IRET <> 0 )
+EndFunc
+Func _GUICTRLBUTTON_SETSPLITINFO ( $HWND , $HIMLGLYPH = + 4294967295 , $ISPLITSTYLE = $BCSS_ALIGNLEFT , $IWIDTH = 0 , $IHEIGHT = 0 )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TSPLITINFO = DllStructCreate ( $TAGBUTTON_SPLITINFO ) , $IMASK = 0
+	If $HIMLGLYPH <> + 4294967295 Then
+		$IMASK = BitOR ( $IMASK , $BCSIF_GLYPH )
+		DllStructSetData ( $TSPLITINFO , "himlGlyph" , $HIMLGLYPH )
+	EndIf
+	$IMASK = BitOR ( $IMASK , $BCSIF_STYLE )
+	If BitAND ( $ISPLITSTYLE , $BCSS_IMAGE ) = $BCSS_IMAGE Then $IMASK = BitOR ( $IMASK , $BCSIF_IMAGE )
+	DllStructSetData ( $TSPLITINFO , "uSplitStyle" , $ISPLITSTYLE )
+	If $IWIDTH > 0 Or $IHEIGHT > 0 Then
+		$IMASK = BitOR ( $IMASK , $BCSIF_SIZE )
+		DllStructSetData ( $TSPLITINFO , "X" , $IWIDTH )
+		DllStructSetData ( $TSPLITINFO , "Y" , $IHEIGHT )
+	EndIf
+	DllStructSetData ( $TSPLITINFO , "mask" , $IMASK )
+	Return _SENDMESSAGE ( $HWND , $BCM_SETSPLITINFO , 0 , $TSPLITINFO , 0 , "wparam" , "struct*" ) <> 0
+EndFunc
+Func _GUICTRLBUTTON_SETSTATE ( $HWND , $BHIGHLIGHTED = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $BM_SETSTATE , $BHIGHLIGHTED )
+EndFunc
+Func _GUICTRLBUTTON_SETSTYLE ( $HWND , $ISTYLE )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	_SENDMESSAGE ( $HWND , $BM_SETSTYLE , $ISTYLE , True )
+	_WINAPI_UPDATEWINDOW ( $HWND )
+EndFunc
+Func _GUICTRLBUTTON_SETTEXT ( $HWND , $STEXT )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If _WINAPI_ISCLASSNAME ( $HWND , $__BUTTONCONSTANT_CLASSNAME ) Then Return _WINAPI_SETWINDOWTEXT ( $HWND , $STEXT )
+EndFunc
+Func _GUICTRLBUTTON_SETTEXTMARGIN ( $HWND , $ILEFT = 1 , $ITOP = 1 , $IRIGHT = 1 , $IBOTTOM = 1 )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllStructSetData ( $TRECT , "Left" , $ILEFT )
+	DllStructSetData ( $TRECT , "Top" , $ITOP )
+	DllStructSetData ( $TRECT , "Right" , $IRIGHT )
+	DllStructSetData ( $TRECT , "Bottom" , $IBOTTOM )
+	Return _SENDMESSAGE ( $HWND , $BCM_SETTEXTMARGIN , 0 , $TRECT , 0 , "wparam" , "struct*" ) <> 0
+EndFunc
+Func _GUICTRLBUTTON_SHOW ( $HWND , $BSHOW = True )
+	If Not IsHWnd ( $HWND ) Then $HWND = GUICtrlGetHandle ( $HWND )
+	If _WINAPI_ISCLASSNAME ( $HWND , $__BUTTONCONSTANT_CLASSNAME ) Then
+		If $BSHOW Then
+			Return _WINAPI_SHOWWINDOW ( $HWND , @SW_SHOW )
+		Else
+			Return _WINAPI_SHOWWINDOW ( $HWND , @SW_HIDE )
+		EndIf
+	EndIf
+EndFunc
+Global Const $PBS_MARQUEE = 8
+Global Const $PBS_SMOOTH = 1
+Global Const $PBS_SMOOTHREVERSE = 16
+Global Const $PBS_VERTICAL = 4
+Global Const $GUI_SS_DEFAULT_PROGRESS = 0
+Global Const $__PROGRESSBARCONSTANT_WM_USER = 1024
+Global Const $PBM_DELTAPOS = $__PROGRESSBARCONSTANT_WM_USER + 3
+Global Const $PBM_GETBARCOLOR = 1039
+Global Const $PBM_GETBKCOLOR = 1038
+Global Const $PBM_GETPOS = $__PROGRESSBARCONSTANT_WM_USER + 8
+Global Const $PBM_GETRANGE = $__PROGRESSBARCONSTANT_WM_USER + 7
+Global Const $PBM_GETSTATE = 1041
+Global Const $PBM_GETSTEP = 1037
+Global Const $PBM_SETBARCOLOR = $__PROGRESSBARCONSTANT_WM_USER + 9
+Global Const $PBM_SETBKCOLOR = 8192 + 1
+Global Const $PBM_SETMARQUEE = $__PROGRESSBARCONSTANT_WM_USER + 10
+Global Const $PBM_SETPOS = $__PROGRESSBARCONSTANT_WM_USER + 2
+Global Const $PBM_SETRANGE = $__PROGRESSBARCONSTANT_WM_USER + 1
+Global Const $PBM_SETRANGE32 = $__PROGRESSBARCONSTANT_WM_USER + 6
+Global Const $PBM_SETSTATE = 1040
+Global Const $PBM_SETSTEP = $__PROGRESSBARCONSTANT_WM_USER + 4
+Global Const $PBM_STEPIT = $__PROGRESSBARCONSTANT_WM_USER + 5
+Global Const $WC_ANIMATE = "SysAnimate32"
+Global Const $WC_BUTTON = "Button"
+Global Const $WC_COMBOBOX = "ComboBox"
+Global Const $WC_COMBOBOXEX = "ComboBoxEx32"
+Global Const $WC_DATETIMEPICK = "SysDateTimePick32"
+Global Const $WC_EDIT = "Edit"
+Global Const $WC_HEADER = "SysHeader32"
+Global Const $WC_HOTKEY = "msctls_hotkey32"
+Global Const $WC_IPADDRESS = "SysIPAddress32"
+Global Const $WC_LINK = "SysLink"
+Global Const $WC_LISTBOX = "ListBox"
+Global Const $WC_LISTVIEW = "SysListView32"
+Global Const $WC_MONTHCAL = "SysMonthCal32"
+Global Const $WC_NATIVEFONTCTL = "NativeFontCtl"
+Global Const $WC_PAGESCROLLER = "SysPager"
+Global Const $WC_PROGRESS = "msctls_progress32"
+Global Const $WC_REBAR = "ReBarWindow32"
+Global Const $WC_SCROLLBAR = "ScrollBar"
+Global Const $WC_STATIC = "Static"
+Global Const $WC_STATUSBAR = "msctls_statusbar32"
+Global Const $WC_TABCONTROL = "SysTabControl32"
+Global Const $WC_TOOLBAR = "ToolbarWindow32"
+Global Const $WC_TOOLTIPS = "tooltips_class32"
+Global Const $WC_TRACKBAR = "msctls_trackbar32"
+Global Const $WC_TREEVIEW = "SysTreeView32"
+Global Const $WC_UPDOWN = "msctls_updown32"
+Global Const $WS_OVERLAPPED = 0
+Global Const $WS_TILED = $WS_OVERLAPPED
+Global Const $WS_MAXIMIZEBOX = 65536
+Global Const $WS_MINIMIZEBOX = 131072
+Global Const $WS_TABSTOP = 65536
+Global Const $WS_GROUP = 131072
+Global Const $WS_SIZEBOX = 262144
+Global Const $WS_THICKFRAME = $WS_SIZEBOX
+Global Const $WS_SYSMENU = 524288
+Global Const $WS_HSCROLL = 1048576
+Global Const $WS_VSCROLL = 2097152
+Global Const $WS_DLGFRAME = 4194304
+Global Const $WS_BORDER = 8388608
+Global Const $WS_CAPTION = 12582912
+Global Const $WS_OVERLAPPEDWINDOW = BitOR ( $WS_CAPTION , $WS_MAXIMIZEBOX , $WS_MINIMIZEBOX , $WS_OVERLAPPED , $WS_SYSMENU , $WS_THICKFRAME )
+Global Const $WS_TILEDWINDOW = $WS_OVERLAPPEDWINDOW
+Global Const $WS_MAXIMIZE = 16777216
+Global Const $WS_CLIPCHILDREN = 33554432
+Global Const $WS_CLIPSIBLINGS = 67108864
+Global Const $WS_DISABLED = 134217728
+Global Const $WS_VISIBLE = 268435456
+Global Const $WS_MINIMIZE = 536870912
+Global Const $WS_ICONIC = $WS_MINIMIZE
+Global Const $WS_CHILD = 1073741824
+Global Const $WS_CHILDWINDOW = $WS_CHILD
+Global Const $WS_POPUP = 2147483648
+Global Const $WS_POPUPWINDOW = 2156396544
+Global Const $DS_3DLOOK = 4
+Global Const $DS_ABSALIGN = 1
+Global Const $DS_CENTER = 2048
+Global Const $DS_CENTERMOUSE = 4096
+Global Const $DS_CONTEXTHELP = 8192
+Global Const $DS_CONTROL = 1024
+Global Const $DS_FIXEDSYS = 8
+Global Const $DS_LOCALEDIT = 32
+Global Const $DS_MODALFRAME = 128
+Global Const $DS_NOFAILCREATE = 16
+Global Const $DS_NOIDLEMSG = 256
+Global Const $DS_SETFONT = 64
+Global Const $DS_SETFOREGROUND = 512
+Global Const $DS_SHELLFONT = BitOR ( $DS_FIXEDSYS , $DS_SETFONT )
+Global Const $DS_SYSMODAL = 2
+Global Const $WS_EX_ACCEPTFILES = 16
+Global Const $WS_EX_APPWINDOW = 262144
+Global Const $WS_EX_COMPOSITED = 33554432
+Global Const $WS_EX_CONTROLPARENT = 65536
+Global Const $WS_EX_CLIENTEDGE = 512
+Global Const $WS_EX_CONTEXTHELP = 1024
+Global Const $WS_EX_DLGMODALFRAME = 1
+Global Const $WS_EX_LAYERED = 524288
+Global Const $WS_EX_LAYOUTRTL = 4194304
+Global Const $WS_EX_LEFT = 0
+Global Const $WS_EX_LEFTSCROLLBAR = 16384
+Global Const $WS_EX_LTRREADING = 0
+Global Const $WS_EX_MDICHILD = 64
+Global Const $WS_EX_NOACTIVATE = 134217728
+Global Const $WS_EX_NOINHERITLAYOUT = 1048576
+Global Const $WS_EX_NOPARENTNOTIFY = 4
+Global Const $WS_EX_NOREDIRECTIONBITMAP = 2097152
+Global Const $WS_EX_RIGHT = 4096
+Global Const $WS_EX_RIGHTSCROLLBAR = 0
+Global Const $WS_EX_RTLREADING = 8192
+Global Const $WS_EX_STATICEDGE = 131072
+Global Const $WS_EX_TOOLWINDOW = 128
+Global Const $WS_EX_TOPMOST = 8
+Global Const $WS_EX_TRANSPARENT = 32
+Global Const $WS_EX_WINDOWEDGE = 256
+Global Const $WS_EX_OVERLAPPEDWINDOW = BitOR ( $WS_EX_CLIENTEDGE , $WS_EX_WINDOWEDGE )
+Global Const $WS_EX_PALETTEWINDOW = BitOR ( $WS_EX_TOOLWINDOW , $WS_EX_TOPMOST , $WS_EX_WINDOWEDGE )
+Global Const $WM_NULL = 0
+Global Const $WM_CREATE = 1
+Global Const $WM_DESTROY = 2
+Global Const $WM_MOVE = 3
+Global Const $WM_SIZEWAIT = 4
+Global Const $WM_SIZE = 5
+Global Const $WM_ACTIVATE = 6
+Global Const $WM_SETFOCUS = 7
+Global Const $WM_KILLFOCUS = 8
+Global Const $WM_SETVISIBLE = 9
+Global Const $WM_ENABLE = 10
+Global Const $WM_SETREDRAW = 11
+Global Const $WM_SETTEXT = 12
+Global Const $WM_GETTEXT = 13
+Global Const $WM_GETTEXTLENGTH = 14
+Global Const $WM_PAINT = 15
+Global Const $WM_CLOSE = 16
+Global Const $WM_QUERYENDSESSION = 17
+Global Const $WM_QUIT = 18
+Global Const $WM_ERASEBKGND = 20
+Global Const $WM_QUERYOPEN = 19
+Global Const $WM_SYSCOLORCHANGE = 21
+Global Const $WM_ENDSESSION = 22
+Global Const $WM_SYSTEMERROR = 23
+Global Const $WM_SHOWWINDOW = 24
+Global Const $WM_CTLCOLOR = 25
+Global Const $WM_SETTINGCHANGE = 26
+Global Const $WM_WININICHANGE = 26
+Global Const $WM_DEVMODECHANGE = 27
+Global Const $WM_ACTIVATEAPP = 28
+Global Const $WM_FONTCHANGE = 29
+Global Const $WM_TIMECHANGE = 30
+Global Const $WM_CANCELMODE = 31
+Global Const $WM_SETCURSOR = 32
+Global Const $WM_MOUSEACTIVATE = 33
+Global Const $WM_CHILDACTIVATE = 34
+Global Const $WM_QUEUESYNC = 35
+Global Const $WM_GETMINMAXINFO = 36
+Global Const $WM_LOGOFF = 37
+Global Const $WM_PAINTICON = 38
+Global Const $WM_ICONERASEBKGND = 39
+Global Const $WM_NEXTDLGCTL = 40
+Global Const $WM_ALTTABACTIVE = 41
+Global Const $WM_SPOOLERSTATUS = 42
+Global Const $WM_DRAWITEM = 43
+Global Const $WM_MEASUREITEM = 44
+Global Const $WM_DELETEITEM = 45
+Global Const $WM_VKEYTOITEM = 46
+Global Const $WM_CHARTOITEM = 47
+Global Const $WM_SETFONT = 48
+Global Const $WM_GETFONT = 49
+Global Const $WM_SETHOTKEY = 50
+Global Const $WM_GETHOTKEY = 51
+Global Const $WM_FILESYSCHANGE = 52
+Global Const $WM_ISACTIVEICON = 53
+Global Const $WM_QUERYPARKICON = 54
+Global Const $WM_QUERYDRAGICON = 55
+Global Const $WM_WINHELP = 56
+Global Const $WM_COMPAREITEM = 57
+Global Const $WM_FULLSCREEN = 58
+Global Const $WM_CLIENTSHUTDOWN = 59
+Global Const $WM_DDEMLEVENT = 60
+Global Const $WM_GETOBJECT = 61
+Global Const $WM_CALCSCROLL = 63
+Global Const $WM_TESTING = 64
+Global Const $WM_COMPACTING = 65
+Global Const $WM_OTHERWINDOWCREATED = 66
+Global Const $WM_OTHERWINDOWDESTROYED = 67
+Global Const $WM_COMMNOTIFY = 68
+Global Const $WM_MEDIASTATUSCHANGE = 69
+Global Const $WM_WINDOWPOSCHANGING = 70
+Global Const $WM_WINDOWPOSCHANGED = 71
+Global Const $WM_POWER = 72
+Global Const $WM_COPYGLOBALDATA = 73
+Global Const $WM_COPYDATA = 74
+Global Const $WM_CANCELJOURNAL = 75
+Global Const $WM_LOGONNOTIFY = 76
+Global Const $WM_KEYF1 = 77
+Global Const $WM_NOTIFY = 78
+Global Const $WM_ACCESS_WINDOW = 79
+Global Const $WM_INPUTLANGCHANGEREQUEST = 80
+Global Const $WM_INPUTLANGCHANGE = 81
+Global Const $WM_TCARD = 82
+Global Const $WM_HELP = 83
+Global Const $WM_USERCHANGED = 84
+Global Const $WM_NOTIFYFORMAT = 85
+Global Const $WM_QM_ACTIVATE = 96
+Global Const $WM_HOOK_DO_CALLBACK = 97
+Global Const $WM_SYSCOPYDATA = 98
+Global Const $WM_FINALDESTROY = 112
+Global Const $WM_MEASUREITEM_CLIENTDATA = 113
+Global Const $WM_CONTEXTMENU = 123
+Global Const $WM_STYLECHANGING = 124
+Global Const $WM_STYLECHANGED = 125
+Global Const $WM_DISPLAYCHANGE = 126
+Global Const $WM_GETICON = 127
+Global Const $WM_SETICON = 128
+Global Const $WM_NCCREATE = 129
+Global Const $WM_NCDESTROY = 130
+Global Const $WM_NCCALCSIZE = 131
+Global Const $WM_NCHITTEST = 132
+Global Const $WM_NCPAINT = 133
+Global Const $WM_NCACTIVATE = 134
+Global Const $WM_GETDLGCODE = 135
+Global Const $WM_SYNCPAINT = 136
+Global Const $WM_SYNCTASK = 137
+Global Const $WM_KLUDGEMINRECT = 139
+Global Const $WM_LPKDRAWSWITCHWND = 140
+Global Const $WM_UAHDESTROYWINDOW = 144
+Global Const $WM_UAHDRAWMENU = 145
+Global Const $WM_UAHDRAWMENUITEM = 146
+Global Const $WM_UAHINITMENU = 147
+Global Const $WM_UAHMEASUREMENUITEM = 148
+Global Const $WM_UAHNCPAINTMENUPOPUP = 149
+Global Const $WM_NCMOUSEMOVE = 160
+Global Const $WM_NCLBUTTONDOWN = 161
+Global Const $WM_NCLBUTTONUP = 162
+Global Const $WM_NCLBUTTONDBLCLK = 163
+Global Const $WM_NCRBUTTONDOWN = 164
+Global Const $WM_NCRBUTTONUP = 165
+Global Const $WM_NCRBUTTONDBLCLK = 166
+Global Const $WM_NCMBUTTONDOWN = 167
+Global Const $WM_NCMBUTTONUP = 168
+Global Const $WM_NCMBUTTONDBLCLK = 169
+Global Const $WM_NCXBUTTONDOWN = 171
+Global Const $WM_NCXBUTTONUP = 172
+Global Const $WM_NCXBUTTONDBLCLK = 173
+Global Const $WM_NCUAHDRAWCAPTION = 174
+Global Const $WM_NCUAHDRAWFRAME = 175
+Global Const $WM_INPUT_DEVICE_CHANGE = 254
+Global Const $WM_INPUT = 255
+Global Const $WM_KEYDOWN = 256
+Global Const $WM_KEYFIRST = 256
+Global Const $WM_KEYUP = 257
+Global Const $WM_CHAR = 258
+Global Const $WM_DEADCHAR = 259
+Global Const $WM_SYSKEYDOWN = 260
+Global Const $WM_SYSKEYUP = 261
+Global Const $WM_SYSCHAR = 262
+Global Const $WM_SYSDEADCHAR = 263
+Global Const $WM_YOMICHAR = 264
+Global Const $WM_KEYLAST = 265
+Global Const $WM_UNICHAR = 265
+Global Const $WM_CONVERTREQUEST = 266
+Global Const $WM_CONVERTRESULT = 267
+Global Const $WM_IM_INFO = 268
+Global Const $WM_IME_STARTCOMPOSITION = 269
+Global Const $WM_IME_ENDCOMPOSITION = 270
+Global Const $WM_IME_COMPOSITION = 271
+Global Const $WM_IME_KEYLAST = 271
+Global Const $WM_INITDIALOG = 272
+Global Const $WM_COMMAND = 273
+Global Const $WM_SYSCOMMAND = 274
+Global Const $WM_TIMER = 275
+Global Const $WM_HSCROLL = 276
+Global Const $WM_VSCROLL = 277
+Global Const $WM_INITMENU = 278
+Global Const $WM_INITMENUPOPUP = 279
+Global Const $WM_SYSTIMER = 280
+Global Const $WM_GESTURE = 281
+Global Const $WM_GESTURENOTIFY = 282
+Global Const $WM_GESTUREINPUT = 283
+Global Const $WM_GESTURENOTIFIED = 284
+Global Const $WM_MENUSELECT = 287
+Global Const $WM_MENUCHAR = 288
+Global Const $WM_ENTERIDLE = 289
+Global Const $WM_MENURBUTTONUP = 290
+Global Const $WM_MENUDRAG = 291
+Global Const $WM_MENUGETOBJECT = 292
+Global Const $WM_UNINITMENUPOPUP = 293
+Global Const $WM_MENUCOMMAND = 294
+Global Const $WM_CHANGEUISTATE = 295
+Global Const $WM_UPDATEUISTATE = 296
+Global Const $WM_QUERYUISTATE = 297
+Global Const $WM_LBTRACKPOINT = 305
+Global Const $WM_CTLCOLORMSGBOX = 306
+Global Const $WM_CTLCOLOREDIT = 307
+Global Const $WM_CTLCOLORLISTBOX = 308
+Global Const $WM_CTLCOLORBTN = 309
+Global Const $WM_CTLCOLORDLG = 310
+Global Const $WM_CTLCOLORSCROLLBAR = 311
+Global Const $WM_CTLCOLORSTATIC = 312
+Global Const $MN_GETHMENU = 481
+Global Const $WM_PARENTNOTIFY = 528
+Global Const $WM_ENTERMENULOOP = 529
+Global Const $WM_EXITMENULOOP = 530
+Global Const $WM_NEXTMENU = 531
+Global Const $WM_SIZING = 532
+Global Const $WM_CAPTURECHANGED = 533
+Global Const $WM_MOVING = 534
+Global Const $WM_POWERBROADCAST = 536
+Global Const $WM_DEVICECHANGE = 537
+Global Const $WM_MDICREATE = 544
+Global Const $WM_MDIDESTROY = 545
+Global Const $WM_MDIACTIVATE = 546
+Global Const $WM_MDIRESTORE = 547
+Global Const $WM_MDINEXT = 548
+Global Const $WM_MDIMAXIMIZE = 549
+Global Const $WM_MDITILE = 550
+Global Const $WM_MDICASCADE = 551
+Global Const $WM_MDIICONARRANGE = 552
+Global Const $WM_MDIGETACTIVE = 553
+Global Const $WM_DROPOBJECT = 554
+Global Const $WM_QUERYDROPOBJECT = 555
+Global Const $WM_BEGINDRAG = 556
+Global Const $WM_DRAGLOOP = 557
+Global Const $WM_DRAGSELECT = 558
+Global Const $WM_DRAGMOVE = 559
+Global Const $WM_MDISETMENU = 560
+Global Const $WM_ENTERSIZEMOVE = 561
+Global Const $WM_EXITSIZEMOVE = 562
+Global Const $WM_DROPFILES = 563
+Global Const $WM_MDIREFRESHMENU = 564
+Global Const $WM_TOUCH = 576
+Global Const $WM_IME_SETCONTEXT = 641
+Global Const $WM_IME_NOTIFY = 642
+Global Const $WM_IME_CONTROL = 643
+Global Const $WM_IME_COMPOSITIONFULL = 644
+Global Const $WM_IME_SELECT = 645
+Global Const $WM_IME_CHAR = 646
+Global Const $WM_IME_SYSTEM = 647
+Global Const $WM_IME_REQUEST = 648
+Global Const $WM_IME_KEYDOWN = 656
+Global Const $WM_IME_KEYUP = 657
+Global Const $WM_NCMOUSEHOVER = 672
+Global Const $WM_MOUSEHOVER = 673
+Global Const $WM_NCMOUSELEAVE = 674
+Global Const $WM_MOUSELEAVE = 675
+Global Const $WM_WTSSESSION_CHANGE = 689
+Global Const $WM_TABLET_FIRST = 704
+Global Const $WM_TABLET_LAST = 735
+Global Const $WM_CUT = 768
+Global Const $WM_COPY = 769
+Global Const $WM_PASTE = 770
+Global Const $WM_CLEAR = 771
+Global Const $WM_UNDO = 772
+Global Const $WM_PALETTEISCHANGING = 784
+Global Const $WM_HOTKEY = 786
+Global Const $WM_PALETTECHANGED = 785
+Global Const $WM_SYSMENU = 787
+Global Const $WM_HOOKMSG = 788
+Global Const $WM_EXITPROCESS = 789
+Global Const $WM_WAKETHREAD = 790
+Global Const $WM_PRINT = 791
+Global Const $WM_PRINTCLIENT = 792
+Global Const $WM_APPCOMMAND = 793
+Global Const $WM_QUERYNEWPALETTE = 783
+Global Const $WM_THEMECHANGED = 794
+Global Const $WM_UAHINIT = 795
+Global Const $WM_DESKTOPNOTIFY = 796
+Global Const $WM_CLIPBOARDUPDATE = 797
+Global Const $WM_DWMCOMPOSITIONCHANGED = 798
+Global Const $WM_DWMNCRENDERINGCHANGED = 799
+Global Const $WM_DWMCOLORIZATIONCOLORCHANGED = 800
+Global Const $WM_DWMWINDOWMAXIMIZEDCHANGE = 801
+Global Const $WM_DWMEXILEFRAME = 802
+Global Const $WM_DWMSENDICONICTHUMBNAIL = 803
+Global Const $WM_MAGNIFICATION_STARTED = 804
+Global Const $WM_MAGNIFICATION_ENDED = 805
+Global Const $WM_DWMSENDICONICLIVEPREVIEWBITMAP = 806
+Global Const $WM_DWMTHUMBNAILSIZECHANGED = 807
+Global Const $WM_MAGNIFICATION_OUTPUT = 808
+Global Const $WM_MEASURECONTROL = 816
+Global Const $WM_GETACTIONTEXT = 817
+Global Const $WM_FORWARDKEYDOWN = 819
+Global Const $WM_FORWARDKEYUP = 820
+Global Const $WM_GETTITLEBARINFOEX = 831
+Global Const $WM_NOTIFYWOW = 832
+Global Const $WM_HANDHELDFIRST = 856
+Global Const $WM_HANDHELDLAST = 863
+Global Const $WM_AFXFIRST = 864
+Global Const $WM_AFXLAST = 895
+Global Const $WM_PENWINFIRST = 896
+Global Const $WM_PENWINLAST = 911
+Global Const $WM_DDE_INITIATE = 992
+Global Const $WM_DDE_TERMINATE = 993
+Global Const $WM_DDE_ADVISE = 994
+Global Const $WM_DDE_UNADVISE = 995
+Global Const $WM_DDE_ACK = 996
+Global Const $WM_DDE_DATA = 997
+Global Const $WM_DDE_REQUEST = 998
+Global Const $WM_DDE_POKE = 999
+Global Const $WM_DDE_EXECUTE = 1000
+Global Const $WM_DBNOTIFICATION = 1021
+Global Const $WM_NETCONNECT = 1022
+Global Const $WM_HIBERNATE = 1023
+Global Const $WM_USER = 1024
+Global Const $WM_APP = 32768
+Global Const $NM_FIRST = 0
+Global Const $NM_OUTOFMEMORY = $NM_FIRST + 4294967295
+Global Const $NM_CLICK = $NM_FIRST + 4294967294
+Global Const $NM_DBLCLK = $NM_FIRST + 4294967293
+Global Const $NM_RETURN = $NM_FIRST + 4294967292
+Global Const $NM_RCLICK = $NM_FIRST + 4294967291
+Global Const $NM_RDBLCLK = $NM_FIRST + 4294967290
+Global Const $NM_SETFOCUS = $NM_FIRST + 4294967289
+Global Const $NM_KILLFOCUS = $NM_FIRST + 4294967288
+Global Const $NM_CUSTOMDRAW = $NM_FIRST + 4294967284
+Global Const $NM_HOVER = $NM_FIRST + 4294967283
+Global Const $NM_NCHITTEST = $NM_FIRST + 4294967282
+Global Const $NM_KEYDOWN = $NM_FIRST + 4294967281
+Global Const $NM_RELEASEDCAPTURE = $NM_FIRST + 4294967280
+Global Const $NM_SETCURSOR = $NM_FIRST + 4294967279
+Global Const $NM_CHAR = $NM_FIRST + 4294967278
+Global Const $NM_TOOLTIPSCREATED = $NM_FIRST + 4294967277
+Global Const $NM_LDOWN = $NM_FIRST + 4294967276
+Global Const $NM_RDOWN = $NM_FIRST + 4294967275
+Global Const $NM_THEMECHANGED = $NM_FIRST + 4294967274
+Global Const $WM_MOUSEFIRST = 512
+Global Const $WM_MOUSEMOVE = 512
+Global Const $WM_LBUTTONDOWN = 513
+Global Const $WM_LBUTTONUP = 514
+Global Const $WM_LBUTTONDBLCLK = 515
+Global Const $WM_RBUTTONDOWN = 516
+Global Const $WM_RBUTTONUP = 517
+Global Const $WM_RBUTTONDBLCLK = 518
+Global Const $WM_MBUTTONDOWN = 519
+Global Const $WM_MBUTTONUP = 520
+Global Const $WM_MBUTTONDBLCLK = 521
+Global Const $WM_MOUSEWHEEL = 522
+Global Const $WM_XBUTTONDOWN = 523
+Global Const $WM_XBUTTONUP = 524
+Global Const $WM_XBUTTONDBLCLK = 525
+Global Const $WM_MOUSEHWHEEL = 526
+Global Const $PS_SOLID = 0
+Global Const $PS_DASH = 1
+Global Const $PS_DOT = 2
+Global Const $PS_DASHDOT = 3
+Global Const $PS_DASHDOTDOT = 4
+Global Const $PS_NULL = 5
+Global Const $PS_INSIDEFRAME = 6
+Global Const $PS_USERSTYLE = 7
+Global Const $PS_ALTERNATE = 8
+Global Const $PS_ENDCAP_ROUND = 0
+Global Const $PS_ENDCAP_SQUARE = 256
+Global Const $PS_ENDCAP_FLAT = 512
+Global Const $PS_JOIN_BEVEL = 4096
+Global Const $PS_JOIN_MITER = 8192
+Global Const $PS_JOIN_ROUND = 0
+Global Const $PS_GEOMETRIC = 65536
+Global Const $PS_COSMETIC = 0
+Global Const $LWA_ALPHA = 2
+Global Const $LWA_COLORKEY = 1
+Global Const $RGN_AND = 1
+Global Const $RGN_OR = 2
+Global Const $RGN_XOR = 3
+Global Const $RGN_DIFF = 4
+Global Const $RGN_COPY = 5
+Global Const $ERRORREGION = 0
+Global Const $NULLREGION = 1
+Global Const $SIMPLEREGION = 2
+Global Const $COMPLEXREGION = 3
+Global Const $TRANSPARENT = 1
+Global Const $OPAQUE = 2
+Global Const $CCM_FIRST = 8192
+Global Const $CCM_GETUNICODEFORMAT = ( $CCM_FIRST + 6 )
+Global Const $CCM_SETUNICODEFORMAT = ( $CCM_FIRST + 5 )
+Global Const $CCM_SETBKCOLOR = $CCM_FIRST + 1
+Global Const $CCM_SETCOLORSCHEME = $CCM_FIRST + 2
+Global Const $CCM_GETCOLORSCHEME = $CCM_FIRST + 3
+Global Const $CCM_GETDROPTARGET = $CCM_FIRST + 4
+Global Const $CCM_SETWINDOWTHEME = $CCM_FIRST + 11
+Global Const $GA_PARENT = 1
+Global Const $GA_ROOT = 2
+Global Const $GA_ROOTOWNER = 3
+Global Const $SM_CXSCREEN = 0
+Global Const $SM_CYSCREEN = 1
+Global Const $SM_CXVSCROLL = 2
+Global Const $SM_CYHSCROLL = 3
+Global Const $SM_CYCAPTION = 4
+Global Const $SM_CXBORDER = 5
+Global Const $SM_CYBORDER = 6
+Global Const $SM_CXFIXEDFRAME = 7
+Global Const $SM_CXDLGFRAME = $SM_CXFIXEDFRAME
+Global Const $SM_CYFIXEDFRAME = 8
+Global Const $SM_CYDLGFRAME = $SM_CYFIXEDFRAME
+Global Const $SM_CYVTHUMB = 9
+Global Const $SM_CXHTHUMB = 10
+Global Const $SM_CXICON = 11
+Global Const $SM_CYICON = 12
+Global Const $SM_CXCURSOR = 13
+Global Const $SM_CYCURSOR = 14
+Global Const $SM_CYMENU = 15
+Global Const $SM_CXFULLSCREEN = 16
+Global Const $SM_CYFULLSCREEN = 17
+Global Const $SM_CYKANJIWINDOW = 18
+Global Const $SM_MOUSEPRESENT = 19
+Global Const $SM_CYVSCROLL = 20
+Global Const $SM_CXHSCROLL = 21
+Global Const $SM_DEBUG = 22
+Global Const $SM_SWAPBUTTON = 23
+Global Const $SM_RESERVED1 = 24
+Global Const $SM_RESERVED2 = 25
+Global Const $SM_RESERVED3 = 26
+Global Const $SM_RESERVED4 = 27
+Global Const $SM_CXMIN = 28
+Global Const $SM_CYMIN = 29
+Global Const $SM_CXSIZE = 30
+Global Const $SM_CYSIZE = 31
+Global Const $SM_CXSIZEFRAME = 32
+Global Const $SM_CXFRAME = $SM_CXSIZEFRAME
+Global Const $SM_CYSIZEFRAME = 33
+Global Const $SM_CYFRAME = $SM_CYSIZEFRAME
+Global Const $SM_CXMINTRACK = 34
+Global Const $SM_CYMINTRACK = 35
+Global Const $SM_CXDOUBLECLK = 36
+Global Const $SM_CYDOUBLECLK = 37
+Global Const $SM_CXICONSPACING = 38
+Global Const $SM_CYICONSPACING = 39
+Global Const $SM_MENUDROPALIGNMENT = 40
+Global Const $SM_PENWINDOWS = 41
+Global Const $SM_DBCSENABLED = 42
+Global Const $SM_CMOUSEBUTTONS = 43
+Global Const $SM_SECURE = 44
+Global Const $SM_CXEDGE = 45
+Global Const $SM_CYEDGE = 46
+Global Const $SM_CXMINSPACING = 47
+Global Const $SM_CYMINSPACING = 48
+Global Const $SM_CXSMICON = 49
+Global Const $SM_CYSMICON = 50
+Global Const $SM_CYSMCAPTION = 51
+Global Const $SM_CXSMSIZE = 52
+Global Const $SM_CYSMSIZE = 53
+Global Const $SM_CXMENUSIZE = 54
+Global Const $SM_CYMENUSIZE = 55
+Global Const $SM_ARRANGE = 56
+Global Const $SM_CXMINIMIZED = 57
+Global Const $SM_CYMINIMIZED = 58
+Global Const $SM_CXMAXTRACK = 59
+Global Const $SM_CYMAXTRACK = 60
+Global Const $SM_CXMAXIMIZED = 61
+Global Const $SM_CYMAXIMIZED = 62
+Global Const $SM_NETWORK = 63
+Global Const $SM_CLEANBOOT = 67
+Global Const $SM_CXDRAG = 68
+Global Const $SM_CYDRAG = 69
+Global Const $SM_SHOWSOUNDS = 70
+Global Const $SM_CXMENUCHECK = 71
+Global Const $SM_CYMENUCHECK = 72
+Global Const $SM_SLOWMACHINE = 73
+Global Const $SM_MIDEASTENABLED = 74
+Global Const $SM_MOUSEWHEELPRESENT = 75
+Global Const $SM_XVIRTUALSCREEN = 76
+Global Const $SM_YVIRTUALSCREEN = 77
+Global Const $SM_CXVIRTUALSCREEN = 78
+Global Const $SM_CYVIRTUALSCREEN = 79
+Global Const $SM_CMONITORS = 80
+Global Const $SM_SAMEDISPLAYFORMAT = 81
+Global Const $SM_IMMENABLED = 82
+Global Const $SM_CXFOCUSBORDER = 83
+Global Const $SM_CYFOCUSBORDER = 84
+Global Const $SM_TABLETPC = 86
+Global Const $SM_MEDIACENTER = 87
+Global Const $SM_STARTER = 88
+Global Const $SM_SERVERR2 = 89
+Global Const $SM_CMETRICS = 90
+Global Const $SM_REMOTESESSION = 4096
+Global Const $SM_SHUTTINGDOWN = 8192
+Global Const $SM_REMOTECONTROL = 8193
+Global Const $SM_CARETBLINKINGENABLED = 8194
+Global Const $BLACKNESS = 66
+Global Const $CAPTUREBLT = 1073741824
+Global Const $DSTINVERT = 5570569
+Global Const $MERGECOPY = 12583114
+Global Const $MERGEPAINT = 12255782
+Global Const $NOMIRRORBITMAP = 2147483648
+Global Const $NOTSRCCOPY = 3342344
+Global Const $NOTSRCERASE = 1114278
+Global Const $PATCOPY = 15728673
+Global Const $PATINVERT = 5898313
+Global Const $PATPAINT = 16452105
+Global Const $SRCAND = 8913094
+Global Const $SRCCOPY = 13369376
+Global Const $SRCERASE = 4457256
+Global Const $SRCINVERT = 6684742
+Global Const $SRCPAINT = 15597702
+Global Const $WHITENESS = 16711778
+Global Const $DT_BOTTOM = 8
+Global Const $DT_CALCRECT = 1024
+Global Const $DT_CENTER = 1
+Global Const $DT_EDITCONTROL = 8192
+Global Const $DT_END_ELLIPSIS = 32768
+Global Const $DT_EXPANDTABS = 64
+Global Const $DT_EXTERNALLEADING = 512
+Global Const $DT_HIDEPREFIX = 1048576
+Global Const $DT_INTERNAL = 4096
+Global Const $DT_LEFT = 0
+Global Const $DT_MODIFYSTRING = 65536
+Global Const $DT_NOCLIP = 256
+Global Const $DT_NOFULLWIDTHCHARBREAK = 524288
+Global Const $DT_NOPREFIX = 2048
+Global Const $DT_PATH_ELLIPSIS = 16384
+Global Const $DT_PREFIXONLY = 2097152
+Global Const $DT_RIGHT = 2
+Global Const $DT_RTLREADING = 131072
+Global Const $DT_SINGLELINE = 32
+Global Const $DT_TABSTOP = 128
+Global Const $DT_TOP = 0
+Global Const $DT_VCENTER = 4
+Global Const $DT_WORDBREAK = 16
+Global Const $DT_WORD_ELLIPSIS = 262144
+Global Const $RDW_ERASE = 4
+Global Const $RDW_FRAME = 1024
+Global Const $RDW_INTERNALPAINT = 2
+Global Const $RDW_INVALIDATE = 1
+Global Const $RDW_NOERASE = 32
+Global Const $RDW_NOFRAME = 2048
+Global Const $RDW_NOINTERNALPAINT = 16
+Global Const $RDW_VALIDATE = 8
+Global Const $RDW_ERASENOW = 512
+Global Const $RDW_UPDATENOW = 256
+Global Const $RDW_ALLCHILDREN = 128
+Global Const $RDW_NOCHILDREN = 64
+Global Const $WM_RENDERFORMAT = 773
+Global Const $WM_RENDERALLFORMATS = 774
+Global Const $WM_DESTROYCLIPBOARD = 775
+Global Const $WM_DRAWCLIPBOARD = 776
+Global Const $WM_PAINTCLIPBOARD = 777
+Global Const $WM_VSCROLLCLIPBOARD = 778
+Global Const $WM_SIZECLIPBOARD = 779
+Global Const $WM_ASKCBFORMATNAME = 780
+Global Const $WM_CHANGECBCHAIN = 781
+Global Const $WM_HSCROLLCLIPBOARD = 782
+Global Const $HTERROR = + 4294967294
+Global Const $HTTRANSPARENT = + 4294967295
+Global Const $HTNOWHERE = 0
+Global Const $HTCLIENT = 1
+Global Const $HTCAPTION = 2
+Global Const $HTSYSMENU = 3
+Global Const $HTGROWBOX = 4
+Global Const $HTSIZE = $HTGROWBOX
+Global Const $HTMENU = 5
+Global Const $HTHSCROLL = 6
+Global Const $HTVSCROLL = 7
+Global Const $HTMINBUTTON = 8
+Global Const $HTMAXBUTTON = 9
+Global Const $HTLEFT = 10
+Global Const $HTRIGHT = 11
+Global Const $HTTOP = 12
+Global Const $HTTOPLEFT = 13
+Global Const $HTTOPRIGHT = 14
+Global Const $HTBOTTOM = 15
+Global Const $HTBOTTOMLEFT = 16
+Global Const $HTBOTTOMRIGHT = 17
+Global Const $HTBORDER = 18
+Global Const $HTREDUCE = $HTMINBUTTON
+Global Const $HTZOOM = $HTMAXBUTTON
+Global Const $HTSIZEFIRST = $HTLEFT
+Global Const $HTSIZELAST = $HTBOTTOMRIGHT
+Global Const $HTOBJECT = 19
+Global Const $HTCLOSE = 20
+Global Const $HTHELP = 21
+Global Const $COLOR_SCROLLBAR = 0
+Global Const $COLOR_BACKGROUND = 1
+Global Const $COLOR_ACTIVECAPTION = 2
+Global Const $COLOR_INACTIVECAPTION = 3
+Global Const $COLOR_MENU = 4
+Global Const $COLOR_WINDOW = 5
+Global Const $COLOR_WINDOWFRAME = 6
+Global Const $COLOR_MENUTEXT = 7
+Global Const $COLOR_WINDOWTEXT = 8
+Global Const $COLOR_CAPTIONTEXT = 9
+Global Const $COLOR_ACTIVEBORDER = 10
+Global Const $COLOR_INACTIVEBORDER = 11
+Global Const $COLOR_APPWORKSPACE = 12
+Global Const $COLOR_HIGHLIGHT = 13
+Global Const $COLOR_HIGHLIGHTTEXT = 14
+Global Const $COLOR_BTNFACE = 15
+Global Const $COLOR_BTNSHADOW = 16
+Global Const $COLOR_GRAYTEXT = 17
+Global Const $COLOR_BTNTEXT = 18
+Global Const $COLOR_INACTIVECAPTIONTEXT = 19
+Global Const $COLOR_BTNHIGHLIGHT = 20
+Global Const $COLOR_3DDKSHADOW = 21
+Global Const $COLOR_3DLIGHT = 22
+Global Const $COLOR_INFOTEXT = 23
+Global Const $COLOR_INFOBK = 24
+Global Const $COLOR_HOTLIGHT = 26
+Global Const $COLOR_GRADIENTACTIVECAPTION = 27
+Global Const $COLOR_GRADIENTINACTIVECAPTION = 28
+Global Const $COLOR_MENUHILIGHT = 29
+Global Const $COLOR_MENUBAR = 30
+Global Const $COLOR_DESKTOP = 1
+Global Const $COLOR_3DFACE = 15
+Global Const $COLOR_3DSHADOW = 16
+Global Const $COLOR_3DHIGHLIGHT = 20
+Global Const $COLOR_3DHILIGHT = 20
+Global Const $COLOR_BTNHILIGHT = 20
+Global Const $HINST_COMMCTRL = + 4294967295
+Global Const $IDB_STD_SMALL_COLOR = 0
+Global Const $IDB_STD_LARGE_COLOR = 1
+Global Const $IDB_VIEW_SMALL_COLOR = 4
+Global Const $IDB_VIEW_LARGE_COLOR = 5
+Global Const $IDB_HIST_SMALL_COLOR = 8
+Global Const $IDB_HIST_LARGE_COLOR = 9
+Global Const $STARTF_FORCEOFFFEEDBACK = 128
+Global Const $STARTF_FORCEONFEEDBACK = 64
+Global Const $STARTF_PREVENTPINNING = 8192
+Global Const $STARTF_RUNFULLSCREEN = 32
+Global Const $STARTF_TITLEISAPPID = 4096
+Global Const $STARTF_TITLEISLINKNAME = 2048
+Global Const $STARTF_USECOUNTCHARS = 8
+Global Const $STARTF_USEFILLATTRIBUTE = 16
+Global Const $STARTF_USEHOTKEY = 512
+Global Const $STARTF_USEPOSITION = 4
+Global Const $STARTF_USESHOWWINDOW = 1
+Global Const $STARTF_USESIZE = 2
+Global Const $STARTF_USESTDHANDLES = 256
+Global Const $CDDS_PREPAINT = 1
+Global Const $CDDS_POSTPAINT = 2
+Global Const $CDDS_PREERASE = 3
+Global Const $CDDS_POSTERASE = 4
+Global Const $CDDS_ITEM = 65536
+Global Const $CDDS_ITEMPREPAINT = 65537
+Global Const $CDDS_ITEMPOSTPAINT = 65538
+Global Const $CDDS_ITEMPREERASE = 65539
+Global Const $CDDS_ITEMPOSTERASE = 65540
+Global Const $CDDS_SUBITEM = 131072
+Global Const $CDIS_SELECTED = 1
+Global Const $CDIS_GRAYED = 2
+Global Const $CDIS_DISABLED = 4
+Global Const $CDIS_CHECKED = 8
+Global Const $CDIS_FOCUS = 16
+Global Const $CDIS_DEFAULT = 32
+Global Const $CDIS_HOT = 64
+Global Const $CDIS_MARKED = 128
+Global Const $CDIS_INDETERMINATE = 256
+Global Const $CDIS_SHOWKEYBOARDCUES = 512
+Global Const $CDIS_NEARHOT = 1024
+Global Const $CDIS_OTHERSIDEHOT = 2048
+Global Const $CDIS_DROPHILITED = 4096
+Global Const $CDRF_DODEFAULT = 0
+Global Const $CDRF_NEWFONT = 2
+Global Const $CDRF_SKIPDEFAULT = 4
+Global Const $CDRF_NOTIFYPOSTPAINT = 16
+Global Const $CDRF_NOTIFYITEMDRAW = 32
+Global Const $CDRF_NOTIFYSUBITEMDRAW = 32
+Global Const $CDRF_NOTIFYPOSTERASE = 64
+Global Const $CDRF_DOERASE = 8
+Global Const $CDRF_SKIPPOSTPAINT = 256
+Global Const $GUI_SS_DEFAULT_GUI = BitOR ( $WS_MINIMIZEBOX , $WS_CAPTION , $WS_POPUP , $WS_SYSMENU )
+Global Const $FW_DONTCARE = 0
+Global Const $FW_THIN = 100
+Global Const $FW_EXTRALIGHT = 200
+Global Const $FW_ULTRALIGHT = 200
+Global Const $FW_LIGHT = 300
+Global Const $FW_NORMAL = 400
+Global Const $FW_REGULAR = 400
+Global Const $FW_MEDIUM = 500
+Global Const $FW_SEMIBOLD = 600
+Global Const $FW_DEMIBOLD = 600
+Global Const $FW_BOLD = 700
+Global Const $FW_EXTRABOLD = 800
+Global Const $FW_ULTRABOLD = 800
+Global Const $FW_HEAVY = 900
+Global Const $FW_BLACK = 900
+Global Const $CF_EFFECTS = 256
+Global Const $CF_PRINTERFONTS = 2
+Global Const $CF_SCREENFONTS = 1
+Global Const $CF_NOSCRIPTSEL = 8388608
+Global Const $CF_INITTOLOGFONTSTRUCT = 64
+Global Const $LOGPIXELSX = 88
+Global Const $LOGPIXELSY = 90
+Global Const $ANSI_CHARSET = 0
+Global Const $ARABIC_CHARSET = 178
+Global Const $BALTIC_CHARSET = 186
+Global Const $CHINESEBIG5_CHARSET = 136
+Global Const $DEFAULT_CHARSET = 1
+Global Const $EASTEUROPE_CHARSET = 238
+Global Const $GB2312_CHARSET = 134
+Global Const $GREEK_CHARSET = 161
+Global Const $HANGEUL_CHARSET = 129
+Global Const $HEBREW_CHARSET = 177
+Global Const $JOHAB_CHARSET = 130
+Global Const $MAC_CHARSET = 77
+Global Const $OEM_CHARSET = 255
+Global Const $RUSSIAN_CHARSET = 204
+Global Const $SHIFTJIS_CHARSET = 128
+Global Const $SYMBOL_CHARSET = 2
+Global Const $THAI_CHARSET = 222
+Global Const $TURKISH_CHARSET = 162
+Global Const $VIETNAMESE_CHARSET = 163
+Global Const $OUT_CHARACTER_PRECIS = 2
+Global Const $OUT_DEFAULT_PRECIS = 0
+Global Const $OUT_DEVICE_PRECIS = 5
+Global Const $OUT_OUTLINE_PRECIS = 8
+Global Const $OUT_PS_ONLY_PRECIS = 10
+Global Const $OUT_RASTER_PRECIS = 6
+Global Const $OUT_STRING_PRECIS = 1
+Global Const $OUT_STROKE_PRECIS = 3
+Global Const $OUT_TT_ONLY_PRECIS = 7
+Global Const $OUT_TT_PRECIS = 4
+Global Const $CLIP_CHARACTER_PRECIS = 1
+Global Const $CLIP_DEFAULT_PRECIS = 0
+Global Const $CLIP_DFA_DISABLE = 48
+Global Const $CLIP_EMBEDDED = 128
+Global Const $CLIP_LH_ANGLES = 16
+Global Const $CLIP_MASK = 15
+Global Const $CLIP_DFA_OVERRIDE = 64
+Global Const $CLIP_STROKE_PRECIS = 2
+Global Const $CLIP_TT_ALWAYS = 32
+Global Const $ANTIALIASED_QUALITY = 4
+Global Const $DEFAULT_QUALITY = 0
+Global Const $DRAFT_QUALITY = 1
+Global Const $NONANTIALIASED_QUALITY = 3
+Global Const $PROOF_QUALITY = 2
+Global Const $CLEARTYPE_QUALITY = 5
+Global Const $DEFAULT_PITCH = 0
+Global Const $FIXED_PITCH = 1
+Global Const $VARIABLE_PITCH = 2
+Global Const $FF_DECORATIVE = 80
+Global Const $FF_DONTCARE = 0
+Global Const $FF_MODERN = 48
+Global Const $FF_ROMAN = 16
+Global Const $FF_SCRIPT = 64
+Global Const $FF_SWISS = 32
+Global Const $FS_REGULAR = 0
+Global Const $FS_BOLD = 1
+Global Const $FS_ITALIC = 2
+Global Const $__MISCCONSTANT_CC_ANYCOLOR = 256
+Global Const $__MISCCONSTANT_CC_FULLOPEN = 2
+Global Const $__MISCCONSTANT_CC_RGBINIT = 1
+Global Const $TAGCHOOSECOLOR = "dword Size;hwnd hWndOwnder;handle hInstance;dword rgbResult;ptr CustColors;dword Flags;lparam lCustData;" & "ptr lpfnHook;ptr lpTemplateName"
+Global Const $TAGCHOOSEFONT = "dword Size;hwnd hWndOwner;handle hDC;ptr LogFont;int PointSize;dword Flags;dword rgbColors;lparam CustData;" & "ptr fnHook;ptr TemplateName;handle hInstance;ptr szStyle;word FontType;int SizeMin;int SizeMax"
+Func _CHOOSECOLOR ( $VRETURNTYPE = 0 , $ICOLORREF = 0 , $IREFTYPE = 0 , $HWNDOWNDER = 0 )
+	Local $TAGCUSTCOLORS = "dword[16]"
+	Local $TCHOOSE = DllStructCreate ( $TAGCHOOSECOLOR )
+	Local Static $TCC = DllStructCreate ( $TAGCUSTCOLORS )
+	Local $IRETURNTYPE , $VRETURN
+	If $VRETURNTYPE = + 4294967287 Or $VRETURNTYPE = + 4294967286 Then
+		Local $A_TCC = __CHOOSECOLOR_STRUCTTOARRAY ( $TCC )
+		$A_TCC [ 0 ] = + 4294967295
+		If $VRETURNTYPE = + 4294967286 Then $TCC = DllStructCreate ( $TAGCUSTCOLORS )
+		Return $A_TCC
+	ElseIf $VRETURNTYPE > 9 Then
+		$TCC = DllStructCreate ( $TAGCUSTCOLORS )
+		$IRETURNTYPE = $VRETURNTYPE + 4294967286
+	ElseIf IsArray ( $VRETURNTYPE ) Then
+		If UBound ( $VRETURNTYPE , $UBOUND_ROWS ) = 17 And UBound ( $VRETURNTYPE , $UBOUND_DIMENSIONS ) = 1 Then
+			For $N = 1 To 16
+				DllStructSetData ( $TCC , 1 , $VRETURNTYPE [ $N ] , $N )
+			Next
+			If $VRETURNTYPE [ 0 ] = + 4294967287 Then
+				$VRETURNTYPE [ 0 ] = 0
+				Return $VRETURNTYPE
+			EndIf
+			If $VRETURNTYPE [ 0 ] > 9 Then $VRETURNTYPE [ 0 ] -= 10
+			$IRETURNTYPE = $VRETURNTYPE [ 0 ]
+		Else
+			Return SetError ( + 4294967291 , 0 , + 4294967295 )
+		EndIf
+	Else
+		$IRETURNTYPE = $VRETURNTYPE
+	EndIf
+	If $IRETURNTYPE < 0 Or $IRETURNTYPE > 2 Then
+		If IsArray ( $VRETURNTYPE ) Then
+			$VRETURNTYPE [ 0 ] = + 4294967295
+			Return SetError ( + 4294967292 , 0 , $VRETURNTYPE )
+		EndIf
+		Return SetError ( + 4294967292 , 0 , + 4294967295 )
+	EndIf
+	If $IREFTYPE = 1 Then
+		$ICOLORREF = Int ( $ICOLORREF )
+	ElseIf $IREFTYPE = 2 Then
+		$ICOLORREF = Hex ( String ( $ICOLORREF ) , 6 )
+		$ICOLORREF = "0x" & StringMid ( $ICOLORREF , 5 , 2 ) & StringMid ( $ICOLORREF , 3 , 2 ) & StringMid ( $ICOLORREF , 1 , 2 )
+	EndIf
+	DllStructSetData ( $TCHOOSE , "Size" , DllStructGetSize ( $TCHOOSE ) )
+	DllStructSetData ( $TCHOOSE , "hWndOwnder" , $HWNDOWNDER )
+	DllStructSetData ( $TCHOOSE , "rgbResult" , $ICOLORREF )
+	DllStructSetData ( $TCHOOSE , "CustColors" , DllStructGetPtr ( $TCC ) )
+	DllStructSetData ( $TCHOOSE , "Flags" , BitOR ( $__MISCCONSTANT_CC_ANYCOLOR , $__MISCCONSTANT_CC_FULLOPEN , $__MISCCONSTANT_CC_RGBINIT ) )
+	Local $ARESULT = DllCall ( "comdlg32.dll" , "bool" , "ChooseColor" , "struct*" , $TCHOOSE )
+	Local $IERROR = @error
+	If @error Then
+		Local $IEXTENDED = @extended
+		If IsArray ( $VRETURNTYPE ) Then
+			$VRETURNTYPE [ 0 ] = + 4294967295
+			Return SetError ( $IERROR , $IEXTENDED , $VRETURNTYPE )
+		EndIf
+		Return SetError ( $IERROR , $IEXTENDED , + 4294967295 )
+	EndIf
+	If $ARESULT [ 0 ] = 0 Then
+		If IsArray ( $VRETURNTYPE ) Then
+			$VRETURNTYPE [ 0 ] = + 4294967295
+			Return SetError ( + 4294967293 , 0 , $VRETURNTYPE )
+		EndIf
+		Return SetError ( + 4294967293 , 0 , + 4294967295 )
+	EndIf
+	Local $SCOLOR_PICKED = DllStructGetData ( $TCHOOSE , "rgbResult" )
+	If $IRETURNTYPE = 1 Then
+		$VRETURN = "0x" & Hex ( String ( $SCOLOR_PICKED ) , 6 )
+	ElseIf $IRETURNTYPE = 2 Then
+		$SCOLOR_PICKED = Hex ( String ( $SCOLOR_PICKED ) , 6 )
+		$VRETURN = "0x" & StringMid ( $SCOLOR_PICKED , 5 , 2 ) & StringMid ( $SCOLOR_PICKED , 3 , 2 ) & StringMid ( $SCOLOR_PICKED , 1 , 2 )
+	Else
+		$VRETURN = $SCOLOR_PICKED
+	EndIf
+	If IsArray ( $VRETURNTYPE ) Then
+		$VRETURNTYPE = __CHOOSECOLOR_STRUCTTOARRAY ( $TCC )
+		$VRETURNTYPE [ 0 ] = $VRETURN
+		Return $VRETURNTYPE
+	EndIf
+	Return $VRETURN
+EndFunc
+Func __CHOOSECOLOR_STRUCTTOARRAY ( ByRef $TSTRUCT )
+	Local $AARRAY [ 17 ]
+	For $N = 1 To 16
+		$AARRAY [ $N ] = DllStructGetData ( $TSTRUCT , 1 , $N )
+	Next
+	Return $AARRAY
+EndFunc
+Func _CHOOSEFONT ( $SFONTNAME = "Courier New" , $IPOINTSIZE = 10 , $IFONTCOLORREF = 0 , $IFONTWEIGHT = 0 , $BITALIC = False , $BUNDERLINE = False , $BSTRIKETHRU = False , $HWNDOWNER = 0 )
+	Local $IITALIC = 0 , $IUNDERLINE = 0 , $ISTRIKEOUT = 0
+	$IFONTCOLORREF = BitOR ( BitShift ( BitAND ( $IFONTCOLORREF , 255 ) , + 4294967280 ) , BitAND ( $IFONTCOLORREF , 65280 ) , BitShift ( BitAND ( $IFONTCOLORREF , 16711680 ) , 16 ) )
+	Local $HDC = __MISC_GETDC ( 0 )
+	Local $IHEIGHT = Round ( ( $IPOINTSIZE * __MISC_GETDEVICECAPS ( $HDC , $LOGPIXELSX ) ) / 72 , 0 )
+	__MISC_RELEASEDC ( 0 , $HDC )
+	Local $TCHOOSEFONT = DllStructCreate ( $TAGCHOOSEFONT )
+	Local $TLOGFONT = DllStructCreate ( $TAGLOGFONT )
+	DllStructSetData ( $TCHOOSEFONT , "Size" , DllStructGetSize ( $TCHOOSEFONT ) )
+	DllStructSetData ( $TCHOOSEFONT , "hWndOwner" , $HWNDOWNER )
+	DllStructSetData ( $TCHOOSEFONT , "LogFont" , DllStructGetPtr ( $TLOGFONT ) )
+	DllStructSetData ( $TCHOOSEFONT , "PointSize" , $IPOINTSIZE )
+	DllStructSetData ( $TCHOOSEFONT , "Flags" , BitOR ( $CF_SCREENFONTS , $CF_PRINTERFONTS , $CF_EFFECTS , $CF_INITTOLOGFONTSTRUCT , $CF_NOSCRIPTSEL ) )
+	DllStructSetData ( $TCHOOSEFONT , "rgbColors" , $IFONTCOLORREF )
+	DllStructSetData ( $TCHOOSEFONT , "FontType" , 0 )
+	DllStructSetData ( $TLOGFONT , "Height" , $IHEIGHT )
+	DllStructSetData ( $TLOGFONT , "Weight" , $IFONTWEIGHT )
+	DllStructSetData ( $TLOGFONT , "Italic" , $BITALIC )
+	DllStructSetData ( $TLOGFONT , "Underline" , $BUNDERLINE )
+	DllStructSetData ( $TLOGFONT , "Strikeout" , $BSTRIKETHRU )
+	DllStructSetData ( $TLOGFONT , "FaceName" , $SFONTNAME )
+	Local $ACALL = DllCall ( "comdlg32.dll" , "bool" , "ChooseFontW" , "struct*" , $TCHOOSEFONT )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	If $ACALL [ 0 ] = 0 Then Return SetError ( + 4294967293 , + 4294967293 , + 4294967295 )
+	Local $SFACENAME = DllStructGetData ( $TLOGFONT , "FaceName" )
+	If StringLen ( $SFACENAME ) = 0 And StringLen ( $SFONTNAME ) > 0 Then $SFACENAME = $SFONTNAME
+	If DllStructGetData ( $TLOGFONT , "Italic" ) Then $IITALIC = 2
+	If DllStructGetData ( $TLOGFONT , "Underline" ) Then $IUNDERLINE = 4
+	If DllStructGetData ( $TLOGFONT , "Strikeout" ) Then $ISTRIKEOUT = 8
+	Local $IATTRIBUTES = BitOR ( $IITALIC , $IUNDERLINE , $ISTRIKEOUT )
+	Local $ISIZE = DllStructGetData ( $TCHOOSEFONT , "PointSize" ) / 10
+	Local $ICOLORREF = DllStructGetData ( $TCHOOSEFONT , "rgbColors" )
+	Local $IWEIGHT = DllStructGetData ( $TLOGFONT , "Weight" )
+	Local $SCOLOR_PICKED = Hex ( String ( $ICOLORREF ) , 6 )
+	Return StringSplit ( $IATTRIBUTES & "," & $SFACENAME & "," & $ISIZE & "," & $IWEIGHT & "," & $ICOLORREF & "," & "0x" & $SCOLOR_PICKED & "," & "0x" & StringMid ( $SCOLOR_PICKED , 5 , 2 ) & StringMid ( $SCOLOR_PICKED , 3 , 2 ) & StringMid ( $SCOLOR_PICKED , 1 , 2 ) , "," )
+EndFunc
+Func _CLIPPUTFILE ( $SFILEPATH , $SDELIMITER = "|" )
+	Local Const $GMEM_MOVEABLE = 2 , $CF_HDROP = 15
+	$SFILEPATH &= $SDELIMITER & $SDELIMITER
+	Local $NGLOBMEMSIZE = 2 * ( StringLen ( $SFILEPATH ) + 20 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "OpenClipboard" , "hwnd" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , _WINAPI_GETLASTERROR ( ) , False )
+	Local $IERROR = 0 , $ILASTERROR = 0
+	$ACALL = DllCall ( "user32.dll" , "bool" , "EmptyClipboard" )
+	If @error Or Not $ACALL [ 0 ] Then
+		$IERROR = @error + 20
+		$ILASTERROR = _WINAPI_GETLASTERROR ( )
+	Else
+		$ACALL = DllCall ( "kernel32.dll" , "handle" , "GlobalAlloc" , "uint" , $GMEM_MOVEABLE , "ulong_ptr" , $NGLOBMEMSIZE )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 30
+			$ILASTERROR = _WINAPI_GETLASTERROR ( )
+		Else
+			Local $HGLOBAL = $ACALL [ 0 ]
+			$ACALL = DllCall ( "kernel32.dll" , "ptr" , "GlobalLock" , "handle" , $HGLOBAL )
+			If @error Or Not $ACALL [ 0 ] Then
+				$IERROR = @error + 40
+				$ILASTERROR = _WINAPI_GETLASTERROR ( )
+			Else
+				Local $HLOCK = $ACALL [ 0 ]
+				Local $TDROPFILES = DllStructCreate ( "dword pFiles;" & $TAGPOINT & ";bool fNC;bool fWide;wchar[" & StringLen ( $SFILEPATH ) + 1 & "]" , $HLOCK )
+				If @error Then Return SetError ( @error + 50 , 6 , False )
+				Local $TSTRUCT = DllStructCreate ( "dword;long;long;bool;bool" )
+				DllStructSetData ( $TDROPFILES , "pFiles" , DllStructGetSize ( $TSTRUCT ) )
+				DllStructSetData ( $TDROPFILES , "X" , 0 )
+				DllStructSetData ( $TDROPFILES , "Y" , 0 )
+				DllStructSetData ( $TDROPFILES , "fNC" , 0 )
+				DllStructSetData ( $TDROPFILES , "fWide" , 1 )
+				DllStructSetData ( $TDROPFILES , 6 , $SFILEPATH )
+				For $I = 1 To StringLen ( $SFILEPATH )
+					If DllStructGetData ( $TDROPFILES , 6 , $I ) = $SDELIMITER Then DllStructSetData ( $TDROPFILES , 6 , Chr ( 0 ) , $I )
+				Next
+				$ACALL = DllCall ( "user32.dll" , "handle" , "SetClipboardData" , "uint" , $CF_HDROP , "handle" , $HGLOBAL )
+				If @error Or Not $ACALL [ 0 ] Then
+					$IERROR = @error + 60
+					$ILASTERROR = _WINAPI_GETLASTERROR ( )
+				EndIf
+				$ACALL = DllCall ( "kernel32.dll" , "bool" , "GlobalUnlock" , "handle" , $HGLOBAL )
+				If ( @error Or Not $ACALL [ 0 ] ) And Not $IERROR And _WINAPI_GETLASTERROR ( ) Then
+					$IERROR = @error + 80
+					$ILASTERROR = _WINAPI_GETLASTERROR ( )
+				EndIf
+			EndIf
+			$ACALL = DllCall ( "kernel32.dll" , "ptr" , "GlobalFree" , "handle" , $HGLOBAL )
+			If ( @error Or $ACALL [ 0 ] ) And Not $IERROR Then
+				$IERROR = @error + 90
+				$ILASTERROR = _WINAPI_GETLASTERROR ( )
+			EndIf
+		EndIf
+	EndIf
+	$ACALL = DllCall ( "user32.dll" , "bool" , "CloseClipboard" )
+	If ( @error Or Not $ACALL [ 0 ] ) And Not $IERROR Then Return SetError ( @error + 70 , _WINAPI_GETLASTERROR ( ) , False )
+	If $IERROR Then Return SetError ( $IERROR , $ILASTERROR , False )
+	Return True
+EndFunc
+Func _MOUSETRAP ( $ILEFT = 0 , $ITOP = 0 , $IRIGHT = 0 , $IBOTTOM = 0 )
+	Local $ACALL
+	If $ILEFT = Default Then $ILEFT = 0
+	If $ITOP = Default Then $ITOP = 0
+	If $IRIGHT = Default Then $IRIGHT = 0
+	If $IBOTTOM = Default Then $IBOTTOM = 0
+	If @NumParams = 0 Then
+		$ACALL = DllCall ( "user32.dll" , "bool" , "ClipCursor" , "ptr" , 0 )
+		If @error Or Not $ACALL [ 0 ] Then Return SetError ( 1 , _WINAPI_GETLASTERROR ( ) , False )
+	Else
+		If @NumParams = 2 Then
+			$IRIGHT = $ILEFT + 1
+			$IBOTTOM = $ITOP + 1
+		EndIf
+		Local $TRECT = DllStructCreate ( $TAGRECT )
+		DllStructSetData ( $TRECT , "Left" , $ILEFT )
+		DllStructSetData ( $TRECT , "Top" , $ITOP )
+		DllStructSetData ( $TRECT , "Right" , $IRIGHT )
+		DllStructSetData ( $TRECT , "Bottom" , $IBOTTOM )
+		$ACALL = DllCall ( "user32.dll" , "bool" , "ClipCursor" , "struct*" , $TRECT )
+		If @error Or Not $ACALL [ 0 ] Then Return SetError ( 2 , _WINAPI_GETLASTERROR ( ) , False )
+	EndIf
+	Return True
+EndFunc
+Func _SINGLETON ( $SOCCURRENCENAME , $IFLAG = 0 )
+	Local Const $ERROR_ALREADY_EXISTS = 183
+	Local Const $SECURITY_DESCRIPTOR_REVISION = 1
+	Local $TSECURITYATTRIBUTES = 0
+	If BitAND ( $IFLAG , 2 ) Then
+		Local $TSECURITYDESCRIPTOR = DllStructCreate ( "byte;byte;word;ptr[4]" )
+		Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "InitializeSecurityDescriptor" , "struct*" , $TSECURITYDESCRIPTOR , "dword" , $SECURITY_DESCRIPTOR_REVISION )
+		If @error Then Return SetError ( @error , @extended , 0 )
+		If $ACALL [ 0 ] Then
+			$ACALL = DllCall ( "advapi32.dll" , "bool" , "SetSecurityDescriptorDacl" , "struct*" , $TSECURITYDESCRIPTOR , "bool" , 1 , "ptr" , 0 , "bool" , 0 )
+			If @error Then Return SetError ( @error , @extended , 0 )
+			If $ACALL [ 0 ] Then
+				$TSECURITYATTRIBUTES = DllStructCreate ( $TAGSECURITY_ATTRIBUTES )
+				DllStructSetData ( $TSECURITYATTRIBUTES , 1 , DllStructGetSize ( $TSECURITYATTRIBUTES ) )
+				DllStructSetData ( $TSECURITYATTRIBUTES , 2 , DllStructGetPtr ( $TSECURITYDESCRIPTOR ) )
+				DllStructSetData ( $TSECURITYATTRIBUTES , 3 , 0 )
+			EndIf
+		EndIf
+	EndIf
+	Local $AHANDLE = DllCall ( "kernel32.dll" , "handle" , "CreateMutexW" , "struct*" , $TSECURITYATTRIBUTES , "bool" , 1 , "wstr" , $SOCCURRENCENAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $ALASTERROR = DllCall ( "kernel32.dll" , "dword" , "GetLastError" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ALASTERROR [ 0 ] = $ERROR_ALREADY_EXISTS Then
+		If BitAND ( $IFLAG , 1 ) Then
+			DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $AHANDLE [ 0 ] )
+			If @error Then Return SetError ( @error , @extended , 0 )
+			Return SetError ( $ALASTERROR [ 0 ] , $ALASTERROR [ 0 ] , 0 )
+		Else
+			Exit + 4294967295
+		EndIf
+	EndIf
+	Return $AHANDLE [ 0 ]
+EndFunc
+Func _ISPRESSED ( $SHEXKEY , $VDLL = "user32.dll" )
+	Local $ACALL = DllCall ( $VDLL , "short" , "GetAsyncKeyState" , "int" , "0x" & $SHEXKEY )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return BitAND ( $ACALL [ 0 ] , 32768 ) <> 0
+EndFunc
+Func _VERSIONCOMPARE ( $SVERSION1 , $SVERSION2 )
+	If $SVERSION1 = $SVERSION2 Then Return 0
+	Local $SSUBVERSION1 = "" , $SSUBVERSION2 = ""
+	If StringIsAlpha ( StringRight ( $SVERSION1 , 1 ) ) Then
+		$SSUBVERSION1 = StringRight ( $SVERSION1 , 1 )
+		$SVERSION1 = StringTrimRight ( $SVERSION1 , 1 )
+	EndIf
+	If StringIsAlpha ( StringRight ( $SVERSION2 , 1 ) ) Then
+		$SSUBVERSION2 = StringRight ( $SVERSION2 , 1 )
+		$SVERSION2 = StringTrimRight ( $SVERSION2 , 1 )
+	EndIf
+	Local $AVERSION1 = StringSplit ( $SVERSION1 , ".," ) , $AVERSION2 = StringSplit ( $SVERSION2 , ".," )
+	Local $IPARTDIFFERENCE = ( $AVERSION1 [ 0 ] - $AVERSION2 [ 0 ] )
+	If $IPARTDIFFERENCE < 0 Then
+		ReDim $AVERSION1 [ UBound ( $AVERSION2 ) ]
+		$AVERSION1 [ 0 ] = UBound ( $AVERSION1 ) + 4294967295
+		For $I = ( UBound ( $AVERSION1 ) - Abs ( $IPARTDIFFERENCE ) ) To $AVERSION1 [ 0 ]
+			$AVERSION1 [ $I ] = "0"
+		Next
+	ElseIf $IPARTDIFFERENCE > 0 Then
+		ReDim $AVERSION2 [ UBound ( $AVERSION1 ) ]
+		$AVERSION2 [ 0 ] = UBound ( $AVERSION2 ) + 4294967295
+		For $I = ( UBound ( $AVERSION2 ) - Abs ( $IPARTDIFFERENCE ) ) To $AVERSION2 [ 0 ]
+			$AVERSION2 [ $I ] = "0"
+		Next
+	EndIf
+	For $I = 1 To $AVERSION1 [ 0 ]
+		If StringIsDigit ( $AVERSION1 [ $I ] ) And StringIsDigit ( $AVERSION2 [ $I ] ) Then
+			If Number ( $AVERSION1 [ $I ] ) > Number ( $AVERSION2 [ $I ] ) Then
+				Return SetExtended ( 2 , 1 )
+			ElseIf Number ( $AVERSION1 [ $I ] ) < Number ( $AVERSION2 [ $I ] ) Then
+				Return SetExtended ( 2 , + 4294967295 )
+			ElseIf $I = $AVERSION1 [ 0 ] Then
+				If $SSUBVERSION1 > $SSUBVERSION2 Then
+					Return SetExtended ( 3 , 1 )
+				ElseIf $SSUBVERSION1 < $SSUBVERSION2 Then
+					Return SetExtended ( 3 , + 4294967295 )
+				EndIf
+			EndIf
+		Else
+			If $AVERSION1 [ $I ] > $AVERSION2 [ $I ] Then
+				Return SetExtended ( 1 , 1 )
+			ElseIf $AVERSION1 [ $I ] < $AVERSION2 [ $I ] Then
+				Return SetExtended ( 1 , + 4294967295 )
+			EndIf
+		EndIf
+	Next
+	Return SetExtended ( Abs ( $IPARTDIFFERENCE ) , 0 )
+EndFunc
+Func __MISC_GETDC ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetDC" , "hwnd" , $HWND )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( 1 , _WINAPI_GETLASTERROR ( ) , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func __MISC_GETDEVICECAPS ( $HDC , $IINDEX )
+	Local $ACALL = DllCall ( "gdi32.dll" , "int" , "GetDeviceCaps" , "handle" , $HDC , "int" , $IINDEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func __MISC_RELEASEDC ( $HWND , $HDC )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "ReleaseDC" , "hwnd" , $HWND , "handle" , $HDC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ] <> 0
+EndFunc
+Global Const $CREATE_BREAKAWAY_FROM_JOB = 16777216
+Global Const $CREATE_DEFAULT_ERROR_MODE = 67108864
+Global Const $CREATE_NEW_CONSOLE = 16
+Global Const $CREATE_NEW_PROCESS_GROUP = 512
+Global Const $CREATE_NO_WINDOW = 134217728
+Global Const $CREATE_PROTECTED_PROCESS = 262144
+Global Const $CREATE_PRESERVE_CODE_AUTHZ_LEVEL = 33554432
+Global Const $CREATE_SEPARATE_WOW_VDM = 2048
+Global Const $CREATE_SHARED_WOW_VDM = 4096
+Global Const $CREATE_SUSPENDED = 4
+Global Const $CREATE_UNICODE_ENVIRONMENT = 1024
+Global Const $LIST_MODULES_32BIT = 1
+Global Const $LIST_MODULES_64BIT = 2
+Global Const $LIST_MODULES_ALL = 3
+Global Const $LIST_MODULES_DEFAULT = 0
+Global Const $ABOVE_NORMAL_PRIORITY_CLASS = 32768
+Global Const $BELOW_NORMAL_PRIORITY_CLASS = 16384
+Global Const $HIGH_PRIORITY_CLASS = 128
+Global Const $IDLE_PRIORITY_CLASS = 64
+Global Const $NORMAL_PRIORITY_CLASS = 32
+Global Const $REALTIME_PRIORITY_CLASS = 256
+Global Const $PROCESS_MODE_BACKGROUND_BEGIN = 1048576
+Global Const $PROCESS_MODE_BACKGROUND_END = 2097152
+Global Const $MUTEX_MODIFY_STATE = 1
+Global Const $MUTEX_ALL_ACCESS = 2031617
+Global Const $JOB_OBJECT_ASSIGN_PROCESS = 1
+Global Const $JOB_OBJECT_QUERY = 4
+Global Const $JOB_OBJECT_SET_ATTRIBUTES = 2
+Global Const $JOB_OBJECT_SET_SECURITY_ATTRIBUTES = 16
+Global Const $JOB_OBJECT_TERMINATE = 8
+Global Const $JOB_OBJECT_ALL_ACCESS = 2031647
+Global Const $JOB_OBJECT_LIMIT_ACTIVE_PROCESS = 8
+Global Const $JOB_OBJECT_LIMIT_AFFINITY = 16
+Global Const $JOB_OBJECT_LIMIT_BREAKAWAY_OK = 2048
+Global Const $JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION = 1024
+Global Const $JOB_OBJECT_LIMIT_JOB_MEMORY = 512
+Global Const $JOB_OBJECT_LIMIT_JOB_TIME = 4
+Global Const $JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 8192
+Global Const $JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME = 64
+Global Const $JOB_OBJECT_LIMIT_PRIORITY_CLASS = 32
+Global Const $JOB_OBJECT_LIMIT_PROCESS_MEMORY = 256
+Global Const $JOB_OBJECT_LIMIT_PROCESS_TIME = 2
+Global Const $JOB_OBJECT_LIMIT_SCHEDULING_CLASS = 128
+Global Const $JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK = 4096
+Global Const $JOB_OBJECT_LIMIT_WORKINGSET = 1
+Global Const $JOB_OBJECT_UILIMIT_DESKTOP = 64
+Global Const $JOB_OBJECT_UILIMIT_DISPLAYSETTINGS = 16
+Global Const $JOB_OBJECT_UILIMIT_EXITWINDOWS = 128
+Global Const $JOB_OBJECT_UILIMIT_GLOBALATOMS = 32
+Global Const $JOB_OBJECT_UILIMIT_HANDLES = 1
+Global Const $JOB_OBJECT_UILIMIT_READCLIPBOARD = 2
+Global Const $JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS = 8
+Global Const $JOB_OBJECT_UILIMIT_WRITECLIPBOARD = 4
+Global Const $JOB_OBJECT_SECURITY_FILTER_TOKENS = 8
+Global Const $JOB_OBJECT_SECURITY_NO_ADMIN = 1
+Global Const $JOB_OBJECT_SECURITY_ONLY_TOKEN = 4
+Global Const $JOB_OBJECT_SECURITY_RESTRICTED_TOKEN = 2
+Global Const $JOB_OBJECT_TERMINATE_AT_END_OF_JOB = 0
+Global Const $JOB_OBJECT_POST_AT_END_OF_JOB = 1
+Global Const $SEMAPHORE_MODIFY_STATE = 2
+Global Const $SEMAPHORE_QUERY_STATE = 1
+Global Const $SEMAPHORE_ALL_ACCESS = 2031619
+Global Const $ES_AWAYMODE_REQUIRED = 64
+Global Const $ES_CONTINUOUS = 2147483648
+Global Const $ES_DISPLAY_REQUIRED = 2
+Global Const $ES_SYSTEM_REQUIRED = 1
+Global Const $ES_USER_PRESENT = 4
+Global Const $URL_SCHEME_INVALID = + 4294967295
+Global Const $URL_SCHEME_UNKNOWN = 0
+Global Const $URL_SCHEME_FTP = 1
+Global Const $URL_SCHEME_HTTP = 2
+Global Const $URL_SCHEME_GOPHER = 3
+Global Const $URL_SCHEME_MAILTO = 4
+Global Const $URL_SCHEME_NEWS = 5
+Global Const $URL_SCHEME_NNTP = 6
+Global Const $URL_SCHEME_TELNET = 7
+Global Const $URL_SCHEME_WAIS = 8
+Global Const $URL_SCHEME_FILE = 9
+Global Const $URL_SCHEME_MK = 10
+Global Const $URL_SCHEME_HTTPS = 11
+Global Const $URL_SCHEME_SHELL = 12
+Global Const $URL_SCHEME_SNEWS = 13
+Global Const $URL_SCHEME_LOCAL = 14
+Global Const $URL_SCHEME_JAVASCRIPT = 15
+Global Const $URL_SCHEME_VBSCRIPT = 16
+Global Const $URL_SCHEME_ABOUT = 17
+Global Const $URL_SCHEME_RES = 18
+Global Const $URL_SCHEME_MSSHELLROOTED = 19
+Global Const $URL_SCHEME_MSSHELLIDLIST = 20
+Global Const $URL_SCHEME_MSHELP = 21
+Global Const $URL_SCHEME_MSSHELLDEVICE = 22
+Global Const $URL_SCHEME_WILDCARD = 23
+Global Const $URL_SCHEME_SEARCH_MS = 24
+Global Const $URL_SCHEME_SEARCH = 25
+Global Const $URL_SCHEME_KNOWNFOLDER = 26
+Global Const $GCT_INVALID = 0
+Global Const $GCT_LFNCHAR = 1
+Global Const $GCT_SEPARATOR = 8
+Global Const $GCT_SHORTCHAR = 2
+Global Const $GCT_WILD = 4
+Global Const $URL_APPLY_DEFAULT = 1
+Global Const $URL_APPLY_GUESSSCHEME = 2
+Global Const $URL_APPLY_GUESSFILE = 4
+Global Const $URL_APPLY_FORCEAPPLY = 8
+Global Const $URL_DONT_SIMPLIFY = 134217728
+Global Const $URL_ESCAPE_AS_UTF8 = 262144
+Global Const $URL_ESCAPE_PERCENT = 4096
+Global Const $URL_ESCAPE_SPACES_ONLY = 67108864
+Global Const $URL_ESCAPE_UNSAFE = 536870912
+Global Const $URL_NO_META = 134217728
+Global Const $URL_PLUGGABLE_PROTOCOL = 1073741824
+Global Const $URL_UNESCAPE = 268435456
+Global Const $URL_PART_HOSTNAME = 2
+Global Const $URL_PART_PASSWORD = 4
+Global Const $URL_PART_PORT = 5
+Global Const $URL_PART_QUERY = 6
+Global Const $URL_PART_SCHEME = 1
+Global Const $URL_PART_USERNAME = 3
+Global Const $URLIS_APPLIABLE = 4
+Global Const $URLIS_DIRECTORY = 5
+Global Const $URLIS_FILEURL = 3
+Global Const $URLIS_HASQUERY = 6
+Global Const $URLIS_NOHISTORY = 2
+Global Const $URLIS_OPAQUE = 1
+Global Const $URLIS_URL = 0
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_COMMANDLINETOARGV ( $SCMD )
+	Local $ARET [ 1 ] = [ 0 ]
+	$SCMD = StringStripWS ( $SCMD , $STR_STRIPLEADING + $STR_STRIPTRAILING )
+	If Not $SCMD Then
+		Return $ARET
+	EndIf
+	Local $ACALL = DllCall ( "shell32.dll" , "ptr" , "CommandLineToArgvW" , "wstr" , $SCMD , "int*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or ( Not $ACALL [ 2 ] ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TPTR = DllStructCreate ( "ptr[" & $ACALL [ 2 ] & "]" , $ACALL [ 0 ] )
+	Dim $ARET [ $ACALL [ 2 ] + 1 ] = [ $ACALL [ 2 ] ]
+	For $I = 1 To $ACALL [ 2 ]
+		$ARET [ $I ] = _WINAPI_GETSTRING ( DllStructGetData ( $TPTR , 1 , $I ) )
+	Next
+	DllCall ( "kernel32.dll" , "handle" , "LocalFree" , "handle" , $ACALL [ 0 ] )
+	Return $ARET
+EndFunc
+Func _WINAPI_ISNAMEINEXPRESSION ( $SSTRING , $SPATTERN , $BCASESENSITIVE = False )
+	If Not $BCASESENSITIVE Then $SPATTERN = StringUpper ( $SPATTERN )
+	Local $TUS1 = __US ( $SPATTERN )
+	Local $TUS2 = __US ( $SSTRING )
+	Local $ACALL = DllCall ( "ntdll.dll" , "boolean" , "RtlIsNameInExpression" , "struct*" , $TUS1 , "struct*" , $TUS2 , "boolean" , Not $BCASESENSITIVE , "ptr" , 0 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PARSEURL ( $SURL )
+	Local $TAGPARSEDURL = "dword Size;ptr Protocol;uint cchProtocol;ptr Suffix;uint cchSuffix;uint Scheme"
+	Local $TPURL = DllStructCreate ( $TAGPARSEDURL )
+	DllStructSetData ( $TPURL , 1 , DllStructGetSize ( $TPURL ) )
+	Local $TURL = DllStructCreate ( "wchar[4096]" )
+	DllStructSetData ( $TURL , 1 , $SURL )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "ParseURLW" , "struct*" , $TURL , "struct*" , $TPURL )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Local $ARET [ 3 ]
+	$ARET [ 0 ] = DllStructGetData ( DllStructCreate ( "wchar[" & DllStructGetData ( $TPURL , 3 ) & "]" , DllStructGetData ( $TPURL , 2 ) ) , 1 )
+	$ARET [ 1 ] = DllStructGetData ( DllStructCreate ( "wchar[" & DllStructGetData ( $TPURL , 5 ) & "]" , DllStructGetData ( $TPURL , 4 ) ) , 1 )
+	$ARET [ 2 ] = DllStructGetData ( $TPURL , 6 )
+	Return $ARET
+EndFunc
+Func _WINAPI_PARSEUSERNAME ( $SUSER )
+	If Not __DLL ( "credui.dll" ) Then Return SetError ( 103 , 0 , 0 )
+	Local $ACALL = DllCall ( "credui.dll" , "dword" , "CredUIParseUserNameW" , "wstr" , $SUSER , "wstr" , "" , "ulong" , 4096 , "wstr" , "" , "ulong" , 4096 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Switch $ACALL [ 0 ]
+	Case 0
+	Case 1315
+		If StringStripWS ( $SUSER , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then
+			$ACALL [ 2 ] = $SUSER
+			$ACALL [ 4 ] = ""
+		Else
+			ContinueCase
+		EndIf
+Case Else
+		Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	EndSwitch
+	Local $ARET [ 2 ]
+	$ARET [ 0 ] = $ACALL [ 4 ]
+	$ARET [ 1 ] = $ACALL [ 2 ]
+	Return $ARET
+EndFunc
+Func _WINAPI_PATHADDBACKSLASH ( $SFILEPATH )
+	Local $TPATH = DllStructCreate ( "wchar[260]" )
+	DllStructSetData ( $TPATH , 1 , $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "ptr" , "PathAddBackslashW" , "struct*" , $TPATH )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return DllStructGetData ( $TPATH , 1 )
+EndFunc
+Func _WINAPI_PATHADDEXTENSION ( $SFILEPATH , $SEXT = "" )
+	Local $TPATH = DllStructCreate ( "wchar[260]" )
+	DllStructSetData ( $TPATH , 1 , $SFILEPATH )
+	If Not StringStripWS ( $SEXT , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then $SEXT = Null
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathAddExtensionW" , "struct*" , $TPATH , "wstr" , $SEXT )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return SetExtended ( $ACALL [ 0 ] , DllStructGetData ( $TPATH , 1 ) )
+EndFunc
+Func _WINAPI_PATHAPPEND ( $SFILEPATH , $SMORE )
+	Local $TPATH = DllStructCreate ( "wchar[260]" )
+	DllStructSetData ( $TPATH , 1 , $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathAppendW" , "struct*" , $TPATH , "wstr" , $SMORE )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return DllStructGetData ( $TPATH , 1 )
+EndFunc
+Func _WINAPI_PATHBUILDROOT ( $IDRIVE )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "ptr" , "PathBuildRootW" , "wstr" , "" , "int" , $IDRIVE )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHCANONICALIZE ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathCanonicalizeW" , "wstr" , "" , "wstr" , $SFILEPATH )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , $SFILEPATH )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHCOMMONPREFIX ( $SPATH1 , $SPATH2 )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "int" , "PathCommonPrefixW" , "wstr" , $SPATH1 , "wstr" , $SPATH2 , "wstr" , "" )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return SetExtended ( $ACALL [ 0 ] , $ACALL [ 3 ] )
+EndFunc
+Func _WINAPI_PATHCOMPACTPATH ( $HWND , $SFILEPATH , $IWIDTH = 0 )
+	If $IWIDTH < 1 Then
+		Local $TRECT = DllStructCreate ( $TAGRECT )
+		DllCall ( "user32.dll" , "bool" , "GetClientRect" , "hwnd" , $HWND , "struct*" , $TRECT )
+		$IWIDTH += DllStructGetData ( $TRECT , "Right" ) - DllStructGetData ( $TRECT , "Left" )
+	EndIf
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetDC" , "hwnd" , $HWND )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , $SFILEPATH )
+	Local $HDC = $ACALL [ 0 ]
+	Local Const $WM_GETFONT = 49
+	$ACALL = DllCall ( "user32.dll" , "ptr" , "SendMessage" , "hwnd" , $HWND , "uint" , $WM_GETFONT , "wparam" , 0 , "lparam" , 0 )
+	Local $HBACK = DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDC , "handle" , $ACALL [ 0 ] )
+	Local $IERROR = 0
+	$ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathCompactPathW" , "handle" , $HDC , "wstr" , $SFILEPATH , "int" , $IWIDTH )
+	If @error Or Not $ACALL [ 0 ] Then $IERROR = @error + 10
+	DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDC , "handle" , $HBACK [ 0 ] )
+	DllCall ( "user32.dll" , "int" , "ReleaseDC" , "hwnd" , $HWND , "handle" , $HDC )
+	If $IERROR Then Return SetError ( $IERROR , 0 , $SFILEPATH )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_PATHCOMPACTPATHEX ( $SFILEPATH , $IMAX )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathCompactPathExW" , "wstr" , "" , "wstr" , $SFILEPATH , "uint" , $IMAX + 1 , "dword" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , $SFILEPATH )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHCREATEFROMURL ( $SURL )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "PathCreateFromUrlW" , "wstr" , $SURL , "wstr" , "" , "dword*" , 4096 , "dword" , 0 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_PATHFINDEXTENSION ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "wstr" , "PathFindExtensionW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHFINDFILENAME ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "wstr" , "PathFindFileNameW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , $SFILEPATH )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHFINDNEXTCOMPONENT ( $SFILEPATH )
+	Local $TPATH = DllStructCreate ( "wchar[" & ( StringLen ( $SFILEPATH ) + 1 ) & "]" )
+	DllStructSetData ( $TPATH , 1 , $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "ptr" , "PathFindNextComponentW" , "struct*" , $TPATH )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return _WINAPI_GETSTRING ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_PATHFINDONPATH ( Const $SFILEPATH , $AEXTRAPATHS = "" , Const $SPATHDELIMITER = @LF )
+	Local $IEXTRACOUNT = 0
+	If IsString ( $AEXTRAPATHS ) Then
+		If StringLen ( $AEXTRAPATHS ) Then
+			$AEXTRAPATHS = StringSplit ( $AEXTRAPATHS , $SPATHDELIMITER , $STR_ENTIRESPLIT + $STR_NOCOUNT )
+			$IEXTRACOUNT = UBound ( $AEXTRAPATHS , $UBOUND_ROWS )
+		EndIf
+	ElseIf IsArray ( $AEXTRAPATHS ) Then
+		$IEXTRACOUNT = UBound ( $AEXTRAPATHS )
+	EndIf
+	Local $TPATHS , $TPATHPTRS
+	If $IEXTRACOUNT Then
+		Local $TAGSTRUCT = ""
+		For $PATH In $AEXTRAPATHS
+			$TAGSTRUCT &= "wchar[" & StringLen ( $PATH ) + 1 & "];"
+		Next
+		$TPATHS = DllStructCreate ( $TAGSTRUCT )
+		$TPATHPTRS = DllStructCreate ( "ptr[" & $IEXTRACOUNT + 1 & "]" )
+		For $I = 1 To $IEXTRACOUNT
+			DllStructSetData ( $TPATHS , $I , $AEXTRAPATHS [ $I + 4294967295 ] )
+			DllStructSetData ( $TPATHPTRS , 1 , DllStructGetPtr ( $TPATHS , $I ) , $I )
+		Next
+		DllStructSetData ( $TPATHPTRS , 1 , Ptr ( 0 ) , $IEXTRACOUNT + 1 )
+	EndIf
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathFindOnPathW" , "wstr" , $SFILEPATH , "struct*" , $TPATHPTRS )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , $SFILEPATH )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHGETARGS ( $SFILEPATH )
+	Local $TPATH = DllStructCreate ( "wchar[" & ( StringLen ( $SFILEPATH ) + 1 ) & "]" )
+	DllStructSetData ( $TPATH , 1 , $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "ptr" , "PathGetArgsW" , "struct*" , $TPATH )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return _WINAPI_GETSTRING ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_PATHGETCHARTYPE ( $SCHAR )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "uint" , "PathGetCharTypeW" , "word" , AscW ( $SCHAR ) )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHGETDRIVENUMBER ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "int" , "PathGetDriveNumberW" , "wstr" , $SFILEPATH )
+	If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then Return SetError ( @error , @extended , "" )
+	Return Chr ( $ACALL [ 0 ] + 65 ) & ":"
+EndFunc
+Func _WINAPI_PATHISCONTENTTYPE ( $SFILEPATH , $STYPE )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsContentTypeW" , "wstr" , $SFILEPATH , "wstr" , $STYPE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISEXE ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shell32.dll" , "bool" , "PathIsExe" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISFILESPEC ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsFileSpecW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISLFNFILESPEC ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsLFNFileSpecW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISRELATIVE ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsRelativeW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISROOT ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsRootW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISSAMEROOT ( $SPATH1 , $SPATH2 )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsSameRootW" , "wstr" , $SPATH1 , "wstr" , $SPATH2 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISSYSTEMFOLDER ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsSystemFolderW" , "wstr" , $SFILEPATH , "dword" , 0 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISUNC ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsUNCW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISUNCSERVER ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsUNCServerW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHISUNCSERVERSHARE ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathIsUNCServerShareW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHMAKESYSTEMFOLDER ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathMakeSystemFolderW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHMATCHSPEC ( $SFILEPATH , $SSPEC )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathMatchSpecW" , "wstr" , $SFILEPATH , "wstr" , $SSPEC )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHPARSEICONLOCATION ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "int" , "PathParseIconLocationW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $ARET [ 2 ]
+	$ARET [ 0 ] = $ACALL [ 1 ]
+	$ARET [ 1 ] = $ACALL [ 0 ]
+	Return $ARET
+EndFunc
+Func _WINAPI_PATHRELATIVEPATHTO ( $SPATHFROM , $BDIRFROM , $SPATHTO , $BDIRTO )
+	If $BDIRFROM Then
+		$BDIRFROM = 16
+	EndIf
+	If $BDIRTO Then
+		$BDIRTO = 16
+	EndIf
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathRelativePathToW" , "wstr" , "" , "wstr" , $SPATHFROM , "dword" , $BDIRFROM , "wstr" , $SPATHTO , "dword" , $BDIRTO )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHREMOVEARGS ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "none" , "PathRemoveArgsW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHREMOVEBACKSLASH ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "ptr" , "PathRemoveBackslashW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHREMOVEEXTENSION ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "none" , "PathRemoveExtensionW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHREMOVEFILESPEC ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathRemoveFileSpecW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return SetExtended ( $ACALL [ 0 ] , $ACALL [ 1 ] )
+EndFunc
+Func _WINAPI_PATHRENAMEEXTENSION ( $SFILEPATH , $SEXT )
+	Local $TPATH = DllStructCreate ( "wchar[260]" )
+	DllStructSetData ( $TPATH , 1 , $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathRenameExtensionW" , "struct*" , $TPATH , "wstr" , $SEXT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return DllStructGetData ( $TPATH , 1 )
+EndFunc
+Func _WINAPI_PATHSEARCHANDQUALIFY ( $SFILEPATH , $BEXISTS = False )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathSearchAndQualifyW" , "wstr" , $SFILEPATH , "wstr" , "" , "int" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	If $BEXISTS And Not FileExists ( $ACALL [ 2 ] ) Then Return SetError ( 20 , 0 , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_PATHSKIPROOT ( $SFILEPATH )
+	Local $TPATH = DllStructCreate ( "wchar[" & ( StringLen ( $SFILEPATH ) + 1 ) & "]" )
+	DllStructSetData ( $TPATH , 1 , $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "ptr" , "PathSkipRootW" , "struct*" , $TPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If Not $ACALL [ 0 ] Then Return $SFILEPATH
+	Return _WINAPI_GETSTRING ( $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_PATHSTRIPPATH ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "none" , "PathStripPathW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHSTRIPTOROOT ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathStripToRootW" , "wstr" , $SFILEPATH )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHUNDECORATE ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "none" , "PathUndecorateW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHUNEXPANDENVSTRINGS ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathUnExpandEnvStringsW" , "wstr" , $SFILEPATH , "wstr" , "" , "uint" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_PATHUNMAKESYSTEMFOLDER ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "PathUnmakeSystemFolderW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_PATHUNQUOTESPACES ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "none" , "PathUnquoteSpacesW" , "wstr" , $SFILEPATH )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_PATHYETANOTHERMAKEUNIQUENAME ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shell32.dll" , "int" , "PathYetAnotherMakeUniqueName" , "wstr" , "" , "wstr" , $SFILEPATH , "ptr" , 0 , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_SHELLGETIMAGELIST ( $BSMALL = False )
+	Local $PLARGE , $PSMALL , $TPTR = DllStructCreate ( "ptr" )
+	If $BSMALL Then
+		$PLARGE = 0
+		$PSMALL = DllStructGetPtr ( $TPTR )
+	Else
+		$PLARGE = DllStructGetPtr ( $TPTR )
+		$PSMALL = 0
+	EndIf
+	Local $ACALL = DllCall ( "shell32.dll" , "int" , "Shell_GetImageLists" , "ptr" , $PLARGE , "ptr" , $PSMALL )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return DllStructGetData ( $TPTR , 1 )
+EndFunc
+Func _WINAPI_URLAPPLYSCHEME ( $SURL , $IFLAGS = 1 )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "UrlApplySchemeW" , "wstr" , $SURL , "wstr" , "" , "dword*" , 4096 , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_URLCANONICALIZE ( $SURL , $IFLAGS )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "UrlCanonicalizeW" , "wstr" , $SURL , "wstr" , "" , "dword*" , 4096 , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_URLCOMBINE ( $SURL , $SPART , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "UrlCombineW" , "wstr" , $SURL , "wstr" , $SPART , "wstr" , "" , "dword*" , 4096 , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_URLCOMPARE ( $SURL1 , $SURL2 , $BIGNORESLASH = False )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "int" , "UrlCompareW" , "wstr" , $SURL1 , "wstr" , $SURL2 , "bool" , $BIGNORESLASH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_URLCREATEFROMPATH ( $SFILEPATH )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "UrlCreateFromPathW" , "wstr" , $SFILEPATH , "wstr" , "" , "dword*" , 4096 , "dword" , 0 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] < 0 Or $ACALL [ 0 ] > 1 Then
+		Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	EndIf
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_URLFIXUP ( $SURL )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "UrlFixupW" , "wstr" , $SURL , "wstr" , "" , "dword" , 4096 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_URLGETPART ( $SURL , $IPART )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "UrlGetPartW" , "wstr" , $SURL , "wstr" , "" , "dword*" , 4096 , "dword" , $IPART , "dword" , 0 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_URLHASH ( $SURL , $ILENGTH = 32 )
+	If $ILENGTH <= 0 Or $ILENGTH > 256 Then Return SetError ( 256 , 0 , 0 )
+	Local $TDATA = DllStructCreate ( "byte[" & $ILENGTH & "]" )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "long" , "UrlHashW" , "wstr" , $SURL , "struct*" , $TDATA , "dword" , $ILENGTH )
+	If @error Then Return SetError ( @error + 10 , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return DllStructGetData ( $TDATA , 1 )
+EndFunc
+Func _WINAPI_URLIS ( $SURL , $ITYPE = 0 )
+	Local $ACALL = DllCall ( "shlwapi.dll" , "bool" , "UrlIsW" , "wstr" , $SURL , "uint" , $ITYPE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+Func __US ( $SSTRING , $ILENGTH = 0 )
+	If $ILENGTH Then
+		$SSTRING = StringLeft ( $SSTRING , $ILENGTH )
+	Else
+		$ILENGTH = StringLen ( $SSTRING )
+	EndIf
+	Local $TUS = DllStructCreate ( "ushort;ushort;ptr;wchar[" & ( $ILENGTH + 1 ) & "]" )
+	DllStructSetData ( $TUS , 1 , 2 * StringLen ( $SSTRING ) )
+	DllStructSetData ( $TUS , 2 , 2 * $ILENGTH )
+	DllStructSetData ( $TUS , 3 , DllStructGetPtr ( $TUS , 4 ) )
+	DllStructSetData ( $TUS , 4 , $SSTRING )
+	Return $TUS
+EndFunc
+#EndRegion Internal Functions
+#Region Global Variables and Constants
+Global Const $TAGIO_COUNTERS = "struct;uint64 ReadOperationCount;uint64 WriteOperationCount;uint64 OtherOperationCount;uint64 ReadTransferCount;uint64 WriteTransferCount;uint64 OtherTransferCount;endstruct"
+Global Const $TAGJOBOBJECT_ASSOCIATE_COMPLETION_PORT = "ulong_ptr CompletionKey;ptr CompletionPort"
+Global Const $TAGJOBOBJECT_BASIC_ACCOUNTING_INFORMATION = "struct;int64 TotalUserTime;int64 TotalKernelTime;int64 ThisPeriodTotalUserTime;int64 ThisPeriodTotalKernelTime;dword TotalPageFaultCount;dword TotalProcesses;dword ActiveProcesses;dword TotalTerminatedProcesses;endstruct"
+Global Const $TAGJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = $TAGJOBOBJECT_BASIC_ACCOUNTING_INFORMATION & ";" & $TAGIO_COUNTERS
+Global Const $TAGJOBOBJECT_BASIC_LIMIT_INFORMATION = "struct;int64 PerProcessUserTimeLimit;int64 PerJobUserTimeLimit;dword LimitFlags;ulong_ptr MinimumWorkingSetSize;ulong_ptr MaximumWorkingSetSize;dword ActiveProcessLimit;ulong_ptr Affinity;dword PriorityClass;dword SchedulingClass;endstruct"
+Global Const $TAGJOBOBJECT_BASIC_PROCESS_ID_LIST = "dword NumberOfAssignedProcesses;dword NumberOfProcessIdsInList"
+Global Const $TAGJOBOBJECT_BASIC_UI_RESTRICTIONS = "dword UIRestrictionsClass"
+Global Const $TAGJOBOBJECT_END_OF_JOB_TIME_INFORMATION = "dword EndOfJobTimeAction"
+Global Const $TAGJOBOBJECT_EXTENDED_LIMIT_INFORMATION = $TAGJOBOBJECT_BASIC_LIMIT_INFORMATION & ";" & $TAGIO_COUNTERS & ";ulong_ptr ProcessMemoryLimit;ulong_ptr JobMemoryLimit;ulong_ptr PeakProcessMemoryUsed;ulong_ptr PeakJobMemoryUsed"
+Global Const $TAGJOBOBJECT_GROUP_INFORMATION = ""
+Global Const $TAGJOBOBJECT_SECURITY_LIMIT_INFORMATION = "dword SecurityLimitFlags;ptr JobToken;ptr SidsToDisable;ptr PrivilegesToDelete;ptr RestrictedSids"
+Global Const $TAGMODULEINFO = "ptr BaseOfDll;dword SizeOfImage;ptr EntryPoint"
+Global Const $TAGPROCESSENTRY32 = "dword Size;dword Usage;dword ProcessID;ulong_ptr DefaultHeapID;dword ModuleID;dword Threads;dword ParentProcessID;long PriClassBase;dword Flags;wchar ExeFile[260]"
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_ADJUSTTOKENPRIVILEGES ( $HTOKEN , $APRIVILEGES , $IATTRIBUTES , ByRef $AADJUST )
+	$AADJUST = 0
+	If Not $APRIVILEGES And IsNumber ( $APRIVILEGES ) Then Return 0
+	Local $TTP1 = 0 , $TTP2 , $ICOUNT , $ACALL , $BDISABLE = False
+	If $APRIVILEGES = + 4294967295 Then
+		$TTP2 = DllStructCreate ( "dword" )
+		$ACALL = DllCall ( "advapi32.dll" , "bool" , "AdjustTokenPrivileges" , "handle" , $HTOKEN , "bool" , 1 , "ptr" , 0 , "dword" , 0 , "struct*" , $TTP2 , "dword*" , 0 )
+		If @error Then Return SetError ( @error , @extended , 0 )
+		Local $ILASTERROR = _WINAPI_GETLASTERROR ( )
+		Switch $ILASTERROR
+		Case 122
+			$TTP2 = DllStructCreate ( "dword;dword[" & ( $ACALL [ 6 ] / 4 + 4294967295 ) & "]" )
+			If @error Then
+				ContinueCase
+			EndIf
+	Case Else
+			Return SetError ( 10 , $ILASTERROR , 0 )
+		EndSwitch
+		$BDISABLE = True
+	Else
+		Local $APREV = 0
+		If Not IsArray ( $APRIVILEGES ) Then
+			Dim $APREV [ 1 ] [ 2 ]
+			$APREV [ 0 ] [ 0 ] = $APRIVILEGES
+			$APREV [ 0 ] [ 1 ] = $IATTRIBUTES
+		Else
+			If Not UBound ( $APRIVILEGES , $UBOUND_COLUMNS ) Then
+				$ICOUNT = UBound ( $APRIVILEGES )
+				Dim $APREV [ $ICOUNT ] [ 2 ]
+				For $I = 0 To $ICOUNT + 4294967295
+					$APREV [ $I ] [ 0 ] = $APRIVILEGES [ $I ]
+					$APREV [ $I ] [ 1 ] = $IATTRIBUTES
+				Next
+			EndIf
+		EndIf
+		If IsArray ( $APREV ) Then
+			$APRIVILEGES = $APREV
+		EndIf
+		Local $TAGSTRUCT = "dword;dword[" & ( 3 * UBound ( $APRIVILEGES ) ) & "]"
+		$TTP1 = DllStructCreate ( $TAGSTRUCT )
+		$TTP2 = DllStructCreate ( $TAGSTRUCT )
+		If @error Then Return SetError ( @error + 20 , 0 , 0 )
+		DllStructSetData ( $TTP1 , 1 , UBound ( $APRIVILEGES ) )
+		For $I = 0 To UBound ( $APRIVILEGES ) + 4294967295
+			DllStructSetData ( $TTP1 , 2 , $APRIVILEGES [ $I ] [ 1 ] , 3 * $I + 3 )
+			$ACALL = DllCall ( "advapi32.dll" , "bool" , "LookupPrivilegeValueW" , "ptr" , 0 , "wstr" , $APRIVILEGES [ $I ] [ 0 ] , "ptr" , DllStructGetPtr ( $TTP1 , 2 ) + 12 * $I )
+			If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 100 , @extended , 0 )
+		Next
+	EndIf
+	$ACALL = DllCall ( "advapi32.dll" , "bool" , "AdjustTokenPrivileges" , "handle" , $HTOKEN , "bool" , $BDISABLE , "struct*" , $TTP1 , "dword" , DllStructGetSize ( $TTP2 ) , "struct*" , $TTP2 , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 200 , @extended , 0 )
+	Local $IRESULT
+	Switch _WINAPI_GETLASTERROR ( )
+	Case 1300
+		$IRESULT = 1
+Case Else
+		$IRESULT = 0
+	EndSwitch
+	$ICOUNT = DllStructGetData ( $TTP2 , 1 )
+	If $ICOUNT Then
+		Local $TDATA = DllStructCreate ( "wchar[128]" )
+		Dim $APRIVILEGES [ $ICOUNT ] [ 2 ]
+		For $I = 0 To $ICOUNT + 4294967295
+			$ACALL = DllCall ( "advapi32.dll" , "bool" , "LookupPrivilegeNameW" , "ptr" , 0 , "ptr" , DllStructGetPtr ( $TTP2 , 2 ) + 12 * $I , "struct*" , $TDATA , "dword*" , 128 )
+			If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 300 , @extended , 0 )
+			$APRIVILEGES [ $I ] [ 1 ] = DllStructGetData ( $TTP2 , 2 , 3 * $I + 3 )
+			$APRIVILEGES [ $I ] [ 0 ] = DllStructGetData ( $TDATA , 1 )
+		Next
+		$AADJUST = $APRIVILEGES
+	EndIf
+	Return SetExtended ( $IRESULT , 1 )
+EndFunc
+Func _WINAPI_ASSIGNPROCESSTOJOBOBJECT ( $HJOB , $HPROCESS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "AssignProcessToJobObject" , "handle" , $HJOB , "handle" , $HPROCESS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ATTACHCONSOLE ( $IPID = + 4294967295 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "AttachConsole" , "dword" , $IPID )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ATTACHTHREADINPUT ( $IATTACH , $IATTACHTO , $BATTACH )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "AttachThreadInput" , "dword" , $IATTACH , "dword" , $IATTACHTO , "bool" , $BATTACH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEEVENT ( $TATTRIBUTES = 0 , $BMANUALRESET = True , $BINITIALSTATE = True , $SNAME = "" )
+	If $SNAME = "" Then $SNAME = Null
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "CreateEventW" , "struct*" , $TATTRIBUTES , "bool" , $BMANUALRESET , "bool" , $BINITIALSTATE , "wstr" , $SNAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $ILASTERROR = _WINAPI_GETLASTERROR ( )
+	If $ILASTERROR Then Return SetExtended ( $ILASTERROR , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEJOBOBJECT ( $SNAME = "" , $TSECURITY = 0 )
+	If Not StringStripWS ( $SNAME , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then $SNAME = Null
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "CreateJobObjectW" , "struct*" , $TSECURITY , "wstr" , $SNAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEMUTEX ( $SMUTEX , $BINITIAL = True , $TSECURITY = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "CreateMutexW" , "struct*" , $TSECURITY , "bool" , $BINITIAL , "wstr" , $SMUTEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEPROCESS ( $SAPPNAME , $SCOMMAND , $TSECURITY , $TTHREAD , $BINHERIT , $IFLAGS , $PENVIRON , $SDIR , $TSTARTUPINFO , $TPROCESS )
+	Local $TCOMMAND = 0
+	If $SAPPNAME = "" Then $SAPPNAME = Null
+	If $SCOMMAND <> "" Then
+		$TCOMMAND = DllStructCreate ( "wchar Text[" & 260 + 1 & "]" )
+		DllStructSetData ( $TCOMMAND , "Text" , $SCOMMAND )
+	EndIf
+	If $SDIR = "" Then $SDIR = Null
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "CreateProcessW" , "wstr" , $SAPPNAME , "struct*" , $TCOMMAND , "struct*" , $TSECURITY , "struct*" , $TTHREAD , "bool" , $BINHERIT , "dword" , $IFLAGS , "struct*" , $PENVIRON , "wstr" , $SDIR , "struct*" , $TSTARTUPINFO , "struct*" , $TPROCESS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEPROCESSWITHTOKEN ( $SAPP , $SCMD , $IFLAGS , $TSTARTUPINFO , $TPROCESSINFO , $HTOKEN , $ILOGON = 0 , $PENVIRONMENT = 0 , $SDIR = "" )
+	If Not StringStripWS ( $SAPP , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then $SAPP = Null
+	If Not StringStripWS ( $SCMD , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then $SCMD = Null
+	If Not StringStripWS ( $SDIR , $STR_STRIPLEADING + $STR_STRIPTRAILING ) Then $SDIR = Null
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "CreateProcessWithTokenW" , "handle" , $HTOKEN , "dword" , $ILOGON , "wstr" , $SAPP , "wstr" , $SCMD , "dword" , $IFLAGS , "struct*" , $PENVIRONMENT , "wstr" , $SDIR , "struct*" , $TSTARTUPINFO , "struct*" , $TPROCESSINFO )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATESEMAPHORE ( $SSEMAPHORE , $IINITIAL , $IMAXIMUM , $TSECURITY = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "CreateSemaphoreW" , "struct*" , $TSECURITY , "long" , $IINITIAL , "long" , $IMAXIMUM , "wstr" , $SSEMAPHORE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DUPLICATETOKENEX ( $HTOKEN , $IACCESS , $ILEVEL , $ITYPE = 1 , $TSECURITY = 0 )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "DuplicateTokenEx" , "handle" , $HTOKEN , "dword" , $IACCESS , "struct*" , $TSECURITY , "int" , $ILEVEL , "int" , $ITYPE , "handle*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 6 ]
+EndFunc
+Func _WINAPI_EMPTYWORKINGSET ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1280 : 4352 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "EmptyWorkingSet" , "handle" , $HPROCESS [ 0 ] )
+	If __CHECKERRORCLOSEHANDLE ( $ACALL , $HPROCESS [ 0 ] ) Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_ENUMCHILDPROCESS ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HSNAPSHOT = DllCall ( "kernel32.dll" , "handle" , "CreateToolhelp32Snapshot" , "dword" , 2 , "dword" , 0 )
+	If @error Or ( $HSNAPSHOT [ 0 ] = Ptr ( + 4294967295 ) ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TPROCESSENTRY32 = DllStructCreate ( $TAGPROCESSENTRY32 )
+	Local $ARET [ 101 ] [ 2 ] = [ [ 0 ] ]
+	$HSNAPSHOT = $HSNAPSHOT [ 0 ]
+	DllStructSetData ( $TPROCESSENTRY32 , "Size" , DllStructGetSize ( $TPROCESSENTRY32 ) )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "Process32FirstW" , "handle" , $HSNAPSHOT , "struct*" , $TPROCESSENTRY32 )
+	Local $IERROR = @error
+	While ( Not @error ) And ( $ACALL [ 0 ] )
+		If DllStructGetData ( $TPROCESSENTRY32 , "ParentProcessID" ) = $IPID Then
+			__INC ( $ARET )
+			$ARET [ $ARET [ 0 ] [ 0 ] ] [ 0 ] = DllStructGetData ( $TPROCESSENTRY32 , "ProcessID" )
+			$ARET [ $ARET [ 0 ] [ 0 ] ] [ 1 ] = DllStructGetData ( $TPROCESSENTRY32 , "ExeFile" )
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "Process32NextW" , "handle" , $HSNAPSHOT , "struct*" , $TPROCESSENTRY32 )
+		$IERROR = @error
+	WEnd
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HSNAPSHOT )
+	If Not $ARET [ 0 ] [ 0 ] Then Return SetError ( $IERROR + 20 , 0 , 0 )
+	__INC ( $ARET , + 4294967295 )
+	Return $ARET
+EndFunc
+Func _WINAPI_ENUMDEVICEDRIVERS ( )
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "EnumDeviceDrivers" , "ptr" , 0 , "dword" , 0 , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ISIZE
+	If @AutoItX64 Then
+		$ISIZE = $ACALL [ 3 ] / 8
+	Else
+		$ISIZE = $ACALL [ 3 ] / 4
+	EndIf
+	Local $TDATA = DllStructCreate ( "ptr[" & $ISIZE & "]" )
+	$ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "EnumDeviceDrivers" , "struct*" , $TDATA , "dword" , DllStructGetSize ( $TDATA ) , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $ARET [ $ISIZE + 1 ] = [ $ISIZE ]
+	For $I = 1 To $ISIZE
+		$ARET [ $I ] = DllStructGetData ( $TDATA , 1 , $I )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_ENUMPROCESSHANDLES ( $IPID = 0 , $ITYPE = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $ARET [ 101 ] [ 4 ] = [ [ 0 ] ]
+	Local $TAGSYSTEM_HANDLE_TABLE_ENTRY_INFO = "ulong ProcessId;byte ObjectTypeNumber;byte Flags;ushort Handle;ptr Object;ulong GrantedAccess"
+	Local $THANDLE = DllStructCreate ( $TAGSYSTEM_HANDLE_TABLE_ENTRY_INFO )
+	Local $IENTRYSIZE = DllStructGetSize ( $THANDLE )
+	Local $IMAXENTRIES = 262143
+	Local $TSHI = DllStructCreate ( "ulong_ptr NumberOfHandles;byte Data[" & ( $IMAXENTRIES + 1 ) * $IENTRYSIZE & "]" )
+	Local $ACALL = DllCall ( "ntdll.dll" , "long" , "ZwQuerySystemInformation" , "uint" , 16 , "struct*" , $TSHI , "ulong" , DllStructGetSize ( $TSHI ) , "ulong*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Local $PDATA = DllStructGetPtr ( $TSHI , "Data" )
+	Local $I , $INUMBEROFHANDLES = DllStructGetData ( $TSHI , "NumberOfHandles" )
+	For $I = 1 To $INUMBEROFHANDLES
+		If $I > $IMAXENTRIES Then ExitLoop
+		$THANDLE = DllStructCreate ( $TAGSYSTEM_HANDLE_TABLE_ENTRY_INFO , $PDATA + ( $I + 4294967295 ) * $IENTRYSIZE )
+		If ( DllStructGetData ( $THANDLE , "ProcessId" ) = $IPID ) And ( ( Not $ITYPE ) Or ( $ITYPE = DllStructGetData ( $THANDLE , "ObjectTypeNumber" ) ) ) Then
+			__INC ( $ARET )
+			$ARET [ $ARET [ 0 ] [ 0 ] ] [ 0 ] = Ptr ( DllStructGetData ( $THANDLE , "Handle" ) )
+			$ARET [ $ARET [ 0 ] [ 0 ] ] [ 1 ] = DllStructGetData ( $THANDLE , "ObjectTypeNumber" )
+			$ARET [ $ARET [ 0 ] [ 0 ] ] [ 2 ] = DllStructGetData ( $THANDLE , "Flags" )
+			$ARET [ $ARET [ 0 ] [ 0 ] ] [ 3 ] = DllStructGetData ( $THANDLE , "GrantedAccess" )
+		EndIf
+	Next
+	If Not $ARET [ 0 ] [ 0 ] Then Return SetError ( 11 , 0 , 0 )
+	__INC ( $ARET , + 4294967295 )
+	If $I < $INUMBEROFHANDLES Then Return SetExtended ( $INUMBEROFHANDLES , $ARET )
+	Return $ARET
+EndFunc
+Func _WINAPI_ENUMPROCESSMODULES ( $IPID = 0 , $IFLAG = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1040 : 4112 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $ICOUNT , $ACALL , $IERROR = 0
+	Do
+		If _WINAPI_GETVERSION ( ) >= 6.0 Then
+			$ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "EnumProcessModulesEx" , "handle" , $HPROCESS [ 0 ] , "ptr" , 0 , "dword" , 0 , "dword*" , 0 , "dword" , $IFLAG )
+		Else
+			$ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "EnumProcessModules" , "handle" , $HPROCESS [ 0 ] , "ptr" , 0 , "dword" , 0 , "dword*" , 0 )
+		EndIf
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 10
+			ExitLoop
+		EndIf
+		If @AutoItX64 Then
+			$ICOUNT = $ACALL [ 4 ] / 8
+		Else
+			$ICOUNT = $ACALL [ 4 ] / 4
+		EndIf
+		Local $TPTR = DllStructCreate ( "ptr[" & $ICOUNT & "]" )
+		If @error Then
+			$IERROR = @error + 30
+			ExitLoop
+		EndIf
+		If _WINAPI_GETVERSION ( ) >= 6.0 Then
+			$ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "EnumProcessModulesEx" , "handle" , $HPROCESS [ 0 ] , "struct*" , $TPTR , "dword" , DllStructGetSize ( $TPTR ) , "dword*" , 0 , "dword" , $IFLAG )
+		Else
+			$ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "EnumProcessModules" , "handle" , $HPROCESS [ 0 ] , "struct*" , $TPTR , "dword" , DllStructGetSize ( $TPTR ) , "dword*" , 0 )
+		EndIf
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 40
+			ExitLoop
+		EndIf
+		Local $ARET [ $ICOUNT + 1 ] [ 2 ] = [ [ $ICOUNT ] ]
+		For $I = 1 To $ICOUNT
+			$ARET [ $I ] [ 0 ] = DllStructGetData ( $TPTR , 1 , $I )
+			$ARET [ $I ] [ 1 ] = _WINAPI_GETMODULEFILENAMEEX ( $HPROCESS [ 0 ] , $ARET [ $I ] [ 0 ] )
+		Next
+	Until 1
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HPROCESS [ 0 ] )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Return $ARET
+EndFunc
+Func _WINAPI_ENUMPROCESSTHREADS ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HSNAPSHOT = DllCall ( "kernel32.dll" , "handle" , "CreateToolhelp32Snapshot" , "dword" , 4 , "dword" , 0 )
+	If @error Or Not $HSNAPSHOT [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local Const $TAGTHREADENTRY32 = "dword Size;dword Usage;dword ThreadID;dword OwnerProcessID;long BasePri;long DeltaPri;dword Flags"
+	Local $TTHREADENTRY32 = DllStructCreate ( $TAGTHREADENTRY32 )
+	Local $ARET [ 101 ] = [ 0 ]
+	$HSNAPSHOT = $HSNAPSHOT [ 0 ]
+	DllStructSetData ( $TTHREADENTRY32 , "Size" , DllStructGetSize ( $TTHREADENTRY32 ) )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "Thread32First" , "handle" , $HSNAPSHOT , "struct*" , $TTHREADENTRY32 )
+	While Not @error And $ACALL [ 0 ]
+		If DllStructGetData ( $TTHREADENTRY32 , "OwnerProcessID" ) = $IPID Then
+			__INC ( $ARET )
+			$ARET [ $ARET [ 0 ] ] = DllStructGetData ( $TTHREADENTRY32 , "ThreadID" )
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "Thread32Next" , "handle" , $HSNAPSHOT , "struct*" , $TTHREADENTRY32 )
+	WEnd
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HSNAPSHOT )
+	If Not $ARET [ 0 ] Then Return SetError ( 1 , 0 , 0 )
+	__INC ( $ARET , + 4294967295 )
+	Return $ARET
+EndFunc
+Func _WINAPI_ENUMPROCESSWINDOWS ( $IPID = 0 , $BVISIBLE = True )
+	Local $ATHREADS = _WINAPI_ENUMPROCESSTHREADS ( $IPID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumWindowsProc" , "bool" , "hwnd;lparam" )
+	Dim $__G_VENUM [ 101 ] [ 2 ] = [ [ 0 ] ]
+	For $I = 1 To $ATHREADS [ 0 ]
+		DllCall ( "user32.dll" , "bool" , "EnumThreadWindows" , "dword" , $ATHREADS [ $I ] , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "lparam" , $BVISIBLE )
+		If @error Then
+			ExitLoop
+		EndIf
+	Next
+	DllCallbackFree ( $HENUMPROC )
+	If Not $__G_VENUM [ 0 ] [ 0 ] Then Return SetError ( 11 , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_FATALAPPEXIT ( $SMESSAGE )
+	DllCall ( "kernel32.dll" , "none" , "FatalAppExitW" , "uint" , 0 , "wstr" , $SMESSAGE )
+	If @error Then Return SetError ( @error , @extended )
+EndFunc
+Func _WINAPI_GETCURRENTPROCESSEXPLICITAPPUSERMODELID ( )
+	Local $ACALL = DllCall ( "shell32.dll" , "long" , "GetCurrentProcessExplicitAppUserModelID" , "ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , "" )
+	Local $SID = _WINAPI_GETSTRING ( $ACALL [ 1 ] )
+	_WINAPI_COTASKMEMFREE ( $ACALL [ 1 ] )
+	Return $SID
+EndFunc
+Func _WINAPI_GETCURRENTPROCESSID ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "GetCurrentProcessId" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCURRENTTHREAD ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "GetCurrentThread" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCURRENTTHREADID ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "GetCurrentThreadId" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETDEVICEDRIVERBASENAME ( $PDRIVER )
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "dword" , "GetDeviceDriverBaseNameW" , "ptr" , $PDRIVER , "wstr" , "" , "dword" , 4096 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETDEVICEDRIVERFILENAME ( $PDRIVER )
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "dword" , "GetDeviceDriverFileNameW" , "ptr" , $PDRIVER , "wstr" , "" , "dword" , 4096 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETEXITCODEPROCESS ( $HPROCESS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetExitCodeProcess" , "handle" , $HPROCESS , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETGUIRESOURCES ( $IFLAG = 0 , $HPROCESS = + 4294967295 )
+	If $HPROCESS = + 4294967295 Then $HPROCESS = _WINAPI_GETCURRENTPROCESS ( )
+	Local $ACALL = DllCall ( "user32.dll" , "dword" , "GetGuiResources" , "handle" , $HPROCESS , "dword" , $IFLAG )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETMODULEFILENAMEEX ( $HPROCESS , $HMODULE = 0 )
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "dword" , "GetModuleFileNameExW" , "handle" , $HPROCESS , "handle" , $HMODULE , "wstr" , "" , "int" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_GETMODULEINFORMATION ( $HPROCESS , $HMODULE = 0 )
+	Local $TMODULEINFO = DllStructCreate ( $TAGMODULEINFO )
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "GetModuleInformation" , "handle" , $HPROCESS , "handle" , $HMODULE , "struct*" , $TMODULEINFO , "dword" , DllStructGetSize ( $TMODULEINFO ) )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TMODULEINFO
+EndFunc
+Func _WINAPI_GETPARENTPROCESS ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HSNAPSHOT = DllCall ( "kernel32.dll" , "handle" , "CreateToolhelp32Snapshot" , "dword" , 2 , "dword" , 0 )
+	If @error Or Not $HSNAPSHOT [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TPROCESSENTRY32 = DllStructCreate ( $TAGPROCESSENTRY32 )
+	Local $IRESULT = 0
+	$HSNAPSHOT = $HSNAPSHOT [ 0 ]
+	DllStructSetData ( $TPROCESSENTRY32 , "Size" , DllStructGetSize ( $TPROCESSENTRY32 ) )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "Process32FirstW" , "handle" , $HSNAPSHOT , "struct*" , $TPROCESSENTRY32 )
+	Local $IERROR = @error
+	While ( Not @error ) And ( $ACALL [ 0 ] )
+		If DllStructGetData ( $TPROCESSENTRY32 , "ProcessID" ) = $IPID Then
+			$IRESULT = DllStructGetData ( $TPROCESSENTRY32 , "ParentProcessID" )
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "Process32NextW" , "handle" , $HSNAPSHOT , "struct*" , $TPROCESSENTRY32 )
+		$IERROR = @error
+	WEnd
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HSNAPSHOT )
+	If Not $IRESULT Then Return SetError ( $IERROR , 0 , 0 )
+	Return $IRESULT
+EndFunc
+Func _WINAPI_GETPRIORITYCLASS ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1024 : 4096 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $IERROR = 0
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "GetPriorityClass" , "handle" , $HPROCESS [ 0 ] )
+	If @error Then $IERROR = @error
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HPROCESS [ 0 ] )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETPROCESSAFFINITYMASK ( $HPROCESS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetProcessAffinityMask" , "handle" , $HPROCESS , "dword_ptr*" , 0 , "dword_ptr*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $AMASK [ 3 ]
+	$AMASK [ 0 ] = True
+	$AMASK [ 1 ] = $ACALL [ 2 ]
+	$AMASK [ 2 ] = $ACALL [ 3 ]
+	Return $AMASK
+EndFunc
+Func _WINAPI_GETPROCESSCOMMANDLINE ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1040 : 4112 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , "" )
+	$HPROCESS = $HPROCESS [ 0 ]
+	Local $TPBI = DllStructCreate ( "ulong_ptr ExitStatus;ptr PebBaseAddress;ulong_ptr AffinityMask;ulong_ptr BasePriority;ulong_ptr UniqueProcessId;ulong_ptr InheritedFromUniqueProcessId" )
+	Local $TPEB = DllStructCreate ( "byte InheritedAddressSpace;byte ReadImageFileExecOptions;byte BeingDebugged;byte Spare;ptr Mutant;ptr ImageBaseAddress;ptr LoaderData;ptr ProcessParameters;ptr SubSystemData;ptr ProcessHeap;ptr FastPebLock;ptr FastPebLockRoutine;ptr FastPebUnlockRoutine;ulong EnvironmentUpdateCount;ptr KernelCallbackTable;ptr EventLogSection;ptr EventLog;ptr FreeList;ulong TlsExpansionCounter;ptr TlsBitmap;ulong TlsBitmapBits[2];ptr ReadOnlySharedMemoryBase;ptr ReadOnlySharedMemoryHeap;ptr ReadOnlyStaticServerData;ptr AnsiCodePageData;ptr OemCodePageData;ptr UnicodeCaseTableData;ulong NumberOfProcessors;ulong NtGlobalFlag;byte Spare2[4];int64 CriticalSectionTimeout;ulong HeapSegmentReserve;ulong HeapSegmentCommit;ulong HeapDeCommitTotalFreeThreshold;ulong HeapDeCommitFreeBlockThreshold;ulong NumberOfHeaps;ulong MaximumNumberOfHeaps;ptr ProcessHeaps;ptr GdiSharedHandleTable;ptr ProcessStarterHelper;ptr GdiDCAttributeList;ptr LoaderLock;ulong OSMajorVersion;ulong OSMinorVersion;ulong OSBuildNumber;ulong OSPlatformId;ulong ImageSubSystem;ulong ImageSubSystemMajorVersion;ulong ImageSubSystemMinorVersion;ulong GdiHandleBuffer[34];ulong PostProcessInitRoutine;ulong TlsExpansionBitmap;byte TlsExpansionBitmapBits[128];ulong SessionId" )
+	Local $TUPP = DllStructCreate ( "ulong AllocationSize;ulong ActualSize;ulong Flags;ulong Unknown1;ushort LengthUnknown2;ushort MaxLengthUnknown2;ptr Unknown2;ptr InputHandle;ptr OutputHandle;ptr ErrorHandle;ushort LengthCurrentDirectory;ushort MaxLengthCurrentDirectory;ptr CurrentDirectory;ptr CurrentDirectoryHandle;ushort LengthSearchPaths;ushort MaxLengthSearchPaths;ptr SearchPaths;ushort LengthApplicationName;ushort MaxLengthApplicationName;ptr ApplicationName;ushort LengthCommandLine;ushort MaxLengthCommandLine;ptr CommandLine;ptr EnvironmentBlock;ulong Unknown[9];ushort LengthUnknown3;ushort MaxLengthUnknown3;ptr Unknown3;ushort LengthUnknown4;ushort MaxLengthUnknown4;ptr Unknown4;ushort LengthUnknown5;ushort MaxLengthUnknown5;ptr Unknown5" )
+	Local $TCMD
+	Local $ACALL , $IERROR = 0
+	Do
+		$ACALL = DllCall ( "ntdll.dll" , "long" , "NtQueryInformationProcess" , "handle" , $HPROCESS , "ulong" , 0 , "struct*" , $TPBI , "ulong" , DllStructGetSize ( $TPBI ) , "ulong*" , 0 )
+		If @error Or $ACALL [ 0 ] Then
+			$IERROR = @error + 30
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadProcessMemory" , "handle" , $HPROCESS , "ptr" , DllStructGetData ( $TPBI , "PebBaseAddress" ) , "struct*" , $TPEB , "ulong_ptr" , DllStructGetSize ( $TPEB ) , "ulong_ptr*" , 0 )
+		If @error Or Not $ACALL [ 0 ] Or ( Not $ACALL [ 5 ] ) Then
+			$IERROR = @error + 40
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadProcessMemory" , "handle" , $HPROCESS , "ptr" , DllStructGetData ( $TPEB , "ProcessParameters" ) , "struct*" , $TUPP , "ulong_ptr" , DllStructGetSize ( $TUPP ) , "ulong_ptr*" , 0 )
+		If @error Or Not $ACALL [ 0 ] Or ( Not $ACALL [ 5 ] ) Then
+			$IERROR = @error + 50
+			ExitLoop
+		EndIf
+		$TCMD = DllStructCreate ( "byte[" & DllStructGetData ( $TUPP , "MaxLengthCommandLine" ) & "]" )
+		If @error Then
+			$IERROR = @error + 60
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadProcessMemory" , "handle" , $HPROCESS , "ptr" , DllStructGetData ( $TUPP , "CommandLine" ) , "struct*" , $TCMD , "ulong_ptr" , DllStructGetSize ( $TCMD ) , "ulong_ptr*" , 0 )
+		If @error Or Not $ACALL [ 0 ] Or ( Not $ACALL [ 5 ] ) Then
+			$IERROR = @error + 70
+			ExitLoop
+		EndIf
+	Until 1
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HPROCESS )
+	If $IERROR Then Return SetError ( $IERROR , 0 , "" )
+	Return StringStripWS ( _WINAPI_PATHGETARGS ( _WINAPI_GETSTRING ( DllStructGetPtr ( $TCMD , 1 ) ) ) , $STR_STRIPLEADING + $STR_STRIPTRAILING )
+EndFunc
+Func _WINAPI_GETPROCESSFILENAME ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1040 : 4112 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , "" )
+	Local $SPATH = _WINAPI_GETMODULEFILENAMEEX ( $HPROCESS [ 0 ] )
+	Local $IERROR = @error
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HPROCESS [ 0 ] )
+	If $IERROR Then Return SetError ( @error , 0 , "" )
+	Return $SPATH
+EndFunc
+Func _WINAPI_GETPROCESSHANDLECOUNT ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1024 : 4096 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetProcessHandleCount" , "handle" , $HPROCESS [ 0 ] , "dword*" , 0 )
+	If __CHECKERRORCLOSEHANDLE ( $ACALL , $HPROCESS [ 0 ] ) Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETPROCESSID ( $HPROCESS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "GetProcessId" , "handle" , $HPROCESS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETPROCESSIOCOUNTERS ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1024 : 4096 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $TIO_COUNTERS = DllStructCreate ( "uint64[6]" )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetProcessIoCounters" , "handle" , $HPROCESS [ 0 ] , "struct*" , $TIO_COUNTERS )
+	If __CHECKERRORCLOSEHANDLE ( $ACALL , $HPROCESS [ 0 ] ) Then Return SetError ( @error , @extended , 0 )
+	Local $ARET [ 6 ]
+	For $I = 0 To 5
+		$ARET [ $I ] = DllStructGetData ( $TIO_COUNTERS , 1 , $I + 1 )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETPROCESSMEMORYINFO ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1040 : 4112 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $TPMC_EX = DllStructCreate ( "dword;dword;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr" )
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "GetProcessMemoryInfo" , "handle" , $HPROCESS [ 0 ] , "struct*" , $TPMC_EX , "int" , DllStructGetSize ( $TPMC_EX ) )
+	If __CHECKERRORCLOSEHANDLE ( $ACALL , $HPROCESS [ 0 ] ) Then Return SetError ( @error , @extended , 0 )
+	Local $ARET [ 10 ]
+	For $I = 0 To 9
+		$ARET [ $I ] = DllStructGetData ( $TPMC_EX , $I + 2 )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETPROCESSNAME ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HSNAPSHOT = DllCall ( "kernel32.dll" , "handle" , "CreateToolhelp32Snapshot" , "dword" , 2 , "dword" , 0 )
+	If @error Or Not $HSNAPSHOT [ 0 ] Then Return SetError ( @error + 20 , @extended , "" )
+	$HSNAPSHOT = $HSNAPSHOT [ 0 ]
+	Local $TPROCESSENTRY32 = DllStructCreate ( $TAGPROCESSENTRY32 )
+	DllStructSetData ( $TPROCESSENTRY32 , "Size" , DllStructGetSize ( $TPROCESSENTRY32 ) )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "Process32FirstW" , "handle" , $HSNAPSHOT , "struct*" , $TPROCESSENTRY32 )
+	Local $IERROR = @error
+	While ( Not @error ) And ( $ACALL [ 0 ] )
+		If DllStructGetData ( $TPROCESSENTRY32 , "ProcessID" ) = $IPID Then
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "Process32NextW" , "handle" , $HSNAPSHOT , "struct*" , $TPROCESSENTRY32 )
+		$IERROR = @error
+	WEnd
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HSNAPSHOT )
+	If $IERROR Then Return SetError ( $IERROR , 0 , "" )
+	If Not $ACALL [ 0 ] Then SetError ( 10 , 0 , "" )
+	Return DllStructGetData ( $TPROCESSENTRY32 , "ExeFile" )
+EndFunc
+Func _WINAPI_GETPROCESSTIMES ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1024 : 4096 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $TFILETIME = DllStructCreate ( $TAGFILETIME )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetProcessTimes" , "handle" , $HPROCESS [ 0 ] , "struct*" , $TFILETIME , "uint64*" , 0 , "uint64*" , 0 , "uint64*" , 0 )
+	If __CHECKERRORCLOSEHANDLE ( $ACALL , $HPROCESS [ 0 ] ) Then Return SetError ( @error , @extended , 0 )
+	Local $ARET [ 3 ]
+	$ARET [ 0 ] = $TFILETIME
+	$ARET [ 1 ] = $ACALL [ 4 ]
+	$ARET [ 2 ] = $ACALL [ 5 ]
+	Return $ARET
+EndFunc
+Func _WINAPI_GETPROCESSUSER ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $TSID , $HTOKEN , $ACALL
+	Local $IERROR = 0
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1024 : 4096 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Do
+		$HTOKEN = _WINAPI_OPENPROCESSTOKEN ( 8 , $HPROCESS [ 0 ] )
+		If Not $HTOKEN Then
+			$IERROR = @error + 10
+			ExitLoop
+		EndIf
+		$TSID = DllStructCreate ( "ptr;byte[1024]" )
+		$ACALL = DllCall ( "advapi32.dll" , "bool" , "GetTokenInformation" , "handle" , $HTOKEN , "uint" , 1 , "struct*" , $TSID , "dword" , DllStructGetSize ( $TSID ) , "dword*" , 0 )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 30
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "advapi32.dll" , "bool" , "LookupAccountSidW" , "ptr" , 0 , "ptr" , DllStructGetData ( $TSID , 1 ) , "wstr" , "" , "dword*" , 2048 , "wstr" , "" , "dword*" , 2048 , "uint*" , 0 )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 40
+			ExitLoop
+		EndIf
+	Until 1
+	If $HTOKEN Then
+		DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HTOKEN )
+	EndIf
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HPROCESS [ 0 ] )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Local $ARET [ 2 ]
+	$ARET [ 0 ] = $ACALL [ 3 ]
+	$ARET [ 1 ] = $ACALL [ 5 ]
+	Return $ARET
+EndFunc
+Func _WINAPI_GETPROCESSWORKINGDIRECTORY ( $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $ACALL , $IERROR = 0
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1040 : 4112 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 20 , @extended , "" )
+	$HPROCESS = $HPROCESS [ 0 ]
+	Local $TPBI = DllStructCreate ( "ulong_ptr ExitStatus;ptr PebBaseAddress;ulong_ptr AffinityMask;ulong_ptr BasePriority;ulong_ptr UniqueProcessId;ulong_ptr InheritedFromUniqueProcessId" )
+	Local $TPEB = DllStructCreate ( "byte InheritedAddressSpace;byte ReadImageFileExecOptions;byte BeingDebugged;byte Spare;ptr Mutant;ptr ImageBaseAddress;ptr LoaderData;ptr ProcessParameters;ptr SubSystemData;ptr ProcessHeap;ptr FastPebLock;ptr FastPebLockRoutine;ptr FastPebUnlockRoutine;ulong EnvironmentUpdateCount;ptr KernelCallbackTable;ptr EventLogSection;ptr EventLog;ptr FreeList;ulong TlsExpansionCounter;ptr TlsBitmap;ulong TlsBitmapBits[2];ptr ReadOnlySharedMemoryBase;ptr ReadOnlySharedMemoryHeap;ptr ReadOnlyStaticServerData;ptr AnsiCodePageData;ptr OemCodePageData;ptr UnicodeCaseTableData;ulong NumberOfProcessors;ulong NtGlobalFlag;byte Spare2[4];int64 CriticalSectionTimeout;ulong HeapSegmentReserve;ulong HeapSegmentCommit;ulong HeapDeCommitTotalFreeThreshold;ulong HeapDeCommitFreeBlockThreshold;ulong NumberOfHeaps;ulong MaximumNumberOfHeaps;ptr ProcessHeaps;ptr GdiSharedHandleTable;ptr ProcessStarterHelper;ptr GdiDCAttributeList;ptr LoaderLock;ulong OSMajorVersion;ulong OSMinorVersion;ulong OSBuildNumber;ulong OSPlatformId;ulong ImageSubSystem;ulong ImageSubSystemMajorVersion;ulong ImageSubSystemMinorVersion;ulong GdiHandleBuffer[34];ulong PostProcessInitRoutine;ulong TlsExpansionBitmap;byte TlsExpansionBitmapBits[128];ulong SessionId" )
+	Local $TUPP = DllStructCreate ( "ulong AllocationSize;ulong ActualSize;ulong Flags;ulong Unknown1;ushort LengthUnknown2;ushort MaxLengthUnknown2;ptr Unknown2;ptr InputHandle;ptr OutputHandle;ptr ErrorHandle;ushort LengthCurrentDirectory;ushort MaxLengthCurrentDirectory;ptr CurrentDirectory;ptr CurrentDirectoryHandle;ushort LengthSearchPaths;ushort MaxLengthSearchPaths;ptr SearchPaths;ushort LengthApplicationName;ushort MaxLengthApplicationName;ptr ApplicationName;ushort LengthCommandLine;ushort MaxLengthCommandLine;ptr CommandLine;ptr EnvironmentBlock;ulong Unknown[9];ushort LengthUnknown3;ushort MaxLengthUnknown3;ptr Unknown3;ushort LengthUnknown4;ushort MaxLengthUnknown4;ptr Unknown4;ushort LengthUnknown5;ushort MaxLengthUnknown5;ptr Unknown5" )
+	Local $TDIR
+	Do
+		$ACALL = DllCall ( "ntdll.dll" , "long" , "NtQueryInformationProcess" , "handle" , $HPROCESS , "ulong" , 0 , "struct*" , $TPBI , "ulong" , DllStructGetSize ( $TPBI ) , "ulong*" , 0 )
+		If @error Or ( $ACALL [ 0 ] ) Then
+			$IERROR = @error + 10
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadProcessMemory" , "handle" , $HPROCESS , "ptr" , DllStructGetData ( $TPBI , "PebBaseAddress" ) , "struct*" , $TPEB , "ulong_ptr" , DllStructGetSize ( $TPEB ) , "ulong_ptr*" , 0 )
+		If @error Or ( Not $ACALL [ 0 ] ) Or ( Not $ACALL [ 5 ] ) Then
+			$IERROR = @error + 30
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadProcessMemory" , "handle" , $HPROCESS , "ptr" , DllStructGetData ( $TPEB , "ProcessParameters" ) , "struct*" , $TUPP , "ulong_ptr" , DllStructGetSize ( $TUPP ) , "ulong_ptr*" , 0 )
+		If @error Or ( Not $ACALL [ 0 ] ) Or ( Not $ACALL [ 5 ] ) Then
+			$IERROR = @error + 40
+			ExitLoop
+		EndIf
+		$TDIR = DllStructCreate ( "byte[" & DllStructGetData ( $TUPP , "MaxLengthCurrentDirectory" ) & "]" )
+		If @error Then
+			$IERROR = @error + 50
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "kernel32.dll" , "bool" , "ReadProcessMemory" , "handle" , $HPROCESS , "ptr" , DllStructGetData ( $TUPP , "CurrentDirectory" ) , "struct*" , $TDIR , "ulong_ptr" , DllStructGetSize ( $TDIR ) , "ulong_ptr*" , 0 )
+		If @error Or ( Not $ACALL [ 0 ] ) Or ( Not $ACALL [ 5 ] ) Then
+			$IERROR = @error + 60
+			ExitLoop
+		EndIf
+		$IERROR = 0
+	Until 1
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HPROCESS )
+	If $IERROR Then Return SetError ( $IERROR , 0 , "" )
+	Return _WINAPI_PATHREMOVEBACKSLASH ( _WINAPI_GETSTRING ( DllStructGetPtr ( $TDIR ) ) )
+EndFunc
+Func _WINAPI_GETTHREADDESKTOP ( $ITHREADID )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetThreadDesktop" , "dword" , $ITHREADID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETTHREADERRORMODE ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "GetThreadErrorMode" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETWINDOWFILENAME ( $HWND )
+	Local $IPID = 0
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsWindow" , "hwnd" , $HWND )
+	If $ACALL [ 0 ] Then
+		$ACALL = DllCall ( "user32.dll" , "dword" , "GetWindowThreadProcessId" , "hwnd" , $HWND , "dword*" , 0 )
+		$IPID = $ACALL [ 2 ]
+	EndIf
+	If Not $IPID Then Return SetError ( 1 , 0 , "" )
+	Local $SRESULT = _WINAPI_GETPROCESSFILENAME ( $IPID )
+	If @error Then Return SetError ( @error , @extended , "" )
+	Return $SRESULT
+EndFunc
+Func _WINAPI_ISELEVATED ( )
+	Local $IELEV , $ACALL , $IERROR = 0
+	Local $HTOKEN = _WINAPI_OPENPROCESSTOKEN ( 8 )
+	If Not $HTOKEN Then Return SetError ( @error + 10 , @extended , False )
+	Do
+		$ACALL = DllCall ( "advapi32.dll" , "bool" , "GetTokenInformation" , "handle" , $HTOKEN , "uint" , 20 , "uint*" , 0 , "dword" , 4 , "dword*" , 0 )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 10
+			ExitLoop
+		EndIf
+		$IELEV = $ACALL [ 3 ]
+		$ACALL = DllCall ( "advapi32.dll" , "bool" , "GetTokenInformation" , "handle" , $HTOKEN , "uint" , 18 , "uint*" , 0 , "dword" , 4 , "dword*" , 0 )
+		If @error Or Not $ACALL [ 0 ] Then
+			$IERROR = @error + 20
+			ExitLoop
+		EndIf
+	Until 1
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HTOKEN )
+	If $IERROR Then Return SetError ( $IERROR , 0 , False )
+	Return SetExtended ( $ACALL [ 0 ] + 4294967295 , $IELEV )
+EndFunc
+Func _WINAPI_ISPROCESSINJOB ( $HPROCESS , $HJOB = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "IsProcessInJob" , "handle" , $HPROCESS , "handle" , $HJOB , "bool*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_OPENJOBOBJECT ( $SNAME , $IACCESS = $JOB_OBJECT_ALL_ACCESS , $BINHERIT = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "OpenJobObjectW" , "dword" , $IACCESS , "bool" , $BINHERIT , "wstr" , $SNAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OPENMUTEX ( $SMUTEX , $IACCESS = $MUTEX_ALL_ACCESS , $BINHERIT = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "OpenMutexW" , "dword" , $IACCESS , "bool" , $BINHERIT , "wstr" , $SMUTEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OPENPROCESS ( $IACCESS , $BINHERIT , $IPID , $BDEBUGPRIV = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , $IACCESS , "bool" , $BINHERIT , "dword" , $IPID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return $ACALL [ 0 ]
+	If Not $BDEBUGPRIV Then Return SetError ( 100 , 0 , 0 )
+	Local $HTOKEN = _SECURITY__OPENTHREADTOKENEX ( BitOR ( $TOKEN_ADJUST_PRIVILEGES , $TOKEN_QUERY ) )
+	If @error Then Return SetError ( @error + 10 , @extended , 0 )
+	_SECURITY__SETPRIVILEGE ( $HTOKEN , $SE_DEBUG_NAME , True )
+	Local $IERROR = @error
+	Local $IEXTENDED = @extended
+	Local $IRET = 0
+	If Not @error Then
+		$ACALL = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , $IACCESS , "bool" , $BINHERIT , "dword" , $IPID )
+		$IERROR = @error
+		$IEXTENDED = @extended
+		If $ACALL [ 0 ] Then $IRET = $ACALL [ 0 ]
+		_SECURITY__SETPRIVILEGE ( $HTOKEN , $SE_DEBUG_NAME , False )
+		If @error Then
+			$IERROR = @error + 20
+			$IEXTENDED = @extended
+		EndIf
+	Else
+		$IERROR = @error + 30
+	EndIf
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HTOKEN )
+	Return SetError ( $IERROR , $IEXTENDED , $IRET )
+EndFunc
+Func _WINAPI_OPENPROCESSTOKEN ( $IACCESS , $HPROCESS = 0 )
+	If Not $HPROCESS Then
+		$HPROCESS = DllCall ( "kernel32.dll" , "handle" , "GetCurrentProcess" )
+		$HPROCESS = $HPROCESS [ 0 ]
+	EndIf
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "OpenProcessToken" , "handle" , $HPROCESS , "dword" , $IACCESS , "handle*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_OPENSEMAPHORE ( $SSEMAPHORE , $IACCESS = 2031619 , $BINHERIT = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "handle" , "OpenSemaphoreW" , "dword" , $IACCESS , "bool" , $BINHERIT , "wstr" , $SSEMAPHORE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_QUERYINFORMATIONJOBOBJECT ( $HJOB , $IJOBOBJECTINFOCLASS , ByRef $TJOBOBJECTINFO )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "QueryInformationJobObject" , "handle" , $HJOB , "int" , $IJOBOBJECTINFOCLASS , "struct*" , $TJOBOBJECTINFO , "dword" , DllStructGetSize ( $TJOBOBJECTINFO ) , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 5 ]
+EndFunc
+Func _WINAPI_RELEASEMUTEX ( $HMUTEX )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "ReleaseMutex" , "handle" , $HMUTEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_RELEASESEMAPHORE ( $HSEMAPHORE , $IINCREASE = 1 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "ReleaseSemaphore" , "handle" , $HSEMAPHORE , "long" , $IINCREASE , "long*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_RESETEVENT ( $HEVENT )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "ResetEvent" , "handle" , $HEVENT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETEVENT ( $HEVENT )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "SetEvent" , "handle" , $HEVENT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETINFORMATIONJOBOBJECT ( $HJOB , $IJOBOBJECTINFOCLASS , $TJOBOBJECTINFO )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "SetInformationJobObject" , "handle" , $HJOB , "int" , $IJOBOBJECTINFOCLASS , "struct*" , $TJOBOBJECTINFO , "dword" , DllStructGetSize ( $TJOBOBJECTINFO ) )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETPRIORITYCLASS ( $IPRIORITY , $IPID = 0 )
+	If Not $IPID Then $IPID = @AutoItPID
+	Local $HPROCESS = DllCall ( "kernel32.dll" , "handle" , "OpenProcess" , "dword" , ( ( _WINAPI_GETVERSION ( ) < 6.0 ) ? 1536 : 4608 ) , "bool" , 0 , "dword" , $IPID )
+	If @error Or Not $HPROCESS [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $IERROR = 0
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "SetPriorityClass" , "handle" , $HPROCESS [ 0 ] , "dword" , $IPRIORITY )
+	If @error Then $IERROR = @error
+	DllCall ( "kernel32.dll" , "bool" , "CloseHandle" , "handle" , $HPROCESS [ 0 ] )
+	If $IERROR Then Return SetError ( $IERROR , 0 , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETPROCESSAFFINITYMASK ( $HPROCESS , $IMASK )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "SetProcessAffinityMask" , "handle" , $HPROCESS , "ulong_ptr" , $IMASK )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETTHREADDESKTOP ( $HDESKTOP )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetThreadDesktop" , "handle" , $HDESKTOP )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETTHREADERRORMODE ( $IMODE )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "SetThreadErrorMode" , "dword" , $IMODE , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_SETTHREADEXECUTIONSTATE ( $IFLAGS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "SetThreadExecutionState" , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_TERMINATEJOBOBJECT ( $HJOB , $IEXITCODE = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "TerminateJobObject" , "handle" , $HJOB , "uint" , $IEXITCODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_TERMINATEPROCESS ( $HPROCESS , $IEXITCODE = 0 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "TerminateProcess" , "handle" , $HPROCESS , "uint" , $IEXITCODE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_USERHANDLEGRANTACCESS ( $HOBJECT , $HJOB , $BGRANT )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "UserHandleGrantAccess" , "handle" , $HOBJECT , "handle" , $HJOB , "bool" , $BGRANT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_WAITFORINPUTIDLE ( $HPROCESS , $ITIMEOUT = + 4294967295 )
+	Local $ACALL = DllCall ( "user32.dll" , "dword" , "WaitForInputIdle" , "handle" , $HPROCESS , "dword" , $ITIMEOUT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_WAITFORMULTIPLEOBJECTS ( $ICOUNT , $PAHANDLES , $BWAITALL = False , $ITIMEOUT = + 4294967295 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "INT" , "WaitForMultipleObjects" , "dword" , $ICOUNT , "struct*" , $PAHANDLES , "bool" , $BWAITALL , "dword" , $ITIMEOUT )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_WAITFORSINGLEOBJECT ( $HHANDLE , $ITIMEOUT = + 4294967295 )
+	Local $ACALL = DllCall ( "kernel32.dll" , "INT" , "WaitForSingleObject" , "handle" , $HHANDLE , "dword" , $ITIMEOUT )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_WRITECONSOLE ( $HCONSOLE , $STEXT )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "WriteConsoleW" , "handle" , $HCONSOLE , "wstr" , $STEXT , "dword" , StringLen ( $STEXT ) , "dword*" , 0 , "ptr" , 0 )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+Global Const $KLF_ACTIVATE = 1
+Global Const $KLF_NOTELLSHELL = 128
+Global Const $KLF_REORDER = 8
+Global Const $KLF_REPLACELANG = 16
+Global Const $KLF_RESET = 1073741824
+Global Const $KLF_SETFORPROCESS = 256
+Global Const $KLF_SHIFTLOCK = 65536
+Global Const $KLF_SUBSTITUTE_OK = 2
+Global Const $HKL_NEXT = 1
+Global Const $HKL_PREV = 0
+Global Const $AW_ACTIVATE = 131072
+Global Const $AW_BLEND = 524288
+Global Const $AW_CENTER = 16
+Global Const $AW_HIDE = 65536
+Global Const $AW_HOR_NEGATIVE = 2
+Global Const $AW_HOR_POSITIVE = 1
+Global Const $AW_SLIDE = 262144
+Global Const $AW_VER_NEGATIVE = 8
+Global Const $AW_VER_POSITIVE = 4
+Global Const $BSF_ALLOWSFW = 128
+Global Const $BSF_FLUSHDISK = 4
+Global Const $BSF_FORCEIFHUNG = 32
+Global Const $BSF_IGNORECURRENTTASK = 2
+Global Const $BSF_NOHANG = 8
+Global Const $BSF_NOTIMEOUTIFNOTHUNG = 64
+Global Const $BSF_POSTMESSAGE = 16
+Global Const $BSF_QUERY = 1
+Global Const $BSF_SENDNOTIFYMESSAGE = 256
+Global Const $BSM_ALLCOMPONENTS = 0
+Global Const $BSM_ALLDESKTOPS = 8
+Global Const $BSM_APPLICATIONS = 16
+Global Const $BSM_INSTALLABLEDRIVERS = 4
+Global Const $BSM_NETDRIVER = 2
+Global Const $BSM_VXDS = 1
+Global Const $MDITILE_HORIZONTAL = 1
+Global Const $MDITILE_SKIPDISABLED = 2
+Global Const $MDITILE_VERTICAL = 0
+Global Const $MDITILE_ZORDER = 4
+Global Const $MSGFLT_ALLOW = 1
+Global Const $MSGFLT_DISALLOW = 2
+Global Const $MSGFLT_RESET = 0
+Global Const $MSGFLTINFO_ALLOWED_HIGHER = 3
+Global Const $MSGFLTINFO_ALREADYALLOWED_FORWND = 1
+Global Const $MSGFLTINFO_ALREADYDISALLOWED_FORWND = 2
+Global Const $MSGFLTINFO_NONE = 0
+Global Const $CWP_ALL = 0
+Global Const $CWP_SKIPINVISIBLE = 1
+Global Const $CWP_SKIPDISABLED = 2
+Global Const $CWP_SKIPTRANSPARENT = 4
+Global Const $COMPRESSION_FORMAT_NONE = 0
+Global Const $COMPRESSION_FORMAT_DEFAULT = 1
+Global Const $COMPRESSION_FORMAT_LZNT1 = 2
+Global Const $COMPRESSION_FORMAT_XPRESS = 3
+Global Const $COMPRESSION_FORMAT_XPRESS_HUFF = 4
+Global Const $COMPRESSION_ENGINE_STANDARD = 0
+Global Const $COMPRESSION_ENGINE_MAXIMUM = 256
+Global Const $COMPRESSION_ENGINE_HIBER = 512
+Global Const $WINSTA_ACCESSCLIPBOARD = 4
+Global Const $WINSTA_ACCESSGLOBALATOMS = 32
+Global Const $WINSTA_CREATEDESKTOP = 8
+Global Const $WINSTA_ENUMDESKTOPS = 1
+Global Const $WINSTA_ENUMERATE = 256
+Global Const $WINSTA_EXITWINDOWS = 64
+Global Const $WINSTA_READATTRIBUTES = 2
+Global Const $WINSTA_READSCREEN = 512
+Global Const $WINSTA_WRITEATTRIBUTES = 16
+Global Const $WINSTA_ALL_ACCESS = BitOR ( $WINSTA_ACCESSCLIPBOARD , $WINSTA_ACCESSGLOBALATOMS , $WINSTA_CREATEDESKTOP , $WINSTA_ENUMDESKTOPS , $WINSTA_ENUMERATE , $WINSTA_EXITWINDOWS , $WINSTA_READATTRIBUTES , $WINSTA_READSCREEN , $WINSTA_WRITEATTRIBUTES )
+Global Const $CWF_CREATE_ONLY = 1
+Global Const $GCL_CBCLSEXTRA = + 4294967276
+Global Const $GCL_CBWNDEXTRA = + 4294967278
+Global Const $GCL_HBRBACKGROUND = + 4294967286
+Global Const $GCL_HCURSOR = + 4294967284
+Global Const $GCL_HICON = + 4294967282
+Global Const $GCL_HICONSM = + 4294967262
+Global Const $GCL_HMODULE = + 4294967280
+Global Const $GCL_MENUNAME = + 4294967288
+Global Const $GCL_STYLE = + 4294967270
+Global Const $GCL_WNDPROC = + 4294967272
+Global Const $DOCKINFO_DOCKED = 2
+Global Const $DOCKINFO_UNDOCKED = 1
+Global Const $DOCKINFO_USER_SUPPLIED = 4
+Global Const $DOCKINFO_USER_DOCKED = 5
+Global Const $DOCKINFO_USER_UNDOCKED = 6
+Global Const $GUI_CARETBLINKING = 1
+Global Const $GUI_INMENUMODE = 4
+Global Const $GUI_INMOVESIZE = 2
+Global Const $GUI_POPUPMENUMODE = 16
+Global Const $GUI_SYSTEMMENUMODE = 8
+Global Const $HANDLE_FLAG_INHERIT = 1
+Global Const $HANDLE_FLAG_PROTECT_FROM_CLOSE = 2
+Global Const $GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS = 4
+Global Const $GET_MODULE_HANDLE_EX_FLAG_PIN = 1
+Global Const $GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT = 2
+Global Const $GET_MODULE_HANDLE_EX_FLAG_DEFAULT = 0
+Global Const $PROCESSOR_ARCHITECTURE_AMD64 = 9
+Global Const $PROCESSOR_ARCHITECTURE_IA64 = 6
+Global Const $PROCESSOR_ARCHITECTURE_INTEL = 0
+Global Const $PROCESSOR_ARCHITECTURE_UNKNOWN = 65535
+Global Const $PROCESSOR_INTEL_386 = 386
+Global Const $PROCESSOR_INTEL_486 = 486
+Global Const $PROCESSOR_INTEL_PENTIUM = 586
+Global Const $PROCESSOR_INTEL_IA64 = 2200
+Global Const $PROCESSOR_AMD_X8664 = 8664
+Global Const $UOI_FLAGS = 1
+Global Const $UOI_HEAPSIZE = 5
+Global Const $UOI_IO = 6
+Global Const $UOI_NAME = 2
+Global Const $UOI_TYPE = 3
+Global Const $UOI_USER_SID = 4
+Global Const $DF_ALLOWOTHERACCOUNTHOOK = 1
+Global Const $WSF_VISIBLE = 1
+Global Const $VER_SUITE_BACKOFFICE = 4
+Global Const $VER_SUITE_BLADE = 1024
+Global Const $VER_SUITE_COMPUTE_SERVER = 16384
+Global Const $VER_SUITE_DATACENTER = 128
+Global Const $VER_SUITE_ENTERPRISE = 2
+Global Const $VER_SUITE_EMBEDDEDNT = 64
+Global Const $VER_SUITE_PERSONAL = 512
+Global Const $VER_SUITE_SINGLEUSERTS = 256
+Global Const $VER_SUITE_SMALLBUSINESS = 1
+Global Const $VER_SUITE_SMALLBUSINESS_RESTRICTED = 32
+Global Const $VER_SUITE_STORAGE_SERVER = 8192
+Global Const $VER_SUITE_TERMINAL = 16
+Global Const $VER_SUITE_WH_SERVER = 32768
+Global Const $VER_NT_DOMAIN_CONTROLLER = 2
+Global Const $VER_NT_SERVER = 3
+Global Const $VER_NT_WORKSTATION = 1
+Global Const $WDA_MONITOR = 1
+Global Const $WDA_NONE = 0
+Global Const $PF_3DNOW_INSTRUCTIONS_AVAILABLE = 7
+Global Const $PF_CHANNELS_ENABLED = 16
+Global Const $PF_COMPARE_EXCHANGE_DOUBLE = 2
+Global Const $PF_COMPARE_EXCHANGE128 = 14
+Global Const $PF_COMPARE64_EXCHANGE128 = 15
+Global Const $PF_FLOATING_POINT_EMULATED = 1
+Global Const $PF_FLOATING_POINT_PRECISION_ERRATA = 0
+Global Const $PF_MMX_INSTRUCTIONS_AVAILABLE = 3
+Global Const $PF_NX_ENABLED = 12
+Global Const $PF_PAE_ENABLED = 9
+Global Const $PF_RDTSC_INSTRUCTION_AVAILABLE = 8
+Global Const $PF_SSE3_INSTRUCTIONS_AVAILABLE = 13
+Global Const $PF_XMMI_INSTRUCTIONS_AVAILABLE = 6
+Global Const $PF_XMMI64_INSTRUCTIONS_AVAILABLE = 10
+Global Const $PF_XSAVE_ENABLED = 17
+Global Const $KEYEVENTF_EXTENDEDKEY = 1
+Global Const $KEYEVENTF_KEYUP = 2
+Global Const $LIM_SMALL = 0
+Global Const $LIM_LARGE = 1
+Global Const $MAPVK_VK_TO_CHAR = 2
+Global Const $MAPVK_VK_TO_VSC = 0
+Global Const $MAPVK_VK_TO_VSC_EX = 4
+Global Const $MAPVK_VSC_TO_VK = 1
+Global Const $MAPVK_VSC_TO_VK_EX = 3
+Global Const $MOD_ALT = 1
+Global Const $MOD_CONTROL = 2
+Global Const $MOD_NOREPEAT = 16384
+Global Const $MOD_SHIFT = 4
+Global Const $MOD_WIN = 8
+Global Const $GUID_ACDC_POWER_SOURCE = "{5D3E9A59-E9D5-4B00-A6BD-FF34FF516548}"
+Global Const $GUID_BATTERY_PERCENTAGE_REMAINING = "{A7AD8041-B45A-4CAE-87A3-EECBB468A9E1}"
+Global Const $GUID_IDLE_BACKGROUND_TASK = "{515C31D8-F734-163D-A0FD-11A08C91E8F1}"
+Global Const $GUID_MONITOR_POWER_ON = "{02731015-4510-4526-99E6-E5A17EBD1AEA}"
+Global Const $GUID_POWERSCHEME_PERSONALITY = "{245D8541-3943-4422-B025-13A784F679B7}"
+Global Const $GUID_SYSTEM_AWAYMODE = "{98A7F580-01F7-48AA-9C0F-44352C29E5C0}"
+Global Const $GUID_MIN_POWER_SAVINGS = "{8C5E7FDA-E8BF-4A96-9A85-A6E23A8C635C}"
+Global Const $GUID_MAX_POWER_SAVINGS = "{A1841308-3541-4FAB-BC81-F71556F20B4A}"
+Global Const $GUID_TYPICAL_POWER_SAVINGS = "{381B4222-F694-41F0-9685-FF5BB260DF2E}"
+Global Const $HSHELL_WINDOWCREATED = 1
+Global Const $HSHELL_WINDOWDESTROYED = 2
+Global Const $HSHELL_ACTIVATESHELLWINDOW = 3
+Global Const $HSHELL_WINDOWACTIVATED = 4
+Global Const $HSHELL_GETMINRECT = 5
+Global Const $HSHELL_REDRAW = 6
+Global Const $HSHELL_TASKMAN = 7
+Global Const $HSHELL_LANGUAGE = 8
+Global Const $HSHELL_SYSMENU = 9
+Global Const $HSHELL_ENDTASK = 10
+Global Const $HSHELL_ACCESSIBILITYSTATE = 11
+Global Const $HSHELL_APPCOMMAND = 12
+Global Const $HSHELL_WINDOWREPLACED = 13
+Global Const $HSHELL_WINDOWREPLACING = 14
+Global Const $HSHELL_RUDEAPPACTIVATED = 32772
+Global Const $HSHELL_FLASH = 32774
+Global Const $HWND_BROADCAST = 65535
+Global Const $SMTO_BLOCK = 1
+Global Const $SMTO_NORMAL = 0
+Global Const $SMTO_ABORTIFHUNG = 2
+Global Const $SMTO_NOTIMEOUTIFNOTHUNG = 8
+Global Const $SMTO_ERRORONEXIT = 32
+Global Const $INPUTLANGCHANGE_BACKWARD = 4
+Global Const $INPUTLANGCHANGE_FORWARD = 2
+Global Const $INPUTLANGCHANGE_SYSCHARSET = 1
+Global Const $EVENT_MIN = 1
+Global Const $EVENT_SYSTEM_SOUND = 1
+Global Const $EVENT_SYSTEM_ALERT = 2
+Global Const $EVENT_SYSTEM_FOREGROUND = 3
+Global Const $EVENT_SYSTEM_MENUSTART = 4
+Global Const $EVENT_SYSTEM_MENUEND = 5
+Global Const $EVENT_SYSTEM_MENUPOPUPSTART = 6
+Global Const $EVENT_SYSTEM_MENUPOPUPEND = 7
+Global Const $EVENT_SYSTEM_CAPTURESTART = 8
+Global Const $EVENT_SYSTEM_CAPTUREEND = 9
+Global Const $EVENT_SYSTEM_MOVESIZESTART = 10
+Global Const $EVENT_SYSTEM_MOVESIZEEND = 11
+Global Const $EVENT_SYSTEM_CONTEXTHELPSTART = 12
+Global Const $EVENT_SYSTEM_CONTEXTHELPEND = 13
+Global Const $EVENT_SYSTEM_DRAGDROPSTART = 14
+Global Const $EVENT_SYSTEM_DRAGDROPEND = 15
+Global Const $EVENT_SYSTEM_DIALOGSTART = 16
+Global Const $EVENT_SYSTEM_DIALOGEND = 17
+Global Const $EVENT_SYSTEM_SCROLLINGSTART = 18
+Global Const $EVENT_SYSTEM_SCROLLINGEND = 19
+Global Const $EVENT_SYSTEM_SWITCHSTART = 20
+Global Const $EVENT_SYSTEM_SWITCHEND = 21
+Global Const $EVENT_SYSTEM_MINIMIZESTART = 22
+Global Const $EVENT_SYSTEM_MINIMIZEEND = 23
+Global Const $EVENT_SYSTEM_DESKTOPSWITCH = 32
+Global Const $EVENT_OBJECT_CREATE = 32768
+Global Const $EVENT_OBJECT_DESTROY = 32769
+Global Const $EVENT_OBJECT_SHOW = 32770
+Global Const $EVENT_OBJECT_HIDE = 32771
+Global Const $EVENT_OBJECT_REORDER = 32772
+Global Const $EVENT_OBJECT_FOCUS = 32773
+Global Const $EVENT_OBJECT_SELECTION = 32774
+Global Const $EVENT_OBJECT_SELECTIONADD = 32775
+Global Const $EVENT_OBJECT_SELECTIONREMOVE = 32776
+Global Const $EVENT_OBJECT_SELECTIONWITHIN = 32777
+Global Const $EVENT_OBJECT_STATECHANGE = 32778
+Global Const $EVENT_OBJECT_LOCATIONCHANGE = 32779
+Global Const $EVENT_OBJECT_NAMECHANGE = 32780
+Global Const $EVENT_OBJECT_DESCRIPTIONCHANGE = 32781
+Global Const $EVENT_OBJECT_VALUECHANGE = 32782
+Global Const $EVENT_OBJECT_PARENTCHANGE = 32783
+Global Const $EVENT_OBJECT_HELPCHANGE = 32784
+Global Const $EVENT_OBJECT_DEFACTIONCHANGE = 32785
+Global Const $EVENT_OBJECT_ACCELERATORCHANGE = 32786
+Global Const $EVENT_OBJECT_INVOKED = 32787
+Global Const $EVENT_OBJECT_TEXTSELECTIONCHANGED = 32788
+Global Const $EVENT_OBJECT_CONTENTSCROLLED = 32789
+Global Const $EVENT_MAX = 2147483647
+Global Const $WINEVENT_INCONTEXT = 4
+Global Const $WINEVENT_OUTOFCONTEXT = 0
+Global Const $WINEVENT_SKIPOWNPROCESS = 2
+Global Const $WINEVENT_SKIPOWNTHREAD = 1
+Global Const $TME_CANCEL = 2147483648
+Global Const $TME_HOVER = 1
+Global Const $TME_LEAVE = 2
+Global Const $TME_NONCLIENT = 16
+Global Const $TME_QUERY = 1073741824
+Global Const $DESKTOP_CREATEMENU = 4
+Global Const $DESKTOP_CREATEWINDOW = 2
+Global Const $DESKTOP_ENUMERATE = 64
+Global Const $DESKTOP_HOOKCONTROL = 8
+Global Const $DESKTOP_JOURNALPLAYBACK = 32
+Global Const $DESKTOP_JOURNALRECORD = 16
+Global Const $DESKTOP_READOBJECTS = 1
+Global Const $DESKTOP_SWITCHDESKTOP = 256
+Global Const $DESKTOP_WRITEOBJECTS = 128
+Global Const $DESKTOP_ALL_ACCESS = BitOR ( $DESKTOP_CREATEMENU , $DESKTOP_CREATEWINDOW , $DESKTOP_ENUMERATE , $DESKTOP_HOOKCONTROL , $DESKTOP_JOURNALPLAYBACK , $DESKTOP_JOURNALRECORD , $DESKTOP_READOBJECTS , $DESKTOP_SWITCHDESKTOP , $DESKTOP_WRITEOBJECTS )
+Global Const $RIDEV_APPKEYS = 1024
+Global Const $RIDEV_CAPTUREMOUSE = 512
+Global Const $RIDEV_DEVNOTIFY = 8192
+Global Const $RIDEV_EXCLUDE = 16
+Global Const $RIDEV_EXINPUTSINK = 4096
+Global Const $RIDEV_INPUTSINK = 256
+Global Const $RIDEV_NOHOTKEYS = 512
+Global Const $RIDEV_NOLEGACY = 48
+Global Const $RIDEV_PAGEONLY = 32
+Global Const $RIDEV_REMOVE = 1
+Global Const $RID_HEADER = 268435461
+Global Const $RID_INPUT = 268435459
+Global Const $RIM_TYPEHID = 2
+Global Const $RIM_TYPEKEYBOARD = 1
+Global Const $RIM_TYPEMOUSE = 0
+Global Const $RIDI_DEVICENAME = 536870919
+Global Const $RIDI_DEVICEINFO = 536870923
+Global Const $RIDI_PREPARSEDDATA = 536870917
+Global Const $MOUSE_ATTRIBUTES_CHANGED = 4
+Global Const $MOUSE_MOVE_ABSOLUTE = 1
+Global Const $MOUSE_MOVE_RELATIVE = 0
+Global Const $MOUSE_VIRTUAL_DESKTOP = 2
+Global Const $RI_MOUSE_LEFT_BUTTON_DOWN = 1
+Global Const $RI_MOUSE_LEFT_BUTTON_UP = 2
+Global Const $RI_MOUSE_MIDDLE_BUTTON_DOWN = 16
+Global Const $RI_MOUSE_MIDDLE_BUTTON_UP = 32
+Global Const $RI_MOUSE_RIGHT_BUTTON_DOWN = 4
+Global Const $RI_MOUSE_RIGHT_BUTTON_UP = 8
+Global Const $RI_MOUSE_BUTTON_1_DOWN = $RI_MOUSE_LEFT_BUTTON_DOWN
+Global Const $RI_MOUSE_BUTTON_1_UP = $RI_MOUSE_LEFT_BUTTON_UP
+Global Const $RI_MOUSE_BUTTON_2_DOWN = $RI_MOUSE_RIGHT_BUTTON_DOWN
+Global Const $RI_MOUSE_BUTTON_2_UP = $RI_MOUSE_RIGHT_BUTTON_UP
+Global Const $RI_MOUSE_BUTTON_3_DOWN = $RI_MOUSE_MIDDLE_BUTTON_DOWN
+Global Const $RI_MOUSE_BUTTON_3_UP = $RI_MOUSE_MIDDLE_BUTTON_UP
+Global Const $RI_MOUSE_BUTTON_4_DOWN = 64
+Global Const $RI_MOUSE_BUTTON_4_UP = 128
+Global Const $RI_MOUSE_BUTTON_5_DOWN = 256
+Global Const $RI_MOUSE_BUTTON_5_UP = 512
+Global Const $RI_MOUSE_WHEEL = 1024
+Global Const $RI_KEY_BREAK = 1
+Global Const $RI_KEY_E0 = 2
+Global Const $RI_KEY_E1 = 4
+Global Const $RI_KEY_MAKE = 0
+#Region Global Variables and Constants
+Global Const $FLASHW_CAPTION = 1
+Global Const $FLASHW_TRAY = 2
+Global Const $FLASHW_TIMER = 4
+Global Const $FLASHW_TIMERNOFG = 12
+Global Const $TAGUPDATELAYEREDWINDOWINFO = "dword Size;hwnd hDstDC;long DstX;long DstY;long cX;long cY;hwnd hSrcDC;long SrcX;long SrcY;dword crKey;byte BlendOp;byte BlendFlags;byte Alpha;byte AlphaFormat;dword Flags;long DirtyLeft;long DirtyTop;long DirtyRight;long DirtyBottom"
+Global Const $TAGWINDOWINFO = "dword Size;struct;long rWindow[4];endstruct;struct;long rClient[4];endstruct;dword Style;dword ExStyle;dword WindowStatus;uint cxWindowBorders;uint cyWindowBorders;word atomWindowType;word CreatorVersion"
+Global Const $TAGWNDCLASS = "uint Style;ptr hWndProc;int ClsExtra;int WndExtra;ptr hInstance;ptr hIcon;ptr hCursor;ptr hBackground;ptr MenuName;ptr ClassName"
+Global Const $TAGWNDCLASSEX = "uint Size;uint Style;ptr hWndProc;int ClsExtra;int WndExtra;ptr hInstance;ptr hIcon;ptr hCursor;ptr hBackground;ptr MenuName;ptr ClassName;ptr hIconSm"
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+Global Const $TAGFLASHWINFO = "uint Size;hwnd hWnd;dword Flags;uint Count;dword TimeOut"
+#Region Public Functions
+Func _WINAPI_ADJUSTWINDOWRECTEX ( ByRef $TRECT , $ISTYLE , $IEXSTYLE = 0 , $BMENU = False )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "AdjustWindowRectEx" , "struct*" , $TRECT , "dword" , $ISTYLE , "bool" , $BMENU , "dword" , $IEXSTYLE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ANIMATEWINDOW ( $HWND , $IFLAGS , $IDURATION = 1000 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "AnimateWindow" , "hwnd" , $HWND , "dword" , $IDURATION , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_BEGINDEFERWINDOWPOS ( $IAMOUNT = 1 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "BeginDeferWindowPos" , "int" , $IAMOUNT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_BRINGWINDOWTOTOP ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "BringWindowToTop" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_BROADCASTSYSTEMMESSAGE ( $IMSG , $WPARAM = 0 , $LPARAM = 0 , $IFLAGS = 0 , $IRECIPIENTS = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "long" , "BroadcastSystemMessageW" , "dword" , $IFLAGS , "dword*" , $IRECIPIENTS , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM )
+	If @error Or ( $ACALL [ 0 ] = + 4294967295 ) Then Return SetError ( @error , @extended , + 4294967295 )
+	Return SetExtended ( $ACALL [ 2 ] , $ACALL [ 0 ] )
+EndFunc
+Func _WINAPI_CALLWINDOWPROC ( $PPREVWNDFUNC , $HWND , $IMSG , $WPARAM , $LPARAM )
+	Local $ACALL = DllCall ( "user32.dll" , "lresult" , "CallWindowProc" , "ptr" , $PPREVWNDFUNC , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CALLWINDOWPROCW ( $PPREVWNDPROC , $HWND , $IMSG , $WPARAM , $LPARAM )
+	Local $ACALL = DllCall ( "user32.dll" , "lresult" , "CallWindowProcW" , "ptr" , $PPREVWNDPROC , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CASCADEWINDOWS ( $AWNDS , $TRECT = 0 , $HPARENT = 0 , $IFLAGS = 0 , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $AWNDS , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ICOUNT = $IEND - $ISTART + 1
+	Local $TWNDS = DllStructCreate ( "hwnd[" & $ICOUNT & "]" )
+	$ICOUNT = 1
+	For $I = $ISTART To $IEND
+		DllStructSetData ( $TWNDS , 1 , $AWNDS [ $I ] , $ICOUNT )
+		$ICOUNT += 1
+	Next
+	Local $ACALL = DllCall ( "user32.dll" , "word" , "CascadeWindows" , "hwnd" , $HPARENT , "uint" , $IFLAGS , "struct*" , $TRECT , "uint" , $ICOUNT + 4294967295 , "struct*" , $TWNDS )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CHANGEWINDOWMESSAGEFILTEREX ( $HWND , $IMSG , $IACTION )
+	Local $TCFS , $ACALL
+	If $HWND And ( _WINAPI_GETVERSION ( ) > 6.0 ) Then
+		Local Const $TAGCHANGEFILTERSTRUCT = "dword cbSize; dword ExtStatus"
+		$TCFS = DllStructCreate ( $TAGCHANGEFILTERSTRUCT )
+		DllStructSetData ( $TCFS , 1 , DllStructGetSize ( $TCFS ) )
+		$ACALL = DllCall ( "user32.dll" , "bool" , "ChangeWindowMessageFilterEx" , "hwnd" , $HWND , "uint" , $IMSG , "dword" , $IACTION , "struct*" , $TCFS )
+	Else
+		$TCFS = 0
+		$ACALL = DllCall ( "user32.dll" , "bool" , "ChangeWindowMessageFilter" , "uint" , $IMSG , "dword" , $IACTION )
+	EndIf
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return SetExtended ( DllStructGetData ( $TCFS , 2 ) , 1 )
+EndFunc
+Func _WINAPI_CHILDWINDOWFROMPOINTEX ( $HWND , $TPOINT , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "ChildWindowFromPointEx" , "hwnd" , $HWND , "struct" , $TPOINT , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CLOSEWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "CloseWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DEFERWINDOWPOS ( $HINFO , $HWND , $HAFTER , $IX , $IY , $IWIDTH , $IHEIGHT , $IFLAGS )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "DeferWindowPos" , "handle" , $HINFO , "hwnd" , $HWND , "hwnd" , $HAFTER , "int" , $IX , "int" , $IY , "int" , $IWIDTH , "int" , $IHEIGHT , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DEFWINDOWPROC ( $HWND , $IMSG , $WPARAM , $LPARAM )
+	Local $ACALL = DllCall ( "user32.dll" , "lresult" , "DefWindowProc" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DEFWINDOWPROCW ( $HWND , $IMSG , $WPARAM , $LPARAM )
+	Local $ACALL = DllCall ( "user32.dll" , "lresult" , "DefWindowProcW" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DEREGISTERSHELLHOOKWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "DeregisterShellHookWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DRAGACCEPTFILES ( $HWND , $BACCEPT = True )
+	DllCall ( "shell32.dll" , "none" , "DragAcceptFiles" , "hwnd" , $HWND , "bool" , $BACCEPT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DRAGFINISH ( $HDROP )
+	DllCall ( "shell32.dll" , "none" , "DragFinish" , "handle" , $HDROP )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_DRAGQUERYFILEEX ( $HDROP , $IFLAG = 0 )
+	Local $ACALL = DllCall ( "shell32.dll" , "uint" , "DragQueryFileW" , "handle" , $HDROP , "uint" , + 4294967295 , "ptr" , 0 , "uint" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If Not $ACALL [ 0 ] Then Return SetError ( 10 , 0 , 0 )
+	Local $ICOUNT = $ACALL [ 0 ] , $IVALIDROW = 0
+	Local $ARET [ $ICOUNT + 1 ]
+	For $I = 0 To $ICOUNT + 4294967295
+		$ACALL = DllCall ( "shell32.dll" , "uint" , "DragQueryFileW" , "handle" , $HDROP , "uint" , $I , "wstr" , "" , "uint" , 4096 )
+		If Not $ACALL [ 0 ] Then Return SetError ( 11 , 0 , 0 )
+		If $IFLAG Then
+			Local $BDIR = _WINAPI_PATHISDIRECTORY ( $ACALL [ 3 ] )
+			If ( ( $IFLAG = 1 ) And $BDIR ) Or ( ( $IFLAG = 2 ) And Not $BDIR ) Then
+				ContinueLoop
+			EndIf
+		EndIf
+		$IVALIDROW += 1
+		$ARET [ $IVALIDROW ] = $ACALL [ 3 ]
+		$ARET [ 0 ] += 1
+	Next
+	If Not $ARET [ 0 ] Then Return SetError ( 12 , 0 , 0 )
+	__INC ( $ARET , + 4294967295 )
+	Return $ARET
+EndFunc
+Func _WINAPI_DRAGQUERYPOINT ( $HDROP )
+	Local $TPOINT = DllStructCreate ( $TAGPOINT )
+	Local $ACALL = DllCall ( "shell32.dll" , "bool" , "DragQueryPoint" , "handle" , $HDROP , "struct*" , $TPOINT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TPOINT
+EndFunc
+Func _WINAPI_ENDDEFERWINDOWPOS ( $HINFO )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EndDeferWindowPos" , "handle" , $HINFO )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ENUMCHILDWINDOWS ( $HWND , $BVISIBLE = True )
+	If Not _WINAPI_GETWINDOW ( $HWND , 5 ) Then Return SetError ( 2 , 0 , 0 )
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumWindowsProc" , "bool" , "hwnd;lparam" )
+	Dim $__G_VENUM [ 101 ] [ 2 ] = [ [ 0 ] ]
+	DllCall ( "user32.dll" , "bool" , "EnumChildWindows" , "hwnd" , $HWND , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "lparam" , $BVISIBLE )
+	If @error Or Not $__G_VENUM [ 0 ] [ 0 ] Then
+		$__G_VENUM = @error + 10
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_FINDWINDOW ( $SCLASSNAME , $SWINDOWNAME )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "FindWindowW" , "wstr" , $SCLASSNAME , "wstr" , $SWINDOWNAME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FLASHWINDOW ( $HWND , $BINVERT = True )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "FlashWindow" , "hwnd" , $HWND , "bool" , $BINVERT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_FLASHWINDOWEX ( $HWND , $IFLAGS = 3 , $ICOUNT = 3 , $ITIMEOUT = 0 )
+	Local $TFLASH = DllStructCreate ( $TAGFLASHWINFO )
+	Local $IFLASH = DllStructGetSize ( $TFLASH )
+	Local $IMODE = 0
+	If BitAND ( $IFLAGS , 1 ) <> 0 Then $IMODE = BitOR ( $IMODE , $FLASHW_CAPTION )
+	If BitAND ( $IFLAGS , 2 ) <> 0 Then $IMODE = BitOR ( $IMODE , $FLASHW_TRAY )
+	If BitAND ( $IFLAGS , 4 ) <> 0 Then $IMODE = BitOR ( $IMODE , $FLASHW_TIMER )
+	If BitAND ( $IFLAGS , 8 ) <> 0 Then $IMODE = BitOR ( $IMODE , $FLASHW_TIMERNOFG )
+	DllStructSetData ( $TFLASH , "Size" , $IFLASH )
+	DllStructSetData ( $TFLASH , "hWnd" , $HWND )
+	DllStructSetData ( $TFLASH , "Flags" , $IMODE )
+	DllStructSetData ( $TFLASH , "Count" , $ICOUNT )
+	DllStructSetData ( $TFLASH , "Timeout" , $ITIMEOUT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "FlashWindowEx" , "struct*" , $TFLASH )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETANCESTOR ( $HWND , $IFLAGS = 1 )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetAncestor" , "hwnd" , $HWND , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCLASSINFOEX ( $SCLASS , $HINSTANCE = 0 )
+	Local $STYPEOFCLASS = "wstr"
+	If Not IsString ( $SCLASS ) Then $STYPEOFCLASS = "ptr"
+	Local $TWNDCLASSEX = DllStructCreate ( $TAGWNDCLASSEX )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetClassInfoExW" , "handle" , $HINSTANCE , $STYPEOFCLASS , $SCLASS , "struct*" , $TWNDCLASSEX )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TWNDCLASSEX
+EndFunc
+Func _WINAPI_GETCLASSLONGEX ( $HWND , $IINDEX )
+	Local $ACALL
+	If @AutoItX64 Then
+		$ACALL = DllCall ( "user32.dll" , "ulong_ptr" , "GetClassLongPtrW" , "hwnd" , $HWND , "int" , $IINDEX )
+	Else
+		$ACALL = DllCall ( "user32.dll" , "dword" , "GetClassLongW" , "hwnd" , $HWND , "int" , $IINDEX )
+	EndIf
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCLIENTHEIGHT ( $HWND )
+	Local $TRECT = _WINAPI_GETCLIENTRECT ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return DllStructGetData ( $TRECT , "Bottom" ) - DllStructGetData ( $TRECT , "Top" )
+EndFunc
+Func _WINAPI_GETCLIENTWIDTH ( $HWND )
+	Local $TRECT = _WINAPI_GETCLIENTRECT ( $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return DllStructGetData ( $TRECT , "Right" ) - DllStructGetData ( $TRECT , "Left" )
+EndFunc
+Func _WINAPI_GETDLGITEM ( $HWND , $IITEMID )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetDlgItem" , "hwnd" , $HWND , "int" , $IITEMID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETFOREGROUNDWINDOW ( )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetForegroundWindow" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETGUITHREADINFO ( $ITHREADID )
+	Local Const $TAGGUITHREADINFO = "dword Size;dword Flags;hwnd hWndActive;hwnd hWndFocus;hwnd hWndCapture;hwnd hWndMenuOwner;hwnd hWndMoveSize;hwnd hWndCaret;struct rcCaret;long left;long top;long right;long bottom;endstruct"
+	Local $TGTI = DllStructCreate ( $TAGGUITHREADINFO )
+	DllStructSetData ( $TGTI , 1 , DllStructGetSize ( $TGTI ) )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetGUIThreadInfo" , "dword" , $ITHREADID , "struct*" , $TGTI )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 11 ]
+	For $I = 0 To 10
+		$ARET [ $I ] = DllStructGetData ( $TGTI , $I + 2 )
+	Next
+	For $I = 9 To 10
+		$ARET [ $I ] -= $ARET [ $I + 4294967294 ]
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETLASTACTIVEPOPUP ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetLastActivePopup" , "hwnd" , $HWND )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	If $ACALL [ 0 ] = $HWND Then Return SetError ( 1 , 0 , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETLAYEREDWINDOWATTRIBUTES ( $HWND , ByRef $ITRANSCOLOR , ByRef $ITRANSGUI , $BCOLORREF = False )
+	$ITRANSCOLOR = + 4294967295
+	$ITRANSGUI = + 4294967295
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetLayeredWindowAttributes" , "hwnd" , $HWND , "INT*" , $ITRANSCOLOR , "byte*" , $ITRANSGUI , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	If Not $BCOLORREF Then
+		$ACALL [ 2 ] = Int ( BinaryMid ( $ACALL [ 2 ] , 3 , 1 ) & BinaryMid ( $ACALL [ 2 ] , 2 , 1 ) & BinaryMid ( $ACALL [ 2 ] , 1 , 1 ) )
+	EndIf
+	$ITRANSCOLOR = $ACALL [ 2 ]
+	$ITRANSGUI = $ACALL [ 3 ]
+	Return $ACALL [ 4 ]
+EndFunc
+Func _WINAPI_GETMESSAGEEXTRAINFO ( )
+	Local $ACALL = DllCall ( "user32.dll" , "lparam" , "GetMessageExtraInfo" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETSHELLWINDOW ( )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetShellWindow" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETTOPWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetTopWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETWINDOWDISPLAYAFFINITY ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetWindowDisplayAffinity" , "hwnd" , $HWND , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETWINDOWINFO ( $HWND )
+	Local $TWINDOWINFO = DllStructCreate ( $TAGWINDOWINFO )
+	DllStructSetData ( $TWINDOWINFO , "Size" , DllStructGetSize ( $TWINDOWINFO ) )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetWindowInfo" , "hwnd" , $HWND , "struct*" , $TWINDOWINFO )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TWINDOWINFO
+EndFunc
+Func _WINAPI_GETWINDOWPLACEMENT ( $HWND )
+	Local $TWINDOWPLACEMENT = DllStructCreate ( $TAGWINDOWPLACEMENT )
+	DllStructSetData ( $TWINDOWPLACEMENT , "length" , DllStructGetSize ( $TWINDOWPLACEMENT ) )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetWindowPlacement" , "hwnd" , $HWND , "struct*" , $TWINDOWPLACEMENT )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TWINDOWPLACEMENT
+EndFunc
+Func _WINAPI_ISCHILD ( $HWND , $HWNDPARENT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsChild" , "hwnd" , $HWNDPARENT , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISHUNGAPPWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsHungAppWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISICONIC ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsIconic" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISWINDOWUNICODE ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsWindowUnicode" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISZOOMED ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsZoomed" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_KILLTIMER ( $HWND , $ITIMERID )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "KillTimer" , "hwnd" , $HWND , "uint_ptr" , $ITIMERID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OPENICON ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "OpenIcon" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_POSTMESSAGE ( $HWND , $IMSG , $WPARAM , $LPARAM )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "PostMessage" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REGISTERCLASS ( $TWNDCLASS )
+	Local $ACALL = DllCall ( "user32.dll" , "word" , "RegisterClassW" , "struct*" , $TWNDCLASS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REGISTERCLASSEX ( $TWNDCLASSEX )
+	Local $ACALL = DllCall ( "user32.dll" , "word" , "RegisterClassExW" , "struct*" , $TWNDCLASSEX )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REGISTERSHELLHOOKWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "RegisterShellHookWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REGISTERWINDOWMESSAGE ( $SMESSAGE )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "RegisterWindowMessageW" , "wstr" , $SMESSAGE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SENDMESSAGETIMEOUT ( $HWND , $IMSG , $WPARAM = 0 , $LPARAM = 0 , $ITIMEOUT = 1000 , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "lresult" , "SendMessageTimeoutW" , "hwnd" , $HWND , "uint" , $IMSG , "wparam" , $WPARAM , "lparam" , $LPARAM , "uint" , $IFLAGS , "uint" , $ITIMEOUT , "dword_ptr*" , 0 )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	If Not $ACALL [ 0 ] Then Return SetError ( 10 , _WINAPI_GETLASTERROR ( ) , + 4294967295 )
+	Return $ACALL [ 7 ]
+EndFunc
+Func _WINAPI_SETCLASSLONGEX ( $HWND , $IINDEX , $INEWLONG )
+	Local $ACALL
+	If @AutoItX64 Then
+		$ACALL = DllCall ( "user32.dll" , "ulong_ptr" , "SetClassLongPtrW" , "hwnd" , $HWND , "int" , $IINDEX , "long_ptr" , $INEWLONG )
+	Else
+		$ACALL = DllCall ( "user32.dll" , "dword" , "SetClassLongW" , "hwnd" , $HWND , "int" , $IINDEX , "long" , $INEWLONG )
+	EndIf
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETFOREGROUNDWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetForegroundWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETLAYEREDWINDOWATTRIBUTES ( $HWND , $ITRANSCOLOR , $ITRANSGUI = 255 , $IFLAGS = 3 , $BCOLORREF = False )
+	If $IFLAGS = Default Or $IFLAGS = "" Or $IFLAGS < 0 Then $IFLAGS = 3
+	If Not $BCOLORREF Then
+		$ITRANSCOLOR = Int ( BinaryMid ( $ITRANSCOLOR , 3 , 1 ) & BinaryMid ( $ITRANSCOLOR , 2 , 1 ) & BinaryMid ( $ITRANSCOLOR , 1 , 1 ) )
+	EndIf
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetLayeredWindowAttributes" , "hwnd" , $HWND , "INT" , $ITRANSCOLOR , "byte" , $ITRANSGUI , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETMESSAGEEXTRAINFO ( $LPARAM )
+	Local $ACALL = DllCall ( "user32.dll" , "lparam" , "SetMessageExtraInfo" , "lparam" , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETSYSCOLORS ( $VELEMENTS , $VCOLORS )
+	Local $BISEARRAY = IsArray ( $VELEMENTS ) , $BISCARRAY = IsArray ( $VCOLORS )
+	Local $IELEMENTNUM
+	If Not $BISCARRAY And Not $BISEARRAY Then
+		$IELEMENTNUM = 1
+	ElseIf $BISCARRAY Or $BISEARRAY Then
+		If Not $BISCARRAY Or Not $BISEARRAY Then Return SetError ( + 4294967295 , + 4294967295 , False )
+		If UBound ( $VELEMENTS ) <> UBound ( $VCOLORS ) Then Return SetError ( + 4294967295 , + 4294967295 , False )
+		$IELEMENTNUM = UBound ( $VELEMENTS )
+	EndIf
+	Local $TELEMENTS = DllStructCreate ( "int Element[" & $IELEMENTNUM & "]" )
+	Local $TCOLORS = DllStructCreate ( "INT NewColor[" & $IELEMENTNUM & "]" )
+	If Not $BISEARRAY Then
+		DllStructSetData ( $TELEMENTS , "Element" , $VELEMENTS , 1 )
+	Else
+		For $X = 0 To $IELEMENTNUM + 4294967295
+			DllStructSetData ( $TELEMENTS , "Element" , $VELEMENTS [ $X ] , $X + 1 )
+		Next
+	EndIf
+	If Not $BISCARRAY Then
+		DllStructSetData ( $TCOLORS , "NewColor" , $VCOLORS , 1 )
+	Else
+		For $X = 0 To $IELEMENTNUM + 4294967295
+			DllStructSetData ( $TCOLORS , "NewColor" , $VCOLORS [ $X ] , $X + 1 )
+		Next
+	EndIf
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetSysColors" , "int" , $IELEMENTNUM , "struct*" , $TELEMENTS , "struct*" , $TCOLORS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETTIMER ( $HWND , $ITIMERID , $IELAPSE , $PTIMERFUNC )
+	Local $ACALL = DllCall ( "user32.dll" , "uint_ptr" , "SetTimer" , "hwnd" , $HWND , "uint_ptr" , $ITIMERID , "uint" , $IELAPSE , "ptr" , $PTIMERFUNC )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINDOWDISPLAYAFFINITY ( $HWND , $IAFFINITY )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetWindowDisplayAffinity" , "hwnd" , $HWND , "dword" , $IAFFINITY )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINDOWLONG ( $HWND , $IINDEX , $IVALUE )
+	_WINAPI_SETLASTERROR ( 0 )
+	Local $SFUNCNAME = "SetWindowLongW"
+	If @AutoItX64 Then $SFUNCNAME = "SetWindowLongPtrW"
+	Local $ACALL = DllCall ( "user32.dll" , "long_ptr" , $SFUNCNAME , "hwnd" , $HWND , "int" , $IINDEX , "long_ptr" , $IVALUE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINDOWPLACEMENT ( $HWND , $TWINDOWPLACEMENT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetWindowPlacement" , "hwnd" , $HWND , "struct*" , $TWINDOWPLACEMENT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SHOWOWNEDPOPUPS ( $HWND , $BSHOW )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ShowOwnedPopups" , "hwnd" , $HWND , "bool" , $BSHOW )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SWITCHTOTHISWINDOW ( $HWND , $BALTTAB = False )
+	DllCall ( "user32.dll" , "none" , "SwitchToThisWindow" , "hwnd" , $HWND , "bool" , $BALTTAB )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_TILEWINDOWS ( $AWNDS , $TRECT = 0 , $HPARENT = 0 , $IFLAGS = 0 , $ISTART = 0 , $IEND = + 4294967295 )
+	If __CHECKERRORARRAYBOUNDS ( $AWNDS , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ICOUNT = $IEND - $ISTART + 1
+	Local $TWNDS = DllStructCreate ( "hwnd[" & $ICOUNT & "]" )
+	$ICOUNT = 1
+	For $I = $ISTART To $IEND
+		DllStructSetData ( $TWNDS , 1 , $AWNDS [ $I ] , $ICOUNT )
+		$ICOUNT += 1
+	Next
+	Local $ACALL = DllCall ( "user32.dll" , "word" , "TileWindows" , "hwnd" , $HPARENT , "uint" , $IFLAGS , "struct*" , $TRECT , "uint" , $ICOUNT + 4294967295 , "struct*" , $TWNDS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UNREGISTERCLASS ( $SCLASS , $HINSTANCE = 0 )
+	Local $STYPEOFCLASS = "wstr"
+	If Not IsString ( $SCLASS ) Then $STYPEOFCLASS = "ptr"
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UnregisterClassW" , $STYPEOFCLASS , $SCLASS , "handle" , $HINSTANCE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UPDATELAYEREDWINDOW ( $HWND , $HDESTDC , $TPTDEST , $TSIZE , $HSRCDC , $TPTSRCE , $IRGB , $TBLEND , $IFLAGS )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UpdateLayeredWindow" , "hwnd" , $HWND , "handle" , $HDESTDC , "struct*" , $TPTDEST , "struct*" , $TSIZE , "handle" , $HSRCDC , "struct*" , $TPTSRCE , "dword" , $IRGB , "struct*" , $TBLEND , "dword" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UPDATELAYEREDWINDOWEX ( $HWND , $IX , $IY , $HBITMAP , $IOPACITY = 255 , $BDELETE = False )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetDC" , "hwnd" , $HWND )
+	Local $HDC = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "CreateCompatibleDC" , "handle" , $HDC )
+	Local $HDESTDC = $ACALL [ 0 ]
+	$ACALL = DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDESTDC , "handle" , $HBITMAP )
+	Local $HDESTSV = $ACALL [ 0 ]
+	Local $TPOINT
+	If ( $IX = + 4294967295 ) And ( $IY = + 4294967295 ) Then
+		$TPOINT = DllStructCreate ( "int;int" )
+	Else
+		$TPOINT = DllStructCreate ( "int;int;int;int" )
+		DllStructSetData ( $TPOINT , 3 , $IX )
+		DllStructSetData ( $TPOINT , 4 , $IY )
+	EndIf
+	DllStructSetData ( $TPOINT , 1 , 0 )
+	DllStructSetData ( $TPOINT , 2 , 0 )
+	Local $TBLENDFUNCTION = DllStructCreate ( $TAGBLENDFUNCTION )
+	DllStructSetData ( $TBLENDFUNCTION , 1 , 0 )
+	DllStructSetData ( $TBLENDFUNCTION , 2 , 0 )
+	DllStructSetData ( $TBLENDFUNCTION , 3 , $IOPACITY )
+	DllStructSetData ( $TBLENDFUNCTION , 4 , 1 )
+	Local Const $TAGBITMAP = "struct;long bmType;long bmWidth;long bmHeight;long bmWidthBytes;ushort bmPlanes;ushort bmBitsPixel;ptr bmBits;endstruct"
+	Local $TOBJ = DllStructCreate ( $TAGBITMAP )
+	DllCall ( "gdi32.dll" , "int" , "GetObject" , "handle" , $HBITMAP , "int" , DllStructGetSize ( $TOBJ ) , "struct*" , $TOBJ )
+	Local $TSIZE = DllStructCreate ( $TAGSIZE , DllStructGetPtr ( $TOBJ , "bmWidth" ) )
+	$ACALL = DllCall ( "user32.dll" , "bool" , "UpdateLayeredWindow" , "hwnd" , $HWND , "handle" , $HDC , "ptr" , DllStructGetPtr ( $TPOINT , 3 ) , "struct*" , $TSIZE , "handle" , $HDESTDC , "struct*" , $TPOINT , "dword" , 0 , "struct*" , $TBLENDFUNCTION , "dword" , 2 )
+	Local $IERROR = @error
+	DllCall ( "user32.dll" , "bool" , "ReleaseDC" , "hwnd" , $HWND , "handle" , $HDC )
+	DllCall ( "gdi32.dll" , "handle" , "SelectObject" , "handle" , $HDESTDC , "handle" , $HDESTSV )
+	DllCall ( "gdi32.dll" , "bool" , "DeleteDC" , "handle" , $HDESTDC )
+	If $IERROR Then Return SetError ( $IERROR , 0 , False )
+	If $BDELETE Then
+		DllCall ( "gdi32.dll" , "bool" , "DeleteObject" , "handle" , $HBITMAP )
+	EndIf
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UPDATELAYEREDWINDOWINDIRECT ( $HWND , $TULWINFO )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UpdateLayeredWindowIndirect" , "hwnd" , $HWND , "struct*" , $TULWINFO )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_WINDOWFROMPOINT ( ByRef $TPOINT )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "WindowFromPoint" , "struct" , $TPOINT )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+#EndRegion Public Functions
+#Region Internal Functions
+Func __ENUMDEFAULTPROC ( $PDATA , $LPARAM )
+	#forceref $lParam
+	Local $ILENGTH = _WINAPI_STRLEN ( $PDATA )
+	__INC ( $__G_VENUM )
+	If $ILENGTH Then
+		$__G_VENUM [ $__G_VENUM [ 0 ] ] = DllStructGetData ( DllStructCreate ( "wchar[" & ( $ILENGTH + 1 ) & "]" , $PDATA ) , 1 )
+	Else
+		$__G_VENUM [ $__G_VENUM [ 0 ] ] = ""
+	EndIf
+	Return 1
+EndFunc
+#EndRegion Internal Functions
+#Region Global Variables and Constants
+Global Const $TAGOSVERSIONINFOEX = $TAGOSVERSIONINFO & ";ushort ServicePackMajor;ushort ServicePackMinor;ushort SuiteMask;byte ProductType;byte Reserved"
+Global Const $TAGRAWINPUTDEVICE = "struct;ushort UsagePage;ushort Usage;dword Flags;hwnd hTarget;endstruct"
+Global Const $TAGRAWINPUTHEADER = "struct;dword Type;dword Size;handle hDevice;wparam wParam;endstruct"
+Global Const $TAGRAWMOUSE = "ushort Flags;ushort Alignment;ushort ButtonFlags;ushort ButtonData;ulong RawButtons;long LastX;long LastY;ulong ExtraInformation;"
+Global Const $TAGRAWKEYBOARD = "ushort MakeCode;ushort Flags;ushort Reserved;ushort VKey;uint Message;ulong ExtraInformation;"
+Global Const $TAGRAWHID = "dword SizeHid;dword Count;"
+Global Const $TAGRAWINPUTMOUSE = $TAGRAWINPUTHEADER & ";" & $TAGRAWMOUSE
+Global Const $TAGRAWINPUTKEYBOARD = $TAGRAWINPUTHEADER & ";" & $TAGRAWKEYBOARD
+Global Const $TAGRAWINPUTHID = $TAGRAWINPUTHEADER & ";" & $TAGRAWHID
+Global Const $TAGRID_DEVICE_INFO_MOUSE = "struct;dword Id;dword NumberOfButtons;dword SampleRate;int HasHorizontalWheel;endstruc"
+Global Const $TAGRID_DEVICE_INFO_KEYBOARD = "struct;dword KbType;dword KbSubType;dword KeyboardMode;dword NumberOfFunctionKeys;dword NumberOfIndicators;dword NumberOfKeysTotal;endstruct"
+Global Const $TAGRID_DEVICE_INFO_HID = "struct;dword VendorId;dword ProductId;dword VersionNumber;ushort UsagePage;ushort Usage;endstruc"
+Global Const $TAGRID_INFO_MOUSE = "dword Size;dword Type;" & $TAGRID_DEVICE_INFO_MOUSE & ";dword Unused[2];"
+Global Const $TAGRID_INFO_KEYBOARD = "dword Size;dword Type;" & $TAGRID_DEVICE_INFO_KEYBOARD
+Global Const $TAGRID_INFO_HID = "dword Size;dword Type;" & $TAGRID_DEVICE_INFO_HID & ";dword Unused[2]"
+Global Const $TAGUSEROBJECTFLAGS = "int Inherit;int Reserved;dword Flags"
+#EndRegion Global Variables and Constants
+#Region Functions list
+#EndRegion Functions list
+#Region Public Functions
+Func _WINAPI_ACTIVATEKEYBOARDLAYOUT ( $HLOCALE , $IFLAG = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "ActivateKeyboardLayout" , "handle" , $HLOCALE , "uint" , $IFLAG )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ADDCLIPBOARDFORMATLISTENER ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "AddClipboardFormatListener" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CALLNEXTHOOKEX ( $HHOOK , $ICODE , $WPARAM , $LPARAM )
+	Local $ACALL = DllCall ( "user32.dll" , "lresult" , "CallNextHookEx" , "handle" , $HHOOK , "int" , $ICODE , "wparam" , $WPARAM , "lparam" , $LPARAM )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CLOSEDESKTOP ( $HDESKTOP )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "CloseDesktop" , "handle" , $HDESKTOP )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CLOSEWINDOWSTATION ( $HSTATION )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "CloseWindowStation" , "handle" , $HSTATION )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_COMPRESSBUFFER ( $PUNCOMPRESSEDBUFFER , $IUNCOMPRESSEDSIZE , $PCOMPRESSEDBUFFER , $ICOMPRESSEDSIZE , $IFORMATANDENGINE = 2 )
+	Local $ACALL , $PWORKSPACE = 0 , $IERROR = 0
+	Do
+		$ACALL = DllCall ( "ntdll.dll" , "uint" , "RtlGetCompressionWorkSpaceSize" , "ushort" , $IFORMATANDENGINE , "ulong*" , 0 , "ulong*" , 0 )
+		If @error Or $ACALL [ 0 ] Then
+			$IERROR = @error + 20
+			ExitLoop
+		EndIf
+		$PWORKSPACE = __HEAPALLOC ( $ACALL [ 2 ] )
+		If @error Then
+			$IERROR = @error + 100
+			ExitLoop
+		EndIf
+		$ACALL = DllCall ( "ntdll.dll" , "uint" , "RtlCompressBuffer" , "ushort" , $IFORMATANDENGINE , "struct*" , $PUNCOMPRESSEDBUFFER , "ulong" , $IUNCOMPRESSEDSIZE , "struct*" , $PCOMPRESSEDBUFFER , "ulong" , $ICOMPRESSEDSIZE , "ulong" , 4096 , "ulong*" , 0 , "ptr" , $PWORKSPACE )
+		If @error Or $ACALL [ 0 ] Or Not $ACALL [ 7 ] Then
+			$IERROR = @error + 30
+			ExitLoop
+		EndIf
+	Until 1
+	__HEAPFREE ( $PWORKSPACE )
+	If $IERROR Then
+		If IsArray ( $ACALL ) Then
+			Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+		Else
+			Return SetError ( $IERROR , 0 , 0 )
+		EndIf
+	EndIf
+	Return $ACALL [ 7 ]
+EndFunc
+Func _WINAPI_COMPUTECRC32 ( $PMEMORY , $ILENGTH )
+	If _WINAPI_ISBADREADPTR ( $PMEMORY , $ILENGTH ) Then Return SetError ( 1 , @extended , 0 )
+	Local $ACALL = DllCall ( "ntdll.dll" , "dword" , "RtlComputeCrc32" , "dword" , 0 , "struct*" , $PMEMORY , "int" , $ILENGTH )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEDESKTOP ( $SNAME , $IACCESS = 2 , $IFLAGS = 0 , $IHEAP = 0 , $TSECURITY = 0 )
+	Local $ACALL
+	If $IHEAP Then
+		$ACALL = DllCall ( "user32.dll" , "handle" , "CreateDesktopExW" , "wstr" , $SNAME , "ptr" , 0 , "ptr" , 0 , "dword" , $IFLAGS , "dword" , $IACCESS , "struct*" , $TSECURITY , "ulong" , $IHEAP , "ptr" , 0 )
+	Else
+		$ACALL = DllCall ( "user32.dll" , "handle" , "CreateDesktopW" , "wstr" , $SNAME , "ptr" , 0 , "ptr" , 0 , "dword" , $IFLAGS , "dword" , $IACCESS , "struct*" , $TSECURITY )
+	EndIf
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_CREATEWINDOWSTATION ( $SNAME = "" , $IACCESS = 0 , $IFLAGS = 0 , $TSECURITY = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "CreateWindowStationW" , "wstr" , $SNAME , "dword" , $IFLAGS , "dword" , $IACCESS , "struct*" , $TSECURITY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_DECOMPRESSBUFFER ( $PUNCOMPRESSEDBUFFER , $IUNCOMPRESSEDSIZE , $PCOMPRESSEDBUFFER , $ICOMPRESSEDSIZE , $IFORMAT = 2 )
+	Local $ACALL = DllCall ( "ntdll.dll" , "long" , "RtlDecompressBuffer" , "ushort" , $IFORMAT , "struct*" , $PUNCOMPRESSEDBUFFER , "ulong" , $IUNCOMPRESSEDSIZE , "struct*" , $PCOMPRESSEDBUFFER , "ulong" , $ICOMPRESSEDSIZE , "ulong*" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return $ACALL [ 6 ]
+EndFunc
+Func _WINAPI_DEFRAWINPUTPROC ( $PARAWINPUT , $IINPUT )
+	Local $ACALL = DllCall ( "user32.dll" , "lresult" , "DefRawInputProc" , "ptr" , $PARAWINPUT , "int" , $IINPUT , "uint" , DllStructGetSize ( DllStructCreate ( $TAGRAWINPUTHEADER ) ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] Then Return SetError ( 10 , $ACALL [ 0 ] , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_ENUMDESKTOPS ( $HSTATION )
+	If StringCompare ( _WINAPI_GETUSEROBJECTINFORMATION ( $HSTATION , 3 ) , "WindowStation" ) Then Return SetError ( 1 , 0 , 0 )
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumDefaultProc" , "bool" , "ptr;lparam" )
+	Dim $__G_VENUM [ 101 ] = [ 0 ]
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EnumDesktopsW" , "handle" , $HSTATION , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "lparam" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or Not $__G_VENUM [ 0 ] Then
+		$__G_VENUM = @error + 10
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_ENUMDESKTOPWINDOWS ( $HDESKTOP , $BVISIBLE = True )
+	If StringCompare ( _WINAPI_GETUSEROBJECTINFORMATION ( $HDESKTOP , 3 ) , "Desktop" ) Then Return SetError ( 1 , 0 , 0 )
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumWindowsProc" , "bool" , "hwnd;lparam" )
+	Dim $__G_VENUM [ 101 ] [ 2 ] = [ [ 0 ] ]
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EnumDesktopWindows" , "handle" , $HDESKTOP , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "lparam" , $BVISIBLE )
+	If @error Or Not $ACALL [ 0 ] Or Not $__G_VENUM [ 0 ] [ 0 ] Then
+		$__G_VENUM = @error + 10
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_ENUMPAGEFILES ( )
+	Local $AINFO = _WINAPI_GETSYSTEMINFO ( )
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumPageFilesProc" , "bool" , "lparam;ptr;ptr" )
+	Dim $__G_VENUM [ 101 ] [ 4 ] = [ [ 0 ] ]
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "EnumPageFilesW" , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "lparam" , $AINFO [ 1 ] )
+	If @error Or Not $ACALL [ 0 ] Or Not $__G_VENUM [ 0 ] [ 0 ] Then
+		$__G_VENUM = @error + 10
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_ENUMRAWINPUTDEVICES ( )
+	Local Const $TAGRAWINPUTDEVICELIST = "struct;handle hDevice;dword Type;endstruct"
+	Local $TRIDL , $ILENGTH = DllStructGetSize ( DllStructCreate ( $TAGRAWINPUTDEVICELIST ) )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "GetRawInputDeviceList" , "ptr" , 0 , "uint*" , 0 , "uint" , $ILENGTH )
+	If @error Then Return SetError ( @error + 10 , @extended , 0 )
+	If ( $ACALL [ 0 ] = 4294967295 ) Or ( Not $ACALL [ 2 ] ) Then Return SetError ( 10 , + 4294967295 , 0 )
+	Local $TDATA = DllStructCreate ( "byte[" & ( $ACALL [ 2 ] * $ILENGTH ) & "]" )
+	Local $PDATA = DllStructGetPtr ( $TDATA )
+	If @error Then Return SetError ( @error + 20 , 0 , 0 )
+	$ACALL = DllCall ( "user32.dll" , "uint" , "GetRawInputDeviceList" , "ptr" , $PDATA , "uint*" , $ACALL [ 2 ] , "uint" , $ILENGTH )
+	If ( $ACALL [ 0 ] = 4294967295 ) Or ( Not $ACALL [ 0 ] ) Then Return SetError ( 1 , + 4294967295 , 0 )
+	Local $ARET [ $ACALL [ 2 ] + 1 ] [ 2 ] = [ [ $ACALL [ 2 ] ] ]
+	For $I = 1 To $ACALL [ 2 ]
+		$TRIDL = DllStructCreate ( "ptr;dword" , $PDATA + $ILENGTH * ( $I + 4294967295 ) )
+		For $J = 0 To 1
+			$ARET [ $I ] [ $J ] = DllStructGetData ( $TRIDL , $J + 1 )
+		Next
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_ENUMWINDOWSTATIONS ( )
+	Local $HENUMPROC = DllCallbackRegister ( "__EnumDefaultProc" , "bool" , "ptr;lparam" )
+	Dim $__G_VENUM [ 101 ] = [ 0 ]
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "EnumWindowStationsW" , "ptr" , DllCallbackGetPtr ( $HENUMPROC ) , "lparam" , 0 )
+	If @error Or Not $ACALL [ 0 ] Or Not $__G_VENUM [ 0 ] Then
+		$__G_VENUM = @error + 10
+	EndIf
+	DllCallbackFree ( $HENUMPROC )
+	If $__G_VENUM Then Return SetError ( $__G_VENUM , 0 , 0 )
+	__INC ( $__G_VENUM , + 4294967295 )
+	Return $__G_VENUM
+EndFunc
+Func _WINAPI_EXPANDENVIRONMENTSTRINGS ( $SSTRING )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "ExpandEnvironmentStringsW" , "wstr" , $SSTRING , "wstr" , "" , "dword" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETACTIVEWINDOW ( )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetActiveWindow" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETASYNCKEYSTATE ( $IKEY )
+	Local $ACALL = DllCall ( "user32.dll" , "short" , "GetAsyncKeyState" , "int" , $IKEY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCAPTURE ( )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "GetCapture" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCLIPBOARDSEQUENCENUMBER ( )
+	Local $ACALL = DllCall ( "user32.dll" , "dword" , "GetClipboardSequenceNumber" )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETCURRENTHWPROFILE ( )
+	Local $TAGHW_PROFILE_INFO = "dword DockInfo;wchar szHwProfileGuid[39];wchar szHwProfileName[80]"
+	Local $THWPI = DllStructCreate ( $TAGHW_PROFILE_INFO )
+	Local $ACALL = DllCall ( "advapi32.dll" , "bool" , "GetCurrentHwProfileW" , "struct*" , $THWPI )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 3 ]
+	For $I = 0 To 2
+		$ARET [ $I ] = DllStructGetData ( $THWPI , $I + 1 )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETDEFAULTPRINTER ( )
+	Local $ACALL = DllCall ( "winspool.drv" , "bool" , "GetDefaultPrinterW" , "wstr" , "" , "dword*" , 2048 )
+	If @error Then Return SetError ( @error , @extended , "" )
+	If Not $ACALL [ 0 ] Then Return SetError ( 10 , _WINAPI_GETLASTERROR ( ) , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_GETDLLDIRECTORY ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "GetDllDirectoryW" , "dword" , 4096 , "wstr" , "" )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETEFFECTIVECLIENTRECT ( $HWND , $ACTRL , $ISTART = 0 , $IEND = + 4294967295 )
+	If Not IsArray ( $ACTRL ) Then
+		Local $ICTRL = $ACTRL
+		Dim $ACTRL [ 1 ] = [ $ICTRL ]
+		$ISTART = 0
+		$IEND = 0
+	EndIf
+	If __CHECKERRORARRAYBOUNDS ( $ACTRL , $ISTART , $IEND ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ICOUNT = $IEND - $ISTART + 1
+	Local $TCTRL = DllStructCreate ( "uint64[" & ( $ICOUNT + 2 ) & "]" )
+	$ICOUNT = 2
+	For $I = $ISTART To $IEND
+		If IsHWnd ( $ACTRL [ $I ] ) Then
+			$ACTRL [ $I ] = _WINAPI_GETDLGCTRLID ( $ACTRL [ $I ] )
+		EndIf
+		DllStructSetData ( $TCTRL , 1 , _WINAPI_MAKEQWORD ( 1 , $ACTRL [ $I ] ) , $ICOUNT )
+		$ICOUNT += 1
+	Next
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	DllCall ( "comctl32.dll" , "none" , "GetEffectiveClientRect" , "hwnd" , $HWND , "struct*" , $TRECT , "struct*" , $TCTRL )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_GETHANDLEINFORMATION ( $HOBJECT )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetHandleInformation" , "handle" , $HOBJECT , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETIDLETIME ( )
+	Local $TLASTINPUTINFO = DllStructCreate ( "uint;dword" )
+	DllStructSetData ( $TLASTINPUTINFO , 1 , DllStructGetSize ( $TLASTINPUTINFO ) )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetLastInputInfo" , "struct*" , $TLASTINPUTINFO )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return _WINAPI_GETTICKCOUNT ( ) - DllStructGetData ( $TLASTINPUTINFO , 2 )
+EndFunc
+Func _WINAPI_GETKEYBOARDLAYOUT ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "dword" , "GetWindowThreadProcessId" , "hwnd" , $HWND , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	$ACALL = DllCall ( "user32.dll" , "handle" , "GetKeyboardLayout" , "dword" , $ACALL [ 0 ] )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETKEYBOARDLAYOUTLIST ( )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "GetKeyboardLayoutList" , "int" , 0 , "ptr" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	Local $TDATA = DllStructCreate ( "handle[" & $ACALL [ 0 ] & "]" )
+	$ACALL = DllCall ( "user32.dll" , "uint" , "GetKeyboardLayoutList" , "int" , $ACALL [ 0 ] , "struct*" , $TDATA )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ALIST [ $ACALL [ 0 ] + 1 ] = [ $ACALL [ 0 ] ]
+	For $I = 1 To $ALIST [ 0 ]
+		$ALIST [ $I ] = DllStructGetData ( $TDATA , 1 , $I )
+	Next
+	Return $ALIST
+EndFunc
+Func _WINAPI_GETKEYBOARDSTATE ( )
+	Local $TDATA = DllStructCreate ( "byte[256]" )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetKeyboardState" , "struct*" , $TDATA )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TDATA
+EndFunc
+Func _WINAPI_GETKEYBOARDTYPE ( $ITYPE )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "GetKeyboardType" , "int" , $ITYPE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETKEYNAMETEXT ( $LPARAM )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "GetKeyNameTextW" , "long" , $LPARAM , "wstr" , "" , "int" , 128 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_GETKEYSTATE ( $VKEY )
+	Local $ACALL = DllCall ( "user32.dll" , "short" , "GetKeyState" , "int" , $VKEY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETMODULEHANDLEEX ( $SMODULE , $IFLAGS = 0 )
+	If StringStripWS ( $SMODULE , $STR_STRIPLEADING + $STR_STRIPTRAILING ) = "" Then $SMODULE = Null
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetModuleHandleExW" , "dword" , $IFLAGS , "wstr" , $SMODULE , "ptr*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 3 ]
+EndFunc
+Func _WINAPI_GETMUILANGUAGE ( )
+	Local $ACALL = DllCall ( "comctl32.dll" , "word" , "GetMUILanguage" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETPERFORMANCEINFO ( )
+	Local $TPI = DllStructCreate ( "dword;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;ulong_ptr;dword;dword;dword" )
+	Local $ACALL = DllCall ( @SystemDir & "\psapi.dll" , "bool" , "GetPerformanceInfo" , "struct*" , $TPI , "dword" , DllStructGetSize ( $TPI ) )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 13 ]
+	For $I = 0 To 12
+		$ARET [ $I ] = DllStructGetData ( $TPI , $I + 2 )
+	Next
+	For $I = 0 To 8
+		$ARET [ $I ] *= $ARET [ 9 ]
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETPROCADDRESS ( $HMODULE , $VNAME )
+	Local $STYPE = "str"
+	If IsNumber ( $VNAME ) Then $STYPE = "word"
+	Local $ACALL = DllCall ( "kernel32.dll" , "ptr" , "GetProcAddress" , "handle" , $HMODULE , $STYPE , $VNAME )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETPHYSICALLYINSTALLEDSYSTEMMEMORY ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetPhysicallyInstalledSystemMemory" , "uint64*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_GETPROCESSSHUTDOWNPARAMETERS ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetProcessShutdownParameters" , "dword*" , 0 , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return SetExtended ( Number ( Not $ACALL [ 2 ] ) , $ACALL [ 1 ] )
+EndFunc
+Func _WINAPI_GETPROCESSWINDOWSTATION ( )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "GetProcessWindowStation" )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETPWRCAPABILITIES ( )
+	If Not __DLL ( "powrprof.dll" ) Then Return SetError ( 103 , 0 , 0 )
+	Local $TSPC = DllStructCreate ( "byte[18];byte[3];byte;byte[8];byte[2];ulong[6];ulong[5]" )
+	Local $ACALL = DllCall ( "powrprof.dll" , "boolean" , "GetPwrCapabilities" , "struct*" , $TSPC )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 25 ]
+	For $I = 0 To 17
+		$ARET [ $I ] = DllStructGetData ( $TSPC , 1 , $I + 1 )
+	Next
+	$ARET [ 18 ] = DllStructGetData ( $TSPC , 3 )
+	For $I = 19 To 20
+		$ARET [ $I ] = DllStructGetData ( $TSPC , 5 , $I + 4294967278 )
+	Next
+	For $I = 21 To 24
+		$ARET [ $I ] = DllStructGetData ( $TSPC , 7 , $I + 4294967276 )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETRAWINPUTBUFFER ( $PBUFFER , $ILENGTH )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "GetRawInputBuffer" , "struct*" , $PBUFFER , "uint*" , $ILENGTH , "uint" , DllStructGetSize ( DllStructCreate ( $TAGRAWINPUTHEADER ) ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If ( $ACALL [ 0 ] = 4294967295 ) Or ( Not $ACALL [ 1 ] ) Then Return SetError ( 10 , + 4294967295 , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETRAWINPUTBUFFERLENGTH ( )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "GetRawInputBuffer" , "ptr" , 0 , "uint*" , 0 , "uint" , DllStructGetSize ( DllStructCreate ( $TAGRAWINPUTHEADER ) ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] = 4294967295 Then Return SetError ( 10 , + 4294967295 , 0 )
+	Return $ACALL [ 2 ] * 8
+EndFunc
+Func _WINAPI_GETRAWINPUTDATA ( $HRAWINPUT , $PBUFFER , $ILENGTH , $IFLAG )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "GetRawInputData" , "handle" , $HRAWINPUT , "uint" , $IFLAG , "struct*" , $PBUFFER , "uint*" , $ILENGTH , "uint" , DllStructGetSize ( DllStructCreate ( $TAGRAWINPUTHEADER ) ) )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] = 4294967295 Then Return SetError ( 10 , + 4294967295 , 0 )
+	Return ( $ACALL [ 3 ] ? $ACALL [ 0 ] : $ACALL [ 4 ] )
+EndFunc
+Func _WINAPI_GETRAWINPUTDEVICEINFO ( $HDEVICE , $PBUFFER , $ILENGTH , $IFLAG )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "GetRawInputDeviceInfoW" , "handle" , $HDEVICE , "uint" , $IFLAG , "struct*" , $PBUFFER , "uint*" , $ILENGTH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] = 4294967295 Then Return SetError ( 10 , + 4294967295 , 0 )
+	Return ( $ACALL [ 3 ] ? $ACALL [ 0 ] : $ACALL [ 4 ] )
+EndFunc
+Func _WINAPI_GETREGISTEREDRAWINPUTDEVICES ( $PBUFFER , $ILENGTH )
+	Local $ILENGTHRAW = DllStructGetSize ( DllStructCreate ( $TAGRAWINPUTDEVICE ) )
+	Local $ACALL = DllCall ( "user32.dll" , "uint" , "GetRegisteredRawInputDevices" , "struct*" , $PBUFFER , "uint*" , Floor ( $ILENGTH / $ILENGTHRAW ) , "uint" , $ILENGTHRAW )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	If $ACALL [ 0 ] = 4294967295 Then
+		Local $ILASTERROR = _WINAPI_GETLASTERROR ( )
+		If $ILASTERROR = 122 Then Return SetExtended ( $ILASTERROR , $ACALL [ 2 ] * $ILENGTHRAW )
+		Return SetError ( 10 , $ILASTERROR , 0 )
+	EndIf
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETSTARTUPINFO ( )
+	Local $TSI = DllStructCreate ( $TAGSTARTUPINFO )
+	DllCall ( "kernel32.dll" , "none" , "GetStartupInfoW" , "struct*" , $TSI )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $TSI
+EndFunc
+Func _WINAPI_GETSYSTEMDEPPOLICY ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "uint" , "GetSystemDEPPolicy" )
+	If @error Then Return SetError ( @error , @extended , + 4294967295 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETSYSTEMINFO ( )
+	Local $SPROC
+	If _WINAPI_ISWOW64PROCESS ( ) Then
+		$SPROC = "GetNativeSystemInfo"
+	Else
+		$SPROC = "GetSystemInfo"
+	EndIf
+	Local Const $TAGSYSTEMINFO = "struct;word ProcessorArchitecture;word Reserved; endstruct;dword PageSize;" & "ptr MinimumApplicationAddress;ptr MaximumApplicationAddress;dword_ptr ActiveProcessorMask;dword NumberOfProcessors;" & "dword ProcessorType;dword AllocationGranularity;word ProcessorLevel;word ProcessorRevision"
+	Local $TSYSTEMINFO = DllStructCreate ( $TAGSYSTEMINFO )
+	DllCall ( "kernel32.dll" , "none" , $SPROC , "struct*" , $TSYSTEMINFO )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Local $ARET [ 10 ]
+	$ARET [ 0 ] = DllStructGetData ( $TSYSTEMINFO , 1 )
+	For $I = 1 To 9
+		$ARET [ $I ] = DllStructGetData ( $TSYSTEMINFO , $I + 2 )
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETSYSTEMPOWERSTATUS ( )
+	Local $TAGSYSTEM_POWER_STATUS = "byte ACLineStatus;byte BatteryFlag;byte BatteryLifePercent;byte Reserved1;" & "int BatteryLifeTime;int BatteryFullLifeTime"
+	Local $TSYSTEM_POWER_STATUS = DllStructCreate ( $TAGSYSTEM_POWER_STATUS )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetSystemPowerStatus" , "struct*" , $TSYSTEM_POWER_STATUS )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 5 ]
+	$ARET [ 0 ] = DllStructGetData ( $TSYSTEM_POWER_STATUS , 1 )
+	$ARET [ 1 ] = DllStructGetData ( $TSYSTEM_POWER_STATUS , 2 )
+	$ARET [ 2 ] = DllStructGetData ( $TSYSTEM_POWER_STATUS , 3 )
+	$ARET [ 3 ] = DllStructGetData ( $TSYSTEM_POWER_STATUS , 5 )
+	$ARET [ 4 ] = DllStructGetData ( $TSYSTEM_POWER_STATUS , 6 )
+	Return $ARET
+EndFunc
+Func _WINAPI_GETSYSTEMTIMES ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetSystemTimes" , "uint64*" , 0 , "uint64*" , 0 , "uint64*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $ARET [ 3 ]
+	For $I = 0 To 2
+		$ARET [ $I ] = $ACALL [ $I + 1 ]
+	Next
+	Return $ARET
+EndFunc
+Func _WINAPI_GETSYSTEMWOW64DIRECTORY ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "uint" , "GetSystemWow64DirectoryW" , "wstr" , "" , "uint" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , _WINAPI_GETLASTERROR ( ) , "" )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_GETTICKCOUNT ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "dword" , "GetTickCount" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETTICKCOUNT64 ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "uint64" , "GetTickCount64" )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_GETUSEROBJECTINFORMATION ( $HOBJECT , $IINDEX )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "GetUserObjectInformationW" , "handle" , $HOBJECT , "int" , $IINDEX , "ptr" , 0 , "dword" , 0 , "dword*" , 0 )
+	If @error Or Not $ACALL [ 5 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $TDATA
+	Switch $IINDEX
+	Case 1
+		$TDATA = DllStructCreate ( $TAGUSEROBJECTFLAGS )
+	Case 5 , 6
+		$TDATA = DllStructCreate ( "uint" )
+	Case 2 , 3
+		$TDATA = DllStructCreate ( "wchar[" & $ACALL [ 5 ] & "]" )
+	Case 4
+		$TDATA = DllStructCreate ( "byte[" & $ACALL [ 5 ] & "]" )
+Case Else
+		Return SetError ( 20 , 0 , 0 )
+	EndSwitch
+	$ACALL = DllCall ( "user32.dll" , "bool" , "GetUserObjectInformationW" , "handle" , $HOBJECT , "int" , $IINDEX , "struct*" , $TDATA , "dword" , DllStructGetSize ( $TDATA ) , "dword*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 30 , @extended , 0 )
+	Switch $IINDEX
+	Case 1 , 4
+		Return $TDATA
+Case Else
+		Return DllStructGetData ( $TDATA , 1 )
+	EndSwitch
+EndFunc
+Func _WINAPI_GETVERSIONEX ( )
+	Local $TOSVERSIONINFOEX = DllStructCreate ( $TAGOSVERSIONINFOEX )
+	DllStructSetData ( $TOSVERSIONINFOEX , "OSVersionInfoSize" , DllStructGetSize ( $TOSVERSIONINFOEX ) )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "GetVersionExW" , "struct*" , $TOSVERSIONINFOEX )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TOSVERSIONINFOEX
+EndFunc
+Func _WINAPI_GETWORKAREA ( )
+	Local $TRECT = DllStructCreate ( $TAGRECT )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "SystemParametersInfo" , "uint" , 48 , "uint" , 0 , "struct*" , $TRECT , "uint" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $TRECT
+EndFunc
+Func _WINAPI_INITMUILANGUAGE ( $ILANGUAGE )
+	DllCall ( "comctl32.dll" , "none" , "InitMUILanguage" , "word" , $ILANGUAGE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_ISLOADKBLAYOUT ( $ILANGUAGE )
+	Local $ALAYOUT = _WINAPI_GETKEYBOARDLAYOUTLIST ( )
+	If @error Then Return SetError ( @error , @extended , False )
+	For $I = 1 To $ALAYOUT [ 0 ]
+		If $ALAYOUT [ $I ] = $ILANGUAGE Then Return True
+	Next
+	Return False
+EndFunc
+Func _WINAPI_ISPROCESSORFEATUREPRESENT ( $IFEATURE )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "IsProcessorFeaturePresent" , "dword" , $IFEATURE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_ISWINDOWENABLED ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "IsWindowEnabled" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_KEYBD_EVENT ( $VKEY , $IFLAGS , $ISCANCODE = 0 , $IEXTRAINFO = 0 )
+	DllCall ( "user32.dll" , "none" , "keybd_event" , "byte" , $VKEY , "byte" , $ISCANCODE , "dword" , $IFLAGS , "ulong_ptr" , $IEXTRAINFO )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_LOADKEYBOARDLAYOUT ( $ILANGUAGE , $IFLAG = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "LoadKeyboardLayoutW" , "wstr" , Hex ( $ILANGUAGE , 8 ) , "uint" , $IFLAG )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_LOCKWORKSTATION ( )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "LockWorkStation" )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MAPVIRTUALKEY ( $ICODE , $ITYPE , $HLOCALE = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "INT" , "MapVirtualKeyExW" , "uint" , $ICODE , "uint" , $ITYPE , "uint_ptr" , $HLOCALE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_MOUSE_EVENT ( $IFLAGS , $IX = 0 , $IY = 0 , $IDATA = 0 , $IEXTRAINFO = 0 )
+	DllCall ( "user32.dll" , "none" , "mouse_event" , "dword" , $IFLAGS , "dword" , $IX , "dword" , $IY , "dword" , $IDATA , "ulong_ptr" , $IEXTRAINFO )
+	If @error Then Return SetError ( @error , @extended )
+EndFunc
+Func _WINAPI_OPENDESKTOP ( $SNAME , $IACCESS = 0 , $IFLAGS = 0 , $BINHERIT = False )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "OpenDesktopW" , "wstr" , $SNAME , "dword" , $IFLAGS , "bool" , $BINHERIT , "dword" , $IACCESS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OPENINPUTDESKTOP ( $IACCESS = 0 , $IFLAGS = 0 , $BINHERIT = False )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "OpenInputDesktop" , "dword" , $IFLAGS , "bool" , $BINHERIT , "dword" , $IACCESS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_OPENWINDOWSTATION ( $SNAME , $IACCESS = 0 , $BINHERIT = False )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "OpenWindowStationW" , "wstr" , $SNAME , "bool" , $BINHERIT , "dword" , $IACCESS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_QUERYPERFORMANCECOUNTER ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "QueryPerformanceCounter" , "int64*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_QUERYPERFORMANCEFREQUENCY ( )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "QueryPerformanceFrequency" , "int64*" , 0 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , 0 )
+	Return $ACALL [ 1 ]
+EndFunc
+Func _WINAPI_REGISTERHOTKEY ( $HWND , $IID , $IMODIFIERS , $VKEY )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "RegisterHotKey" , "hwnd" , $HWND , "int" , $IID , "uint" , $IMODIFIERS , "uint" , $VKEY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REGISTERPOWERSETTINGNOTIFICATION ( $HWND , $SGUID )
+	Local $TGUID = DllStructCreate ( $TAGGUID )
+	Local $ACALL = DllCall ( "ole32.dll" , "long" , "CLSIDFromString" , "wstr" , $SGUID , "struct*" , $TGUID )
+	If @error Or $ACALL [ 0 ] Then Return SetError ( @error + 20 , @extended , 0 )
+	$ACALL = DllCall ( "user32.dll" , "handle" , "RegisterPowerSettingNotification" , "handle" , $HWND , "struct*" , $TGUID , "dword" , 0 )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REGISTERRAWINPUTDEVICES ( $PADEVICE , $ICOUNT = 1 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "RegisterRawInputDevices" , "struct*" , $PADEVICE , "uint" , $ICOUNT , "uint" , DllStructGetSize ( DllStructCreate ( $TAGRAWINPUTDEVICE ) ) )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_RELEASECAPTURE ( )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ReleaseCapture" )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_REMOVECLIPBOARDFORMATLISTENER ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "RemoveClipboardFormatListener" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETACTIVEWINDOW ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "SetActiveWindow" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETCAPTURE ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "hwnd" , "SetCapture" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETDEFAULTPRINTER ( $SPRINTER )
+	Local $ACALL = DllCall ( "winspool.drv" , "bool" , "SetDefaultPrinterW" , "wstr" , $SPRINTER )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETDLLDIRECTORY ( $SDIRPATH = Default )
+	If $SDIRPATH = Default Then $SDIRPATH = Null
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "SetDllDirectoryW" , "wstr" , $SDIRPATH )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETKEYBOARDLAYOUT ( $HWND , $ILANGUAGE , $IFLAGS = 0 )
+	If Not _WINAPI_ISWINDOW ( $HWND ) Then Return SetError ( @error + 10 , @extended , 0 )
+	Local $HLOCALE = 0
+	If $ILANGUAGE Then
+		$HLOCALE = _WINAPI_LOADKEYBOARDLAYOUT ( $ILANGUAGE )
+		If Not $HLOCALE Then Return SetError ( 10 , 0 , 0 )
+	EndIf
+	Local Const $WM_INPUTLANGCHANGEREQUEST = 80
+	DllCall ( "user32.dll" , "none" , "SendMessage" , "hwnd" , $HWND , "uint" , $WM_INPUTLANGCHANGEREQUEST , "uint" , $IFLAGS , "uint_ptr" , $HLOCALE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return 1
+EndFunc
+Func _WINAPI_SETKEYBOARDSTATE ( ByRef $TSTATE )
+	Local $ACALL = DllCall ( "user32.dll" , "int" , "SetKeyboardState" , "struct*" , $TSTATE )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETPROCESSSHUTDOWNPARAMETERS ( $ILEVEL , $BDIALOG = False )
+	Local $ACALL = DllCall ( "kernel32.dll" , "bool" , "SetProcessShutdownParameters" , "dword" , $ILEVEL , "dword" , Not $BDIALOG )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETPROCESSWINDOWSTATION ( $HSTATION )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetProcessWindowStation" , "handle" , $HSTATION )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETUSEROBJECTINFORMATION ( $HOBJECT , $IINDEX , ByRef $TDATA )
+	If $IINDEX <> 1 Then Return SetError ( 10 , 0 , False )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SetUserObjectInformationW" , "handle" , $HOBJECT , "int" , 1 , "struct*" , $TDATA , "dword" , DllStructGetSize ( $TDATA ) )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINDOWSHOOKEX ( $IHOOK , $PPROC , $HDLL , $ITHREADID = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "SetWindowsHookEx" , "int" , $IHOOK , "ptr" , $PPROC , "handle" , $HDLL , "dword" , $ITHREADID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SETWINEVENTHOOK ( $IEVENTMIN , $IEVENTMAX , $PEVENTPROC , $IPID = 0 , $ITHREADID = 0 , $IFLAGS = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "handle" , "SetWinEventHook" , "uint" , $IEVENTMIN , "uint" , $IEVENTMAX , "ptr" , 0 , "ptr" , $PEVENTPROC , "dword" , $IPID , "dword" , $ITHREADID , "uint" , $IFLAGS )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SHUTDOWNBLOCKREASONCREATE ( $HWND , $STEXT )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ShutdownBlockReasonCreate" , "hwnd" , $HWND , "wstr" , $STEXT )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SHUTDOWNBLOCKREASONDESTROY ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ShutdownBlockReasonDestroy" , "hwnd" , $HWND )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SHUTDOWNBLOCKREASONQUERY ( $HWND )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "ShutdownBlockReasonQuery" , "hwnd" , $HWND , "wstr" , "" , "dword*" , 4096 )
+	If @error Or Not $ACALL [ 0 ] Then Return SetError ( @error + 10 , @extended , "" )
+	Return $ACALL [ 2 ]
+EndFunc
+Func _WINAPI_SWITCHDESKTOP ( $HDESKTOP )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SwitchDesktop" , "handle" , $HDESKTOP )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_SYSTEMPARAMETERSINFO ( $IACTION , $IPARAM = 0 , $VPARAM = 0 , $IWININI = 0 )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "SystemParametersInfoW" , "uint" , $IACTION , "uint" , $IPARAM , "struct*" , $VPARAM , "uint" , $IWININI )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_TRACKMOUSEEVENT ( $HWND , $IFLAGS , $ITIME = + 4294967295 )
+	Local $TTME = DllStructCreate ( "dword;dword;hwnd;dword" )
+	DllStructSetData ( $TTME , 1 , DllStructGetSize ( $TTME ) )
+	DllStructSetData ( $TTME , 2 , $IFLAGS )
+	DllStructSetData ( $TTME , 3 , $HWND )
+	DllStructSetData ( $TTME , 4 , $ITIME )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "TrackMouseEvent" , "struct*" , $TTME )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UNHOOKWINDOWSHOOKEX ( $HHOOK )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UnhookWindowsHookEx" , "handle" , $HHOOK )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UNHOOKWINEVENT ( $HEVENTHOOK )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UnhookWinEvent" , "handle" , $HEVENTHOOK )
+	If @error Then Return SetError ( @error , @extended , False )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UNLOADKEYBOARDLAYOUT ( $HLOCALE )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UnloadKeyboardLayout" , "handle" , $HLOCALE )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UNREGISTERHOTKEY ( $HWND , $IID )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UnregisterHotKey" , "hwnd" , $HWND , "int" , $IID )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func _WINAPI_UNREGISTERPOWERSETTINGNOTIFICATION ( $HNOTIFY )
+	Local $ACALL = DllCall ( "user32.dll" , "bool" , "UnregisterPowerSettingNotification" , "handle" , $HNOTIFY )
+	If @error Then Return SetError ( @error , @extended , 0 )
+	Return $ACALL [ 0 ]
+EndFunc
+Func __ENUMPAGEFILESPROC ( $ISIZE , $PINFO , $PFILE )
+	Local $TEPFI = DllStructCreate ( "dword;dword;ulong_ptr;ulong_ptr;ulong_ptr" , $PINFO )
+	__INC ( $__G_VENUM )
+	$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ 0 ] = DllStructGetData ( DllStructCreate ( "wchar[" & ( _WINAPI_STRLEN ( $PFILE ) + 1 ) & "]" , $PFILE ) , 1 )
+	For $I = 1 To 3
+		$__G_VENUM [ $__G_VENUM [ 0 ] [ 0 ] ] [ $I ] = DllStructGetData ( $TEPFI , $I + 2 ) * $ISIZE
+	Next
+	Return 1
+EndFunc
+#EndRegion Public Functions
+If _SINGLETON ( "Adobe-GenP-3.0" , 1 ) = 0 Then
+	Exit
+EndIf
+Global $A_IDPATH [ 0 ] [ 1 ] , $A_IDPATHNULL [ 0 ] [ 1 ]
+Global $MYHGUI , $IDMSG , $IDLISTVIEW , $IDBUTTON_SEARCH , $IDBUTTONCUSTOMFOLDER , $IDBTNCURE , $TIMESTAMP
+Global $MYDEFPATH = "C:\Program Files\Adobe"
+Global $MYREGEXPGLOBALPATTERNSEARCHCOUNT = 0 , $COUNT = 0 , $MYOWNIDPROGRESS
+Global $AOUTHEXGLOBALARRAY [ 0 ] , $ANULLARRAY [ 0 ] , $AINHEXARRAY [ 0 ]
+Global $MYFILETOPARSE = "" , $MYFILETOPARSSWEATPEA = "" , $MYFILETOPARSEEACLIENT = ""
+MAINGUI ( )
+WinWait ( "Adobe-GenP-3.0" , "" , 5 )
+$HWNDPARENTWINDOW = WinGetHandle ( "Adobe-GenP-3.0" )
+$HWND_PROGRESS = ControlGetHandle ( $HWNDPARENTWINDOW , "" , "msctls_progress321" )
+While 1
+	$IDMSG = GUIGetMsg ( )
+	Select
+	Case $IDMSG = $GUI_EVENT_CLOSE
+		Local $SPIDHANDLE = ProcessExists ( "GenPPP-3.0.exe" )
+		ProcessClose ( $SPIDHANDLE )
+		_GUICTRLLISTVIEW_DELETEALLITEMS ( GUICtrlGetHandle ( $IDLISTVIEW ) )
+		GUIDelete ( )
+		Exit
+	Case $IDMSG = $IDBUTTON_SEARCH
+		GUICtrlSetState ( $IDLISTVIEW , 128 )
+		GUICtrlSetState ( $IDBUTTON_SEARCH , 128 )
+		GUICtrlSetState ( $IDBTNCURE , 128 )
+		GUICtrlSetState ( $IDBUTTONCUSTOMFOLDER , 128 )
+		_GUICTRLLISTVIEW_DELETEALLITEMS ( GUICtrlGetHandle ( $IDLISTVIEW ) )
+		_GUICTRLLISTVIEW_ADDITEM ( $IDLISTVIEW , "" , 0 )
+		_GUICTRLLISTVIEW_ADDITEM ( $IDLISTVIEW , "" , 1 )
+		_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 0 , "Searching for files. Be patient, please" , 1 )
+		_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 1 , "Press 'Esc' to terminate GenP if you want" , 1 )
+		$A_IDPATH = $A_IDPATHNULL
+		$TIMESTAMP = TimerInit ( )
+		Local $ASIZE = DirGetSize ( $MYDEFPATH , $DIR_EXTENDED )
+		RECURSIVEFILESEARCH ( $MYDEFPATH , 0 , $ASIZE [ 1 ] )
+		Sleep ( 100 )
+		PROGRESSWRITE ( 0 )
+		_GUICTRLLISTVIEW_DELETEALLITEMS ( GUICtrlGetHandle ( $IDLISTVIEW ) )
+		FILLLISTVIEWWITHARRAY ( )
+		For $II = 0 To _GUICTRLLISTVIEW_GETITEMCOUNT ( $IDLISTVIEW ) + 4294967295
+			_GUICTRLLISTVIEW_SETITEMCHECKED ( $IDLISTVIEW , $II )
+		Next
+		GUICtrlSetState ( $IDLISTVIEW , 64 )
+		GUICtrlSetState ( $IDBUTTON_SEARCH , 64 )
+		GUICtrlSetState ( $IDBTNCURE , 64 )
+		GUICtrlSetState ( $IDBUTTONCUSTOMFOLDER , 64 )
+		GUICtrlSetState ( $IDBTNCURE , 256 )
+	Case $IDMSG = $IDBUTTONCUSTOMFOLDER
+		MYFILEOPENDIALOG ( )
+		GUICtrlSetState ( $IDBUTTON_SEARCH , 256 )
+	Case $IDMSG = $IDBTNCURE
+		GUICtrlSetState ( $IDLISTVIEW , 128 )
+		GUICtrlSetState ( $IDBUTTON_SEARCH , 128 )
+		GUICtrlSetState ( $IDBTNCURE , 128 )
+		GUICtrlSetState ( $IDBUTTONCUSTOMFOLDER , 128 )
+		For $II = 0 To _GUICTRLLISTVIEW_GETITEMCOUNT ( $IDLISTVIEW ) + 4294967295
+			If _GUICTRLLISTVIEW_GETITEMCHECKED ( $IDLISTVIEW , $II ) = True Then
+				_GUICTRLLISTVIEW_SETITEMSELECTED ( $IDLISTVIEW , $II )
+				Local $ITEMFROMLIST = _GUICTRLLISTVIEW_GETITEMTEXT ( $IDLISTVIEW , $II , 1 )
+				MYGLOBALPATTERNSEARCH ( $ITEMFROMLIST )
+				PROGRESSWRITE ( 0 )
+				Sleep ( 100 )
+				MEMOWRITE ( "Current path" & @CRLF & "---" & @CRLF & $ITEMFROMLIST & @CRLF & "---" & @CRLF & "medication :)" )
+				Sleep ( 100 )
+				_GUICTRLLISTVIEW_SCROLL ( $IDLISTVIEW , 0 , + 4294957296 )
+				MYGLOBALPATTERNPATCH ( _GUICTRLLISTVIEW_GETITEMTEXT ( $IDLISTVIEW , $II , 1 ) , $AOUTHEXGLOBALARRAY )
+				_GUICTRLLISTVIEW_SCROLL ( $IDLISTVIEW , 0 , 10 )
+				Sleep ( 100 )
+			EndIf
+			_GUICTRLLISTVIEW_SETITEMCHECKED ( $IDLISTVIEW , $II , False )
+		Next
+		_GUICTRLLISTVIEW_DELETEALLITEMS ( GUICtrlGetHandle ( $IDLISTVIEW ) )
+		$MYDEFPATH = "C:\Program Files\Adobe"
+		MEMOWRITE ( "Current path" & @CRLF & "---" & @CRLF & $MYDEFPATH & @CRLF & "---" & @CRLF & "waiting for user action" )
+		GUICtrlSetState ( $IDLISTVIEW , 64 )
+		GUICtrlSetState ( $IDBUTTON_SEARCH , 64 )
+		GUICtrlSetState ( $IDBUTTONCUSTOMFOLDER , 64 )
+		GUICtrlSetState ( $IDBTNCURE , 128 )
+		GUICtrlSetState ( $IDBUTTON_SEARCH , 256 )
+		FILLLISTVIEWWITHINFO ( )
+	EndSelect
+	Sleep ( 10 )
+WEnd
+Func MAINGUI ( )
+	$MYHGUI = GUICreate ( "Adobe-GenP-3.0" , 540 , 600 )
+	$IDLISTVIEW = GUICtrlCreateListView ( "" , 20 , 20 , 500 , 305 )
+	_GUICTRLLISTVIEW_SETEXTENDEDLISTVIEWSTYLE ( $IDLISTVIEW , BitOR ( $LVS_EX_FULLROWSELECT , $LVS_EX_CHECKBOXES ) )
+	_GUICTRLLISTVIEW_SETITEMCOUNT ( $IDLISTVIEW , UBound ( $A_IDPATH ) )
+	_GUICTRLLISTVIEW_ADDCOLUMN ( $IDLISTVIEW , "Id" , 50 )
+	_GUICTRLLISTVIEW_ADDCOLUMN ( $IDLISTVIEW , "These files we will try to patch" , 600 )
+	FILLLISTVIEWWITHINFO ( )
+	$IDBUTTONCUSTOMFOLDER = GUICtrlCreateButton ( "" , 180 , 380 , 80 , 20 )
+	GUICtrlSetData ( $IDBUTTONCUSTOMFOLDER , "Custom Path" )
+	GUICtrlSetTip ( + 4294967295 , "Select Path that You want -> press Search -> press Pill button" )
+	$IDBUTTON_SEARCH = GUICtrlCreateButton ( "Search Files" , 285 , 380 , 80 , 20 )
+	GUICtrlSetTip ( + 4294967295 , "Let GenP find Apps automatically in current path" )
+	$MYOWNIDPROGRESS = GUICtrlCreateProgress ( 180 , 350 , 185 , 10 , $PBS_SMOOTHREVERSE )
+	Global $G_IDMEMO = GUICtrlCreateEdit ( "" , 20 , 420 , 500 , 90 , BitOR ( $ES_READONLY , $ES_CENTER , $WS_DISABLED ) )
+	MEMOWRITE ( "Current path" & @CRLF & "---" & @CRLF & $MYDEFPATH & @CRLF & "---" & @CRLF & "waiting for user action" )
+	$IDBTNCURE = GUICtrlCreateButton ( "" , 244 , 525 , 56 , 56 , $BS_BITMAP )
+	_GUICTRLBUTTON_SETIMAGE ( $IDBTNCURE , @ScriptDir & "\ICONS\Cure.bmp" )
+	GUICtrlSetTip ( + 4294967295 , "Cure" )
+	GUICtrlSetState ( $IDBTNCURE , 128 )
+	GUICtrlSetState ( $IDBUTTON_SEARCH , 256 )
+	GUISetState ( @SW_SHOW )
+EndFunc
+Func RECURSIVEFILESEARCH ( $INSTARTDIR , $DEPTH , $FILECOUNT )
+	Local $STARTDIR = $INSTARTDIR & "\"
+	$HSEARCH = FileFindFirstFile ( $STARTDIR & "*.*" )
+	If @error Then Return
+	While 1
+		Local $NEXT = FileFindNextFile ( $HSEARCH )
+		If @error Then ExitLoop
+		If StringInStr ( FileGetAttrib ( $STARTDIR & $NEXT ) , "D" ) Then
+			RECURSIVEFILESEARCH ( $STARTDIR & $NEXT , $DEPTH + 1 , $FILECOUNT )
+		Else
+			Local $IPATH = $STARTDIR & $NEXT
+			If StringInStr ( $IPATH , "AppsPanelBL.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Acrobat.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			Local $IPATH = $STARTDIR & $NEXT
+			If StringInStr ( $IPATH , "acrodistdll.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			Local $IPATH = $STARTDIR & $NEXT
+			If StringInStr ( $IPATH , "acrotray.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Aero.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "AfterFXLib.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Animate.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "auui.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "bridge.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "animator.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "dreamweaver.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "illustrator.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "public.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "lightroomcc.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "lightroom.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Encoder.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "photoshop.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "registration.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "euclid-core" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "XD.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "gemini_uwp_bridge.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "ngl-lib.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Designer.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Modeler.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Painter.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Sampler.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "Stager.exe" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "SweetPeaSupport.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+			If StringInStr ( $IPATH , "dvaappsupport.dll" ) Then
+				If Not StringInStr ( $IPATH , ".bak" ) Then
+					_ARRAYADD ( $A_IDPATH , $IPATH )
+				EndIf
+			EndIf
+		EndIf
+	WEnd
+	MEMOWRITE ( "Searching in " & $FILECOUNT & " files" & @CRLF & "---" & @CRLF & "elapsed : " & Round ( TimerDiff ( $TIMESTAMP ) / 1000 , 0 ) & " second(s)" & @CRLF & "---" & @CRLF & $INSTARTDIR )
+	PROGRESSWRITE ( 100 )
+	FileClose ( $HSEARCH )
+EndFunc
+Func FILLLISTVIEWWITHINFO ( )
+	For $I = 0 To 25
+		_GUICTRLLISTVIEW_ADDITEM ( $IDLISTVIEW , "" , $I )
+	Next
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 0 , "How to use GenP" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 1 , "If you want to patch all Adobe apps in default location:" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 2 , "Press 'Search Files' - wait until GenP finds all files" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 3 , "Press 'Pill Button' - wait until GenP will do it's job" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 4 , "-------------------------------------------------------------" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 5 , "One Adobe app at a time" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 6 , "Press 'Custom path' - Select folder that you want for ex:" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 7 , "C:\Program Files\WindowsApps\Adobe.Fresco_* or" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 8 , "C:\Program Files\WindowsApps\Adobe.XD_* or" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 9 , "C:\Program Files\Adobe\Adobe Photoshop *" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 10 , "Press 'Search Files' - wait until GenP finds all files" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 11 , "Press 'Pill Button' - wait until GenP will do it's job" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 12 , "-------------------------------------------------------------" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 13 , "What's new in GenP" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 14 , "Can patch apps from 2019 version to current and future releases" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 15 , "Automatic search in selected folder" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 16 , "New patching logic" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 17 , "Support for all Substance products" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 18 , "-------------------------------------------------------------" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 19 , "Known issues:" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 20 , "1. InDesign and InCopy will have high Cpu usage" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 21 , "2. Animate will have some problems with home screen if Signed Out" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 22 , "3. Lightroom Classic will partially work if Signed Out" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 23 , "4. Acrobat,Rush,Lightroom Online,Photosop Express,Creative Cloud App" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 24 , "   won't be patched or fully unlocked" , 1 )
+	_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 25 , "   Maybe in next release i'll find solution for them" , 1 )
+EndFunc
+Func FILLLISTVIEWWITHARRAY ( )
+	If UBound ( $A_IDPATH ) > 0 Then
+		Global $AITEMS [ UBound ( $A_IDPATH ) ] [ 2 ]
+		For $II = 0 To UBound ( $AITEMS ) + 4294967295
+			$AITEMS [ $II ] [ 0 ] = $II
+			$AITEMS [ $II ] [ 1 ] = $A_IDPATH [ $II ] [ 0 ]
+		Next
+		_GUICTRLLISTVIEW_ADDARRAY ( $IDLISTVIEW , $AITEMS )
+		MEMOWRITE ( UBound ( $A_IDPATH ) & " File(s) were found in " & Round ( TimerDiff ( $TIMESTAMP ) / 1000 , 0 ) & " second(s) at:" & @CRLF & "---" & @CRLF & $MYDEFPATH & @CRLF & "---" & @CRLF & "Press the Pill button" )
+	Else
+		MEMOWRITE ( "Nothing was found in" & @CRLF & "---" & @CRLF & $MYDEFPATH & @CRLF & "---" & @CRLF & "waiting for user action" )
+	EndIf
+EndFunc
+Func MEMOWRITE ( $SMESSAGE )
+	GUICtrlSetData ( $G_IDMEMO , $SMESSAGE )
+EndFunc
+Func PROGRESSWRITE ( $MSG_PROGRESS )
+	_SENDMESSAGE ( $HWND_PROGRESS , $PBM_SETPOS , $MSG_PROGRESS )
+EndFunc
+Func MYFILEOPENDIALOG ( )
+	Local Const $SMESSAGE = "Select a Path"
+	Local $MYTEMPPATH = FileSelectFolder ( $SMESSAGE , $MYDEFPATH , 0 , $MYDEFPATH , $MYHGUI )
+	If @error Then
+		MEMOWRITE ( "Current path" & @CRLF & "---" & @CRLF & $MYDEFPATH & @CRLF & "---" & @CRLF & "waiting for user action" )
+	Else
+		GUICtrlSetState ( $IDBTNCURE , 128 )
+		$MYDEFPATH = $MYTEMPPATH
+		_GUICTRLLISTVIEW_DELETEALLITEMS ( GUICtrlGetHandle ( $IDLISTVIEW ) )
+		_GUICTRLLISTVIEW_ADDITEM ( $IDLISTVIEW , "" , 0 )
+		_GUICTRLLISTVIEW_ADDITEM ( $IDLISTVIEW , "" , 1 )
+		_GUICTRLLISTVIEW_ADDITEM ( $IDLISTVIEW , "" , 2 )
+		_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 0 , $MYDEFPATH , 1 )
+		_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 1 , "Press 'Search Files' - wait until GenP finds all files" , 1 )
+		_GUICTRLLISTVIEW_ADDSUBITEM ( $IDLISTVIEW , 2 , "Press 'Pill Button' - wait until GenP will do it's job" , 1 )
+		MEMOWRITE ( "Current path" & @CRLF & "---" & @CRLF & $MYDEFPATH & @CRLF & "---" & @CRLF & "Press the Search button" )
+	EndIf
+EndFunc
+Func _PROCESSCLOSEEX ( $SPIDHANDLE )
+	If IsString ( $SPIDHANDLE ) Then $SPIDHANDLE = ProcessExists ( $SPIDHANDLE )
+	If Not $SPIDHANDLE Then Return SetError ( 1 , 0 , 0 )
+	Return Run ( @ComSpec & " /c taskkill /F /PID " & $SPIDHANDLE & " /T" , @SystemDir , @SW_HIDE )
+EndFunc
+Func SHOWESCMESSAGE ( )
+	Local $ISTATE = WinGetState ( $MYHGUI )
+	If $ISTATE = 15 Then
+		Local $EXITMESSAGE = MsgBox ( 20 , "" , "Do you want to terminate ?" )
+		If $EXITMESSAGE = 6 Then
+			Exit
+		Else
+		EndIf
+	EndIf
+EndFunc
+Func MYGLOBALPATTERNSEARCH ( $MYFILETOPARSE )
+	Sleep ( 100 )
+	ConsoleWrite ( $MYFILETOPARSE & @CRLF )
+	$AINHEXARRAY = $ANULLARRAY
+	$AOUTHEXGLOBALARRAY = $ANULLARRAY
+	PROGRESSWRITE ( 0 )
+	$MYREGEXPGLOBALPATTERNSEARCHCOUNT = 0
+	$COUNT = 15
+	MEMOWRITE ( $MYFILETOPARSE & @CRLF & "---" & @CRLF & "Preparing to Analyze" & @CRLF & "---" & @CRLF & "*****" )
+	If StringInStr ( $MYFILETOPARSE , "AppsPanelBL.dll" ) > 0 Or StringInStr ( $MYFILETOPARSE , "SweetPeaSupport.dll" ) > 0 Or StringInStr ( $MYFILETOPARSE , "dvaappsupport.dll" ) > 0 Or StringInStr ( $MYFILETOPARSE , "bridge.exe" ) > 0 Then
+		If StringInStr ( $MYFILETOPARSE , "AppsPanelBL.dll" ) > 0 Then
+			MsgBox ( $MB_SYSTEMMODAL , "Ups..." , "Not Implemented" )
+		EndIf
+		If StringInStr ( $MYFILETOPARSE , "SweetPeaSupport.dll" ) > 0 Then
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNHEVCMPEGENABLER1S , $IPATTERNHEVCMPEGENABLER1R , "$iPatternHevcMpegEnabler1S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNHEVCMPEGENABLER2S , $IPATTERNHEVCMPEGENABLER2R , "$iPatternHevcMpegEnabler2S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNHEVCMPEGENABLER3S , $IPATTERNHEVCMPEGENABLER3R , "$iPatternHevcMpegEnabler3S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNHEVCMPEGENABLER4S , $IPATTERNHEVCMPEGENABLER4R , "$iPatternHevcMpegEnabler4S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNHEVCMPEGENABLER5S , $IPATTERNHEVCMPEGENABLER5R , "$iPatternHevcMpegEnabler5S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNHEVCMPEGENABLER6S , $IPATTERNHEVCMPEGENABLER6R , "$iPatternHevcMpegEnabler6S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNHEVCMPEGENABLER7S , $IPATTERNHEVCMPEGENABLER7R , "$iPatternHevcMpegEnabler7S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNHEVCMPEGENABLER8S , $IPATTERNHEVCMPEGENABLER8R , "$iPatternHevcMpegEnabler8S" )
+		EndIf
+		If StringInStr ( $MYFILETOPARSE , "dvaappsupport.dll" ) > 0 Then
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNTEAMPROJECTENABLERAS , $IPATTERNTEAMPROJECTENABLERAR , "$iPatternTeamProjectEnablerAS" )
+		EndIf
+		If StringInStr ( $MYFILETOPARSE , "bridge.exe" ) > 0 Then
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNPROFILE_EXPIREDS , $IPATTERNPROFILE_EXPIREDR , "$iPatternPROFILE_EXPIREDS" )
+			If UBound ( $AOUTHEXGLOBALARRAY ) > 0 Then
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNVALIDATELICENSES , $IPATTERNVALIDATELICENSER , "$iPatternValidateLicenseS" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNVALIDATELICENSE1S , $IPATTERNVALIDATELICENSE1R , "$iPatternValidateLicense1S" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNVALIDATELICENSE2S , $IPATTERNVALIDATELICENSE2R , "$iPatternValidateLicense2S" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNCMPEAX61S , $IPATTERNCMPEAX61R , "$iPatternCmpEax61S" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNCMPEAX62S , $IPATTERNCMPEAX62R , "$iPatternCmpEax62S" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNCMPEAX63S , $IPATTERNCMPEAX63R , "$iPatternCmpEax63S" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNCMPEAX64S , $IPATTERNCMPEAX64R , "$iPatternCmpEax64S" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNPROCESSV2PROFILE1AS , $IPATTERNPROCESSV2PROFILE1AR , "$iPatternProcessV2Profile1aS" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNPROCESSV2PROFILE1A1S , $IPATTERNPROCESSV2PROFILE1A1R , "$iPatternProcessV2Profile1a1S" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNBANNERS , $IPATTERNBANNERR , "$iPatternBannerS" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNBRIDGECAMRAW1S , $IPATTERNBRIDGECAMRAW1R , "$iPatternBridgeCamRaw1S" )
+				MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNBRIDGECAMRAW2S , $IPATTERNBRIDGECAMRAW2R , "$iPatternBridgeCamRaw2S" )
+				_ARRAYDISPLAY ( $AOUTHEXGLOBALARRAY , "Global Search Check" )
+				$MYREGEXPGLOBALPATTERNSEARCHCOUNT = 0
+				$COUNT = 0
+				PROGRESSWRITE ( 0 )
+			Else
+				MEMOWRITE ( $MYFILETOPARSE & @CRLF & "---" & @CRLF & "File was already patched?. Aborting..." & @CRLF & "---" )
+				Sleep ( 100 )
+				$MYREGEXPGLOBALPATTERNSEARCHCOUNT = 0
+				$COUNT = 0
+				PROGRESSWRITE ( 0 )
+			EndIf
+		EndIf
+	Else
+		MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNPROFILE_EXPIREDS , $IPATTERNPROFILE_EXPIREDR , "$iPatternPROFILE_EXPIREDS" )
+		If UBound ( $AOUTHEXGLOBALARRAY ) > 0 Then
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNVALIDATELICENSES , $IPATTERNVALIDATELICENSER , "$iPatternValidateLicenseS" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNVALIDATELICENSE1S , $IPATTERNVALIDATELICENSE1R , "$iPatternValidateLicense1S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNVALIDATELICENSE2S , $IPATTERNVALIDATELICENSE2R , "$iPatternValidateLicense2S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNCMPEAX61S , $IPATTERNCMPEAX61R , "$iPatternCmpEax61S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNCMPEAX62S , $IPATTERNCMPEAX62R , "$iPatternCmpEax62S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNCMPEAX63S , $IPATTERNCMPEAX63R , "$iPatternCmpEax63S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNCMPEAX64S , $IPATTERNCMPEAX64R , "$iPatternCmpEax64S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNPROCESSV2PROFILE1AS , $IPATTERNPROCESSV2PROFILE1AR , "$iPatternProcessV2Profile1aS" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNPROCESSV2PROFILE1A1S , $IPATTERNPROCESSV2PROFILE1A1R , "$iPatternProcessV2Profile1a1S" )
+			MYREGEXPGLOBALPATTERNSEARCH ( $MYFILETOPARSE , $IPATTERNBANNERS , $IPATTERNBANNERR , "$iPatternBannerS" )
+			$MYREGEXPGLOBALPATTERNSEARCHCOUNT = 0
+			$COUNT = 0
+			PROGRESSWRITE ( 0 )
+		Else
+			MEMOWRITE ( $MYFILETOPARSE & @CRLF & "---" & @CRLF & "File was already patched?. Aborting..." & @CRLF & "---" )
+			Sleep ( 100 )
+			$MYREGEXPGLOBALPATTERNSEARCHCOUNT = 0
+			$COUNT = 0
+			PROGRESSWRITE ( 0 )
+		EndIf
+	EndIf
+EndFunc
+Func MYREGEXPGLOBALPATTERNSEARCH ( $FILETOPARSE , $PATTERNTOSEARCH , $PATTERNTOREPLACE , $PATTERNNAME )
+	Local $HFILEOPEN = FileOpen ( $FILETOPARSE , $FO_READ + $FO_BINARY )
+	Local $SFILEREAD = FileRead ( $HFILEOPEN )
+	Local $ISEARCHPATTERN = $PATTERNTOSEARCH
+	Local $IREPLACEPATTERN = $PATTERNTOREPLACE
+	Local $INEWSEARCHCONSTRUCT = "" , $INEWREPLACECONSTRUCT = "" , $INEWREPLACECONSTRUCT1 = ""
+	$AINHEXARRAY = StringRegExp ( $SFILEREAD , $ISEARCHPATTERN , $STR_REGEXPARRAYFULLMATCH , 1 )
+	If @error = 0 Then
+		$INEWSEARCHCONSTRUCT = $AINHEXARRAY [ 0 ]
+		For $I = 0 To UBound ( $IREPLACEPATTERN ) + 4294967295
+			$INEWREPLACECONSTRUCT &= $IREPLACEPATTERN [ $I ]
+		Next
+		If StringInStr ( $INEWREPLACECONSTRUCT , "?" ) Then
+			For $I = 1 To StringLen ( $INEWREPLACECONSTRUCT ) + 1
+				Local $SSTRING1 = StringMid ( $INEWSEARCHCONSTRUCT , $I , 1 )
+				Local $SSTRING2 = StringMid ( $INEWREPLACECONSTRUCT , $I , 1 )
+				If $SSTRING2 <> "?" Then
+					$INEWREPLACECONSTRUCT1 &= $SSTRING2
+				Else
+					$INEWREPLACECONSTRUCT1 &= $SSTRING1
+				EndIf
+			Next
+		Else
+			$INEWREPLACECONSTRUCT1 = $INEWREPLACECONSTRUCT
+		EndIf
+		_ARRAYADD ( $AOUTHEXGLOBALARRAY , $INEWSEARCHCONSTRUCT )
+		_ARRAYADD ( $AOUTHEXGLOBALARRAY , $INEWREPLACECONSTRUCT1 )
+		ConsoleWrite ( $PATTERNNAME & "---" & @TAB & $INEWSEARCHCONSTRUCT & "	" & @CRLF )
+		ConsoleWrite ( $PATTERNNAME & "R" & "--" & @TAB & $INEWREPLACECONSTRUCT1 & "	" & @CRLF )
+		MEMOWRITE ( $FILETOPARSE & @CRLF & "---" & @CRLF & $PATTERNNAME & @CRLF & "---" & @CRLF & $INEWSEARCHCONSTRUCT & @CRLF & $INEWREPLACECONSTRUCT1 )
+	Else
+		ConsoleWrite ( $PATTERNNAME & "---" & @TAB & "No" & "	" & @CRLF )
+		MEMOWRITE ( $FILETOPARSE & @CRLF & "---" & @CRLF & $PATTERNNAME & "---" & "No" )
+	EndIf
+	$MYREGEXPGLOBALPATTERNSEARCHCOUNT += 1
+	FileClose ( $HFILEOPEN )
+	$SFILEREAD = ""
+	PROGRESSWRITE ( Round ( $MYREGEXPGLOBALPATTERNSEARCHCOUNT / $COUNT * 100 ) )
+	Sleep ( 100 )
+EndFunc
+Func MYGLOBALPATTERNPATCH ( $MYFILETOPATCH , $MYARRAYTOPATCH )
+	PROGRESSWRITE ( 0 )
+	MEMOWRITE ( "Current path" & @CRLF & "---" & @CRLF & $MYFILETOPATCH & @CRLF & "---" & @CRLF & "medication :)" )
+	Local $IROWS1 = 0
+	$IROWS1 = UBound ( $MYARRAYTOPATCH )
+	If $IROWS1 > 0 Then
+		Local $HFILEOPEN = FileOpen ( $MYFILETOPATCH , $FO_READ + $FO_BINARY )
+		Local $SFILEREAD = FileRead ( $HFILEOPEN )
+		For $I = 0 To $IROWS1 + 4294967295 Step 2
+			Local $SSTRINGOUT = StringReplace ( $SFILEREAD , $MYARRAYTOPATCH [ $I ] , $MYARRAYTOPATCH [ $I + 1 ] , 0 , 1 )
+			$SFILEREAD = $SSTRINGOUT
+			$SSTRINGOUT = $SFILEREAD
+			PROGRESSWRITE ( Round ( $I / $IROWS1 * 100 ) )
+		Next
+		FileClose ( $HFILEOPEN )
+		FileMove ( $MYFILETOPATCH , $MYFILETOPATCH & ".bak" , 1 )
+		Local $HFILEOPEN1 = FileOpen ( $MYFILETOPATCH , $FO_OVERWRITE + $FO_BINARY )
+		FileWrite ( $HFILEOPEN1 , Binary ( $SSTRINGOUT ) )
+		FileClose ( $HFILEOPEN1 )
+		PROGRESSWRITE ( 0 )
+		Sleep ( 100 )
+	Else
+	EndIf
+EndFunc
